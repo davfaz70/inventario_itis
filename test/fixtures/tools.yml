@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  photo: MyString
+  name: MyString
+  description: MyString
+  days: 1
+  deadline: 2017-12-28 16:48:27
+
+two:
+  photo: MyString
+  name: MyString
+  description: MyString
+  days: 1
+  deadline: 2017-12-28 16:48:27

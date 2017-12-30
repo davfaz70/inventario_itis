@@ -5,6 +5,20 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+#Font-awesome is a library of icons
+gem "font-awesome-rails"
+
+# Gem i18n stands for internationalization, it is useful for manage languages
+gem 'rails-i18n'
+
+# Bootstrap is useful for better style of components (ex buttons, input fields, ecc...)
+gem 'bootstrap', '~> 4.0.0.beta3'
+
+# Carrierwave is useful for file storage (ex: photos, documents, ecc...)
+gem 'carrierwave', '~> 1.0'
+
+# Devise is useful for sign-up and log-in and this gem control all authorization
+gem 'devise'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.6'

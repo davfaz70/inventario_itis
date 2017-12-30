@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ItisTorricelli</title>
     <%= csrf_meta_tags %>
 
@@ -9,6 +10,23 @@
   </head>
 
   <body>
+
+    <div class="container">
+<%= render partial: "shared/menu" %>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <% flash.each do |key, value| %>
+          <div class="alert alert-<%= key %>"><%= value %>
+             <a class="close" data-dismiss="alert">&#215;</a>
+          </div>
+        <% end %>
+      </div>
+
     <%= yield %>
+
+    <%= render partial: "shared/footer" %>
+
+  </div>
+
   </body>
 </html>

@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Home</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <!--<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
+        <%= link_to "ITIS", 'http://www.itisetorricelli.it/', target: :_blank, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to t('.tools'), tools_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= t('.languages') %>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <% if I18n.locale.to_s == 'it' %>
+            <%= link_to "Italiano", change_locale_path(locale: 'it'), method: :get, class: "dropdown-item disabled" %>
+            <%= link_to "Inglese", change_locale_path(locale: 'en'), method: :get, class: "dropdown-item" %>
+          <% elsif I18n.locale.to_s == 'en' %>
+            <%= link_to "Italiano", change_locale_path(locale: 'it'), method: :get, class: "dropdown-item" %>
+            <%= link_to "Inglese", change_locale_path(locale: 'en'), method: :get, class: "dropdown-item disabled" %>
+          <% else %>
+            <%= link_to "Italiano", change_locale_path(locale: 'it'), method: :get, class: "dropdown-item" %>
+            <%= link_to "Inglese", change_locale_path(locale: 'en'), method: :get, class: "dropdown-item" %>
+          <% end %>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Admin", dashboard_index_path, class: "nav-link" %>
+      </li>
+      <% if student_signed_in? %>
+        <li class="nav-item">
+        <%= link_to fa_icon('sign-out') + "Student log-out", destroy_student_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "nav-link" %>
+        </li>
+      <% end %>
+      <% if admin_signed_in? %>
+        <li class="nav-item">
+        <%= link_to fa_icon('sign-out') + "Admin log-out", destroy_admin_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "nav-link" %>
+        </li>
+      <% end %>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder= "<%=t('.place')%>" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><%=t('.search')%></button>
+    </form>
+  </div>
+</nav>

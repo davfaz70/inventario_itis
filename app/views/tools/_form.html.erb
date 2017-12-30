@@ -1,0 +1,49 @@
+<%= form_for @tool do |t| %>
+
+<% if @tool.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tool.errors.count, "error") %> Non è possibile proseguire </h2>
+
+      <ul>
+      <% @tool.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="form-group">
+  <%=t.label t('.title')%>
+  <%=t.text_field :title, class:"form-control"%>
+</div>
+
+<div class="form-group">
+  <%=t.label t('.body')%>
+  <%=t.text_area :body, class:"form-control"%>
+</div>
+
+<div class="form-group">
+  <%=t.label t('.date')%>*
+  <%=t.date_field :sheduling, class:"form-control"%>
+</div>
+
+  <small id="emailHelp" class="form-text text-muted"> * <%= t('.description')%></small>
+  <br>
+
+  <fieldset class="form-group">
+      <legend>SEO</legend>
+
+      <div class="form-group">
+        <%=t.label :Meta_Title%>
+        <%=t.text_field :meta_title, class:"form-control"%>
+      </div>
+
+      <div class="form-group">
+        <%=t.label :Meta_Description%>
+        <%=t.text_field :meta_description, class:"form-control"%>
+      </div>
+
+</fieldset>
+
+<%= t.submit class:"btn btn-primary btn-block"%>
+<% end %>
