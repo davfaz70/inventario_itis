@@ -1,8 +1,8 @@
-<%= form_for @tool do |t| %>
+<%= form_for @tool do |t|  %>
 
 <% if @tool.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@tool.errors.count, "error") %> Non è possibile proseguire </h2>
+      <h2><%= pluralize(@tool.errors.count, "error") %> <%= t('.error') %> </h2>
 
       <ul>
       <% @tool.errors.full_messages.each do |message| %>
@@ -12,38 +12,37 @@
     </div>
   <% end %>
 
-<div class="form-group">
-  <%=t.label t('.title')%>
-  <%=t.text_field :title, class:"form-control"%>
+<div class="custom-file">
+  <%=t.label t('.photo'), class:"custom-file-label"%>
+  <%=t.file_field :photo, class:"custom-file-input"%>
+</div>
+
+<div class="form-group" >
+  <%=t.label t('.name')%>
+  <%=t.text_field :name, class:"form-control"%>
+  <div class="invalid-feedback">Devi inserire un nome, come si chiama questo strumento? Arduino? RaspberryPie?</div>
 </div>
 
 <div class="form-group">
-  <%=t.label t('.body')%>
-  <%=t.text_area :body, class:"form-control"%>
+  <%=t.label t('.description')%>
+  <%=t.text_area :description, class:"form-control"%>
+  <div class="invalid-feedback">Devi inserire una descrizione, che cosa fa questo oggetto?</div>
 </div>
 
 <div class="form-group">
-  <%=t.label t('.date')%>*
-  <%=t.date_field :sheduling, class:"form-control"%>
+  <%=t.label t('.days')%>
+  <%=t.text_field :days, class:"form-control"%>
+  <div class="invalid-feedback">Devi inserire un numero di giorni standard per questo strumento</div>
 </div>
 
-  <small id="emailHelp" class="form-text text-muted"> * <%= t('.description')%></small>
-  <br>
+<div class="form-group">
+  <%=t.label t('.quantity')%>
+  <%=t.text_field :quantity, class:"form-control"%>
+  <div class="invalid-feedback">Quanti ce ne sono disponibili adesso? Devi dirlo!</div>
+</div>
 
-  <fieldset class="form-group">
-      <legend>SEO</legend>
 
-      <div class="form-group">
-        <%=t.label :Meta_Title%>
-        <%=t.text_field :meta_title, class:"form-control"%>
-      </div>
-
-      <div class="form-group">
-        <%=t.label :Meta_Description%>
-        <%=t.text_field :meta_description, class:"form-control"%>
-      </div>
-
-</fieldset>
 
 <%= t.submit class:"btn btn-primary btn-block"%>
+
 <% end %>

@@ -4,10 +4,20 @@ scope '(:locale)' do
 
 get '/change_locale/:locale', to: 'locale#change_locale', as: :change_locale
 
-  devise_for :students
+  devise_for :students, controllers: {
+        confirmations: 'students/confirmations',
+        omniauth: 'students/omniauth',
+        passwords: 'students/passwords',
+        registrations: 'students/registrations',
+        sessions: 'students/sessions',
+        unlocks: 'students/unlocks'
+      }
+
   devise_for :admins
 
   resources :tools
+
+  get 'tools/choose/:id(.:format)', :to => 'tools#choose', as: "choose_route"
 
   post 'tools/prenotate/:id(.:format)', :to => 'tools#prenotate', as: "prenotate_route"
 

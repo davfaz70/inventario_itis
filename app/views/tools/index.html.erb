@@ -1,2 +1,61 @@
-<h1>Tools#index</h1>
-<p>Find me in app/views/tools/index.html.erb</p>
+<div class="row">
+  <div class="col-md-12">
+<div id="accordion" role="tablist" aria-multiselectable="true">
+ <% @tools.each do |tool| %>
+
+
+    <div class="card">
+      <div class="card-header" role="tab" id="<%=tool.id%>">
+        <h5 class="mb-0">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=tool.id%>" aria-expanded="false" aria-controls="collapse<%=tool.id%>">
+          <%= fa_icon('arrow-down') + ' ' + tool.name %> <div class="text-right">
+            <% if tool.quantity != 0 %>
+            <%= link_to t('.book'), '#', class:"btn btn-primary btn-sm" %>
+            <% else %>
+              <%= link_to t('.book'), '#', class:"btn btn-outline-primary btn-sm disabled" %>
+              <% end %>
+          </div>
+          </a>
+        </h5>
+      </div>
+
+      <div id="collapse<%=tool.id%>" class="collapse" role="tabpanel" aria-labelledby="<%=tool.id%>">
+        <div class="card-block">
+
+          <div class="row">
+
+            <div class="col-xs-6 col-md-6">
+                <%=image_tag(tool.photo,:width => 286, :height => 180, :alt => tool.name)%>
+
+              <hr>
+              <% if tool.quantity != 0 %>
+              <%= link_to t('.book'), '#', class:"btn btn-primary btn-sm btn-block" %>
+              <% else %>
+                <%= link_to t('.book'), '#', class:"btn btn-primary btn-sm btn-block disabled" %>
+                <% end %>
+                <br>
+            </div>
+
+            <div class="col-xs-6 col-md-6">
+
+                 <b> <%= tool.description %> </b>
+                 <hr>
+                 <b>INFO</b> <br>
+                   <%= t('.days')%> <span class="badge badge-secondary"> <%= tool.days %> </span> <br>
+                   <%= t('.quantity')%> <span class="badge badge-secondary"> <%= tool.quantity %> </span>
+
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+<p class="text-center">
+<%= paginate @tools %>
+ </p>
+ </div>
+<br>
+</div>
+</div>

@@ -26,3 +26,23 @@ en:
       place: "Tools search"
       tools: "Tools"
       languages: "Languages"
+  tools:
+    index:
+      book: "Book this"
+      days: "You can keep it for a number of days equal to:"
+      quantity: "Quantity available in stock:"
+    form:
+      name: "Name"
+      description: "Description"
+      browse: "Browse"
+      days: "Number of days during which the student can use it"
+      quantity: "Quantity available now in storage"
+      error: "Proibithed to this tool to being saved"
+      photo: "Photo"
+  dashboard:
+    index:
+      language: "Edit in other language"
+      edit: "Edit"
+      days: "You can keep it for a number of days equal to:"
+      quantity: "Quantity available in stock:"
+      new: "New tool"

@@ -6,6 +6,31 @@ it:
       place: "Cerca uno strumento"
       tools: "Strumenti"
       languages: "Lingua"
+  tools:
+    index:
+      book: "Prenota"
+      days: "Puoi tenerlo per un numero di giorni pari a:"
+      quantity: "Quantità disponibili in magazzino:"
+    form:
+      name: "Nome"
+      description: "Descrizione"
+      browse: "Naviga"
+      days: "Numero di giorni durante i quali lo studente lo può utilizzare"
+      quantity: "Quantità disponibile adesso in magazzino"
+      error: "Proibiscono che questo strumento venga salvato"
+      photo: "Foto"
+  dashboard:
+    index:
+      language: "Scrivi in un'altra lingua"
+      edit: "Modifica"
+      days: "Puoi tenerlo per un numero di giorni pari a:"
+      quantity: "Quantità disponibili in magazzino:"
+      new: "Nuovo strumento"
+
+
+
+
+
   activerecord:
     errors:
       messages:

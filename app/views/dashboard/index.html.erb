@@ -1,2 +1,56 @@
-<h1>Dashboard#index</h1>
-<p>Find me in app/views/dashboard/index.html.erb</p>
+<div class="row">
+  <div class="col-md-12">
+<div id="accordion" role="tablist" aria-multiselectable="true">
+ <% @tools.each do |tool| %>
+
+
+    <div class="card">
+      <div class="card-header" role="tab" id="<%=tool.id%>">
+        <h5 class="mb-0">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=tool.id%>" aria-expanded="false" aria-controls="collapse<%=tool.id%>">
+          <%= fa_icon('arrow-down') + ' ' + tool.name %> <div class="text-right">
+            <%= link_to fa_icon('pencil') + ' ' + t('.edit'), edit_tool_path(tool), class:"btn btn-warning btn-sm" %>
+            <%= link_to fa_icon('trash'), tool_path(tool), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger btn-sm" %>
+          </div>
+          </a>
+        </h5>
+      </div>
+
+      <div id="collapse<%=tool.id%>" class="collapse" role="tabpanel" aria-labelledby="<%=tool.id%>">
+        <div class="card-block">
+
+          <div class="row">
+
+            <div class="col-xs-6 col-md-6">
+                <%=image_tag(tool.photo,:width => 286, :height => 180, :alt => tool.name)%>
+
+              <hr>
+              <%= link_to t('.language'), choose_route_path(tool), class:"btn btn-light btn-sm btn-block" %>
+              <%= link_to fa_icon('pencil') + ' ' + t('.edit'), edit_tool_path(tool), class:"btn btn-warning btn-sm btn-block" %>
+              <%= link_to fa_icon('trash'), tool_path(tool), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger btn-sm btn-block" %>
+                <br>
+            </div>
+
+            <div class="col-xs-6 col-md-6">
+
+                 <b> <%= tool.description %> </b>
+                 <hr>
+                 <b>INFO</b> <br>
+                  <%= t('.days') %> <span class="badge badge-secondary"> <%= tool.days %> </span> <br>
+                   <%= t('.quantity') %> <span class="badge badge-secondary"> <%= tool.quantity %> </span>
+
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+<p class="text-center">
+<%= paginate @tools %>
+ </p>
+<br>
+<%= link_to t('.new'), new_tool_path, class:"btn btn-primary btn-block" %>
+</div>
+</div>

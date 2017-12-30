@@ -5,6 +5,19 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+#ransak is useful for search
+gem 'ransack'
+
+#kaminari is useful for pagination
+gem 'kaminari'
+
+# Friendly_id hidden the id of objects with a their name or title or other fields
+gem 'friendly_id', '~> 5.1.0'
+
+# Gems globalize and activemodel work in concert for translate entities, such as posts or tools
+gem 'globalize', git: 'https://github.com/globalize/globalize'
+gem 'activemodel-serializers-xml'
+
 #Font-awesome is a library of icons
 gem "font-awesome-rails"
 

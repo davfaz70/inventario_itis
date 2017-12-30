@@ -5,7 +5,6 @@ class CreateTools < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :description
       t.integer :days
-      t.datetime :deadline
       t.integer :quantity
 
       t.timestamps
