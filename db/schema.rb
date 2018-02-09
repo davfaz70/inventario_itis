@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171230210956) do
+ActiveRecord::Schema.define(version: 20180209143505) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -38,6 +38,19 @@ ActiveRecord::Schema.define(version: 20171230210956) do
     t.index ["unlock_token"], name: "index_admins_on_unlock_token", unique: true
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categories_tools", id: false, force: :cascade do |t|
+    t.integer "category_id", null: false
+    t.integer "tool_id",     null: false
+    t.index ["category_id", "tool_id"], name: "index_categories_tools_on_category_id_and_tool_id"
+    t.index ["tool_id", "category_id"], name: "index_categories_tools_on_tool_id_and_category_id"
+  end
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
     t.integer  "sluggable_id",              null: false
@@ -50,20 +63,21 @@ ActiveRecord::Schema.define(version: 20171230210956) do
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
   end
 
-  create_table "profiles", force: :cascade do |t|
+  create_table "labs", force: :cascade do |t|
     t.string   "name"
-    t.string   "surname"
-    t.string   "email"
-    t.integer  "class"
-    t.string   "section"
-    t.string   "course"
-    t.string   "token"
-    t.integer  "student_id"
+    t.string   "subject"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "students", force: :cascade do |t|
+  create_table "labs_tools", id: false, force: :cascade do |t|
+    t.integer "lab_id",  null: false
+    t.integer "tool_id", null: false
+    t.index ["lab_id", "tool_id"], name: "index_labs_tools_on_lab_id_and_tool_id"
+    t.index ["tool_id", "lab_id"], name: "index_labs_tools_on_tool_id_and_lab_id"
+  end
+
+  create_table "profs", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -83,18 +97,10 @@ ActiveRecord::Schema.define(version: 20171230210956) do
     t.datetime "locked_at"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.index ["confirmation_token"], name: "index_students_on_confirmation_token", unique: true
-    t.index ["email"], name: "index_students_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
-    t.index ["unlock_token"], name: "index_students_on_unlock_token", unique: true
-  end
-
-  create_table "students_tools", id: false, force: :cascade do |t|
-    t.integer  "student_id", null: false
-    t.integer  "tool_id",    null: false
-    t.datetime "deadline"
-    t.index ["student_id", "tool_id"], name: "index_students_tools_on_student_id_and_tool_id"
-    t.index ["tool_id", "student_id"], name: "index_students_tools_on_tool_id_and_student_id"
+    t.index ["confirmation_token"], name: "index_profs_on_confirmation_token", unique: true
+    t.index ["email"], name: "index_profs_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_profs_on_reset_password_token", unique: true
+    t.index ["unlock_token"], name: "index_profs_on_unlock_token", unique: true
   end
 
   create_table "tool_translations", force: :cascade do |t|

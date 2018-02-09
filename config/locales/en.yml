@@ -20,6 +20,33 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  admin:
+    shared:
+      menu:
+        tools: "Tools"
+        labs: "Labs"
+        categories: "Categories"
+        languages: "Languages"
+    tools:
+      index:
+        new: "New tool"
+        search: "Search"
+        place: "Tools search"
+        book: "Book this"
+        sure: "Do you really want to book this tool?"
+        days: "You can keep it for a number of days equal to:"
+        quantity: "Quantity available in stock:"
+        language: "Edit in other language"
+      form:
+        name: "Name"
+        description: "Description"
+        browse: "Browse"
+        days: "Number of days during which the student can use it"
+        quantity: "Quantity available now in storage"
+        error: "Proibithed to this tool to being saved"
+        photo: "Photo"
+    dashboard:
+      index:
   shared:
     menu:
       search: "Search"
@@ -29,20 +56,6 @@ en:
   tools:
     index:
       book: "Book this"
+      sure: "Do you really want to book this tool?"
       days: "You can keep it for a number of days equal to:"
       quantity: "Quantity available in stock:"
-    form:
-      name: "Name"
-      description: "Description"
-      browse: "Browse"
-      days: "Number of days during which the student can use it"
-      quantity: "Quantity available now in storage"
-      error: "Proibithed to this tool to being saved"
-      photo: "Photo"
-  dashboard:
-    index:
-      language: "Edit in other language"
-      edit: "Edit"
-      days: "You can keep it for a number of days equal to:"
-      quantity: "Quantity available in stock:"
-      new: "New tool"

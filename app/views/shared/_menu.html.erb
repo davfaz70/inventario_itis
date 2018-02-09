@@ -1,4 +1,14 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<script>
+$(window).on('scroll', function () {
+  $(".navbar").css("top", $(window).scrollTop());
+});
+</script>
+<style>
+.navbar {
+  z-index: 9999;
+}
+</style>
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
   <a class="navbar-brand" href="/">Home</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -6,50 +16,47 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item ">
         <!--<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
         <%= link_to "ITIS", 'http://www.itisetorricelli.it/', target: :_blank, class: "nav-link" %>
       </li>
       <li class="nav-item">
+        <% if controller.controller_name == "tools" && controller.action_name == "index" %>
+        <%= link_to t('.tools'), tools_path, class: "nav-link active" %>
+        <% else %>
         <%= link_to t('.tools'), tools_path, class: "nav-link" %>
+        <% end %>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <%= t('.languages') %>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <% if I18n.locale.to_s == 'it' %>
-            <%= link_to "Italiano", change_locale_path(locale: 'it'), method: :get, class: "dropdown-item disabled" %>
-            <%= link_to "Inglese", change_locale_path(locale: 'en'), method: :get, class: "dropdown-item" %>
-          <% elsif I18n.locale.to_s == 'en' %>
-            <%= link_to "Italiano", change_locale_path(locale: 'it'), method: :get, class: "dropdown-item" %>
-            <%= link_to "Inglese", change_locale_path(locale: 'en'), method: :get, class: "dropdown-item disabled" %>
-          <% else %>
-            <%= link_to "Italiano", change_locale_path(locale: 'it'), method: :get, class: "dropdown-item" %>
-            <%= link_to "Inglese", change_locale_path(locale: 'en'), method: :get, class: "dropdown-item" %>
-          <% end %>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <text class="dropdown-item">
+            <%= link_to_unless_current image_tag("if_United-Kingdom_92403.ico", size: "28x28") + " English", locale: "en"%>
+          </text>
+          <text class="dropdown-item">
+            <%= link_to_unless_current image_tag("if_Italy_92145.ico", size: "28x28") + " Italiano", locale: "it" %>
+          </text>
         </div>
       </li>
       <li class="nav-item">
-        <%= link_to "Admin", dashboard_index_path, class: "nav-link" %>
+        <% if (controller.controller_name == "tools" && controller.action_name != "index") || controller.controller_name == "dashboard" || controller.controller_name == "sessions"%>
+        <%= link_to "Admin", admin_dashboard_index_path, class: "nav-link active" %>
+        <% else %>
+        <%= link_to "Admin", admin_dashboard_index_path, class: "nav-link" %>
+        <% end %>
       </li>
-      <% if student_signed_in? %>
-        <li class="nav-item">
-        <%= link_to fa_icon('sign-out') + "Student log-out", destroy_student_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "nav-link" %>
-        </li>
-      <% end %>
       <% if admin_signed_in? %>
         <li class="nav-item">
         <%= link_to fa_icon('sign-out') + "Admin log-out", destroy_admin_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "nav-link" %>
         </li>
       <% end %>
     </ul>
-    <% if (controller.controller_name == "tools" && controller.action_name == "index") || (controller.controller_name == "dashboard" && controller.action_name == "index") %>
+    <% if controller.controller_name == "tools" %>
       <%= search_form_for @q, class:"form-inline my-2 my-lg-0" do |f| %>
       <%= f.search_field :slug_cont, class:"form-control mr-sm-2", placeholder: t('.place') %>
-      <%= f.submit t('.search'), class:"btn btn-outline-success my-2 my-sm-0"%>
+      <%= f.submit t('.search'), class:"btn btn-outline-light my-2 my-sm-0"%>
       <% end %>
     <% end %>
 

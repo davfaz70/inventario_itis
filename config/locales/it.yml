@@ -1,5 +1,32 @@
 ---
 it:
+  admin:
+    shared:
+      menu:
+        tools: "Strumenti"
+        labs: "Laboratori"
+        categories: "Categorie"
+        languages: "Lingua"
+    tools:
+      index:
+        new: "Nuovo strumento"
+        search: "Cerca"
+        place: "Cerca uno strumento"
+        book: "Prenota"
+        sure: "Sei sicuro di voler prenotare questo strumento?"
+        days: "Puoi tenerlo per un numero di giorni pari a:"
+        quantity: "Quantità disponibili in magazzino:"
+        language: "Scrivi in un'altra lingua"
+      form:
+        name: "Nome"
+        description: "Descrizione"
+        browse: "Naviga"
+        days: "Numero di giorni durante i quali lo studente lo può utilizzare"
+        quantity: "Quantità disponibile adesso in magazzino"
+        error: "Proibiscono che questo strumento venga salvato"
+        photo: "Foto"
+    dashboard:
+      index:
   shared:
     menu:
       search: "Cerca"
@@ -9,29 +36,25 @@ it:
   tools:
     index:
       book: "Prenota"
+      sure: "Sei sicuro di voler prenotare questo strumento?"
       days: "Puoi tenerlo per un numero di giorni pari a:"
       quantity: "Quantità disponibili in magazzino:"
-    form:
-      name: "Nome"
-      description: "Descrizione"
-      browse: "Naviga"
-      days: "Numero di giorni durante i quali lo studente lo può utilizzare"
-      quantity: "Quantità disponibile adesso in magazzino"
-      error: "Proibiscono che questo strumento venga salvato"
-      photo: "Foto"
-  dashboard:
-    index:
-      language: "Scrivi in un'altra lingua"
-      edit: "Modifica"
-      days: "Puoi tenerlo per un numero di giorni pari a:"
-      quantity: "Quantità disponibili in magazzino:"
-      new: "Nuovo strumento"
+
 
 
 
 
 
   activerecord:
+    models:
+      tool:
+        one: "Strumento"
+        other: "Strumentii"
+    attributes:
+      tool:
+        name: "Nome"
+        description: "Descrizione"
+        quantity: "Quantità"
     errors:
       messages:
         record_invalid: 'Validazione fallita: %{errors}'

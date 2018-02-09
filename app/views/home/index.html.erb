@@ -1,0 +1,57 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Inventario</h1>
+    <p class="lead">Qui puoi richiedere uno strumento disponibile nell'inventario, sapere in che laboratorio si trova e se non trovi quello che cerchi puoi sepre fare una richiesta d'acquisto alla scuola.</p>
+    <p class="lead">Si possono prenotare strumenti anche senza registrarsi, tuttavia per poter rendere le cose più veloci e per essere in grado di fare una richiesta di acquisto, ci si può registrare</p>
+
+<div class="card-group">
+        <div class="card">
+          <%=image_tag("docente.jpeg", :width => 286, :height => 180, :alt => "Docente", class:"card-img-top")%>
+            <div class="card-body">
+              <h5 class="card-title">Docenti</h5>
+              <p class="card-text">Area accesso per i docenti.</p>
+              <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Registrati o entra
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Registrati</a>
+              <a class="dropdown-item" href="#">Sono già registrato</a>
+              </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="card">
+            <%=image_tag("ata.jpeg", :width => 286, :height => 180, :alt => "Ata", class:"card-img-top")%>
+              <div class="card-body">
+                <h5 class="card-title">Personale ATA</h5>
+                <p class="card-text">Per fare richieste di acquisto il personale ATA si deve registrare qui</p>
+                <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Registrati o entra
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Registrati</a>
+                <a class="dropdown-item" href="#">Sono già registrato</a>
+                </div>
+                </div>
+              </div>
+            </div>
+
+
+          <div class="card">
+            <%=image_tag("admin.jpeg", :width => 286, :height => 180, :alt => "Docente", class:"card-img-top")%>
+              <div class="card-body">
+                <h5 class="card-title">Admin</h5>
+                <p class="card-text">Area accesso per gli admin.</p>
+                <div class="dropdown">
+                <%= link_to "Admin", admin_dashboard_index_path, class:"btn btn-secondary" %>
+                </div>
+              </div>
+            </div>
+            </div>
+
+        </div>
+        </div>

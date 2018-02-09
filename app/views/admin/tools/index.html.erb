@@ -1,4 +1,11 @@
 
+<p class="text-right">
+  <%= search_form_for @o, class:"form-inline my-2 my-lg-0" do |f| %>
+  <%= f.search_field :slug_cont, class:"form-control mr-sm-2", placeholder: t('.place') %>
+  <%= f.submit t('.search'), class:"btn btn-success my-2 my-sm-0"%>
+  <%end%>
+</p>
+
 <div class="card-group">
  <% @tools.each do |tool| %>
 
@@ -8,6 +15,7 @@
           <div class="card-body">
           <h5 class="card-title"><%= tool.name %></h5>
           <p class="card-text"> <%= tool.description %> </p>
+          <p class="card text"> <%= link_to t('.language'), admin_choose_route_path(tool), class:"btn btn-block btn-secondary"%> </p>
           <p class="card-text"><small class="text-muted">
             <%= t('.days')%> <span class="badge badge-secondary"> <%= tool.days %> </span> <br>
             <%= t('.quantity')%> <span class="badge badge-secondary"> <%= tool.quantity %> </span>
@@ -29,3 +37,5 @@
 <p class="text-center">
 <%= paginate @tools %>
  </p>
+
+ <%= link_to t('.new'), new_admin_tool_path, class:"btn btn-primary btn-block"%>

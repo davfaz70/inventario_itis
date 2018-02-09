@@ -1,0 +1,77 @@
+<%= form_for ([:admin, @tool]) do |t|  %>
+
+<% if @tool.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tool.errors.count, "error") %> <%= t('.error') %> </h2>
+
+
+      <% @tool.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+       <%= message %>
+       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+       </button>
+      </div>
+      <% end %>
+    </div>
+  <% end %>
+<div class="row">
+  <div class="col-md-4 col-sm-6">
+    <img height="80" width="80" id="image" />
+  </div>
+  <div class="col-md-8 col-sm-6">
+<div class="custom-file">
+  <%=t.label t('.photo'), class:"custom-file-label"%>
+  <%=t.file_field :photo, class:"custom-file-input"%>
+</div>
+</div>
+</div>
+
+<div class="form-group" >
+  <%=t.label t('.name')%>
+  <%=t.text_field :name, class:"form-control"%>
+  <div class="invalid-feedback">Devi inserire un nome, come si chiama questo strumento? Arduino? RaspberryPie?</div>
+</div>
+
+<div class="form-group">
+  <%=t.label t('.description')%>
+  <%=t.text_area :description, class:"form-control"%>
+  <div class="invalid-feedback">Devi inserire una descrizione, che cosa fa questo oggetto?</div>
+</div>
+<div class="row">
+<div class="col-md-6 col-sm-6">
+<div class="form-group">
+  <%=t.label t('.days')%>
+  <%=t.text_field :days, class:"form-control"%>
+  <div class="invalid-feedback">Devi inserire un numero di giorni standard per questo strumento</div>
+</div>
+</div>
+
+<div class="col-md-6 col-sm-6">
+<div class="form-group">
+  <%=t.label t('.quantity')%>
+  <%=t.text_field :quantity, class:"form-control"%>
+  <div class="invalid-feedback">Quanti ce ne sono disponibili adesso? Devi dirlo!</div>
+</div>
+</div>
+</div>
+
+
+<%= t.submit class:"btn btn-primary btn-block"%>
+
+<script>
+
+document.getElementById("tool_photo").onchange = function () {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+        // get loaded data and render thumbnail.
+        document.getElementById("image").src = e.target.result;
+    };
+
+    // read the image file as a data URL.
+    reader.readAsDataURL(this.files[0]);
+};
+</script>
+
+<% end %>

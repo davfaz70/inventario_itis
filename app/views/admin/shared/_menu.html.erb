@@ -1,0 +1,41 @@
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <% if controller.controller_name == "dashboard" %>
+    <%= link_to "Dashboard", admin_dashboard_index_path, class:"nav-link active"%>
+    <% else %>
+    <%= link_to "Dashboard", admin_dashboard_index_path, class:"nav-link"%>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <% if controller.controller_name == "tools" %>
+    <%= link_to t('.tools'), admin_tools_path, class:"nav-link active"%>
+    <% else %>
+    <%= link_to t('.tools'), admin_tools_path, class:"nav-link"%>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <% if controller.controller_name == "labs" %>
+    <%= link_to t('.labs'), admin_labs_path, class:"nav-link active"%>
+    <% else %>
+    <%= link_to t('.labs'), admin_labs_path, class:"nav-link"%>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <% if controller.controller_name == "categories" %>
+    <%= link_to t('.categories'), admin_categories_path, class:"nav-link active"%>
+    <% else %>
+    <%= link_to t('.categories'), admin_categories_path, class:"nav-link"%>
+    <% end %>
+  </li>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%= t('.languages')%></a>
+    <div class="dropdown-menu">
+      <text class="dropdown-item">
+        <%= link_to_unless_current image_tag("if_United-Kingdom_92403.ico", size: "28x28") + " English", locale: "en"%>
+      </text>
+      <text class="dropdown-item">
+        <%= link_to_unless_current image_tag("if_Italy_92145.ico", size: "28x28") + " Italiano", locale: "it" %>
+      </text>
+    </div>
+  </li>
+</ul>

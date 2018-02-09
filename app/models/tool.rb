@@ -9,7 +9,4 @@ class Tool < ApplicationRecord
   validates :quantity, presence: true
   validates :days, presence: true
   paginates_per 7
-
-  has_and_belongs_to_many :students
-
 end
