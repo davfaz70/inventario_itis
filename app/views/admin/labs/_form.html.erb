@@ -1,0 +1,33 @@
+<%= form_for ([:admin, @lab]) do |t|  %>
+
+<% if @lab.errors.any? %>
+    <div id="error_explanation">
+      <% @lab.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+       <%= message %>
+       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+       </button>
+      </div>
+      <% end %>
+    </div>
+  <% end %>
+
+<div class="row">
+  <div class="col-md-6 col-sm-6">
+    <div class="form-group" >
+      <%=t.label t('.name')%>
+      <%=t.text_field :name, class:"form-control"%>
+    </div>
+  </div>
+  <div class="col-md-6 col-sm-6">
+    <div class="form-group">
+      <%=t.label t('.subject')%>
+      <%=t.text_field :subject, class:"form-control"%>
+    </div>
+</div>
+</div>
+
+<%= t.submit class:"btn btn-primary btn-block"%>
+
+<% end %>

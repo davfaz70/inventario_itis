@@ -45,8 +45,20 @@ en:
         quantity: "Quantity available now in storage"
         error: "Proibithed to this tool to being saved"
         photo: "Photo"
+    labs:
+      index:
+        labtools: "Amount of lab's tools"
+        show: "Show"
+        edit: "Edit"
+        language: "Edit in other language"
+        confirm: "Are you sure?"
+        new: "New lab"
+      form:
+        name: "Name"
+        subject: "Laboratory of:"
     dashboard:
       index:
+
   shared:
     menu:
       search: "Search"

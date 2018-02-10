@@ -9,7 +9,8 @@ scope '(:locale)' do
     resources :labs
     resources :categories
     get 'dashboard/index'
-    get 'tools/choose/:id(.:format)', :to => 'tools#choose', as: "choose_route"
+    get 'tools/choose/:id(.:format)', :to => 'tools#choose', as: "choose_tool_route"
+    get 'labs/choose/:id(.:format)', :to => 'labs#choose', as: "choose_lab_route"
   end
     resources :tools, only: [:index]
 

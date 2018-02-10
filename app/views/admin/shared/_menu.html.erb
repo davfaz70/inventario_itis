@@ -1,4 +1,6 @@
-<ul class="nav nav-tabs">
+<div class="card text-center">
+  <div class="card-header">
+<ul class="nav nav-tabs card-header-tabs">
   <li class="nav-item">
     <% if controller.controller_name == "dashboard" %>
     <%= link_to "Dashboard", admin_dashboard_index_path, class:"nav-link active"%>
@@ -39,3 +41,6 @@
     </div>
   </li>
 </ul>
+</div>
+  </div>
+<br>

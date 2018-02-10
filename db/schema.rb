@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180209143505) do
+ActiveRecord::Schema.define(version: 20180210113907) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -63,11 +63,21 @@ ActiveRecord::Schema.define(version: 20180209143505) do
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
   end
 
-  create_table "labs", force: :cascade do |t|
-    t.string   "name"
-    t.string   "subject"
+  create_table "lab_translations", force: :cascade do |t|
+    t.integer  "lab_id",     null: false
+    t.string   "locale",     null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "subject"
+    t.index ["lab_id"], name: "index_lab_translations_on_lab_id"
+    t.index ["locale"], name: "index_lab_translations_on_locale"
+  end
+
+  create_table "labs", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "slug"
   end
 
   create_table "labs_tools", id: false, force: :cascade do |t|

@@ -25,8 +25,20 @@ it:
         quantity: "Quantità disponibile adesso in magazzino"
         error: "Proibiscono che questo strumento venga salvato"
         photo: "Foto"
+    labs:
+      index:
+        labtools: "Numero di strumenti presenti in laboratorio"
+        show: "Mostra tutto"
+        edit: "Modifica"
+        language: "Scrivi in un'altra lingua"
+        confirm: "Sei sicuro?"
+        new: "Nuovo laboratorio"
+      form:
+        name: "Nome"
+        subject: "Laboratorio di:"
     dashboard:
       index:
+
   shared:
     menu:
       search: "Cerca"
@@ -49,12 +61,18 @@ it:
     models:
       tool:
         one: "Strumento"
-        other: "Strumentii"
+        other: "Strumenti"
+      lab:
+        one: "Laboratorio"
+        other: "Laboratori"
     attributes:
       tool:
         name: "Nome"
         description: "Descrizione"
         quantity: "Quantità"
+      lab:
+        name: "Nome"
+        subject: "Materia"
     errors:
       messages:
         record_invalid: 'Validazione fallita: %{errors}'

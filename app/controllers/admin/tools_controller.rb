@@ -36,10 +36,10 @@ class Admin::ToolsController < Admin::AdminController
 
   def update
     if @tool.update(tool_params)
-    redirect_to admin_tools_path
-  else
-    render 'edit'
-  end
+      redirect_to admin_tools_path
+    else
+      render 'edit'
+    end
   end
 
   def destroy
