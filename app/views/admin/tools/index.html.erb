@@ -9,15 +9,16 @@
 <div class="card-group">
  <% @tools.each do |tool| %>
 
+
 <% if tool.name.present? %>
-    <div class="card">
+    <div class="card" style="width: 18rem;">
           <%=image_tag(tool.photo, :width => 286, :height => 180, :alt => tool.name, class:"card-img-top")%>
           <div class="card-body">
           <h5 class="card-title"><%= tool.name %></h5>
           <p class="card-text"> <%= tool.description %> </p>
           <p class="card text"> <%= link_to t('.language'), admin_choose_tool_route_path(tool), class:"btn btn-block btn-secondary"%> </p>
           <p class="card-text"><small class="text-muted">
-            <%= t('.days')%> <span class="badge badge-secondary"> <%= tool.days %> </span> <br>
+            <%= t('.days')%> <%= tool.days %> <% if tool.days == 1 %> <%= t('.day') %> <% else %> <%= t('.days2') %> <% end %> <br>
             <%= t('.quantity')%> <span class="badge badge-secondary"> <%= tool.quantity %> </span>
           </small></p>
             <% if tool.quantity != 0 %>
@@ -33,9 +34,10 @@
 <% end %>
 <% end %>
 </div>
-
+<hr>
 <div class="paginate-container">
 <%= paginate @tools %>
  </div>
+ <hr>
 
  <%= link_to t('.new'), new_admin_tool_path, class:"btn btn-primary btn-block"%>

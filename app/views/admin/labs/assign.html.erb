@@ -1,0 +1,22 @@
+<p class="text-right">
+  <%= search_form_for @q, url: admin_assign_lab_route_path, class:"form-inline my-2 my-lg-0" do |f| %>
+  <%= f.search_field :slug_cont, class:"form-control mr-sm-2", placeholder: t('.place') %>
+  <%= f.submit t('.search'), class:"btn btn-success my-2 my-sm-0"%>
+  <%end%>
+</p>
+
+    <%= hidden_field_tag "lab[tool_ids][]", nil %>
+      <div class="list-group">
+        <% @tools.each do |tool| %>
+          <% if tool.name.present? %>
+            <% if @lab.tools.include?(tool) %>
+              <%= link_to tool.name, admin_assign_update_lab_route_path(@lab, tool), class:"list-group-item active"%>
+            <% else %>
+              <%= link_to tool.name, admin_assign_update_lab_route_path(@lab, tool), class:"list-group-item "%>
+            <%end%>
+          <% end %>
+        <% end %>
+      </div>
+<hr>
+      <%= link_to "OK", admin_labs_path, class:"btn btn-success btn-block" %>
+    <hr>

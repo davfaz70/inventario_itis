@@ -14,28 +14,35 @@ it:
         place: "Cerca uno strumento"
         book: "Prenota"
         sure: "Sei sicuro di voler prenotare questo strumento?"
-        days: "Puoi tenerlo per un numero di giorni pari a:"
+        days: "Puoi usarlo per "
+        days2: "giorni"
+        day: "giorno"
         quantity: "Quantità disponibili in magazzino:"
         language: "Scrivi in un'altra lingua"
       form:
         name: "Nome"
         description: "Descrizione"
         browse: "Naviga"
-        days: "Numero di giorni durante i quali lo studente lo può utilizzare"
+        days: "Numero di giorni in cui è possibile utilizzarlo"
         quantity: "Quantità disponibile adesso in magazzino"
         error: "Proibiscono che questo strumento venga salvato"
         photo: "Foto"
+        labchoose: "Seleziona i laboratori in cui si trova"
     labs:
       index:
         labtools: "Numero di strumenti presenti in laboratorio"
         show: "Mostra tutto"
         edit: "Modifica"
         language: "Scrivi in un'altra lingua"
+        assign: "Assegna strumenti"
         confirm: "Sei sicuro?"
         new: "Nuovo laboratorio"
       form:
         name: "Nome"
         subject: "Laboratorio di:"
+      assign:
+        search: "Cerca"
+        place: "Cerca uno strumento"
     dashboard:
       index:
 

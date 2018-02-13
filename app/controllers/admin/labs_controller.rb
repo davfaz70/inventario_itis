@@ -1,5 +1,5 @@
 class Admin::LabsController < Admin::AdminController
-  before_action :set_lab, only: [:show, :edit, :update, :destroy, :choose]
+  before_action :set_lab, only: [:show, :edit, :update, :destroy, :choose, :assign, :assign_update]
 
   def index
     @labs = Lab.order(:name).page
@@ -25,6 +25,23 @@ class Admin::LabsController < Admin::AdminController
   def show
   end
 
+  def assign
+    @q = Tool.ransack(params[:q])
+    @tools = @q.result(distinct: true)
+  end
+
+  def assign_update
+      @tool = Tool.friendly.find(params[:tool])
+      if @lab.tools.include?(@tool)
+        @lab.tools.delete(@tool)
+        redirect_to admin_assign_lab_route_path(@lab)
+      else
+        @lab.tools << @tool
+        redirect_to admin_assign_lab_route_path(@lab)
+      end
+  end
+
+
   def edit
 
   end
@@ -49,6 +66,6 @@ class Admin::LabsController < Admin::AdminController
   end
 
   def lab_params
-    params.require(:lab).permit(:name, :subject)
+    params.require(:lab).permit(:name, :subject, { tool_ids:[]})
   end
 end

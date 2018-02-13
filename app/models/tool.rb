@@ -6,9 +6,9 @@ class Tool < ApplicationRecord
   translates :description, :string
   validates :name, presence: true
   validates :description, presence: true
-  validates :quantity, presence: true
-  validates :days, presence: true
+  validates :quantity, presence: true, format: {with: /\d/}
+  validates :days, presence: true, format: {with: /\d/}
   has_and_belongs_to_many :labs
   has_and_belongs_to_many :categories
-  paginates_per 7
+  paginates_per 3
 end

@@ -11,6 +11,8 @@ scope '(:locale)' do
     get 'dashboard/index'
     get 'tools/choose/:id(.:format)', :to => 'tools#choose', as: "choose_tool_route"
     get 'labs/choose/:id(.:format)', :to => 'labs#choose', as: "choose_lab_route"
+    get 'labs/assign/:id(.:format)', :to => 'labs#assign', as: "assign_lab_route"
+    get 'labs/assign_update/:id/:tool(.:splat)', :to => 'labs#assign_update', as: "assign_update_lab_route"
   end
     resources :tools, only: [:index]
 

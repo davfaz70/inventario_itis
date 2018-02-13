@@ -26,6 +26,8 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  config.web_console.whitelisted_ips = '192.168.10.120'
+
   # Setup for gem devise
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 

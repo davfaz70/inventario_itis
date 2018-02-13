@@ -53,6 +53,25 @@
 </div>
 </div>
 
+<%= t.label t('.labchoose') %>
+
+<div class="field">
+  <%= hidden_field_tag "tool[lab_ids][]", nil %>
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+      <% for lab in Lab.all %>
+          <% if @tool.labs.include?(lab) %>
+            <label class="btn btn-outline-secondary active">
+          <% else %>
+            <label class="btn btn-outline-secondary">
+          <%end%>
+          <%= check_box_tag "tool[lab_ids][]", lab.id, @tool.labs.include?(lab) %>
+          <%= lab.name %>
+          </label>
+        <% end %>
+    </div>
+
+    <hr>
+
 
 <%= t.submit class:"btn btn-primary btn-block"%>
 

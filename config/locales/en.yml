@@ -34,7 +34,9 @@ en:
         place: "Tools search"
         book: "Book this"
         sure: "Do you really want to book this tool?"
-        days: "You can keep it for a number of days equal to:"
+        days: "You can use it for "
+        days2: "days"
+        day: "day"
         quantity: "Quantity available in stock:"
         language: "Edit in other language"
       form:
@@ -45,17 +47,22 @@ en:
         quantity: "Quantity available now in storage"
         error: "Proibithed to this tool to being saved"
         photo: "Photo"
+        labchoose: "Select the labs where i can find this tool"
     labs:
       index:
         labtools: "Amount of lab's tools"
         show: "Show"
         edit: "Edit"
         language: "Edit in other language"
+        assign: "Lab's tools"
         confirm: "Are you sure?"
         new: "New lab"
       form:
         name: "Name"
         subject: "Laboratory of:"
+      assign:
+        search: "Search"
+        place: "Tools search"
     dashboard:
       index:
 
