@@ -12,11 +12,12 @@ it:
         new: "Nuovo strumento"
         search: "Cerca"
         place: "Cerca uno strumento"
-        book: "Prenota"
+        edit: "Modifica"
         sure: "Sei sicuro di voler prenotare questo strumento?"
         days: "Puoi usarlo per "
         days2: "giorni"
         day: "giorno"
+        confirm: "Sei sicuro?"
         quantity: "Quantità disponibili in magazzino:"
         language: "Scrivi in un'altra lingua"
       form:

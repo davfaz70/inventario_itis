@@ -14,7 +14,9 @@ scope '(:locale)' do
     get 'labs/assign/:id(.:format)', :to => 'labs#assign', as: "assign_lab_route"
     get 'labs/assign_update/:id/:tool(.:splat)', :to => 'labs#assign_update', as: "assign_update_lab_route"
   end
-    resources :tools, only: [:index]
+    resources :tools, only: [:index] do
+      resources :tempbooks, only: [:new, :create]
+    end
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

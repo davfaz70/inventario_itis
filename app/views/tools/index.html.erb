@@ -13,10 +13,9 @@
             <%= t('.quantity')%> <span class="badge badge-secondary"> <%= tool.quantity %> </span>
           </small></p>
             <% if tool.quantity != 0 %>
-            <%= link_to t('.book'), '#', data: { confirm: tool.name + ".
-" + t('.sure') }, class:"btn btn-primary btn-sm" %>
+            <%= link_to t('.book'), new_tool_tempbook_path(tool), class:"btn btn-custom btn-sm" %>
             <% else %>
-              <%= link_to t('.book'), '#', class:"btn btn-outline-primary btn-sm disabled" %>
+              <%= link_to t('.book'), new_tool_tempbook_path(tool), class:"btn btn-custom btn-sm disabled" %>
               <% end %>
           </div>
            </div>

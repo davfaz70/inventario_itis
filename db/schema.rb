@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180210113907) do
+ActiveRecord::Schema.define(version: 20180215084609) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -38,6 +38,17 @@ ActiveRecord::Schema.define(version: 20180210113907) do
     t.index ["unlock_token"], name: "index_admins_on_unlock_token", unique: true
   end
 
+  create_table "books", force: :cascade do |t|
+    t.string   "prof"
+    t.integer  "tool_id"
+    t.datetime "sd"
+    t.datetime "fd"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "prof_email"
+    t.string   "prof_surname"
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -49,6 +60,21 @@ ActiveRecord::Schema.define(version: 20180210113907) do
     t.integer "tool_id",     null: false
     t.index ["category_id", "tool_id"], name: "index_categories_tools_on_category_id_and_tool_id"
     t.index ["tool_id", "category_id"], name: "index_categories_tools_on_tool_id_and_category_id"
+  end
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -111,6 +137,17 @@ ActiveRecord::Schema.define(version: 20180210113907) do
     t.index ["email"], name: "index_profs_on_email", unique: true
     t.index ["reset_password_token"], name: "index_profs_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_profs_on_unlock_token", unique: true
+  end
+
+  create_table "tempbooks", force: :cascade do |t|
+    t.string   "prof"
+    t.integer  "tool_id"
+    t.datetime "sd"
+    t.datetime "fd"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "prof_email"
+    t.string   "prof_surname"
   end
 
   create_table "tool_translations", force: :cascade do |t|

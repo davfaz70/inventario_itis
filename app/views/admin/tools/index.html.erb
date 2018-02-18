@@ -6,34 +6,27 @@
   <%end%>
 </p>
 
-<div class="card-group">
+
  <% @tools.each do |tool| %>
+  <% if tool.name.present? %>
+    <div class="card">
+      <%=image_tag(tool.photo.standard, width: "280px", height:"180")%>
+      <hr>
+      <div class="card-body">
+        <h5 class="card-title"><%= tool.name %></h5>
+        <p class="card-text"> <%= tool.description %> </p>
+        <p class="card-text"><small class="text-muted">
+          <%= t('.days')%> <%= tool.days %> <% if tool.days == 1 %> <%= t('.day') %> <% else %> <%= t('.days2') %> <% end %> <br>
+          <%= t('.quantity')%> <span class="badge badge-secondary"> <%= tool.quantity %> </span>
+        </small></p>
+        <p class="card text"> <%= link_to t('.language'), admin_choose_tool_route_path(tool), class:"btn btn-block btn-secondary"%> </p>
+        <p class="card text"> <%= link_to fa_icon('pencil') + " " + t('.edit'), edit_admin_tool_path(tool), class:"btn btn-block btn-warning"%> </p>
+        <p class="card text"> <%= link_to fa_icon('trash'), admin_tool_path(tool), method: :delete, data: {confirm: t('.confirm')}, class:"btn btn-block btn-danger"%> </p>
+      </div>
+    </div>
+  <% end %>
+ <% end %>
 
-
-<% if tool.name.present? %>
-    <div class="card" style="width: 18rem;">
-          <%=image_tag(tool.photo, :width => 286, :height => 180, :alt => tool.name, class:"card-img-top")%>
-          <div class="card-body">
-          <h5 class="card-title"><%= tool.name %></h5>
-          <p class="card-text"> <%= tool.description %> </p>
-          <p class="card text"> <%= link_to t('.language'), admin_choose_tool_route_path(tool), class:"btn btn-block btn-secondary"%> </p>
-          <p class="card-text"><small class="text-muted">
-            <%= t('.days')%> <%= tool.days %> <% if tool.days == 1 %> <%= t('.day') %> <% else %> <%= t('.days2') %> <% end %> <br>
-            <%= t('.quantity')%> <span class="badge badge-secondary"> <%= tool.quantity %> </span>
-          </small></p>
-            <% if tool.quantity != 0 %>
-            <%= link_to t('.book'), '#', data: { confirm: tool.name + ".
-" + t('.sure') }, class:"btn btn-primary btn-sm" %>
-            <% else %>
-              <%= link_to t('.book'), '#', class:"btn btn-outline-primary btn-sm disabled" %>
-              <% end %>
-          </div>
-           </div>
-
-
-<% end %>
-<% end %>
-</div>
 <hr>
 <div class="paginate-container">
 <%= paginate @tools %>

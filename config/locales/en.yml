@@ -32,11 +32,12 @@ en:
         new: "New tool"
         search: "Search"
         place: "Tools search"
-        book: "Book this"
+        edit: "Edit"
         sure: "Do you really want to book this tool?"
         days: "You can use it for "
         days2: "days"
         day: "day"
+        confirm: "Are you sure?"
         quantity: "Quantity available in stock:"
         language: "Edit in other language"
       form:

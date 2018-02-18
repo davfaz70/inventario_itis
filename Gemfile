@@ -5,6 +5,14 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem "mini_magick"
+
+gem 'carrierwave_backgrounder'
+
+gem 'daemons'
+
+gem 'delayed_job_active_record'
+
 #ransak is useful for search
 gem 'ransack'
 
@@ -15,7 +23,7 @@ gem 'kaminari'
 gem 'friendly_id', '~> 5.1.0'
 
 # Gems globalize and activemodel work in concert for translate entities, such as posts or tools
-gem 'globalize', git: 'https://github.com/globalize/globalize'
+gem 'globalize', '~> 5.1.0.beta2'
 gem 'activemodel-serializers-xml'
 
 #Font-awesome is a library of icons
@@ -28,7 +36,7 @@ gem 'rails-i18n'
 gem 'bootstrap', '~> 4.0.0.beta3'
 
 # Carrierwave is useful for file storage (ex: photos, documents, ecc...)
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave'
 
 # Devise is useful for sign-up and log-in and this gem control all authorization
 gem 'devise'

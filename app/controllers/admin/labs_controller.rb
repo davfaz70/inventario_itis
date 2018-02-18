@@ -2,7 +2,7 @@ class Admin::LabsController < Admin::AdminController
   before_action :set_lab, only: [:show, :edit, :update, :destroy, :choose, :assign, :assign_update]
 
   def index
-    @labs = Lab.order(:name).page
+    @labs = Lab.order(:id).page
     params[:page]
   end
 
