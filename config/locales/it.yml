@@ -14,21 +14,25 @@ it:
         place: "Cerca uno strumento"
         edit: "Modifica"
         sure: "Sei sicuro di voler prenotare questo strumento?"
-        days: "Puoi usarlo per "
-        days2: "giorni"
-        day: "giorno"
         confirm: "Sei sicuro?"
         quantity: "Quantità disponibili in magazzino:"
         language: "Scrivi in un'altra lingua"
+      create:
+        created: "Strumento creato con successo"
+      update:
+        edited: "Strumento aggiornato con successo"
+      destroy:
+        delete: "Strumento eliminato con successo"
       form:
         name: "Nome"
         description: "Descrizione"
         browse: "Naviga"
-        days: "Numero di giorni in cui è possibile utilizzarlo"
+        identifier: "Se il bene è inventariabile, inserisci l'identificativo"
         quantity: "Quantità disponibile adesso in magazzino"
         error: "Proibiscono che questo strumento venga salvato"
         photo: "Foto"
         labchoose: "Seleziona i laboratori in cui si trova"
+        categorychoose: "Seleziona le categorie a cui appartiene"
     labs:
       index:
         labtools: "Numero di strumenti presenti in laboratorio"
@@ -44,6 +48,24 @@ it:
       assign:
         search: "Cerca"
         place: "Cerca uno strumento"
+      create:
+        created: "Laboratorio creato con successo"
+      update:
+        edited: "Laboratorio aggiornato con successo"
+      destroy:
+        delete: "Laboratorio eliminato con successo"
+    categories:
+      index:
+        new: "Nuova categoria"
+        confirm: "sei sicuro?"
+      form:
+        name: "Nome"
+      create:
+        created: "Categoria creata con successo"
+      update:
+        edited: "Categoria aggiornata con successo"
+      destroy:
+        delete: "Categoria eliminata con successo"
     dashboard:
       index:
 
@@ -54,11 +76,17 @@ it:
       tools: "Strumenti"
       languages: "Lingua"
   tools:
+    identifier: "Non puoi inserire più strumenti con lo stesso identificativo"
+    quantity: "La quantità non può essere negativa"
     index:
       book: "Prenota"
       sure: "Sei sicuro di voler prenotare questo strumento?"
-      days: "Puoi tenerlo per un numero di giorni pari a:"
       quantity: "Quantità disponibili in magazzino:"
+  tempbook:
+    errorfd: "La data di inizio deve essere prima di quella di fine, lo sanno anche i bambini"
+    errorpast: "Non puoi prenotare uno strumento nel passato"
+
+
 
 
 
@@ -73,6 +101,12 @@ it:
       lab:
         one: "Laboratorio"
         other: "Laboratori"
+      category:
+        one: "Categoria"
+        other: "Categorie"
+      tempbook:
+        one: "Prenotazione"
+        other: "Prenotazioni"
     attributes:
       tool:
         name: "Nome"
@@ -81,12 +115,15 @@ it:
       lab:
         name: "Nome"
         subject: "Materia"
+      category:
+        name: "Nome"
     errors:
       messages:
         record_invalid: 'Validazione fallita: %{errors}'
         restrict_dependent_destroy:
           has_one: Il record non può essere cancellato perchè esiste un %{record} dipendente
           has_many: Il record non può essere cancellato perchè esistono %{record} dipendenti
+
   date:
     abbr_day_names:
     - dom

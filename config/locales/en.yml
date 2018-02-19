@@ -34,21 +34,25 @@ en:
         place: "Tools search"
         edit: "Edit"
         sure: "Do you really want to book this tool?"
-        days: "You can use it for "
-        days2: "days"
-        day: "day"
         confirm: "Are you sure?"
         quantity: "Quantity available in stock:"
         language: "Edit in other language"
+      create:
+        created: "Tool successfully created"
+      update:
+        edited: "Tool successfully updated"
+      destroy:
+        delete: "Tool successfully destroyed"
       form:
         name: "Name"
         description: "Description"
         browse: "Browse"
-        days: "Number of days during which the student can use it"
+        identifier: "If the asset is inventoryable, enter the identifier"
         quantity: "Quantity available now in storage"
         error: "Proibithed to this tool to being saved"
         photo: "Photo"
         labchoose: "Select the labs where i can find this tool"
+        categorychoose: "Select the categories of this tool"
     labs:
       index:
         labtools: "Amount of lab's tools"
@@ -64,6 +68,24 @@ en:
       assign:
         search: "Search"
         place: "Tools search"
+      create:
+        created: "Lab successfully created"
+      update:
+        edited: "Lab successfully updated"
+      destroy:
+        delete: "Lab successfully destroyed"
+    categories:
+      index:
+        new: "New category"
+        confirm: "are you sure?"
+      form:
+        name: "Name"
+      create:
+        created: "Category successfully created"
+      update:
+        edited: "Category successfully updated"
+      destroy:
+        delete: "Category successfully destroyed"
     dashboard:
       index:
 
@@ -74,8 +96,18 @@ en:
       tools: "Tools"
       languages: "Languages"
   tools:
+    identifier: "You can not insert multiple tools with the same identifier"
+    quantity: "The quantity can not be negative"
     index:
       book: "Book this"
       sure: "Do you really want to book this tool?"
-      days: "You can keep it for a number of days equal to:"
       quantity: "Quantity available in stock:"
+  tempbook:
+    errorfd: "The start date must be before the end date, even the children know this"
+    errorpast: "You can not reserve a tool in the past"
+
+  activerecord:
+    models:
+      tempbook:
+        one: "Booking"
+        other: "Reservations"

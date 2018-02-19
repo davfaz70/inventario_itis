@@ -1,2 +1,6 @@
-<h1>Admin::Categories#index</h1>
-<p>Find me in app/views/admin/categories/index.html.erb</p>
+<% @categories.each do |category| %>
+   <%= link_to fa_icon('tag') + " " + category.name, edit_admin_category_path(category), class:"btn btn-warning" %>
+   <%= link_to fa_icon('trash'), admin_category_path(category), method: :delete, data: {confirm: category.name + ", " + t('.confirm')}, class:"btn btn-sm btn-danger"%> <%= " | " %> 
+<% end %>
+<hr>
+<%= link_to t('.new'), new_admin_category_path, class:"btn btn-primary btn-block" %>

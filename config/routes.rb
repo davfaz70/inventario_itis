@@ -17,7 +17,7 @@ scope '(:locale)' do
     resources :tools, only: [:index] do
       resources :tempbooks, only: [:new, :create]
     end
-
+  resources :categories, only: [:show] 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 

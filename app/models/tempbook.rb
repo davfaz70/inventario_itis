@@ -1,10 +1,10 @@
 class MyValidator < ActiveModel::Validator
   def validate(record)
     if record.sd > record.fd
-      record.errors[:base] << "La data di inizio deve essere prima di quella di fine, lo sanno anche i bambini"
+      record.errors[:base] << I18n.t('tempbook.errorfd')
     end
     if record.sd < Time.now
-      record.errors[:base] << "Non puoi prenotare uno strumento nel passato"
+      record.errors[:base] << I18n.t('tempbook.errorpast')
     end
   end
 

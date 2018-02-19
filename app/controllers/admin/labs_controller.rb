@@ -13,6 +13,7 @@ class Admin::LabsController < Admin::AdminController
   def create
     @lab = Lab.new(lab_params)
     if @lab.save
+      flash[:success]= t('.created')
       redirect_to admin_labs_path
     else
       render 'new'
@@ -48,6 +49,7 @@ class Admin::LabsController < Admin::AdminController
 
   def update
     if @lab.update(lab_params)
+      flash[:success]= t('.edited')
       redirect_to admin_labs_path
     else
       render 'edit'
@@ -55,8 +57,12 @@ class Admin::LabsController < Admin::AdminController
   end
 
   def destroy
-    @lab.destroy
-    redirect_to admin_labs_path
+    if @lab.destroy
+      flash[:success]= t('.delete')
+      redirect_to admin_labs_path
+    else
+      redirect_to admin_labs_path
+    end
   end
 
   private

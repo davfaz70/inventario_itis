@@ -15,6 +15,7 @@ class Admin::ToolsController < Admin::AdminController
   def create
     @tool = Tool.new(tool_params)
     if @tool.save
+      flash[:success]= t('.created')
       redirect_to admin_tools_path
     else
       render 'new'
@@ -36,6 +37,7 @@ class Admin::ToolsController < Admin::AdminController
 
   def update
     if @tool.update(tool_params)
+      flash[:success]= t('.edited')
       redirect_to admin_tools_path
     else
       render 'edit'
@@ -43,8 +45,12 @@ class Admin::ToolsController < Admin::AdminController
   end
 
   def destroy
-    @tool.destroy
-    redirect_to admin_tools_path
+    if @tool.destroy
+      flash[:success]= t('.delete')
+      redirect_to admin_tools_path
+    else
+      redirect_to admin_tools_path
+    end
   end
 
   private
@@ -54,6 +60,6 @@ class Admin::ToolsController < Admin::AdminController
   end
 
   def tool_params
-    params.require(:tool).permit(:photo, :name, :description, :days, :quantity, { lab_ids:[]})
+    params.require(:tool).permit(:photo, :name, :description, :identifier, :quantity, { lab_ids:[]}, { category_ids:[]})
   end
 end

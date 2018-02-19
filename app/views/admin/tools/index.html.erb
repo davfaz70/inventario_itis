@@ -16,7 +16,6 @@
         <h5 class="card-title"><%= tool.name %></h5>
         <p class="card-text"> <%= tool.description %> </p>
         <p class="card-text"><small class="text-muted">
-          <%= t('.days')%> <%= tool.days %> <% if tool.days == 1 %> <%= t('.day') %> <% else %> <%= t('.days2') %> <% end %> <br>
           <%= t('.quantity')%> <span class="badge badge-secondary"> <%= tool.quantity %> </span>
         </small></p>
         <p class="card text"> <%= link_to t('.language'), admin_choose_tool_route_path(tool), class:"btn btn-block btn-secondary"%> </p>

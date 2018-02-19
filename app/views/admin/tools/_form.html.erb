@@ -38,8 +38,8 @@
 <div class="row">
 <div class="col-md-6 col-sm-6">
 <div class="form-group">
-  <%=t.label t('.days')%>
-  <%=t.text_field :days, class:"form-control"%>
+  <%=t.label t('.identifier')%>
+  <%=t.text_field :identifier, class:"form-control"%>
   <div class="invalid-feedback">Devi inserire un numero di giorni standard per questo strumento</div>
 </div>
 </div>
@@ -69,9 +69,28 @@
           </label>
         <% end %>
     </div>
+  </div>
 
     <hr>
 
+<%= t.label t('.categorychoose') %>
+
+<div class="field">
+  <%= hidden_field_tag "tool[category_ids][]", nil %>
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+      <% for category in Category.all %>
+        <% if @tool.categories.include?(category) %>
+          <label class="btn btn-outline-success active">
+        <% else %>
+          <label class="btn btn-outline-success">
+        <%end%>
+        <%= check_box_tag "tool[category_ids][]", category.id, @tool.categories.include?(category) %>
+        <%= fa_icon('tag') + " " + category.name %>
+        </label>
+      <% end %>
+  </div>
+</div>
+<hr>
 
 <%= t.submit class:"btn btn-primary btn-block"%>
 

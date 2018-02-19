@@ -11,6 +11,7 @@ class TempbooksController < ApplicationController
       cont = 0
       @date = Array.new(@tool.quantity)
       @tool.books.each_with_index do |b, i|
+        if b.fd >= Time.now
         if @tempbook.sd >= b.sd && @tempbook.sd <= b.fd
           cont = cont + 1
           @date[i] = b
@@ -21,6 +22,7 @@ class TempbooksController < ApplicationController
           cont = cont + 1
           @date[i] = b
         end
+      end
       end
       if cont >= @tool.quantity
         @date.each do |d|
