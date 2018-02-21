@@ -1,3 +1,20 @@
+<button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Vedi le altre prenotazioni
+  </button>
+</p>
+<div class="collapse" id="collapseExample">
+  Oggetto prenotato
+  <ul class="list-group">
+    <% @tool.books.each do |booking| %>
+      <% if booking.fd >= Time.now %>
+        <li class="list-group-item">
+           dal: <%= " " + booking.sd.strftime("%d/%m/%y") + " " %>  al: <%= " " + booking.fd.strftime("%d/%m/%y") + " "%> Quantità: <%= " " + booking.quantity.to_s%>
+         </li>
+      <%end%>
+    <% end %>
+  </ul>
+</div>
+
 <%= form_for ([@tool, @tempbook]) do |t|  %>
 
 <% if @tempbook.errors.any? %>
@@ -14,38 +31,47 @@
   <% end %>
 
 <div class="row">
-  <div class="col-md-6 col-sm-6">
+  <div class="col-md-4 col-sm-4">
     <div class="form-group" >
       <%=t.label :Data_inizio %>
       <%=t.date_field :sd, class:"form-control"%>
     </div>
   </div>
-  <div class="col-md-6 col-sm-6">
+  <div class="col-md-4 col-sm-4">
     <div class="form-group">
       <%=t.label :Data_fine %>
       <%=t.date_field :fd, class:"form-control"%>
     </div>
+  </div>
+  <div class="col-md-4 col-sm-4">
+    <div class="form-group">
+      <%= t.label :Quantità %>
+      <%= t.text_field :quantity, class:"form-control" %>
+    </div>
+  </div>
 </div>
-</div>
+
 <div class="row">
   <div class="col-md-4 col-sm-6">
     <div class="form-group">
       <%=t.label :Nome %>
-      <%=t.text_field :prof, class:"form-control"%>
+      <%=t.text_field :prof, value: current_prof.name, class:"form-control", readonly: true%>
     </div>
   </div>
   <div class="col-md-4 col-sm-4">
     <%= t.label :Cognome %>
-    <%= t.text_field :prof_surname, class:"form-control" %>
+    <%= t.text_field :prof_surname, value: current_prof.surname, class:"form-control", readonly: true %>
   </div>
   <div class="col-md-4 col-sm-4">
     <%= t.label :Email %>
-    <%= t.text_field :prof_email, class:"form-control" %>
+    <%= t.text_field :prof_email, value: current_prof.email, class:"form-control", readonly: true %>
   </div>
 </div>
 
+
+
 <br>
 
-<%= t.submit class:"btn btn-primary btn-block"%>
+<%= t.submit class:"btn btn-success btn-block"%>
 
 <% end %>

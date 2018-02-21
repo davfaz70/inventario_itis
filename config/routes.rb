@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 scope '(:locale)' do
 
-  devise_for :profs
+  devise_for :profs, controllers: {
+    registrations: 'profs/registrations'
+   }
   devise_for :admins
 
   namespace :admin do
@@ -17,7 +19,7 @@ scope '(:locale)' do
     resources :tools, only: [:index] do
       resources :tempbooks, only: [:new, :create]
     end
-  resources :categories, only: [:show] 
+  resources :categories, only: [:show]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 

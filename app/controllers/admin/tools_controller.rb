@@ -4,7 +4,7 @@ class Admin::ToolsController < Admin::AdminController
     q_param = params[:q]
     page = params[:page]
     per_page = params[:per_page]
-    @o = Tool.search(q_param)
+    @o = Tool.with_translations(I18n.locale).ransack(q_param)
     @tools = @o.result(distinct: true).page(page).per(per_page)
   end
 
