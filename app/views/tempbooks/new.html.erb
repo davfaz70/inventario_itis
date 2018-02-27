@@ -3,14 +3,16 @@
   </button>
 </p>
 <div class="collapse" id="collapseExample">
-  Oggetto prenotato
+
   <ul class="list-group">
-    <% @tool.books.each do |booking| %>
-      <% if booking.fd >= Time.now %>
-        <li class="list-group-item">
-           dal: <%= " " + booking.sd.strftime("%d/%m/%y") + " " %>  al: <%= " " + booking.fd.strftime("%d/%m/%y") + " "%> Quantità: <%= " " + booking.quantity.to_s%>
-         </li>
-      <%end%>
+    <% if @booking.present? %>
+    <% @booking.each do |booking| %>
+      <li class="list-group-item">
+        dal: <%= " " + booking.start_date.strftime("%d/%m/%y") + " " %>  al: <%= " " + booking.end_date.strftime("%d/%m/%y") + " "%> Quantità: <%= " " + booking.quantity.to_s%>
+      </li>
+    <% end %>
+    <% else %>
+    Oggetto non Prenotato
     <% end %>
   </ul>
 </div>
@@ -34,13 +36,13 @@
   <div class="col-md-4 col-sm-4">
     <div class="form-group" >
       <%=t.label :Data_inizio %>
-      <%=t.date_field :sd, class:"form-control"%>
+      <%=t.date_field :start_date, class:"form-control"%>
     </div>
   </div>
   <div class="col-md-4 col-sm-4">
     <div class="form-group">
       <%=t.label :Data_fine %>
-      <%=t.date_field :fd, class:"form-control"%>
+      <%=t.date_field :end_date, class:"form-control"%>
     </div>
   </div>
   <div class="col-md-4 col-sm-4">
@@ -51,23 +53,7 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-md-4 col-sm-6">
-    <div class="form-group">
-      <%=t.label :Nome %>
-      <%=t.text_field :prof, value: current_prof.name, class:"form-control", readonly: true%>
-    </div>
-  </div>
-  <div class="col-md-4 col-sm-4">
-    <%= t.label :Cognome %>
-    <%= t.text_field :prof_surname, value: current_prof.surname, class:"form-control", readonly: true %>
-  </div>
-  <div class="col-md-4 col-sm-4">
-    <%= t.label :Email %>
-    <%= t.text_field :prof_email, value: current_prof.email, class:"form-control", readonly: true %>
-  </div>
-</div>
-
+<%= hidden_field(:tempbook, :prof_id, :value => current_prof.id) %>
 
 
 <br>

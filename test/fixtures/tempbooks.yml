@@ -3,11 +3,11 @@
 one:
   prof: MyString
   tool_id: 1
-  sd: 2018-02-14 21:11:48
-  fd: 2018-02-14 21:11:48
+  start_date: 2018-02-14 21:11:48
+  end_date: 2018-02-14 21:11:48
 
 two:
   prof: MyString
   tool_id: 1
-  sd: 2018-02-14 21:11:48
-  fd: 2018-02-14 21:11:48
+  start_date: 2018-02-14 21:11:48
+  end_date: 2018-02-14 21:11:48

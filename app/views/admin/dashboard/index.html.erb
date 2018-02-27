@@ -1,1 +1,8 @@
 
+  <% @profs.each do |prof| %>
+
+    <div class="card">
+      Autorizza <%= " " + prof.name + " " + prof.surname + " " %> cliccando qui: <%= link_to "Autorizza", admin_authorize_route_path(prof.id), method: :post, class:"btn btn-success"%>
+    </div>
+  
+  <% end %>

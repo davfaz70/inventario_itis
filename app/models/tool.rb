@@ -3,6 +3,11 @@ class ToolValidator < ActiveModel::Validator
     if record.identifier.present? && record.quantity > 1
       record.errors[:base] << I18n.t('tools.identifier')
     end
+    if record.quantity.present?
+      if record.quantity < 0
+        record.errors[:base] <<I18n.t('tools.quantity')
+      end
+    end
   end
 end
 
@@ -15,7 +20,7 @@ class Tool < ApplicationRecord
   translates :name, :description
   validates :name, presence: true
   validates :description, presence: true
-  validates :quantity, presence: true, format: {with: /([1-9]+)/}
+  validates :quantity, presence: true, format: {with: /([0-9]+)/}
   has_and_belongs_to_many :labs
   has_and_belongs_to_many :categories
   has_many :tempbooks

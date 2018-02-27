@@ -3,6 +3,17 @@ class ApplicationController < ActionController::Base
   before_action :set_i18n_locale_from_params
   # ...
   protected
+
+   def authorized_prof
+     if current_prof.authorized == false
+       flash[:danger] = "Devi essere autorizzato per accedere"
+       redirect_back(fallback_location: root_path)
+     end
+   end
+
+
+
+
     def set_i18n_locale_from_params
       if params[:locale]
         if I18n.available_locales.map(&:to_s).include?(params[:locale])

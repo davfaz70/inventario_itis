@@ -15,6 +15,7 @@ scope '(:locale)' do
     get 'labs/choose/:id(.:format)', :to => 'labs#choose', as: "choose_lab_route"
     get 'labs/assign/:id(.:format)', :to => 'labs#assign', as: "assign_lab_route"
     get 'labs/assign_update/:id/:tool(.:splat)', :to => 'labs#assign_update', as: "assign_update_lab_route"
+    post 'authorize/:id(.:format)', :to => 'dashboard#authorize', as: "authorize_route"
   end
     resources :tools, only: [:index] do
       resources :tempbooks, only: [:new, :create]
@@ -22,7 +23,6 @@ scope '(:locale)' do
   resources :categories, only: [:show]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
   root to: "home#index"
 end
 

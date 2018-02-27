@@ -31,10 +31,22 @@ Rails.application.configure do
   # Setup for gem devise
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.perform_deliveries = true
+
+  # Control if the mailer can't send.
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
+
+  #config.action_mailer.delivery_method = :smtp
+  #  config.action_mailer.smtp_settings = {
+  #  address:              'smtp.gmail.com',
+  #  port:                 587,
+  #  domain:               'localhost:3000',
+  #  user_name:            # per impostare una ENV['variable'] bisogna modificare il file ~/.bashrc,
+  #  password:             # per una nuova password bisogna creare da Google una password per le app che autorizzi il dispositivo localhost:3000,
+  #  authentication:       :plain,
+  #  enable_starttls_auto: true  }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
