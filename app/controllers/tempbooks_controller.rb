@@ -12,8 +12,7 @@ class TempbooksController < ApplicationController
     @tempbook = @tool.tempbooks.build(tempbook_params)
     if @tempbook.save
       cont = 0
-      @tool.books.each_with_index do |b, i|
-        if b.end_date >= Time.now
+      @tool.books.where('end_date >= ?', Time.now).each_with_index do |b, i|
         if @tempbook.start_date >= b.start_date && @tempbook.start_date <= b.end_date
           cont = cont + b.quantity
         elsif @tempbook.end_date >= b.start_date && @tempbook.end_date <= b.end_date
@@ -21,7 +20,6 @@ class TempbooksController < ApplicationController
         elsif b.start_date >= @tempbook.start_date && b.start_date <= @tempbook.end_date
           cont = cont + b.quantity
         end
-      end
       end
       cont = cont + @tempbook.quantity
       if cont > @tool.quantity

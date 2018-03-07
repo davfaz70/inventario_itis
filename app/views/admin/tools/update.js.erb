@@ -1,0 +1,30 @@
+:plain
+  var interval;
+  $('.export .well').show();
+  interval = setInterval(function(){
+    $.ajax({
+      url: '/progress-job/' + #{@job.id},
+      success: function(job){
+        var stage, progress;
+
+        // If there are errors
+        if (job.last_error != null) {
+          $('.progress-bar').addClass('bg-danger');
+          $('.progress-bar').removeClass('progress-bar-animated');
+          clearInterval(interval);
+        }
+
+        progress = job.progress_current / job.progress_max * 100;
+        // In job stage
+        if (progress.toString() !== 'NaN'){
+          $('.progress-bar').css('width', progress + '%').text(progress + '%');
+        }
+      },
+      error: function(){
+        // Job is no loger in database which means it finished successfuly
+        $('.progress-bar').removeClass('animated');
+        $('.progress-bar').css('width', '100%').text('100%');
+        clearInterval(interval);
+      }
+    })
+  },100);

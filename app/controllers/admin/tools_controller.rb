@@ -1,5 +1,5 @@
 class Admin::ToolsController < Admin::AdminController
-  before_action :set_tool, only: [:edit, :destroy, :update, :choose, :prenotate, :show]
+  before_action :set_tool, only: [:edit, :destroy, :update, :choose, :show]
   def index
     q_param = params[:q]
     page = params[:page]
@@ -29,18 +29,14 @@ class Admin::ToolsController < Admin::AdminController
   def choose
   end
 
-  def prenotate
-
-  end
-
   def edit
-  #  @job = Delayed::Job.enqueue ChekingJob.new
+
   end
 
   def update
     if @tool.update(tool_params)
-      if @tool.books.where('end_date >= ?', Time.now).count > 0
-        cheking
+      if @tool.books.where('end_date >= ?', Time.now).exists?
+        @job = Delayed::Job.enqueue Admin::Checking.new(@tool, @tool.books.where('end_date >= ?', Time.now).count)
       end
       flash[:success]= t('.edited')
       redirect_to admin_tools_path
@@ -59,30 +55,6 @@ class Admin::ToolsController < Admin::AdminController
   end
 
   private
-
-  def cheking
-    #users = User.first(100)
-  #  @job = Delayed::Job.enqueue ::ChekingJob.new(@tool, @tool.books.where('end_date >= ?', Time.now).count)
-  @book1 = @tool.books.where('end_date >= ?', Time.now).order(created_at: :desc)
-  @book1.each do |booking|
-    cont = 0
-    @tool.books.where('end_date >= ?', Time.now).order(created_at: :desc).each do |b|
-      if b.id != booking.id
-        if booking.start_date >= b.start_date && booking.start_date <= b.end_date
-          cont = cont + b.quantity
-        elsif booking.end_date >= b.start_date && booking.end_date <= b.end_date
-          cont = cont + b.quantity
-        elsif b.start_date >= booking.start_date && b.start_date <= booking.end_date
-          cont = cont + b.quantity
-        end
-      end
-    end
-    if cont >= @tool.quantity
-#send_email_to_booking.prof_email
-      booking.destroy
-    end
-  end
-  end
 
   def set_tool
     @tool = Tool.friendly.find(params[:id])
