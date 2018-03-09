@@ -40,22 +40,38 @@ $(window).on('scroll', function () {
           </text>
         </div>
       </li>
-      <li class="nav-item">
-        <% if (controller.controller_name == "tools" && controller.action_name != "index") || controller.controller_name == "dashboard" || controller.controller_name == "sessions"%>
-        <%= link_to "Admin", admin_dashboard_index_path, class: "nav-link active" %>
-        <% else %>
-        <%= link_to "Admin", admin_dashboard_index_path, class: "nav-link" %>
-        <% end %>
-      </li>
       <% if admin_signed_in? %>
-        <li class="nav-item">
-        <%= link_to fa_icon('sign-out') + "Admin log-out", destroy_admin_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "nav-link" %>
-        </li>
+      <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdmin" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= fa_icon('cog') + " Admin" %>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
+          <%= link_to "Dashboard", admin_dashboard_index_path, class: "dropdown-item" %>
+          <%= link_to "Account", edit_admin_registration_path, class:"dropdown-item" %>
+          <div class="dropdown-divider"></div>
+        <%= link_to fa_icon('sign-out') + "Log-out", destroy_admin_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "dropdown-item" %>
+      </div>
+    </li>
+    <% else %>
+    <li class="nav-item">
+      <% if (controller.controller_name == "tools" && controller.action_name != "index") || controller.controller_name == "dashboard" || controller.controller_name == "sessions"%>
+      <%= link_to "Admin", admin_dashboard_index_path, class: "nav-link active" %>
+      <% else %>
+      <%= link_to "Admin", admin_dashboard_index_path, class: "nav-link" %>
+      <% end %>
+    </li>
+
       <% end %>
       <% if prof_signed_in? %>
-        <li class="nav-item">
-        <%= link_to fa_icon('sign-out') + "Prof log-out", destroy_prof_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "nav-link" %>
-        </li>
+      <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdmin" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= fa_icon('cog') + " Prof" %>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
+          <%= link_to "Account", edit_prof_registration_path, class:"dropdown-item" %>
+          <div class="dropdown-divider"></div>
+        <%= link_to fa_icon('sign-out') + "Log-out", destroy_prof_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "dropdown-item" %>
+      </div>
       <% end %>
     </ul>
     <% if controller.controller_name == "tools" %>

@@ -10,6 +10,8 @@ scope '(:locale)' do
     resources :tools
     resources :labs
     resources :categories
+    resources :technicals
+    resources :books, only: [:update, :destroy]
     get 'dashboard/index'
     get 'tools/choose/:id(.:format)', :to => 'tools#choose', as: "choose_tool_route"
     get 'labs/choose/:id(.:format)', :to => 'labs#choose', as: "choose_lab_route"

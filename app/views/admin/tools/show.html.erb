@@ -1,21 +1,25 @@
-<%@book1 = @tool.books.where('end_date >= ?', Time.now).order(created_at: :desc)
-if @book1.size != 0
-  @book1.each do |booking|
-    cont = 0
-    @tool.books.where('end_date >= ?', Time.now).order(created_at: :desc).each do |b|
-      if b.id != booking.id
-        if booking.start_date >= b.start_date && booking.start_date <= b.end_date
-          cont = cont + b.quantity
-        elsif booking.end_date >= b.start_date && booking.end_date <= b.end_date
-          cont = cont + b.quantity
-        elsif b.start_date >= booking.start_date && b.start_date <= booking.end_date
-          cont = cont + b.quantity
-        end
-      end
-    end%>
-    <%if cont >= 3%>
-      <p> <%= booking.prof %> <p>
-    <%end
-  end
-end
-%>
+<% @bookings.each do |booking| %>
+
+  <div class="card">
+    <div class="card-header">
+      dal: <%= " " + booking.start_date.strftime("%d/%m/%y") + " " %>  al: <%= " " + booking.end_date.strftime("%d/%m/%y") + " "%> Quantità: <%= " " + booking.quantity.to_s%>
+      <%= link_to fa_icon('trash'), admin_book_path(booking), method: :delete, data: {confirm: "Sei sicuro?"}, class:"btn btn-outline-danger"%>
+    </div>
+    <% if booking.confirmed == false %>
+  <div class="card-body">
+    <%= booking.prof.name + " " + booking.prof.surname %>
+    <%= form_for ([:admin, booking]) do |t|  %>
+    <%= hidden_field(:book, :confirmed, :value => true) %>
+    <%= t.submit "Conferma Prenotazione", class: "btn btn-success" %>
+    <% end %>
+    </div>
+
+  <% else %>
+   <div class="card-body">
+    <%= booking.prof.name + " " + booking.prof.surname %>
+  </div>
+
+  <% end %>
+
+  </div>
+<% end %>

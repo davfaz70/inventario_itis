@@ -23,7 +23,7 @@ class Admin::ToolsController < Admin::AdminController
   end
 
   def show
-
+    @bookings = @tool.books
   end
 
   def choose
@@ -59,6 +59,7 @@ class Admin::ToolsController < Admin::AdminController
   def set_tool
     @tool = Tool.friendly.find(params[:id])
   end
+
 
   def tool_params
     params.require(:tool).permit(:photo, :name, :description, :identifier, :quantity, { lab_ids:[]}, { category_ids:[]})

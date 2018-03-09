@@ -4,7 +4,7 @@ class TempbooksController < ApplicationController
   def new
     @tool = Tool.friendly.find(params[:tool_id])
     @tempbook = @tool.tempbooks.build
-    @booking = @tool.books.where('end_date >= ?', Time.now)
+    @booking = @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true)
   end
 
   def create
@@ -12,7 +12,7 @@ class TempbooksController < ApplicationController
     @tempbook = @tool.tempbooks.build(tempbook_params)
     if @tempbook.save
       cont = 0
-      @tool.books.where('end_date >= ?', Time.now).each_with_index do |b, i|
+      @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true).each_with_index do |b, i|
         if @tempbook.start_date >= b.start_date && @tempbook.start_date <= b.end_date
           cont = cont + b.quantity
         elsif @tempbook.end_date >= b.start_date && @tempbook.end_date <= b.end_date

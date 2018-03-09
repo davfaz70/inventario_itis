@@ -21,6 +21,7 @@
         <p class="card text"> <%= link_to t('.language'), admin_choose_tool_route_path(tool), class:"btn btn-block btn-secondary"%> </p>
         <p class="card text"> <%= link_to fa_icon('pencil') + " " + t('.edit'), edit_admin_tool_path(tool), class:"btn btn-block btn-warning"%> </p>
         <p class="card text"> <%= link_to fa_icon('trash'), admin_tool_path(tool), method: :delete, data: {confirm: t('.confirm')}, class:"btn btn-block btn-danger"%> </p>
+        <p class="card text"> <%= link_to fa_icon('eye'), admin_tool_path(tool), class:"btn btn-block btn-primary"%> </p>
       </div>
     </div>
   <% end %>

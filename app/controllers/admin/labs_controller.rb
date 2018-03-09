@@ -37,7 +37,7 @@ class Admin::LabsController < Admin::AdminController
         @lab.tools.delete(@tool)
         redirect_to admin_assign_lab_route_path(@lab)
       else
-        @lab.tools << @tool
+        @tool.labs << @lab
         redirect_to admin_assign_lab_route_path(@lab)
       end
   end

@@ -29,7 +29,7 @@ Rails.application.configure do
   config.web_console.whitelisted_ips = '192.168.10.120'
 
   # Setup for gem devise
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'localhost:3000', port: 3000 }
 
   config.action_mailer.perform_deliveries = true
 
@@ -43,8 +43,8 @@ Rails.application.configure do
   #  address:              'smtp.gmail.com',
   #  port:                 587,
   #  domain:               'localhost:3000',
-  #  user_name:            # per impostare una ENV['variable'] bisogna modificare il file ~/.bashrc,
-  #  password:             # per una nuova password bisogna creare da Google una password per le app che autorizzi il dispositivo localhost:3000,
+  #  user_name:            'example@gmail.com',
+  #  password:             #'vai su google e crea una nuova password per le app',
   #  authentication:       :plain,
   #  enable_starttls_auto: true  }
 

@@ -12,14 +12,15 @@ module ItisTorricelli
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    config.time_zone='Rome'
     config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-config.i18n.default_locale = :it
+    config.i18n.default_locale = :it
 
-# Where the I18n library should search for translation files
-I18n.load_path += Dir[Rails.root.join('lib', 'locale', '*.{rb,yml}')]
+    # Where the I18n library should search for translation files
+    I18n.load_path += Dir[Rails.root.join('lib', 'locale', '*.{rb,yml}')]
 
-# Whitelist locales available for the application
-I18n.available_locales = [:it, :en]
+    # Whitelist locales available for the application
+    I18n.available_locales = [:it, :en]
 
   end
 end
