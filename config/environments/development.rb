@@ -29,7 +29,7 @@ Rails.application.configure do
   config.web_console.whitelisted_ips = '192.168.10.120'
 
   # Setup for gem devise
-  config.action_mailer.default_url_options = { host: 'localhost:3000', port: 3000 }
+  config.action_mailer.default_url_options = { host: '192.168.10.120:3000', port: 3000 }
 
   config.action_mailer.perform_deliveries = true
 
@@ -38,15 +38,15 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  #config.action_mailer.delivery_method = :smtp
-  #  config.action_mailer.smtp_settings = {
-  #  address:              'smtp.gmail.com',
-  #  port:                 587,
-  #  domain:               'localhost:3000',
-  #  user_name:            'example@gmail.com',
-  #  password:             #'vai su google e crea una nuova password per le app',
-  #  authentication:       :plain,
-  #  enable_starttls_auto: true  }
+  config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'localhost:3000',
+    user_name:            'davfaz70@gmail.com',
+    password:             'kinoucentbjugjdn',
+    authentication:       :plain,
+    enable_starttls_auto: true  }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

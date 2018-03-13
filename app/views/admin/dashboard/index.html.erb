@@ -1,5 +1,6 @@
 
   <% @profs.each do |prof| %>
+  <% if prof.confirmed_at.present? %>
     <% if prof.authorized == false %>
       <div class="card">
         Autorizza <%= " " + prof.name + " " + prof.surname + " " %> cliccando qui:
@@ -11,6 +12,7 @@
       <%= link_to "Blocca", admin_authorize_route_path(prof.id), method: :post, class:"btn btn-danger"%>
     </div>
     <% end %>
+    <%end%>
 
 
   <% end %>

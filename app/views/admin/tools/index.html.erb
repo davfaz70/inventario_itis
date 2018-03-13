@@ -1,10 +1,18 @@
-
-<p class="text-right">
+<div class="row">
+  <div class="col-md-6 col-sm-6">
+<p>
   <%= search_form_for @o, url: admin_tools_path, class:"form-inline my-2 my-lg-0" do |f| %>
   <%= f.search_field :translations_name_cont, class:"form-control mr-sm-2", placeholder: t('.place') %>
   <%= f.submit t('.search'), class:"btn btn-success my-2 my-sm-0"%>
   <%end%>
 </p>
+  </div>
+  <div class="col-md-6 col-sm-6">
+    <p>
+    <%= link_to t('.new'), new_admin_tool_path, class:"btn btn-primary btn-block"%>
+  </p>
+  </div>
+</div>
 
 
  <% @tools.each do |tool| %>
@@ -32,5 +40,3 @@
 <%= paginate @tools %>
  </div>
  <hr>
-
- <%= link_to t('.new'), new_admin_tool_path, class:"btn btn-primary btn-block"%>

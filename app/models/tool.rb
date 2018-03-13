@@ -1,7 +1,9 @@
 class ToolValidator < ActiveModel::Validator
   def validate(record)
-    if record.identifier.present? && record.quantity > 1
-      record.errors[:base] << I18n.t('tools.identifier')
+    if record.identifier.present? && record.quantity.present?
+      if record.quantity > 1
+        record.errors[:base] << I18n.t('tools.identifier')
+      end
     end
     if record.quantity.present?
       if record.quantity < 0

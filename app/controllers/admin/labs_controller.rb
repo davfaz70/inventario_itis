@@ -1,5 +1,5 @@
 class Admin::LabsController < Admin::AdminController
-  before_action :set_lab, only: [:show, :edit, :update, :destroy, :choose, :assign, :assign_update]
+  before_action :set_lab, only: [:show, :edit, :update, :destroy, :assign, :assign_update]
 
   def index
     @labs = Lab.order(:id).page
@@ -18,9 +18,6 @@ class Admin::LabsController < Admin::AdminController
     else
       render 'new'
     end
-  end
-
-  def choose
   end
 
   def show
