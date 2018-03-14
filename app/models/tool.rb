@@ -7,7 +7,7 @@ class ToolValidator < ActiveModel::Validator
     end
     if record.quantity.present?
       if record.quantity < 0
-        record.errors[:base] <<I18n.t('tools.quantity')
+        record.errors[:base] << I18n.t('tools.quantity')
       end
     end
   end
@@ -18,7 +18,6 @@ class Tool < ApplicationRecord
   friendly_id :name, use: :slugged
   mount_uploader :photo, PhotoUploader
   process_in_background :photo
-  default_scope -> {Tool.with_translations(I18n.locale)}
   translates :name, :description
   validates :name, presence: true
   validates :description, presence: true
@@ -27,10 +26,12 @@ class Tool < ApplicationRecord
   has_and_belongs_to_many :categories
   has_many :tempbooks
   has_many :books, dependent: :destroy
+  has_many :posts, dependent: :destroy
+  has_many :documentations, dependent: :destroy
   before_save :name
   before_save :description
   validates_with ToolValidator
-  paginates_per 4
+  paginates_per 9
 
   def name=(s)
     write_attribute(:name, s.to_s.capitalize)

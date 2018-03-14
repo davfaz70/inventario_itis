@@ -85,8 +85,21 @@ it:
   tempbook:
     errorfd: "La data di inizio deve essere prima di quella di fine, lo sanno anche i bambini"
     errorpast: "Non puoi prenotare uno strumento nel passato"
-
-
+  home:
+    index:
+      header: "Inventario "
+      do: "Cosa facciamo"
+      first: "Il nostro obiettivo era quello di creare un'applicazione web in grado di gestire l'inventario scolastico, in modo che tu possa avere più tempo da dedicare ai tuoi progetti e ai tuoi studenti, quello che vedi è il nostro successo in ciò che abbiamo ideato"
+      second: "Non avrebbe senso creare solo una vetrina, adesso puoi prenotare uno strumento quando vuoi tu, questo sito è progettato per gestire tutte le tue prenotazioni, avvisarti quando è il momento di restituire l'oggetto e molto altro"
+      third: "E se quello che cerchi non c'è? Nessun problema! Abbiamo creato apposta una funzione che ti permette di fare una richiesta d'acquisto alla scuola, cosa possiamo fare di più per semplificarti la creazione dei tuoi progetti? "
+      developer: "Sviluppatore"
+      professors: "Docenti"
+      account: "Con il tuo account personale sarai molto di più di un semplice visitatore, potrai usare la funzione di prenotazione e lasciare commenti e opinioni sui diversi strumenti che la scuola possiede"
+      sign: "Registrati o entra"
+      up: "Registrati"
+      in: "Entra"
+      toold: "Visualizza tutto il parco strumenti della scuola, seleziona la categoria a cui appartengono, cerca il laboratorio in cui si trovano e molto altro ancora..."
+      admin: "Gli admin hanno una grande responsabilità, questa è l'area di accesso al controllo supremo"
 
 
 

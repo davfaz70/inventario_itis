@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180308162727) do
+ActiveRecord::Schema.define(version: 20180314191659) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -80,6 +80,14 @@ ActiveRecord::Schema.define(version: 20180308162727) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
+  create_table "documentations", force: :cascade do |t|
+    t.string   "name"
+    t.string   "file"
+    t.integer  "tool_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
     t.integer  "sluggable_id",              null: false
@@ -114,6 +122,15 @@ ActiveRecord::Schema.define(version: 20180308162727) do
     t.integer "tool_id", null: false
     t.index ["lab_id", "tool_id"], name: "index_labs_tools_on_lab_id_and_tool_id"
     t.index ["tool_id", "lab_id"], name: "index_labs_tools_on_tool_id_and_lab_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "title"
+    t.string   "body"
+    t.integer  "prof_id"
+    t.integer  "tool_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "profs", force: :cascade do |t|

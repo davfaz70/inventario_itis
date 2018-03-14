@@ -105,6 +105,34 @@ en:
   tempbook:
     errorfd: "The start date must be before the end date, even the children know this"
     errorpast: "You can not reserve a tool in the past"
+  home:
+    index:
+      header: "Inventory of "
+      do: "What we do"
+      first: "Our goal was to create a web application that can manage the school inventory so that you can have more time to devote to your projects and your students, what you see is our success in what we have designed"
+      second: "It would not make sense to create just a window, now you can book an instrument when you want, this site is designed to manage all your bookings, warn you when it's time to return the item and much more"
+      third: "If what you are looking for is not there? No problem! We have created a function on purpose that allows you to make a purchase request to the school, what can we do more to simplify the creation of your projects?"
+      developer: "Developer"
+      professors: "Professors"
+      account: "With your personal account you will be much more than just a visitor, you can use the reservation function and leave comments and opinions on the different tools"
+      sign: "Sign up or Sign in"
+      up: "Sign up"
+      in: "Sign in"
+      toold: "View all the school's tools, select the category they belong to, look for the laboratory they are in and much more ..."
+      admin: "The admin has a great responsibility, this is the area of access to supreme control"
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   activerecord:
     models:
