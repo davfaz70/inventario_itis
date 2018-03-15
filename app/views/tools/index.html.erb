@@ -1,29 +1,93 @@
+<style>
+        .scroll-box {
+            overflow-y: scroll;
+            height: 150px;
+            padding: 1rem
+        }
+</style>
+<div class="row">
 
-<div class="card-group">
- <% @tools.each do |tool| %>
 
-<% if tool.name.present? %>
-    <div class="card">
-          <%=image_tag(tool.photo, :width => 286, :height => 180, :alt => tool.name, class:"card-img-top")%>
-          <div class="card-body">
-          <h5 class="card-title"><%= tool.name %></h5>
-          <p class="card-text"> <%= tool.description %> </p>
-          <p class="card-text"><small class="text-muted">
-            <%= t('.quantity')%> <span class="badge badge-secondary"> <%= tool.quantity %> </span>
-          </small></p>
-            <% if tool.quantity != 0 %>
-            <%= link_to t('.book'), new_tool_tempbook_path(tool), class:"btn btn-custom btn-sm" %>
-            <% else %>
-              <%= link_to t('.book'), new_tool_tempbook_path(tool), class:"btn btn-custom btn-sm disabled" %>
+  <div class=" col-lg-3 col-sm-5">
+
+
+
+    <div class="card my-4">
+              <h5 class="card-header">Search</h5>
+              <div class="card-body">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Search for...">
+                  <span class="input-group-btn">
+                    <button class="btn btn-secondary" type="button">Go!</button>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Categories Widget -->
+            <div class="card my-4">
+              <h5 class="card-header">Categories</h5>
+              <div class="scroll-box">
+                <% @categories.each do |category| %>
+                   <td>  <%=link_to fa_icon('tag') + " " + category.name, "#", class:"btn btn-warning btn-sm"%>  </td>
+               <%end%>
+              </div>
+            </div>
+
+            <div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="it_IT" data-type="vertical" data-theme="light" data-vanity="davide-fazio"><a class="LI-simple-link" href='https://it.linkedin.com/in/davide-fazio?trk=profile-badge'>Davide F.</a></div>
+
+
+
+
+  </div>
+
+  <div class="col-lg-9 col-sm-7">
+
+
+
+<div class="row">
+
+
+
+  <% @tools.each do |tool| %>
+    <% if tool.name.present? %>
+
+      <div class="col-lg-4 col-sm-6 portfolio-item">
+        <div class="card h-100">
+
+          <% if tool.photo.standard.present? %>
+            <%=image_tag(tool.photo.standard, :alt => "toolphoto.jpeg", class:"card-img-top")%>
+          <% else %>
+            <%=image_tag("standard_toolphoto.jpeg", :alt => "toolphoto.jpeg", class:"card-img-top")%>
+          <% end %>
+
+            <div class="card-body">
+              <h4 class="card-title">
+                <%= tool.name %>
+              </h4>
+              <p class="card-text text-truncate">
+                <%= tool.description %>
+              </p>
+
+            </div>
+            <ul class="list-group list-group-flush">
+              <% if tool.quantity > 0 %>
+                <%= link_to t('.book'), new_tool_tempbook_path(tool), class:"list-group-item list-group-item-primary" %>
+              <% else %>
+                <%= link_to t('.book'), new_tool_tempbook_path(tool), class:"list-group-item list-group-item-info disabled" %>
               <% end %>
+            </ul>
           </div>
-           </div>
+        </div>
 
-
-<% end %>
-<% end %>
+    <% end %>
+  <% end %>
 </div>
 
-<div class="text-center">
-<%= paginate @tools %>
- </div>
+</div>
+
+</div>
+
+<ul class="pagination justify-content-center">
+  <%= paginate @tools %>
+</ul>

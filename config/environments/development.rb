@@ -43,12 +43,13 @@ Rails.application.configure do
     address:              'smtp.gmail.com',
     port:                 587,
     domain:               'localhost:3000',
-    user_name:            ,
-    password:             ,
+    user_name:            '',
+    password:             '',
     authentication:       :plain,
     enable_starttls_auto: true  }
 
-
+# ID client: 811458484039-1bb7lb2ksjvdhdi8rj3lno3nnqg6na9m.apps.googleusercontent.com
+# Client secret: rmgrqZ1EJQdZGrF92oHzEWot
 
 
 
