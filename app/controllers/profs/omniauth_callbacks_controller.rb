@@ -11,6 +11,25 @@ class Profs::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # More info at:
   # https://github.com/plataformatec/devise#omniauth
 
+  def google_oauth2
+      # You need to implement the method below in your model (e.g. app/models/user.rb)
+      @prof = Prof.from_omniauth(request.env['omniauth.auth'])
+
+      if @prof.persisted?
+        flash[:notice] = I18n.t 'devise.omniauth_callbacks.success', kind: 'Google'
+        sign_in_and_redirect @prof, event: :authentication
+      else
+        session['devise.google_data'] = request.env['omniauth.auth'].except(:extra) # Removing extra as it can overflow some session stores
+        redirect_to new_prof_registration_url, alert: @prof.errors.full_messages.join("\n")
+      end
+  end
+
+  def failure
+    redirect_to root_path
+  end
+
+
+
   # GET|POST /resource/auth/twitter
   # def passthru
   #   super

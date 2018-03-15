@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
+
+  devise_for :profs, only: :omniauth_callbacks, controllers: {omniauth_callbacks: 'profs/omniauth_callbacks'}
+
 scope '(:locale)' do
 
-  devise_for :profs, controllers: {
+  devise_for :profs, skip: :omniauth_callbacks, controllers: {
     registrations: 'profs/registrations',
-    confirmations: 'profs/confirmations'
+    confirmations: 'profs/confirmations',
    }
   devise_for :admins, controllers: {
     registrations: 'admins/registrations'
