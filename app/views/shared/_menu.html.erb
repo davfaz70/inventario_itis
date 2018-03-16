@@ -21,7 +21,7 @@ $(window).on('scroll', function () {
         <%= link_to "ITIS", 'http://www.itisetorricelli.it/', target: :_blank, class: "nav-link" %>
       </li>
       <li class="nav-item">
-        <% if controller.controller_name == "tools" && controller.action_name == "index" %>
+        <% if controller.controller_name == "tools" %>
         <%= link_to t('.tools'), tools_path, class: "nav-link active" %>
         <% else %>
         <%= link_to t('.tools'), tools_path, class: "nav-link" %>
@@ -54,7 +54,7 @@ $(window).on('scroll', function () {
     </li>
     <% else %>
     <li class="nav-item">
-      <% if (controller.controller_name == "tools" && controller.action_name != "index") || controller.controller_name == "dashboard" || controller.controller_name == "sessions"%>
+      <% if controller.controller_name == "sessions"%>
       <%= link_to "Admin", admin_dashboard_index_path, class: "nav-link active" %>
       <% else %>
       <%= link_to "Admin", admin_dashboard_index_path, class: "nav-link" %>
@@ -74,12 +74,11 @@ $(window).on('scroll', function () {
       </div>
       <% end %>
     </ul>
-    <% if controller.controller_name == "tools" %>
-      <%= search_form_for @q, class:"form-inline my-2 my-lg-0" do |f| %>
-      <%= f.search_field :translations_name_cont, class:"form-control mr-sm-2", placeholder: t('.place') %>
-      <%= f.submit t('.search'), class:"btn btn-outline-light my-2 my-sm-0"%>
-      <% end %>
-    <% end %>
+
+
+
+
+
 
   </div>
 </nav>

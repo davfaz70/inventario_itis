@@ -71,20 +71,45 @@ it:
 
   shared:
     menu:
-      search: "Cerca"
-      place: "Cerca uno strumento"
       tools: "Strumenti"
       languages: "Lingua"
   tools:
     identifier: "Non puoi inserire più strumenti con lo stesso identificativo"
     quantity: "La quantità non può essere negativa"
+    show:
+      description: "Descrizione"
+      bookings: "Prenotazioni"
+      notbooked: "Non sono presenti prenotazioni"
+      from: "Dal"
+      to: "al"
+      documentation: "Documentazione"
+      notdocumented: "Non è presente alcuna documentazione"
+      comment: "Lascia un parere sul prodotto"
+      leavecomment: "Commenta"
+      editedat: "Modificato il"
+      at: "alle"
+      confirm: "Sei sicuro?"
+      quantity: "Quantità"
     index:
+      search: "Cerca"
+      place: "Cerca strumenti"
       book: "Prenota"
       sure: "Sei sicuro di voler prenotare questo strumento?"
       quantity: "Quantità disponibili in magazzino:"
   tempbook:
     errorfd: "La data di inizio deve essere prima di quella di fine, lo sanno anche i bambini"
     errorpast: "Non puoi prenotare uno strumento nel passato"
+  tempbooks:
+    new:
+      impossible: "Non è possibile prenotare questo strumento"
+  posts:
+    create:
+      created: "Commento creato con successo"
+      oops: "Oooops, qualcosa è andato storto"
+    update:
+      updated: "Commento aggiornato con successo"
+    destroy:
+      delete: "Commento eliminato con successo"
   home:
     index:
       header: "Inventario "

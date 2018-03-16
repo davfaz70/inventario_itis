@@ -91,20 +91,45 @@ en:
 
   shared:
     menu:
-      search: "Search"
-      place: "Tools search"
       tools: "Tools"
       languages: "Languages"
   tools:
     identifier: "You can not insert multiple tools with the same identifier"
     quantity: "The quantity can not be negative"
+    show:
+      description: "Description"
+      bookings: "Reservations"
+      notbooked: "There are not reservations"
+      from: "From"
+      to: "to"
+      documentation: "Documentation"
+      notdocumented: "There are not documentations"
+      comment: "Leave a comment on product"
+      leavecomment: "Comment it"
+      editedat: "Modified on"
+      at: "at"
+      confirm: "Are you sure?"
+      quantity: "Quantity"
     index:
       book: "Book this"
       sure: "Do you really want to book this tool?"
       quantity: "Quantity available in stock:"
+      search: "Search"
+      place: "Tools search"
   tempbook:
     errorfd: "The start date must be before the end date, even the children know this"
     errorpast: "You can not reserve a tool in the past"
+  tempbooks:
+    new:
+      impossible: "This tool can not be booked"
+  posts:
+    create:
+      created: "Comment successfully created"
+      oops: "Oooops, something were wrong"
+    update:
+      updated: "Comment successfully updated"
+    destroy:
+      delete: "Comment successfully deleted"
   home:
     index:
       header: "Inventory of "

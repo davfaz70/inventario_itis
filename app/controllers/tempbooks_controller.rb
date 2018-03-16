@@ -3,6 +3,7 @@ class TempbooksController < ApplicationController
   before_action :authorized_prof, only: [:new]
   def new
     @tool = Tool.friendly.find(params[:tool_id])
+    control(@tool)
     @tempbook = @tool.tempbooks.build
     @booking = @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true)
   end
@@ -47,6 +48,14 @@ class TempbooksController < ApplicationController
   end
 
   private
+
+  def control(tool)
+    @tool = tool
+    if @tool.quantity == 0
+      flash[:danger] = t('.impossible')
+      redirect_to tools_path
+    end
+  end
 
   def tempbook_params
     params.require(:tempbook).permit(:prof_id, :tool_id, :start_date, :end_date, :quantity)

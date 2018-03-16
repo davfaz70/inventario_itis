@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180315095520) do
+ActiveRecord::Schema.define(version: 20180315210254) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -125,7 +125,6 @@ ActiveRecord::Schema.define(version: 20180315095520) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string   "title"
     t.string   "body"
     t.integer  "prof_id"
     t.integer  "tool_id"

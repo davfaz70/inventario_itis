@@ -1,4 +1,6 @@
 class ToolsController < ApplicationController
+  before_action :set_tool, only: [:show]
+
   def index
     q_param = params[:q]
     page = params[:page]
@@ -7,6 +9,16 @@ class ToolsController < ApplicationController
     @tools = @q.result(distinct: true).page(page).per(per_page)
 
     @categories = Category.all
+  end
+
+  def show
+    @posts = @tool.posts
+  end
+
+  private
+
+  def set_tool
+    @tool = Tool.friendly.find(params[:id])
   end
 
 end

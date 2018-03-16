@@ -24,8 +24,9 @@ scope '(:locale)' do
     get 'labs/assign_update/:id/:tool(.:splat)', :to => 'labs#assign_update', as: "assign_update_lab_route"
     post 'authorize/:id(.:format)', :to => 'dashboard#authorize', as: "authorize_route"
   end
-    resources :tools, only: [:index] do
+    resources :tools, only: [:index, :show] do
       resources :tempbooks, only: [:new, :create]
+      resources :posts, only: [:create, :edit, :update, :destroy]
     end
   resources :categories, only: [:show]
 

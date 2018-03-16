@@ -48,9 +48,6 @@ Rails.application.configure do
     authentication:       :plain,
     enable_starttls_auto: true  }
 
-# ID client: 811458484039-1bb7lb2ksjvdhdi8rj3lno3nnqg6na9m.apps.googleusercontent.com
-# Client secret: rmgrqZ1EJQdZGrF92oHzEWot
-
 
 
   # Print deprecation notices to the Rails logger.

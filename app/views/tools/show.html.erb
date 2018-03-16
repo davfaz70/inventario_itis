@@ -1,0 +1,145 @@
+<style>
+        .scroll-box {
+            overflow-y: scroll;
+            height: 200px;
+            padding: 1rem
+        }
+</style>
+
+<!-- Portfolio Item Heading -->
+      <h1 class="my-4"> <%= @tool.name %> <small> <%= t('.quantity') + ": " + @tool.quantity.to_s %></small> </h1>
+
+      <!-- Portfolio Item Row -->
+      <div class="row">
+
+        <div class="col-lg-8 col-md-7">
+          <% if @tool.photo.present? %>
+            <%= image_tag(@tool.photo, :alt => "toolphoto.jpeg", class:"img-fluid") %>
+          <% else %>
+            <% image_tag("standard_toolphoto.jpeg", :alt => "toolphoto.jpeg", class:"img-fluid") %>
+          <% end %>
+          <br>
+          <br>
+          <%= link_to t('tools.index.book'), new_tool_tempbook_path(@tool), class:"btn btn-block btn-round btn-outline-info" %>
+        </div>
+
+        <div class="col-lg-4 col-md-5">
+          <h3 class="my-3"> <%= t('.description') %> </h3>
+          <p> <%= @tool.description %></p>
+          <div id="accordion">
+          <div class="card my-4">
+
+            <h5 class="card-header">
+                <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="true" aria-controls="multiCollapseExample1">
+                 <%= t('.bookings') %>
+              </button>
+              <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">
+                 <%= t('.documentation') %>
+              </button>
+            </h5>
+            <div class="collapse show scroll-box" id="multiCollapseExample1" data-parent="#accordion">
+              <% if @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true).present? %>
+                <% @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true).each do |booking| %>
+                   <%= booking.prof.name + " " + booking.prof.surname %> <br>
+                   <b> <%= t('.from') + " " + booking.start_date.strftime("%d/%m/%y").to_s + " " + t('.to') + " " + booking.end_date.strftime("%d/%m/%y").to_s %> </b>
+                  <br>
+                  <i> <%= t('.quantity') + ": " + booking.quantity.to_s %> </i>
+                   <hr>
+                <%end%>
+              <% else %>
+              <%= t('.notbooked') %>
+              <% end %>
+
+            </div>
+            <div class="collapse scroll-box" id="multiCollapseExample2" data-parent="#accordion">
+            <% if @tool.documentations.present? %>
+              <% @tool.documentation.each do %>
+              <% end %>
+            <% else %>
+              <%= t('.notdocumented') %>
+            <% end %>
+            </div>
+          </div>
+        </div>
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+      <!-- Related Projects Row -->
+      <h3 class="my-4">Related Projects</h3>
+
+      <div class="row">
+
+        <div class="col-md-3 col-sm-6 mb-4">
+          <a href="#">
+            <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+          </a>
+        </div>
+
+        <div class="col-md-3 col-sm-6 mb-4">
+          <a href="#">
+            <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+          </a>
+        </div>
+
+        <div class="col-md-3 col-sm-6 mb-4">
+          <a href="#">
+            <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+          </a>
+        </div>
+
+        <div class="col-md-3 col-sm-6 mb-4">
+          <a href="#">
+            <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+          </a>
+        </div>
+
+</div>
+
+<div class="row">
+  <div class="col-lg-9 col-md-7">
+
+
+
+<div class="card my-4">
+            <h5 class="card-header"> <%= t('.comment') %> </h5>
+            <div class="card-body">
+              <%= form_for ([@tool, @tool.posts.build]) do |t|  %>
+
+                <div class="form-group">
+                  <%= t.text_area :body, class:"form-control" %>
+                </div>
+                <%= t.submit t('.leavecomment'), class:"btn btn-primary" %>
+              <% end %>
+            </div>
+          </div>
+
+      <% @posts.each do |post| %>
+      <% if post.prof.present? %>
+          <div class="media mb-4">
+            <%= image_tag("http://placehold.it/50x50", :alt => " ", class:"d-flex mr-3 rounded-circle") %>
+            <div class="media-body">
+              <h5 class="mt-0">
+              <%= post.prof.name + " " + post.prof.surname %>
+               <% if prof_signed_in? %>
+               <% if current_prof == post.prof %>
+               <%=link_to fa_icon('pencil'), edit_tool_post_path(@tool, post), class:"btn btn-light btn-sm"%> |
+               <%=link_to fa_icon('trash'), tool_post_path(@tool, post), method: :delete, data: {confirm:t('.confirm')}, class:"btn btn-light btn-sm"%>
+               <% end %>
+               <% end %>
+               </h5>
+              <% if post.updated_at != post.created_at %>
+                <small id="edited" class="form-text text-muted"><%= t('.editedat') + " " + post.updated_at.strftime("%d/%m/%y").to_s + " " + t('.at') + " " + post.updated_at.strftime("%H:%M")%></small>
+              <% end %>
+              <%= post.body %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
+    </div>
+    <div class="col-lg-3 col-md-5">
+      <div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="<%= I18n.locale %>" data-type="vertical" data-theme="dark" data-vanity="davide-fazio"><a class="LI-simple-link" href='https://it.linkedin.com/in/davide-fazio?trk=profile-badge'>Davide F.</a></div>
+    </div>
+  </div>
