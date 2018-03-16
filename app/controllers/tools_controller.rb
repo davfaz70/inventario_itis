@@ -13,6 +13,7 @@ class ToolsController < ApplicationController
 
   def show
     @posts = @tool.posts
+    @tempbook = @tool.tempbooks.build
   end
 
   private

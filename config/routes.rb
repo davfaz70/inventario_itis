@@ -13,7 +13,9 @@ scope '(:locale)' do
   }
 
   namespace :admin do
-    resources :tools
+    resources :tools do
+      resources :documentations, only: [:destroy]
+    end
     resources :labs
     resources :categories
     resources :technicals
@@ -25,7 +27,7 @@ scope '(:locale)' do
     post 'authorize/:id(.:format)', :to => 'dashboard#authorize', as: "authorize_route"
   end
     resources :tools, only: [:index, :show] do
-      resources :tempbooks, only: [:new, :create]
+      resources :tempbooks, only: [:create]
       resources :posts, only: [:create, :edit, :update, :destroy]
     end
   resources :categories, only: [:show]

@@ -7,21 +7,77 @@
 </style>
 
 <!-- Portfolio Item Heading -->
-      <h1 class="my-4"> <%= @tool.name %> <small> <%= t('.quantity') + ": " + @tool.quantity.to_s %></small> </h1>
+<h1 class="my-4"> <%= @tool.name %> <small> <%= t('.quantity') + ": " + @tool.quantity.to_s %></small> </h1>
 
       <!-- Portfolio Item Row -->
-      <div class="row">
+<div class="row">
+  <div class="col-lg-8 col-md-7">
+    <% if @tool.photo.present? %>
+      <%= image_tag(@tool.photo, :alt => "toolphoto.jpeg", class:"img-fluid") %>
+    <% else %>
+      <% image_tag("standard_toolphoto.jpeg", :alt => "toolphoto.jpeg", class:"img-fluid") %>
+    <% end %>
+    <br>
+    <br>
+    <% if prof_signed_in? && @tool.quantity > 0%>
+      <div id="prenota">
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <%=fa_icon('arrow-down') + " " + t('tools.index.book') + "!" %>
+              </button>
+            </h5>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#prenota">
+            <div class="card-body">
 
-        <div class="col-lg-8 col-md-7">
-          <% if @tool.photo.present? %>
-            <%= image_tag(@tool.photo, :alt => "toolphoto.jpeg", class:"img-fluid") %>
-          <% else %>
-            <% image_tag("standard_toolphoto.jpeg", :alt => "toolphoto.jpeg", class:"img-fluid") %>
-          <% end %>
-          <br>
-          <br>
-          <%= link_to t('tools.index.book'), new_tool_tempbook_path(@tool), class:"btn btn-block btn-round btn-outline-info" %>
+              <%= form_for ([@tool, @tempbook]) do |t|  %>
+
+                <% if @tempbook.errors.any? %>
+                  <div id="error_explanation">
+                    <% @tempbook.errors.full_messages.each do |message| %>
+                      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <%= message %>
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                    <% end %>
+                  </div>
+                <% end %>
+
+                <div class="row">
+                  <div class="col-md-4 col-sm-4">
+                    <div class="form-group" >
+                      <%=t.label :Data_inizio %>
+                      <%=t.date_field :start_date, class:"form-control"%>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-4">
+                    <div class="form-group">
+                      <%=t.label :Data_fine %>
+                      <%=t.date_field :end_date, class:"form-control"%>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-4">
+                    <div class="form-group">
+                      <%= t.label :Quantità %>
+                      <%= t.text_field :quantity, class:"form-control" %>
+                    </div>
+                  </div>
+                </div>
+
+                <%= hidden_field(:tempbook, :prof_id, :value => current_prof.id) %>
+                <br>
+                <%= t.submit class:"btn btn-success btn-block"%>
+              <% end %>
+            </div>
+          </div>
         </div>
+      </div>
+    <% end %>
+  </div>
 
         <div class="col-lg-4 col-md-5">
           <h3 class="my-3"> <%= t('.description') %> </h3>
@@ -53,7 +109,11 @@
             </div>
             <div class="collapse scroll-box" id="multiCollapseExample2" data-parent="#accordion">
             <% if @tool.documentations.present? %>
-              <% @tool.documentation.each do %>
+              <% @tool.documentations.each do |doc| %>
+                <li class="list-group-item">
+                  <%= link_to fa_icon('cloud-download'), doc.file.url %>
+                  <%= " " + doc.name %>
+                </li>
               <% end %>
             <% else %>
               <%= t('.notdocumented') %>

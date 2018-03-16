@@ -53,6 +53,11 @@ en:
         photo: "Photo"
         labchoose: "Select the labs where i can find this tool"
         categorychoose: "Select the categories of this tool"
+        docremove: "Remove document"
+        docname: "Name of file"
+        docwarn: "The file must be pdf"
+        file: "Select file"
+        docadd: "Add documentation file"
     labs:
       index:
         labtools: "Amount of lab's tools"
@@ -112,6 +117,7 @@ en:
       quantity: "Quantity"
     index:
       book: "Book this"
+      show: "Show"
       sure: "Do you really want to book this tool?"
       quantity: "Quantity available in stock:"
       search: "Search"

@@ -33,6 +33,11 @@ it:
         photo: "Foto"
         labchoose: "Seleziona i laboratori in cui si trova"
         categorychoose: "Seleziona le categorie a cui appartiene"
+        docremove: "Rimuovi documento"
+        docname: "Nome del documento"
+        docwarn: "Il documento deve essere in pdf"
+        file: "Scegli il documento"
+        docadd: "Aggiungi documentazione"
     labs:
       index:
         labtools: "Numero di strumenti presenti in laboratorio"
@@ -93,6 +98,7 @@ it:
     index:
       search: "Cerca"
       place: "Cerca strumenti"
+      show: "Visualizza"
       book: "Prenota"
       sure: "Sei sicuro di voler prenotare questo strumento?"
       quantity: "Quantità disponibili in magazzino:"

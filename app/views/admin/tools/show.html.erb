@@ -23,3 +23,14 @@
 
   </div>
 <% end %>
+<% if @tool.documentations.present? %>
+  <% @tool.documentations.each do |doc| %>
+    <li class="list-group-item">
+      <%= link_to fa_icon('cloud-download'), doc.file.url %>
+      <%= " " + doc.name + " " %>
+      <%=link_to fa_icon('trash'), admin_tool_documentation_path(@tool, doc), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-outline-danger btn-sm"%>
+    </li>
+  <% end %>
+<% else %>
+  <%= t('.notdocumented') %>
+<% end %>

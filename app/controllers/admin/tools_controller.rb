@@ -10,6 +10,7 @@ class Admin::ToolsController < Admin::AdminController
 
   def new
     @tool = Tool.new
+    @tool.documentations.build
   end
 
   def create
@@ -62,6 +63,6 @@ class Admin::ToolsController < Admin::AdminController
 
 
   def tool_params
-    params.require(:tool).permit(:photo, :name, :description, :identifier, :quantity, { lab_ids:[]}, { category_ids:[]})
+    params.require(:tool).permit(:photo, :name, :description, :identifier, :quantity, {documentations_attributes: [:id, :name, :file, :tool_id, :_destroy]}, { lab_ids:[]}, { category_ids:[]})
   end
 end

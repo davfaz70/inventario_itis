@@ -28,6 +28,7 @@ class Tool < ApplicationRecord
   has_many :books, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :documentations, dependent: :destroy
+  accepts_nested_attributes_for :documentations, allow_destroy: true
   before_save :name
   before_save :description
   validates_with ToolValidator

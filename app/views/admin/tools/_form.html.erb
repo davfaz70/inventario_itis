@@ -53,6 +53,28 @@
 </div>
 </div>
 
+<div class="row">
+  <div class="col-md-6 col-sm-6">
+  </div>
+  <div class="col-md-6 col-sm-6">
+    <div class="form-group">
+    <%= t.nested_fields_for :documentations do |d| %>
+      <%= d.remove_nested_fields_link t('.docremove'), data: { confirm: t('admin.tools.index.confirm') } %>
+      <br>
+
+        <%= d.label t('.docname') %>
+        <%= d.text_field :name, class:"form-control" %>
+
+        <%= d.file_field :file%>
+        <small class="form-text text-muted"> <%= t('.docwarn') %> </small>
+
+    <% end %>
+    <%= t.add_nested_fields_link :documentations, t('.docadd') %>
+  </div>
+  </div>
+</div>
+
+
 <%= t.label t('.labchoose') %>
 
 <div class="field">

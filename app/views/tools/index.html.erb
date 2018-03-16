@@ -73,11 +73,9 @@
 
             </div>
             <ul class="list-group list-group-flush">
-              <% if tool.quantity > 0 %>
-                <%= link_to t('.book'), new_tool_tempbook_path(tool), class:"list-group-item list-group-item-primary" %>
-              <% else %>
-                <%= link_to t('.book'), new_tool_tempbook_path(tool), class:"list-group-item list-group-item-info disabled" %>
-              <% end %>
+
+                <%= link_to fa_icon('eye') + " " + t('.show'), tool_path(tool), class:"list-group-item list-group-item-primary" %>
+
             </ul>
           </div>
         </div>

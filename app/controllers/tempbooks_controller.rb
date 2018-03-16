@@ -1,12 +1,6 @@
 class TempbooksController < ApplicationController
   before_action :authenticate_prof!, only: [:new]
   before_action :authorized_prof, only: [:new]
-  def new
-    @tool = Tool.friendly.find(params[:tool_id])
-    control(@tool)
-    @tempbook = @tool.tempbooks.build
-    @booking = @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true)
-  end
 
   def create
     @tool = Tool.friendly.find(params[:tool_id])
@@ -26,7 +20,7 @@ class TempbooksController < ApplicationController
       if cont > @tool.quantity
         flash[:danger]="Guarda meglio le prenotazioni, noterai che tale quantità in questo periodo di tempo non è disponibile"
         @tempbook.destroy
-        render 'new'
+        redirect_to tool_path(@tool)
       else
         @book = @tool.books.build
         @book.prof_id = @tempbook.prof_id
@@ -36,14 +30,14 @@ class TempbooksController < ApplicationController
         @tempbook.destroy
         if @book.save
           flash[:success]="Prenotato con successo"
-          redirect_to tools_path
+          redirect_to tool_path(@tool)
         else
           flash[:danger]="C'è stato un problema, riprova"
-          render 'new'
+          redirect_to tool_path(@tool)
         end
       end
       else
-        render 'new'
+        redirect_to tool_path(@tool)
     end
   end
 
