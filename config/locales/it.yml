@@ -38,6 +38,8 @@ it:
         docwarn: "Il documento deve essere in pdf"
         file: "Scegli il documento"
         docadd: "Aggiungi documentazione"
+        photoremove: "Rimuovi questa foto"
+        photoadd: "Aggiungi altre foto"
     labs:
       index:
         labtools: "Numero di strumenti presenti in laboratorio"
@@ -81,6 +83,7 @@ it:
   tools:
     identifier: "Non puoi inserire più strumenti con lo stesso identificativo"
     quantity: "La quantità non può essere negativa"
+    photos: "Non è possibile salvare pù di 4 foto"
     show:
       description: "Descrizione"
       bookings: "Prenotazioni"
@@ -95,6 +98,7 @@ it:
       at: "alle"
       confirm: "Sei sicuro?"
       quantity: "Quantità"
+      otherphotos: "Altre foto"
     index:
       search: "Cerca"
       place: "Cerca strumenti"

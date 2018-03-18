@@ -29,6 +29,11 @@ class Tool < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :documentations, dependent: :destroy
   accepts_nested_attributes_for :documentations, allow_destroy: true
+  has_many :photos, dependent: :destroy
+  validates_each :photos do |tool, attr, value|
+   tool.errors.add attr, I18n.t('.tools.photos') if tool.photos.size > 4
+  end
+  accepts_nested_attributes_for :photos, allow_destroy: true
   before_save :name
   before_save :description
   validates_with ToolValidator

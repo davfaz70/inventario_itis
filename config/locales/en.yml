@@ -58,6 +58,8 @@ en:
         docwarn: "The file must be pdf"
         file: "Select file"
         docadd: "Add documentation file"
+        photoremove: "Remove this picture"
+        photoadd: "Add other photos"
     labs:
       index:
         labtools: "Amount of lab's tools"
@@ -101,6 +103,7 @@ en:
   tools:
     identifier: "You can not insert multiple tools with the same identifier"
     quantity: "The quantity can not be negative"
+    photos: "Can not save more of 4 photos"
     show:
       description: "Description"
       bookings: "Reservations"
@@ -115,6 +118,7 @@ en:
       at: "at"
       confirm: "Are you sure?"
       quantity: "Quantity"
+      otherphotos: "Other photos"
     index:
       book: "Book this"
       show: "Show"

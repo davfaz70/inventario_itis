@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180315210254) do
+ActiveRecord::Schema.define(version: 20180317141820) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -100,6 +100,15 @@ ActiveRecord::Schema.define(version: 20180315210254) do
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
   end
 
+  create_table "lab_technicals", force: :cascade do |t|
+    t.integer  "lab_id"
+    t.integer  "technical_id"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "labs", force: :cascade do |t|
     t.string   "name"
     t.string   "subject"
@@ -108,20 +117,18 @@ ActiveRecord::Schema.define(version: 20180315210254) do
     t.string   "slug"
   end
 
-  create_table "labs_technicals", id: false, force: :cascade do |t|
-    t.integer  "lab_id",       null: false
-    t.integer  "technical_id", null: false
-    t.datetime "start_date"
-    t.datetime "end_date"
-    t.index ["lab_id", "technical_id"], name: "index_labs_technicals_on_lab_id_and_technical_id"
-    t.index ["technical_id", "lab_id"], name: "index_labs_technicals_on_technical_id_and_lab_id"
-  end
-
   create_table "labs_tools", id: false, force: :cascade do |t|
     t.integer "lab_id",  null: false
     t.integer "tool_id", null: false
     t.index ["lab_id", "tool_id"], name: "index_labs_tools_on_lab_id_and_tool_id"
     t.index ["tool_id", "lab_id"], name: "index_labs_tools_on_tool_id_and_lab_id"
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.string   "picture"
+    t.integer  "tool_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "posts", force: :cascade do |t|
@@ -163,6 +170,17 @@ ActiveRecord::Schema.define(version: 20180315210254) do
     t.index ["reset_password_token"], name: "index_profs_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_profs_on_unlock_token", unique: true
     t.index [nil], name: "index_profs_on_deletd_at"
+  end
+
+  create_table "schools", force: :cascade do |t|
+    t.string   "name"
+    t.string   "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "mail"
+    t.string   "password"
+    t.string   "client"
+    t.string   "secret"
   end
 
   create_table "technicals", force: :cascade do |t|

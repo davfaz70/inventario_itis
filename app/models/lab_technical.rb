@@ -1,0 +1,2 @@
+class LabTechnical < ApplicationRecord
+end

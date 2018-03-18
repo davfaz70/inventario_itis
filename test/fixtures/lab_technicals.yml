@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lab_id: 1
+  technical_id: 1
+  start_date: 2018-03-16 18:10:38
+  end_date: 2018-03-16 18:10:38
+
+two:
+  lab_id: 1
+  technical_id: 1
+  start_date: 2018-03-16 18:10:38
+  end_date: 2018-03-16 18:10:38

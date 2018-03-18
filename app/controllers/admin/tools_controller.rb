@@ -63,6 +63,6 @@ class Admin::ToolsController < Admin::AdminController
 
 
   def tool_params
-    params.require(:tool).permit(:photo, :name, :description, :identifier, :quantity, {documentations_attributes: [:id, :name, :file, :tool_id, :_destroy]}, { lab_ids:[]}, { category_ids:[]})
+    params.require(:tool).permit(:photo, :name, :description, :identifier, :quantity, {photos_attributes: [:id, :picture, :tool_id, :_destroy]}, {documentations_attributes: [:id, :name, :file, :tool_id, :_destroy]}, { lab_ids:[]}, { category_ids:[]})
   end
 end

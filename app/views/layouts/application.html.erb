@@ -10,7 +10,7 @@
   </head>
 
   <body >
-<%= render partial: "shared/menu" %>
+<% unless controller.controller_name == 'school'%> <%= render partial: "shared/menu" %> <% end %>
     <div class="container">
 
 <br>
@@ -25,7 +25,7 @@
 
     <%= yield %>
 <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
-    <%= render partial: "shared/footer" %>
+  <% unless controller.controller_name == 'school'%>  <%= render partial: "shared/footer" %> <% end %>
 
   </div>
 

@@ -55,6 +55,16 @@
 
 <div class="row">
   <div class="col-md-6 col-sm-6">
+    <div class="form-group">
+    <%= t.nested_fields_for :photos do |d| %>
+      <%= d.remove_nested_fields_link t('.photoremove'), data: { confirm: t('admin.tools.index.confirm') } %>
+      <br>
+
+      <%=d.file_field :picture%>
+
+    <% end %>
+    <%= t.add_nested_fields_link :photos, t('.photoadd') %>
+  </div>
   </div>
   <div class="col-md-6 col-sm-6">
     <div class="form-group">

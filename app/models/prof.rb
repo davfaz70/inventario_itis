@@ -32,6 +32,7 @@ class Prof < ApplicationRecord
       prof.uid = uid
       prof.provider = provider
       prof.skip_confirmation!
+      AdminMailer.new_confirmated_prof(prof).deliver_later
     end
   prof
  end
