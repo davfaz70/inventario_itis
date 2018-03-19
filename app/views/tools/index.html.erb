@@ -31,7 +31,7 @@
               <h5 class="card-header">Categories</h5>
               <div class="scroll-box">
                 <% @categories.each do |category| %>
-                   <td>  <%=link_to fa_icon('tag') + " " + category.name, "#", class:"btn btn-warning btn-sm"%>  </td>
+                   <td>  <%=link_to fa_icon('tag') + " " + category.name, category_path(category), class:"btn btn-warning btn-sm"%>  </td>
                <%end%>
               </div>
             </div>

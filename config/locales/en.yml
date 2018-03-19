@@ -27,6 +27,7 @@ en:
         labs: "Labs"
         categories: "Categories"
         languages: "Languages"
+        technical: "Technicals"
     tools:
       index:
         new: "New tool"
@@ -43,6 +44,8 @@ en:
         edited: "Tool successfully updated"
       destroy:
         delete: "Tool successfully destroyed"
+      show:
+        confirm: "Are you sure?"
       form:
         name: "Name"
         description: "Description"

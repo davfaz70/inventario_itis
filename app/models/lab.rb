@@ -4,7 +4,9 @@ class Lab < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :subject, presence: true
   has_and_belongs_to_many :tools
-  
+  has_many :lab_technicals
+  has_many :technicals, through: :lab_technicals
+
   paginates_per 5
   before_save :name
   before_save :subject

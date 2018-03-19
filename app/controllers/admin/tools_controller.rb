@@ -4,8 +4,10 @@ class Admin::ToolsController < Admin::AdminController
     q_param = params[:q]
     page = params[:page]
     per_page = params[:per_page]
-    @o = Tool.with_translations(I18n.locale).ransack(q_param)
-    @tools = @o.result(distinct: true).page(page).per(per_page)
+    @q = Tool.with_translations(I18n.locale).ransack(q_param)
+    @tools = @q.result(distinct: true).page(page).per(per_page)
+
+    @categories = Category.all
   end
 
   def new
@@ -17,14 +19,14 @@ class Admin::ToolsController < Admin::AdminController
     @tool = Tool.new(tool_params)
     if @tool.save
       flash[:success]= t('.created')
-      redirect_to admin_tools_path
+      redirect_to admin_tool_path(@tool)
     else
       render 'new'
     end
   end
 
   def show
-    @bookings = @tool.books
+    @bookings = @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, false)
   end
 
   def choose
@@ -40,7 +42,7 @@ class Admin::ToolsController < Admin::AdminController
         @job = Delayed::Job.enqueue Admin::Checking.new(@tool, @tool.books.where('end_date >= ?', Time.now).count)
       end
       flash[:success]= t('.edited')
-      redirect_to admin_tools_path
+      redirect_to admin_tool_path(@tool)
     else
       render 'edit'
     end

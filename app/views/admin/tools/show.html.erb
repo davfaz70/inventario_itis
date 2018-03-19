@@ -1,36 +1,133 @@
-<% @bookings.each do |booking| %>
+<style>
+        .scroll-box {
+            overflow-y: scroll;
+            height: 200px;
+            padding: 1rem
+        }
+</style>
 
-  <div class="card">
-    <div class="card-header">
-      dal: <%= " " + booking.start_date.strftime("%d/%m/%y") + " " %>  al: <%= " " + booking.end_date.strftime("%d/%m/%y") + " "%> Quantità: <%= " " + booking.quantity.to_s%>
-      <%= link_to fa_icon('trash'), admin_book_path(booking), method: :delete, data: {confirm: "Sei sicuro?"}, class:"btn btn-outline-danger"%>
-    </div>
-    <% if booking.confirmed == false %>
-  <div class="card-body">
-    <%= booking.prof.name + " " + booking.prof.surname %>
-    <%= form_for ([:admin, booking]) do |t|  %>
-    <%= hidden_field(:book, :confirmed, :value => true) %>
-    <%= t.submit "Conferma Prenotazione", class: "btn btn-success" %>
+<!-- Portfolio Item Heading -->
+<h1 class="my-4"> <%= @tool.name %> <small> <%= t('tools.show.quantity') + ": " + @tool.quantity.to_s %></small> </h1>
+
+      <!-- Portfolio Item Row -->
+<div class="row">
+  <div class="col-lg-8 col-md-7">
+    <% if @tool.photo.present? %>
+      <%= image_tag(@tool.photo, :alt => "toolphoto.jpeg", class:"img-fluid") %>
+    <% else %>
+      <% image_tag("standard_toolphoto.jpeg", :alt => "toolphoto.jpeg", class:"img-fluid") %>
     <% end %>
-    </div>
+    <br>
+    <br>
 
-  <% else %>
-   <div class="card-body">
-    <%= booking.prof.name + " " + booking.prof.surname %>
+      <div id="prenota">
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <%=fa_icon('arrow-down') + " Conferma Prenotazioni!" %>
+              </button>
+            </h5>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#prenota">
+            <div class="card-body">
+
+              <% @bookings.each do |booking| %>
+                <b> dal: <%= " " + booking.start_date.strftime("%d/%m/%y") + " " %>  al: <%= " " + booking.end_date.strftime("%d/%m/%y") + " " + t('tools.show.quantity') + " " + booking.quantity.to_s%> </b>
+                <%= link_to fa_icon('trash'), admin_book_path(booking), method: :delete, data: {confirm: t('.confirm')}, class:"btn btn-outline-danger"%>
+<br>
+
+                  <%= booking.prof.name + " " + booking.prof.surname %>
+                  <%= form_for ([:admin, booking]) do |t|  %>
+                  <%= hidden_field(:book, :confirmed, :value => true) %>
+                  <%= t.submit "Conferma Prenotazione", class: "btn btn-success" %>
+                  <% end %>
+                <% end %>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+
+      <div class="row">
+        <div class="col-md-4 col-sm-4">
+          <%= link_to fa_icon('pencil') + " " + t('admin.tools.index.edit'), edit_admin_tool_path(@tool), class: "btn btn-warning btn-block" %>
+        </div>
+        <div class="col-md-4 col-sm-4">
+          <%= link_to t('admin.tools.index.language'), admin_choose_tool_route_path(@tool), class: "btn btn-secondary btn-block" %>
+        </div>
+        <div class="col-md-4 col-sm-4">
+          <%= link_to fa_icon('trash'), admin_tool_path(@tool), method: :delete, data: {confirm: t('.confirm')}, class: "btn btn-danger btn-block" %>
+        </div>
+      </div>
+
   </div>
 
-  <% end %>
 
-  </div>
-<% end %>
-<% if @tool.documentations.present? %>
-  <% @tool.documentations.each do |doc| %>
-    <li class="list-group-item">
-      <%= link_to fa_icon('cloud-download'), doc.file.url %>
-      <%= " " + doc.name + " " %>
-      <%=link_to fa_icon('trash'), admin_tool_documentation_path(@tool, doc), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-outline-danger btn-sm"%>
-    </li>
-  <% end %>
-<% else %>
-  <%= t('.notdocumented') %>
-<% end %>
+
+
+        <div class="col-lg-4 col-md-5">
+          <h3 class="my-3"> <%= t('tools.show.description') %> </h3>
+          <p> <%= @tool.description %></p>
+          <div id="accordion">
+          <div class="card my-4">
+
+            <h5 class="card-header">
+                <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="true" aria-controls="multiCollapseExample1">
+                 <%= t('tools.show.bookings') %>
+              </button>
+              <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">
+                 <%= t('tools.show.documentation') %>
+              </button>
+            </h5>
+            <div class="collapse show scroll-box" id="multiCollapseExample1" data-parent="#accordion">
+              <% if @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true).present? %>
+                <% @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true).each do |booking| %>
+                   <%= booking.prof.name + " " + booking.prof.surname %> <br>
+                   <b> <%= t('tools.show.from') + " " + booking.start_date.strftime("%d/%m/%y").to_s + " " + t('tools.show.to') + " " + booking.end_date.strftime("%d/%m/%y").to_s %> </b>
+                  <br>
+                  <i> <%= t('tools.show.quantity') + ": " + booking.quantity.to_s %> </i>
+                   <hr>
+                <%end%>
+              <% else %>
+              <%= t('tools.show.notbooked') %>
+              <% end %>
+
+            </div>
+            <div class="collapse scroll-box" id="multiCollapseExample2" data-parent="#accordion">
+              <% if @tool.documentations.present? %>
+                <% @tool.documentations.each do |doc| %>
+                  <li class="list-group-item">
+                    <%= link_to fa_icon('cloud-download'), doc.file.url %>
+                    <%= " " + doc.name + " " %>
+                    <%=link_to fa_icon('trash'), admin_tool_documentation_path(@tool, doc), method: :delete, data: {confirm: t('.confirm')}, class:"btn btn-outline-danger btn-sm"%>
+                  </li>
+                <% end %>
+              <% else %>
+                <%= t('tools.show.notdocumented') %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+      <!-- Related Projects Row -->
+      <h3 class="my-4"> <%= t('tools.show.otherphotos') %> </h3>
+
+      <div class="row">
+      <% @tool.photos.each do |photo| %>
+        <div class="col-md-3 col-sm-6 mb-4">
+
+            <%= image_tag(photo.picture.standard, :alt => "booh", class:"img-fluid") %>
+            <%= link_to fa_icon('trash'), admin_tool_photo_path(@tool, photo), method: :delete, data: {confirm: t('.confirm')}, class: "btn btn-outline-danger btn-block" %>
+
+        </div>
+        <% end %>
+
+
+</div>

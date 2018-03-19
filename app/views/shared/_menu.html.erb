@@ -8,9 +8,82 @@ $(window).on('scroll', function () {
   z-index: 9999;
 }
 </style>
+
+<div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="/">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <%= link_to "ITIS", 'http://www.itisetorricelli.it/', target: :_blank %>
+                </li>
+                <li>
+                    <%= link_to t('.tools'), tools_path%>
+                </li>
+                <li>
+                  <a class="nav-link dropdown-toggle" href="#" id="wrapdrop" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <%= t('.languages') %>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="wrapdrop">
+                    <text class="dropdown-item">
+                      <%= link_to_unless_current image_tag("if_United-Kingdom_92403.ico", size: "28x28") + " English", locale: "en"%>
+                    </text>
+                    <text class="dropdown-item">
+                      <%= link_to_unless_current image_tag("if_Italy_92145.ico", size: "28x28") + " Italiano", locale: "it" %>
+                    </text>
+                  </div>
+                </li>
+                <% if admin_signed_in? %>
+                <li>
+                <a class="nav-link dropdown-toggle" href="#" id="DropdownAdmin" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <%= fa_icon('cog') + " Admin" %>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="DropdownAdmin">
+                    <%= link_to "Dashboard", admin_dashboard_index_path, class: "dropdown-item" %>
+                    <%= link_to "Account", edit_admin_registration_path, class:"dropdown-item" %>
+                    <div class="dropdown-divider"></div>
+                  <%= link_to fa_icon('sign-out') + "Log-out", destroy_admin_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "dropdown-item" %>
+                </div>
+              </li>
+              <% else %>
+              <li>
+                <%= link_to "Admin", admin_dashboard_index_path%>
+              </li>
+                <% end %>
+                <% if prof_signed_in? %>
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdmin" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <%= fa_icon('cog') + " Prof" %>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
+                    <%= link_to "Account", edit_prof_registration_path, class:"dropdown-item" %>
+                    <div class="dropdown-divider"></div>
+                  <%= link_to fa_icon('sign-out') + "Log-out", destroy_prof_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "dropdown-item" %>
+                </div>
+              </li>
+              <% else %>
+                <li>
+                  <%= link_to "Prof", new_prof_session_path %>
+                </li>
+                <% end %>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+
+
+
+
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
   <a class="navbar-brand" href="/">Home</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Toggle navigation" id="menu-toggle">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -72,6 +145,7 @@ $(window).on('scroll', function () {
           <div class="dropdown-divider"></div>
         <%= link_to fa_icon('sign-out') + "Log-out", destroy_prof_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "dropdown-item" %>
       </div>
+      </li>
       <% end %>
     </ul>
 
@@ -82,3 +156,9 @@ $(window).on('scroll', function () {
 
   </div>
 </nav>
+<script>
+   $("#menu-toggle").click(function(e) {
+       e.preventDefault();
+       $("#wrapper").toggleClass("toggled");
+   });
+   </script>

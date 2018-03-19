@@ -1,5 +1,5 @@
-class Admin::TechnicalsController < ApplicationController
-  before_action :set_technical, only: [:show, :edit, :update, :destroy, :choose, :assign, :assign_update]
+class Admin::TechnicalsController < Admin::AdminController
+  before_action :set_technical, only: [:show, :edit, :update, :destroy]
 
   def index
     @technicals = Technical.order(:id).page

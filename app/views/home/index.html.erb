@@ -29,7 +29,8 @@
       <!-- /.row -->
 
       <div class="row">
-        <div class="col-sm-4 my-4">
+        <div class="card-group">
+        <div class="col-sm-6 my-6">
           <div class="card">
             <%=image_tag("docente.jpeg", :width => 300, :height => 200, :alt => "Docente", class:"card-img-top")%>
             <div class="card-body">
@@ -50,7 +51,7 @@
           </div>
         </div>
 
-        <div class="col-sm-4 my-4">
+        <div class="col-sm-6 my-6">
           <div class="card">
             <%=image_tag("tools.jpeg", :width => 300, :height => 200, :alt => "Tools", class:"card-img-top")%>
             <div class="card-body">
@@ -62,21 +63,7 @@
             </div>
           </div>
         </div>
-
-
-        <div class="col-sm-4 my-4">
-          <div class="card">
-            <%=image_tag("admin.jpeg", :width => 300, :height => 200, :alt => "Docente", class:"card-img-top")%>
-            <div class="card-body">
-              <h4 class="card-title">Admin</h4>
-              <p class="card-text"> <%= t('.admin')%> </p>
-            </div>
-            <div class="card-footer">
-                <%= link_to "Admin", admin_dashboard_index_path, class:"btn btn-secondary" %>
-            </div>
-          </div>
-        </div>
-
+      </div>
       </div>
       <!-- /.row -->
 

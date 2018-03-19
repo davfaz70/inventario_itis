@@ -1,0 +1,19 @@
+
+<% @technicals.each do |technical| %>
+  <div class="card">
+    <div class="card-header">
+      <%= technical.name + " " + technical.surname %>
+    </div>
+    <div class="card-body">
+      <%= mail_to technical.email %>
+      <div class="row">
+        <div class="col-md-6">
+          <%= link_to t('admin.tools.index.edit'), edit_admin_technical_path(technical) %>
+        </div>
+        <div class="col-md-6">
+          <%= link_to "Assign lab", new_admin_technical_lab_technical_path(technical) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'categories/show'
+
   devise_for :profs, only: :omniauth_callbacks, controllers: {omniauth_callbacks: 'profs/omniauth_callbacks'}
 
 scope '(:locale)' do
@@ -15,10 +17,13 @@ scope '(:locale)' do
   namespace :admin do
     resources :tools do
       resources :documentations, only: [:destroy]
+      resources :photos, only: [:destroy]
     end
     resources :labs
     resources :categories
-    resources :technicals
+    resources :technicals do
+      resources :lab_technicals
+    end
     resources :books, only: [:update, :destroy]
     get 'dashboard/index'
     get 'tools/choose/:id(.:format)', :to => 'tools#choose', as: "choose_tool_route"

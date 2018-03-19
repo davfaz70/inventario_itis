@@ -7,15 +7,14 @@ it:
         labs: "Laboratori"
         categories: "Categorie"
         languages: "Lingua"
+        technical: "Tecnici"
     tools:
       index:
         new: "Nuovo strumento"
         search: "Cerca"
         place: "Cerca uno strumento"
         edit: "Modifica"
-        sure: "Sei sicuro di voler prenotare questo strumento?"
         confirm: "Sei sicuro?"
-        quantity: "Quantità disponibili in magazzino:"
         language: "Scrivi in un'altra lingua"
       create:
         created: "Strumento creato con successo"
@@ -23,6 +22,8 @@ it:
         edited: "Strumento aggiornato con successo"
       destroy:
         delete: "Strumento eliminato con successo"
+      show:
+        confirm: "Sei sicuro?"
       form:
         name: "Nome"
         description: "Descrizione"
@@ -139,7 +140,9 @@ it:
 
 
 
-
+  errors:
+    messages:
+      extension_white_list_error: "Il file non ha una estensione corretta"
 
   activerecord:
     models:
@@ -167,6 +170,7 @@ it:
         name: "Nome"
     errors:
       messages:
+        extension_white_list_error: "Il file non ha una estensione corretta"
         record_invalid: 'Validazione fallita: %{errors}'
         restrict_dependent_destroy:
           has_one: Il record non può essere cancellato perchè esiste un %{record} dipendente

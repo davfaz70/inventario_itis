@@ -1,4 +1,4 @@
-class Admin::DocumentationsController < ApplicationController
+class Admin::DocumentationsController < Admin::AdminController
   def destroy
     @document = Documentation.find(params[:id])
     if @document.destroy

@@ -1,0 +1,39 @@
+<%= form_for ([:admin, @technical, @relation]) do |t|  %>
+
+  <% if @relation.errors.any? %>
+    <div id="error_explanation">
+      <% @relation.errors.full_messages.each do |message| %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <%= message %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-4 col-sm-4">
+      <div class="form-group" >
+        <%=t.label :Data_inizio %>
+        <%=t.date_field :start_date, class:"form-control"%>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-4">
+      <div class="form-group">
+        <%=t.label :Data_fine %>
+        <%=t.date_field :end_date, class:"form-control"%>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-4">
+      <% for lab in Lab.all %>
+        <%= t.label lab.name %>
+        <%= radio_button_tag "lab_technical[lab_id]" , lab.id%>
+        <br>
+      <% end %>
+    </div>
+  </div>
+  <%= hidden_field(:lab_technical, :technical_id, :value => params[:technical_id]) %>
+ <%= t.submit %>
+ <% end %>
