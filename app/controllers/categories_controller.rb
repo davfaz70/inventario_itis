@@ -10,6 +10,7 @@ class CategoriesController < ApplicationController
     @tools = @q.result(distinct: true).page(page).per(per_page)
 
     @categories = Category.all
+    @labs = Lab.all
   end
 
 end

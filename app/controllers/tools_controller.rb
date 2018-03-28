@@ -9,6 +9,7 @@ class ToolsController < ApplicationController
     @tools = @q.result(distinct: true).page(page).per(per_page)
 
     @categories = Category.all
+    @labs = Lab.all
   end
 
   def show

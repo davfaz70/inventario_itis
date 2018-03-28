@@ -34,8 +34,13 @@ class Admin::LabsController < Admin::AdminController
         @lab.tools.delete(@tool)
         redirect_to admin_assign_lab_route_path(@lab)
       else
-        @tool.labs << @lab
-        redirect_to admin_assign_lab_route_path(@lab)
+        if @tool.labs.size == @tool.quantity
+          flash[:danger] = I18n.t('.tools.labs')
+          redirect_to admin_assign_lab_route_path(@lab)
+        else
+          @tool.labs << @lab
+          redirect_to admin_assign_lab_route_path(@lab)
+        end
       end
   end
 

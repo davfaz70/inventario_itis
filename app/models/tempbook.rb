@@ -23,5 +23,6 @@ class Tempbook < ApplicationRecord
   validates :quantity, presence: true, format: { with: /([1-9]+)/}
   belongs_to :tool
   belongs_to :prof
+  belongs_to :lab
   validates_with MyValidator
 end

@@ -85,6 +85,7 @@ it:
     identifier: "Non puoi inserire più strumenti con lo stesso identificativo"
     quantity: "La quantità non può essere negativa"
     photos: "Non è possibile salvare pù di 4 foto"
+    labs: "Uno o più strumenti non possono esistere in più laboratori, almeno non in questo universo"
     show:
       description: "Descrizione"
       bookings: "Prenotazioni"

@@ -23,6 +23,7 @@ class Admin::BooksController < Admin::AdminController
     else
       if @booking.update(book_params)
         flash[:success]="La prenotazione è stata confermata"
+        LabMailer.new_booking(@booking).deliver_now
         ProfMailer.confirmed_booking(@booking.prof, @booking).deliver_later
         redirect_back(fallback_location: root_path)
       else
@@ -50,6 +51,6 @@ class Admin::BooksController < Admin::AdminController
   end
 
   def book_params
-    params.require(:book).permit(:prof_id, :tool_id, :start_date, :end_date, :quantity, :confirmed)
+    params.require(:book).permit(:prof_id, :tool_id, :start_date, :end_date, :quantity, :confirmed, :lab_id)
   end
 end

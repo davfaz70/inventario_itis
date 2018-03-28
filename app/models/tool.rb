@@ -20,9 +20,13 @@ class Tool < ApplicationRecord
   process_in_background :photo
   translates :name, :description
   validates :name, presence: true
+  validates :identifier, uniqueness: true, :allow_blank => true
   validates :description, presence: true
   validates :quantity, presence: true, format: {with: /([0-9]+)/}
   has_and_belongs_to_many :labs
+  validates_each :labs do |tool, attr, value|
+   tool.errors.add attr, I18n.t('.tools.labs') if tool.labs.size > tool.quantity
+  end
   has_and_belongs_to_many :categories
   has_many :tempbooks
   has_many :books, dependent: :destroy

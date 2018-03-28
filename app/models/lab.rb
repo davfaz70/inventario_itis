@@ -6,6 +6,9 @@ class Lab < ApplicationRecord
   has_and_belongs_to_many :tools
   has_many :lab_technicals
   has_many :technicals, through: :lab_technicals
+  has_many :lab_technicals
+  has_many :tempbooks
+  has_many :books
 
   paginates_per 5
   before_save :name

@@ -12,7 +12,6 @@ class Admin::ToolsController < Admin::AdminController
 
   def new
     @tool = Tool.new
-    @tool.documentations.build
   end
 
   def create

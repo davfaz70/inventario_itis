@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'labs/show'
+
   get 'categories/show'
 
   devise_for :profs, only: :omniauth_callbacks, controllers: {omniauth_callbacks: 'profs/omniauth_callbacks'}
@@ -36,6 +38,7 @@ scope '(:locale)' do
       resources :posts, only: [:create, :edit, :update, :destroy]
     end
   resources :categories, only: [:show]
+  resources :labs, only: [:show]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: "home#index"

@@ -1,6 +1,6 @@
 class TempbooksController < ApplicationController
   before_action :authenticate_prof!, only: [:new]
-  before_action :authorized_prof, only: [:new]
+  before_action :authorized_prof, only: [:create]
 
   def create
     @tool = Tool.friendly.find(params[:tool_id])
@@ -18,7 +18,12 @@ class TempbooksController < ApplicationController
       end
       cont = cont + @tempbook.quantity
       if cont > @tool.quantity
-        flash[:danger]="Guarda meglio le prenotazioni, noterai che tale quantità in questo periodo di tempo non è disponibile"
+        max = @tool.quantity - cont + @tempbook.quantity
+        if max == 1
+          flash[:danger]="Guarda meglio le prenotazioni, in questo periodo è disponibile #{max} strumento"
+        else
+          flash[:danger]="Guarda meglio le prenotazioni, in questo periodo sono disponibili #{max} strumenti"
+        end
         @tempbook.destroy
         redirect_to tool_path(@tool)
       else
@@ -27,9 +32,11 @@ class TempbooksController < ApplicationController
         @book.start_date = @tempbook.start_date
         @book.end_date = @tempbook.end_date
         @book.quantity = @tempbook.quantity
+        @book.lab_id = @tempbook.lab_id
         @tempbook.destroy
         if @book.save
           flash[:success]="Prenotato con successo"
+          BookControlJob.set(wait_until: @book.end_date).perform_later(@book)
           redirect_to tool_path(@tool)
         else
           flash[:danger]="C'è stato un problema, riprova"
@@ -52,6 +59,6 @@ class TempbooksController < ApplicationController
   end
 
   def tempbook_params
-    params.require(:tempbook).permit(:prof_id, :tool_id, :start_date, :end_date, :quantity)
+    params.require(:tempbook).permit(:prof_id, :tool_id, :start_date, :end_date, :quantity, :lab_id)
   end
 end

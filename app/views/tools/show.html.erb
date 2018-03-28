@@ -48,23 +48,30 @@
                 <% end %>
 
                 <div class="row">
-                  <div class="col-md-4 col-sm-4">
+                  <div class="col-md-3 col-sm-3">
                     <div class="form-group" >
                       <%=t.label :Data_inizio %>
                       <%=t.date_field :start_date, class:"form-control"%>
                     </div>
                   </div>
-                  <div class="col-md-4 col-sm-4">
+                  <div class="col-md-3 col-sm-3">
                     <div class="form-group">
                       <%=t.label :Data_fine %>
                       <%=t.date_field :end_date, class:"form-control"%>
                     </div>
                   </div>
-                  <div class="col-md-4 col-sm-4">
+                  <div class="col-md-3 col-sm-3">
                     <div class="form-group">
                       <%= t.label :Quantità %>
                       <%= t.text_field :quantity, class:"form-control" %>
                     </div>
+                  </div>
+                  <div class="col-md-3 col-sm-3">
+                    <% for lab in @tool.labs %>
+                      <%= t.label lab.name %>
+                      <%= radio_button_tag "tempbook[lab_id]" , lab.id%>
+                      <br>
+                    <% end %>
                   </div>
                 </div>
 
