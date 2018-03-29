@@ -24,12 +24,12 @@
         <div class="card">
           <div class="card-header" id="headingTwo">
             <h5 class="mb-0">
-              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                 <%=fa_icon('arrow-down') + " " + t('tools.index.book') + "!" %>
               </button>
             </h5>
           </div>
-          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#prenota">
+          <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#prenota">
             <div class="card-body">
 
               <%= form_for ([@tool, @tempbook]) do |t|  %>
@@ -48,28 +48,34 @@
                 <% end %>
 
                 <div class="row">
-                  <div class="col-md-3 col-sm-3">
+                  <div class="col-lg-6 ">
                     <div class="form-group" >
                       <%=t.label :Data_inizio %>
-                      <%=t.date_field :start_date, class:"form-control"%>
+                      <%=t.datetime_local_field :start_date, value: Time.now.strftime("%d/%m/%Y, %H:%M"), class:"form-control"%>
                     </div>
                   </div>
-                  <div class="col-md-3 col-sm-3">
+                  <div class="col-lg-6">
                     <div class="form-group">
                       <%=t.label :Data_fine %>
-                      <%=t.date_field :end_date, class:"form-control"%>
+                      <%=t.datetime_local_field :end_date, value: Time.now.strftime("%d/%m/%Y, %H:%M"), class:"form-control"%>
                     </div>
                   </div>
-                  <div class="col-md-3 col-sm-3">
+                </div>
+                <div class="row">
+                  <div class="col-lg-6 ">
                     <div class="form-group">
                       <%= t.label :Quantità %>
-                      <%= t.text_field :quantity, class:"form-control" %>
+                      <%= t.text_field :quantity, value: 1, class:"form-control" %>
                     </div>
                   </div>
-                  <div class="col-md-3 col-sm-3">
+                  <div class="col-lg-6">
                     <% for lab in @tool.labs %>
                       <%= t.label lab.name %>
-                      <%= radio_button_tag "tempbook[lab_id]" , lab.id%>
+                      <% if @tool.labs.first == lab %>
+                        <%= radio_button_tag "tempbook[lab_id]" , lab.id, true%>
+                      <% else %>
+                        <%= radio_button_tag "tempbook[lab_id]" , lab.id%>
+                      <%end%>
                       <br>
                     <% end %>
                   </div>
@@ -104,7 +110,8 @@
               <% if @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true).present? %>
                 <% @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true).each do |booking| %>
                    <%= booking.prof.name + " " + booking.prof.surname %> <br>
-                   <b> <%= t('.from') + " " + booking.start_date.strftime("%d/%m/%y").to_s + " " + t('.to') + " " + booking.end_date.strftime("%d/%m/%y").to_s %> </b>
+                    <%= t('.from') + " " %> <b> <%= booking.start_date.strftime("%d/%m/%y %k:%M").to_s + " " %> </b> <br>
+                    <%= t('.to') + " " %> <b> <%= booking.end_date.strftime("%d/%m/%y %k:%M").to_s %> </b>
                   <br>
                   <i> <%= t('.quantity') + ": " + booking.quantity.to_s %> </i>
                    <hr>

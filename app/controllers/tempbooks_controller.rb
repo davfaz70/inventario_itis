@@ -36,7 +36,7 @@ class TempbooksController < ApplicationController
         @tempbook.destroy
         if @book.save
           flash[:success]="Prenotato con successo"
-          BookControlJob.set(wait_until: @book.end_date).perform_later(@book)
+          BookControlJob.set(wait_until: @book.start_date.to_datetime).perform_later(@book)
           redirect_to tool_path(@tool)
         else
           flash[:danger]="C'è stato un problema, riprova"
@@ -44,6 +44,7 @@ class TempbooksController < ApplicationController
         end
       end
       else
+        flash[:danger] = @tempbook.errors.full_messages
         redirect_to tool_path(@tool)
     end
   end

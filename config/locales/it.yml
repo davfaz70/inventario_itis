@@ -169,6 +169,10 @@ it:
         subject: "Materia"
       category:
         name: "Nome"
+      tempbook:
+        start_date: "Data d'inizio"
+        end_date: "Data di fine"
+        quantity: "Quantità"
     errors:
       messages:
         extension_white_list_error: "Il file non ha una estensione corretta"
