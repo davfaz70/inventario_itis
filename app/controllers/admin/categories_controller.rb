@@ -24,8 +24,7 @@ class Admin::CategoriesController < Admin::AdminController
   def create
     @category = Category.new(category_params)
     if @category.save
-      flash[:success]= t('.created')
-      redirect_to admin_categories_path
+      render json: @category 
     else
       render 'new'
     end

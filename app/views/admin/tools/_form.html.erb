@@ -106,22 +106,23 @@
     <hr>
 
 <%= t.label t('.categorychoose') %>
+<%= t.select :category_ids, Category.all.pluck(:name, :id), {multiple: true}, { multiple: true, class: "selectize" } %>
 
-<div class="field">
-  <%= hidden_field_tag "tool[category_ids][]", nil %>
-    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-      <% for category in Category.all %>
-        <% if @tool.categories.include?(category) %>
-          <label class="btn btn-outline-success active">
-        <% else %>
-          <label class="btn btn-outline-success">
-        <%end%>
-        <%= check_box_tag "tool[category_ids][]", category.id, @tool.categories.include?(category) %>
-        <%= fa_icon('tag') + " " + category.name %>
-        </label>
-      <% end %>
-  </div>
-</div>
+<!--<div class="field">-->
+  <%#hidden_field_tag "tool[category_ids][]", nil %>
+    <!--<div class="btn-group btn-group-toggle" data-toggle="buttons">-->
+      <%#for category in Category.all %>
+        <%#if @tool.categories.include?(category) %>
+          <!--<label class="btn btn-outline-success active">-->
+        <%#else %>
+          <!--<label class="btn btn-outline-success">-->
+        <%#end%>
+        <%# check_box_tag "tool[category_ids][]", category.id, @tool.categories.include?(category) %>
+        <%# fa_icon('tag') + " " + category.name %>
+        <!--</label>-->
+      <%#end %>
+  <!--</div>
+</div>-->
 <hr>
 
 <%= t.submit class:"btn btn-primary btn-block"%>
@@ -139,6 +140,38 @@ document.getElementById("tool_photo").onchange = function () {
     // read the image file as a data URL.
     reader.readAsDataURL(this.files[0]);
 };
+
+
 </script>
 
+
 <% end %>
+
+
+
+<!-- Modal -->
+<div class="modal fade category-modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Category</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+<%= form_for ([:admin, Category.new]) do |t|  %>
+
+    <div class="form-group" >
+      <%=t.label t('.name')%>
+      <%=t.text_field :name, class:"form-control"%>
+    </div>
+
+<%= t.submit class:"btn btn-primary btn-block"%>
+
+<% end %>
+</div>
+</div>
+</div>
+</div>
