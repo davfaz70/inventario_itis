@@ -19,10 +19,10 @@ class Admin::DashboardController < Admin::AdminController
         ProfMailer.unauthorized(@prof).deliver_later
       end
       flash[:success]="ok"
-      redirect_to admin_dashboard_index_path
+      redirect_back(fallback_location:  admin_dashboard_index_path)
     else
       flash[:danger]="ko"
-      redirect_to admin_dashboard_index_path
+      redirect_back(fallback_location:  admin_dashboard_index_path)
     end
   end
 

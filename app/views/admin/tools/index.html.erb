@@ -5,6 +5,8 @@
             padding: 1rem
         }
 </style>
+<h1> <%= t('admin.shared.menu.tools') %> </h1>
+<hr>
 <div class="row">
 
 
@@ -12,19 +14,7 @@
   <%= link_to t('.new'), new_admin_tool_path, class: "btn btn-primary btn-block" %>
 
 
-    <div class="card my-4">
-              <h5 class="card-header">Search</h5>
-              <div class="card-body">
-                <%= search_form_for @q, url: admin_tools_path do |f| %>
-                <div class="input-group">
-
-                <%= f.search_field :translations_name_cont, class:"form-control", placeholder: t('tools.index.place') %>
-                <%= f.submit t('tools.index.search'), class:"btn btn-secondary "%>
-                </div>
-                <% end %>
-
-              </div>
-            </div>
+    
 
             <!-- Categories Widget -->
             <div class="card my-4">
@@ -88,6 +78,7 @@
 </div>
 
 </div>
+<br>
 
 <ul class="pagination justify-content-center">
   <%= paginate @tools %>

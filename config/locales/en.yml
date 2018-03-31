@@ -107,7 +107,7 @@ en:
     identifier: "You can not insert multiple tools with the same identifier"
     quantity: "The quantity can not be negative"
     photos: "Can not save more of 4 photos"
-    labs: "One or more tools can not exist in multiple laboratories, at least not in this universe"
+    labs: "A single tool can not exist in multiple laboratories"
     show:
       description: "Description"
       bookings: "Reservations"

@@ -1,19 +1,24 @@
-
+<h1> <%= t('admin.shared.menu.technical') %> </h1>
+<hr>
+<div class="row">
 <% @technicals.each do |technical| %>
-  <div class="card">
+<div class="col-lg-3 col-sm-4 portfolio-item">
+  <div class="card h-100">
     <div class="card-header">
       <%= technical.name + " " + technical.surname %>
+      <%= link_to fa_icon('user'), admin_technical_path(technical), class:"btn btn-primary" %>
     </div>
     <div class="card-body">
       <%= mail_to technical.email %>
-      <div class="row">
-        <div class="col-md-6">
-          <%= link_to t('admin.tools.index.edit'), edit_admin_technical_path(technical) %>
-        </div>
-        <div class="col-md-6">
-          <%= link_to "Assign lab", new_admin_technical_lab_technical_path(technical) %>
-        </div>
+
+          <%= link_to fa_icon('pencil') + " " + t('admin.tools.index.edit'), edit_admin_technical_path(technical), class:"btn btn-warning" %>
+
+          <%= link_to "Assign lab", new_admin_technical_lab_technical_path(technical), class:"btn btn-dark" %>
+
+
       </div>
     </div>
   </div>
+
   <% end %>
+  </div>

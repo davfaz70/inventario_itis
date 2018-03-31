@@ -8,14 +8,11 @@
   <%= csrf_meta_tags %>
   <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no">
 </head>
-<body>
-<div class="container">
-  <!-- menu -->
-    <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <%= render partial: 'admin/shared/menu'%>
-      </div>
-    </div>
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+  <%= render partial: 'admin/shared/menu'%>
+  <div class="content-wrapper">
+  <div class="container-fluid">
+    
   <!-- /menu -->
 
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -33,6 +30,7 @@
   <!-- footer -->
   <%= render partial: 'admin/shared/footer'%>
   <!-- /footer -->
+</div>
 </div>
 </body>
 

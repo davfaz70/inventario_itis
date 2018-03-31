@@ -29,7 +29,7 @@
               </button>
             </h5>
           </div>
-          <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#prenota">
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#prenota">
             <div class="card-body">
 
               <%= form_for ([@tool, @tempbook]) do |t|  %>
@@ -80,6 +80,10 @@
                     <% end %>
                   </div>
                 </div>
+                <div class="form-group">
+                  <%=t.label :Motivazione %>
+                  <%=t.text_area :goal, class:"form-control"%>
+                </div>
 
                 <%= hidden_field(:tempbook, :prof_id, :value => current_prof.id) %>
                 <br>
@@ -95,49 +99,64 @@
         <div class="col-lg-4 col-md-5">
           <h3 class="my-3"> <%= t('.description') %> </h3>
           <p> <%= @tool.description %></p>
-          <div id="accordion">
-          <div class="card my-4">
 
-            <h5 class="card-header">
-                <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#multiCollapseExample1" aria-expanded="true" aria-controls="multiCollapseExample1">
-                 <%= t('.bookings') %>
-              </button>
-              <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">
-                 <%= t('.documentation') %>
-              </button>
-            </h5>
-            <div class="collapse show scroll-box" id="multiCollapseExample1" data-parent="#accordion">
-              <% if @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true).present? %>
-                <% @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true).each do |booking| %>
-                   <%= booking.prof.name + " " + booking.prof.surname %> <br>
-                    <%= t('.from') + " " %> <b> <%= booking.start_date.strftime("%d/%m/%y %k:%M").to_s + " " %> </b> <br>
-                    <%= t('.to') + " " %> <b> <%= booking.end_date.strftime("%d/%m/%y %k:%M").to_s %> </b>
-                  <br>
-                  <i> <%= t('.quantity') + ": " + booking.quantity.to_s %> </i>
-                   <hr>
-                <%end%>
-              <% else %>
-              <%= t('.notbooked') %>
-              <% end %>
+
+
+            <div class="panel panel-default">
+                        <div class="card-header">
+                          <ul class="nav nav-pills">
+                              <li class="active"><a href="#bookings" data-toggle="tab" class="btn btn-primary"> <%= t('.bookings') %> </a>
+                              </li>
+                              <li><a href="#documentations" data-toggle="tab" class="btn btn-primary"> <%= t('.documentation') %> </a>
+                              </li>
+                          </ul>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <!-- Nav tabs -->
+
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane fade in active scroll-box show" id="bookings">
+                                  <% if @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true).present? %>
+                                    <% @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true).each do |booking| %>
+                                       <%= booking.prof.name + " " + booking.prof.surname %> <br>
+                                        <%= t('.from') + " " %> <b> <%= booking.start_date.strftime("%d/%m/%y %k:%M").to_s + " " %> </b> <br>
+                                        <%= t('.to') + " " %> <b> <%= booking.end_date.strftime("%d/%m/%y %k:%M").to_s %> </b>
+                                      <br>
+                                      <i> <%= t('.quantity') + ": " + booking.quantity.to_s %> </i>
+                                       <hr>
+                                    <%end%>
+                                  <% else %>
+                                  <%= t('.notbooked') %>
+                                  <% end %>
+                                </div>
+                                <div class="tab-pane fade scroll-box" id="documentations">
+                                  <% if @tool.documentations.present? %>
+                                    <% @tool.documentations.each do |doc| %>
+                                      <li class="list-group-item">
+                                        <%= link_to fa_icon('cloud-download'), doc.file.url %>
+                                        <%= " " + doc.name %>
+                                      </li>
+                                    <% end %>
+                                  <% else %>
+                                    <%= t('.notdocumented') %>
+                                  <% end %>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>                        <!-- /.panel-body -->
+                     </div>
+
+
+
 
             </div>
-            <div class="collapse scroll-box" id="multiCollapseExample2" data-parent="#accordion">
-            <% if @tool.documentations.present? %>
-              <% @tool.documentations.each do |doc| %>
-                <li class="list-group-item">
-                  <%= link_to fa_icon('cloud-download'), doc.file.url %>
-                  <%= " " + doc.name %>
-                </li>
-              <% end %>
-            <% else %>
-              <%= t('.notdocumented') %>
-            <% end %>
-            </div>
-          </div>
-        </div>
-        </div>
 
-      </div>
+
+
+
       <!-- /.row -->
 
       <!-- Related Projects Row -->

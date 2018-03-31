@@ -9,27 +9,35 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body >
-<%= render partial: "shared/menu" %>
- <div id="page-content-wrapper">
-     <div class="container-fluid">
-
-<br>
-
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <% flash.each do |key, value| %>
-          <div class="alert alert-<%= key %>"><%= value %>
-             <a class="close" data-dismiss="alert">&#215;</a>
+  <body>
+    <%= render partial: "shared/menu" %>
+    <% if controller.controller_name == "home" %>
+      <header class="business-header">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <h1 class="display-3 text-center text-white mt-4"> <%= t('home.index.header') %> ITIS E Torricelli </h1>
+            </div>
           </div>
-        <% end %>
+        </div>
+      </header>
+    <%end %>
+    <div id="page-content-wrapper">
+      <div class="container-fluid">
+        <br>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <% flash.each do |key, value| %>
+            <div class="alert alert-<%= key %>"><%= value %>
+               <a class="close" data-dismiss="alert">&#215;</a>
+            </div>
+          <% end %>
+        </div>
+        <%= yield %>
+        <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+        <%= render partial: "shared/footer" %>
       </div>
-
-    <%= yield %>
-<script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
- <%= render partial: "shared/footer" %>
-
-  </div>
-</div>
+    </div>
 
   </body>
 </html>

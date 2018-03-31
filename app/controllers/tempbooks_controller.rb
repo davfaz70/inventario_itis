@@ -33,6 +33,7 @@ class TempbooksController < ApplicationController
         @book.end_date = @tempbook.end_date
         @book.quantity = @tempbook.quantity
         @book.lab_id = @tempbook.lab_id
+        @book.goal = @tempbook.goal
         @tempbook.destroy
         if @book.save
           flash[:success]="Prenotato con successo"
@@ -60,6 +61,6 @@ class TempbooksController < ApplicationController
   end
 
   def tempbook_params
-    params.require(:tempbook).permit(:prof_id, :tool_id, :start_date, :end_date, :quantity, :lab_id)
+    params.require(:tempbook).permit(:prof_id, :tool_id, :start_date, :end_date, :quantity, :lab_id, :goal)
   end
 end

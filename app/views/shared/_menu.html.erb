@@ -4,7 +4,7 @@ $(window).on('scroll', function () {
 });
 </script>
 <style>
-.navbar {
+ .navbar {
   z-index: 9999;
 }
 </style>
@@ -26,7 +26,7 @@ $(window).on('scroll', function () {
                     <%= link_to t('.tools'), tools_path%>
                 </li>
                 <li>
-                  <a class="nav-link dropdown-toggle" href="#" id="wrapdrop" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a class=" dropdown-toggle" href="#" id="wrapdrop" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <%= t('.languages') %>
                   </a>
                   <div class="dropdown-menu" aria-labelledby="wrapdrop">
@@ -38,9 +38,25 @@ $(window).on('scroll', function () {
                     </text>
                   </div>
                 </li>
+                <% if prof_signed_in? %>
+                <li>
+                <a class=" dropdown-toggle" href="#" id="navbarDropdownAdmin" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <%= fa_icon('user-circle') + " Prof" %>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
+                    <%= link_to "Account", edit_prof_registration_path, class:"dropdown-item" %>
+                    <div class="dropdown-divider"></div>
+                  <%= link_to fa_icon('sign-out') + "Log-out", destroy_prof_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "dropdown-item" %>
+                </div>
+              </li>
+              <% else %>
+                <li>
+                  <%= link_to fa_icon('user') + " Prof", new_prof_session_path %>
+                </li>
+                <% end %>
                 <% if admin_signed_in? %>
                 <li>
-                <a class="nav-link dropdown-toggle" href="#" id="DropdownAdmin" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class=" dropdown-toggle" href="#" id="DropdownAdmin" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <%= fa_icon('cog') + " Admin" %>
                   </a>
                   <div class="dropdown-menu" aria-labelledby="DropdownAdmin">
@@ -52,25 +68,10 @@ $(window).on('scroll', function () {
               </li>
               <% else %>
               <li>
-                <%= link_to "Admin", admin_dashboard_index_path%>
+                <%= link_to fa_icon('user-secret') + " Admin", admin_dashboard_index_path%>
               </li>
                 <% end %>
-                <% if prof_signed_in? %>
-                <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdmin" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <%= fa_icon('cog') + " Prof" %>
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
-                    <%= link_to "Account", edit_prof_registration_path, class:"dropdown-item" %>
-                    <div class="dropdown-divider"></div>
-                  <%= link_to fa_icon('sign-out') + "Log-out", destroy_prof_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "dropdown-item" %>
-                </div>
-              </li>
-              <% else %>
-                <li>
-                  <%= link_to "Prof", new_prof_session_path %>
-                </li>
-                <% end %>
+
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -80,8 +81,8 @@ $(window).on('scroll', function () {
 
 
 
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+<b>
+<nav class="navbar navbar-expand-md navbar-dark" style="background-color: rgba(50, 50, 50, 0.7)">
   <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Toggle navigation" id="menu-toggle">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -89,7 +90,7 @@ $(window).on('scroll', function () {
 
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav mr-auto ">
       <li class="nav-item ">
         <!--<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
         <%= link_to "ITIS", 'http://www.itisetorricelli.it/', target: :_blank, class: "nav-link" %>
@@ -114,6 +115,30 @@ $(window).on('scroll', function () {
           </text>
         </div>
       </li>
+
+      <% if prof_signed_in? %>
+      <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdmin" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= fa_icon('user-circle') + " Prof" %>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
+          <%= link_to "Account", edit_prof_registration_path, class:"dropdown-item" %>
+          <div class="dropdown-divider"></div>
+        <%= link_to fa_icon('sign-out') + "Log-out", destroy_prof_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "dropdown-item" %>
+      </div>
+      </li>
+      <% else %>
+      <li class="nav-item">
+        <% if controller.controller_name == "sessions"%>
+        <%= link_to fa_icon('user') + " Prof", new_prof_session_path, class: "nav-link active" %>
+        <% else %>
+        <%= link_to fa_icon('user') + " Prof", new_prof_session_path, class: "nav-link" %>
+        <% end %>
+      </li>
+      <% end %>
+    </ul>
+    <ul class="navbar-nav ml-auto ">
+
       <% if admin_signed_in? %>
       <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdmin" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -129,25 +154,14 @@ $(window).on('scroll', function () {
     <% else %>
     <li class="nav-item">
       <% if controller.controller_name == "sessions"%>
-      <%= link_to "Admin", admin_dashboard_index_path, class: "nav-link active" %>
+      <%= link_to fa_icon('user-secret') + " Admin", admin_dashboard_index_path, class: "nav-link active" %>
       <% else %>
-      <%= link_to "Admin", admin_dashboard_index_path, class: "nav-link" %>
+      <%= link_to fa_icon('user-secret') + " Admin", admin_dashboard_index_path, class: "nav-link" %>
       <% end %>
     </li>
 
       <% end %>
-      <% if prof_signed_in? %>
-      <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdmin" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= fa_icon('cog') + " Prof" %>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
-          <%= link_to "Account", edit_prof_registration_path, class:"dropdown-item" %>
-          <div class="dropdown-divider"></div>
-        <%= link_to fa_icon('sign-out') + "Log-out", destroy_prof_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "dropdown-item" %>
-      </div>
-      </li>
-      <% end %>
+
     </ul>
 
 
@@ -157,6 +171,7 @@ $(window).on('scroll', function () {
 
   </div>
 </nav>
+</b>
 <script>
    $("#menu-toggle").click(function(e) {
        e.preventDefault();

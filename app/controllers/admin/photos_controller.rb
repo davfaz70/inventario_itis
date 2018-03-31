@@ -3,10 +3,10 @@ class Admin::PhotosController < Admin::AdminController
     @photo = Photo.find(params[:id])
     if @photo.destroy
       flash[:success] = "Successfully deleted"
-      redirect_back(fallback_location: root_path)
+      redirect_back(fallback_location:  admin_dashboard_index_path)
     else
       flash[:danger] = "Oooops"
-      redirect_back(fallback_location: root_path)
+      redirect_back(fallback_location:  admin_dashboard_index_path)
     end
   end
 end

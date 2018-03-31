@@ -1,4 +1,226 @@
-<div class="card text-center">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav" style="background-color: #f8f8f8">
+    <a class="navbar-brand" href="index.html"><%= current_admin.email %></a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+          <a class="nav-link" href="<%=admin_dashboard_index_path%>">
+            <i class="fa fa-fw fa-dashboard"></i>
+            <span class="nav-link-text">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="<%= t('.labs') %>">
+          <a class="nav-link" href="<%=admin_labs_path%>">
+            <i class="fa fa-fw fa-flask"></i>
+            <span class="nav-link-text"><%= t('.labs') %></span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="<%= t('.technical') %>">
+          <a class="nav-link" href="<%=admin_technicals_path%>">
+            <i class="fa fa-fw fa-users"></i>
+            <span class="nav-link-text"><%= t('.technical') %></span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="<%= t('.tools') %>">
+          <a class="nav-link" href="<%=admin_tools_path%>">
+            <i class="fa fa-fw fa-wrench"></i>
+            <span class="nav-link-text"><%= t('.tools') %></span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="<%= t('.categories') %>">
+          <a class="nav-link" href="<%=admin_categories_path%>">
+            <i class="fa fa-fw fa-tag"></i>
+            <span class="nav-link-text"><%= t('.categories') %></span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="<%= t('.languages')%>">
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti" data-parent="#exampleAccordion">
+            <i class="fa fa-fw fa-language"></i>
+            <span class="nav-link-text"><%= t('.languages')%></span>
+          </a>
+          <ul class="sidenav-second-level collapse" id="collapseMulti">
+            <li>
+              <%= link_to_unless_current image_tag("if_United-Kingdom_92403.ico", size: "28x28") + " English", locale: "en"%>
+            </li>
+            <li>
+              <%= link_to_unless_current image_tag("if_Italy_92145.ico", size: "28x28") + " Italiano", locale: "it" %>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Home">
+          <a class="nav-link" href="/">
+            <i class="fa fa-fw fa-home"></i>
+            <span class="nav-link-text">Home</span>
+          </a>
+        </li>
+
+      </ul>
+      <ul class="navbar-nav sidenav-toggler">
+        <li class="nav-item">
+          <a class="nav-link text-center" id="sidenavToggler">
+            <i class="fa fa-fw fa-angle-left"></i>
+          </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-fw fa-envelope"></i>
+            <span class="d-lg-none">Messages
+              <span class="badge badge-pill badge-primary"><%= Prof.where("authorized = ?", false).count + Book.where("confirmed = ?", false).count %></span>
+            </span>
+            <% if Prof.where("authorized = ?", false).count > 0 || Book.where("confirmed = ?", false).count > 0 %>
+            <span class="indicator text-primary d-none d-lg-block">
+              <i class="fa fa-fw fa-circle"></i>
+            </span>
+            <% end %>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="messagesDropdown">
+            <h6 class="dropdown-header">New Messages:</h6>
+            <div class="dropdown-divider"></div>
+            <% Prof.where("authorized = ?", false).limit(2).each do |prof| %>
+            <a class="dropdown-item" href="#">
+              <strong><%= prof.name + " " + prof.surname %></strong>
+              <span class="small float-right text-muted"><%= prof.created_at.strftime("%d/%m/%y %k:%M") %> </span>
+              <div class="text-center"><%= link_to "Autorizza", admin_authorize_route_path(prof.id), method: :post, class:"btn btn-success btn-sm"%></div>
+            </a>
+            <div class="dropdown-divider"></div>
+            <% end %>
+            <% Book.where("confirmed = ?", false).limit(2).each do |booking| %>
+            <a class="dropdown-item" href="<%=admin_tool_path(booking.tool)%>">
+              <strong><%= booking.tool.name %></strong> <%= t('tools.show.quantity') + ": " + booking.quantity.to_s %>
+              <span class="small float-right text-muted"><%= " " + t('tools.show.to') + " " + booking.end_date.strftime("%d/%m/%y %k:%M").to_s%></span>
+              <span class="small float-right text-muted"><%= t('tools.show.from') + " " + booking.start_date.strftime("%d/%m/%y %k:%M").to_s%></span>
+              <div class="dropdown-message small"><%= booking.prof.surname + " " + booking.prof.name %></div>
+              <div class="dropdown-message small"><%= booking.goal %></div>
+              <%= form_for ([:admin, booking]) do |t|  %>
+              <%= hidden_field(:book, :confirmed, :value => true) %>
+              <%= t.submit "Conferma Prenotazione", class: "btn btn-info btn-sm" %>
+              <% end %>
+            </a>
+            <div class="dropdown-divider"></div>
+            <% end %>
+            <a class="dropdown-item small" href="#">View all messages</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-fw fa-bell"></i>
+            <span class="d-lg-none">Alerts
+              <span class="badge badge-pill badge-warning">6 New</span>
+            </span>
+            <span class="indicator text-warning d-none d-lg-block">
+              <i class="fa fa-fw fa-circle"></i>
+            </span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="alertsDropdown">
+            <h6 class="dropdown-header">New Alerts:</h6>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">
+              <span class="text-success">
+                <strong>
+                  <i class="fa fa-long-arrow-up fa-fw"></i>Status Update</strong>
+              </span>
+              <span class="small float-right text-muted">11:21 AM</span>
+              <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">
+              <span class="text-danger">
+                <strong>
+                  <i class="fa fa-long-arrow-down fa-fw"></i>Status Update</strong>
+              </span>
+              <span class="small float-right text-muted">11:21 AM</span>
+              <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">
+              <span class="text-success">
+                <strong>
+                  <i class="fa fa-long-arrow-up fa-fw"></i>Status Update</strong>
+              </span>
+              <span class="small float-right text-muted">11:21 AM</span>
+              <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item small" href="#">View all alerts</a>
+          </div>
+        </li>
+        <% if controller_name == "tools" && controller.action_name == "index" %>
+          <li class="nav-item">
+            <%= search_form_for @q, url: admin_tools_path do |f| %>
+            <div class="input-group">
+              <%= f.search_field :translations_name_cont, class:"form-control", placeholder: t('tools.index.place') %>
+              <%= f.submit t('tools.index.search'), class:"btn btn-primary "%>
+            </div>
+            <% end %>
+          </li>
+        <% end %>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+            <%= link_to fa_icon('sign-out') + "Log-out", destroy_admin_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "nav-link" %>
+        </li>
+      </ul>
+    </div>
+</nav>
+
+<script>
+(function($) {
+  "use strict"; // Start of use strict
+  // Configure tooltips for collapsed side navigation
+  $('.navbar-sidenav [data-toggle="tooltip"]').tooltip({
+    template: '<div class="tooltip navbar-sidenav-tooltip" role="tooltip" style="pointer-events: none;"><div class="arrow"></div><div class="tooltip-inner"></div></div>'
+  })
+  // Toggle the side navigation
+  $("#sidenavToggler").click(function(e) {
+    e.preventDefault();
+    $("body").toggleClass("sidenav-toggled");
+    $(".navbar-sidenav .nav-link-collapse").addClass("collapsed");
+    $(".navbar-sidenav .sidenav-second-level, .navbar-sidenav .sidenav-third-level").removeClass("show");
+  });
+  // Force the toggled class to be removed when a collapsible nav link is clicked
+  $(".navbar-sidenav .nav-link-collapse").click(function(e) {
+    e.preventDefault();
+    $("body").removeClass("sidenav-toggled");
+  });
+  // Prevent the content wrapper from scrolling when the fixed side navigation hovered over
+  $('body.fixed-nav .navbar-sidenav, body.fixed-nav .sidenav-toggler, body.fixed-nav .navbar-collapse').on('mousewheel DOMMouseScroll', function(e) {
+    var e0 = e.originalEvent,
+      delta = e0.wheelDelta || -e0.detail;
+    this.scrollTop += (delta < 0 ? 1 : -1) * 30;
+    e.preventDefault();
+  });
+  // Scroll to top button appear
+  $(document).scroll(function() {
+    var scrollDistance = $(this).scrollTop();
+    if (scrollDistance > 100) {
+      $('.scroll-to-top').fadeIn();
+    } else {
+      $('.scroll-to-top').fadeOut();
+    }
+  });
+  // Configure tooltips globally
+  $('[data-toggle="tooltip"]').tooltip()
+  // Smooth scrolling using jQuery easing
+  $(document).on('click', 'a.scroll-to-top', function(event) {
+    var $anchor = $(this);
+    $('html, body').stop().animate({
+      scrollTop: ($($anchor.attr('href')).offset().top)
+    }, 1000, 'easeInOutExpo');
+    event.preventDefault();
+  });
+})(jQuery); // End of use strict
+</script>
+
+
+
+
+
+
+
+<!-- <div class="card text-center">
   <div class="card-header">
 <ul class="nav nav-tabs card-header-tabs">
   <li class="nav-item">
@@ -56,4 +278,4 @@
 </ul>
 </div>
   </div>
-<br>
+<br> -->

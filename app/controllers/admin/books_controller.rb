@@ -19,7 +19,7 @@ class Admin::BooksController < Admin::AdminController
       flash[:danger]="Questo prodotto non è più disponibile per questo periodo, la prenotazione è stata eliminata ed è stato comunicato tutto al prenotatore"
       ProfMailer.destroy_booking(@booking.prof, @booking).deliver_now
       @booking.destroy
-      redirect_back(fallback_location: root_path)
+      redirect_back(fallback_location:  admin_dashboard_index_path)
     else
       if @booking.update(book_params)
         flash[:success]="La prenotazione è stata confermata"
@@ -28,7 +28,7 @@ class Admin::BooksController < Admin::AdminController
         redirect_back(fallback_location: root_path)
       else
         flash[:danger]="Qualcosa è andato storto, riprova"
-        redirect_back(fallback_location: root_path)
+        redirect_back(fallback_location:  admin_dashboard_index_path)
       end
     end
   end
@@ -37,10 +37,10 @@ class Admin::BooksController < Admin::AdminController
     if @booking.destroy
       flash[:success]="La prenotazione è stata eliminata"
       ProfMailer.destroy_booking(@booking.prof, @booking).deliver_now
-      redirect_back(fallback_location: root_path)
+      redirect_back(fallback_location:  admin_dashboard_index_path)
     else
       flash[:danger]="Qualcosa è andato storto, riprova"
-      redirect_back(fallback_location: root_path)
+      redirect_back(fallback_location:  admin_dashboard_index_path)
     end
   end
 
@@ -51,6 +51,6 @@ class Admin::BooksController < Admin::AdminController
   end
 
   def book_params
-    params.require(:book).permit(:prof_id, :tool_id, :start_date, :end_date, :quantity, :confirmed, :lab_id)
+    params.require(:book).permit(:prof_id, :tool_id, :start_date, :end_date, :quantity, :confirmed, :lab_id, :goal)
   end
 end

@@ -41,7 +41,7 @@ class Tool < ApplicationRecord
   before_save :name
   before_save :description
   validates_with ToolValidator
-  paginates_per 9
+  paginates_per 12
 
   def name=(s)
     write_attribute(:name, s.to_s.capitalize)
