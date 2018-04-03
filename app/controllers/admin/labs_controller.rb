@@ -2,8 +2,11 @@ class Admin::LabsController < Admin::AdminController
   before_action :set_lab, only: [:show, :edit, :update, :destroy, :assign, :assign_update]
 
   def index
-    @labs = Lab.order(:id).page
-    params[:page]
+    q_param = params[:q]
+    page = params[:page]
+    per_page = params[:per_page]
+    @q = Lab.order(:id).ransack(q_param)
+    @labs = @q.result(distinct: true).page(page).per(per_page)
   end
 
   def new

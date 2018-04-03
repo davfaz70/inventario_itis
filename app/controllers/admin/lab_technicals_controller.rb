@@ -1,8 +1,13 @@
 class Admin::LabTechnicalsController < Admin::AdminController
+  before_action :set_relation, only: [:edit, :update, :destroy]
 
   def new
     @relation = LabTechnical.new
-    @technical = Technical.find(params[:technical_id])
+    if params[:technical_id].present?
+      @resource = Technical.find(params[:technical_id])
+    else
+      @resource = Lab.friendly.find(params[:lab_id])
+    end
   end
 
   def create
@@ -16,7 +21,26 @@ class Admin::LabTechnicalsController < Admin::AdminController
     end
   end
 
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
+    if @relation.destroy
+      flash[:success]= t('.delete')
+      redirect_back(fallback_location:  admin_dashboard_index_path)
+    else
+      redirect_back(fallback_location:  admin_dashboard_index_path)
+    end
+  end
+
   private
+
+  def set_relation
+    @relation = LabTechnical.find(params[:id])
+  end
 
   def lab_technical_params
     params.require(:lab_technical).permit(:lab_id, :technical_id, :start_date, :end_date)

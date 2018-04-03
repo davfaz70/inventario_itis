@@ -15,11 +15,13 @@ $(document).on("turbolinks:load", function() {
       url: $(this).attr("action"),
       data: $(this).serialize(),
       success: function(response) {
-        selectizeCallback({value: response.id, text: response.name})
+        selectizeCallback({value: response.id, text: response.name});
         selectizeCallback = null;
 
         $(".category-modal").modal('toggle');
-        $rails.enableFormElements($("#new_category"));
+        $.rails.enableFormElements($('#new_category'));
+        //Rails 5.1
+        //Rails.enableElement($('selector-for-submit-button')[0]);
 
       }
     });
@@ -30,7 +32,7 @@ $(document).on("turbolinks:load", function() {
       selectizeCallback = callback;
 
       $(".category-modal").modal();
-      $("#new_category").trigger("reset");
+
       $("#category_name").val(input);
 
     }

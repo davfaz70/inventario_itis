@@ -2,8 +2,11 @@ class Admin::TechnicalsController < Admin::AdminController
   before_action :set_technical, only: [:show, :edit, :update, :destroy]
 
   def index
-    @technicals = Technical.order(:id).page
-    params[:page]
+    q_param = params[:q]
+    page = params[:page]
+    per_page = params[:per_page]
+    @q = Technical.order(:id).ransack(q_param)
+    @technicals = @q.result(distinct: true).page(page).per(per_page)
   end
 
   def new

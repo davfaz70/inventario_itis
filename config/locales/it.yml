@@ -8,6 +8,7 @@ it:
         categories: "Categorie"
         languages: "Lingua"
         technical: "Tecnici"
+        place: "Cerca"
     tools:
       index:
         new: "Nuovo strumento"

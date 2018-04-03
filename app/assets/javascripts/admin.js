@@ -1,9 +1,10 @@
 //= require jquery
-//= require jquery_ujs
-//= require turbolinks
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
 //= require nested_form_fields
+//= require jquery_ujs
+//= require turbolinks
 //= require selectize
 //= require_tree .
+//= require tools

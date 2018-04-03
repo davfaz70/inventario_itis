@@ -28,6 +28,7 @@ en:
         categories: "Categories"
         languages: "Languages"
         technical: "Technicals"
+        place: "Search"
     tools:
       index:
         new: "New tool"

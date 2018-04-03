@@ -6,7 +6,9 @@
 <div class="col-lg-3 col-sm-4 portfolio-item">
   <div class="card h-100">
   <div class="card-header">
-    <%= lab.name %> <%= link_to fa_icon('flask') + " " + t('.show'), admin_lab_path(lab), class:"btn btn-primary btn-block" %>
+    <%= lab.name %> <%= link_to fa_icon('eye'), admin_lab_path(lab), class:"btn btn-primary" %>
+    <%= link_to fa_icon('pencil'), edit_admin_lab_path(lab), class:"btn btn-warning " %>
+    <%= link_to fa_icon('trash'), admin_lab_path(lab), method: :delete, data: {confirm: t('.confirm')}, class:"btn btn-danger" %>
   </div>
   <div class="card-body">
     <h5 class="card-title"> <%= lab.subject %></h5>
@@ -14,11 +16,11 @@
 
 
 
-        <%= link_to fa_icon('pencil') + " " + t('.edit'), edit_admin_lab_path(lab), class:"btn btn-warning " %>
 
-        <%= link_to t('.assign'), admin_assign_lab_route_path(lab), class:"btn btn-dark" %>
+        <%= link_to fa_icon('wrench') + " " + fa_icon('plus'), admin_assign_lab_route_path(lab), class:"btn btn-success" %>
 
-        <%= link_to fa_icon('trash'), admin_lab_path(lab), method: :delete, data: {confirm: t('.confirm')}, class:"btn btn-danger" %>
+        <%= link_to fa_icon('users') + " " + fa_icon('plus'), new_admin_lab_lab_technical_path(lab), class:"btn btn-info" %>
+
 
   </div>
 </div>

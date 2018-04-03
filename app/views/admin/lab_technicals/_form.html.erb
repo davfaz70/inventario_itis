@@ -1,4 +1,4 @@
-<%= form_for ([:admin, @technical, @relation]) do |t|  %>
+<%= form_for ([:admin, @resource, @relation]) do |t|  %>
 
   <% if @relation.errors.any? %>
     <div id="error_explanation">
@@ -26,6 +26,7 @@
         <%=t.date_field :end_date, class:"form-control"%>
       </div>
     </div>
+    <%if params[:technical_id].present?%>
     <div class="col-md-4 col-sm-4">
       <% for lab in Lab.all %>
         <%= t.label lab.name %>
@@ -33,7 +34,23 @@
         <br>
       <% end %>
     </div>
+    <%else%>
+    <div class="col-md-4 col-sm-4">
+      <% for technical in Technical.all %>
+        <%= t.label technical.name + " " + technical.surname %>
+        <%= radio_button_tag "lab_technical[technical_id]" , technical.id%>
+        <br>
+      <% end %>
+    </div>
+    <%end%>
+
   </div>
-  <%= hidden_field(:lab_technical, :technical_id, :value => params[:technical_id]) %>
+  <%if params[:technical_id].present?%>
+    <%= hidden_field(:lab_technical, :technical_id, :value => params[:technical_id]) %>
+  <%else%>
+    <% labo = Lab.friendly.find(params[:lab_id]) %>
+    <%= hidden_field(:lab_technical, :lab_id, :value => labo.id) %>
+  <%end%>
+
  <%= t.submit %>
  <% end %>

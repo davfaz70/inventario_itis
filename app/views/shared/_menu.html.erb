@@ -142,7 +142,7 @@ $(window).on('scroll', function () {
       <% if admin_signed_in? %>
       <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdmin" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= fa_icon('cog') + " Admin" %>
+          <%= fa_icon('cog', class:"fa fa-spin") + " Admin" %>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
           <%= link_to "Dashboard", admin_dashboard_index_path, class: "dropdown-item" %>

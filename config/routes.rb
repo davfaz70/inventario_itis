@@ -21,17 +21,22 @@ scope '(:locale)' do
       resources :documentations, only: [:destroy]
       resources :photos, only: [:destroy]
     end
-    resources :labs
+    resources :labs do
+      resources :lab_technicals, only: [:new, :create, :edit, :update]
+    end
     resources :categories
     resources :technicals do
-      resources :lab_technicals
+      resources :lab_technicals, only: [:new, :create, :edit, :update]
     end
+    resources :lab_technicals, only: [:destroy]
     resources :books, only: [:update, :destroy]
     get 'dashboard/index'
     get 'tools/choose/:id(.:format)', :to => 'tools#choose', as: "choose_tool_route"
     get 'labs/assign/:id(.:format)', :to => 'labs#assign', as: "assign_lab_route"
     get 'labs/assign_update/:id/:tool(.:splat)', :to => 'labs#assign_update', as: "assign_update_lab_route"
     post 'authorize/:id(.:format)', :to => 'dashboard#authorize', as: "authorize_route"
+    post 'htmlcreate(.:format)', :to => 'categories#htmlcreate', as: "htmlcreate_route"
+    delete 'deleteprof/:id(.:format)', :to => 'dashboard#deleteprof', as: "deleteprof_route"
   end
     resources :tools, only: [:index, :show] do
       resources :tempbooks, only: [:create]

@@ -26,5 +26,11 @@ class Admin::DashboardController < Admin::AdminController
     end
   end
 
+  def deleteprof
+    @prof = Prof.find(params[:id])
+    @prof.destroy
+    redirect_back(fallback_location:  admin_dashboard_index_path)
+  end 
+
 
 end

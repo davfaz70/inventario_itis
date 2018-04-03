@@ -84,7 +84,10 @@
             <a class="dropdown-item" href="#">
               <strong><%= prof.name + " " + prof.surname %></strong>
               <span class="small float-right text-muted"><%= prof.created_at.strftime("%d/%m/%y %k:%M") %> </span>
-              <div class="text-center"><%= link_to "Autorizza", admin_authorize_route_path(prof.id), method: :post, class:"btn btn-success btn-sm"%></div>
+              <div class="text-center">
+              <%= link_to "Autorizza", admin_authorize_route_path(prof.id), method: :post, data: {confirm: t('admin.tools.index.confirm')}, class:"btn btn-success btn-sm"%>
+              <%= link_to fa_icon('trash'), admin_deleteprof_route_path(prof.id), data: { confirm: t('admin.tools.index.confirm') }, method: :delete, class:"btn btn-danger btn-sm" %>
+              </div>
             </a>
             <div class="dropdown-divider"></div>
             <% end %>
@@ -97,7 +100,7 @@
               <div class="dropdown-message small"><%= booking.goal %></div>
               <%= form_for ([:admin, booking]) do |t|  %>
               <%= hidden_field(:book, :confirmed, :value => true) %>
-              <%= t.submit "Conferma Prenotazione", class: "btn btn-info btn-sm" %>
+              <%= t.submit "Conferma Prenotazione", data: {confirm: t('admin.tools.index.confirm')}, class: "btn btn-info btn-sm" %>
               <% end %>
             </a>
             <div class="dropdown-divider"></div>
@@ -156,7 +159,44 @@
               <%= f.submit t('tools.index.search'), class:"btn btn-primary "%>
             </div>
             <% end %>
-          </li>
+              </li>
+            <% elsif controller_name == "labs" && controller.action_name == "index" %>
+              <li class="nav-item">
+                <%= search_form_for @q, url: admin_labs_path do |f| %>
+                <div class="input-group">
+                  <%= f.search_field :name_cont, class:"form-control", placeholder: t('.place') + " " + t('.labs') %>
+                  <%= f.submit t('tools.index.search'), class:"btn btn-primary "%>
+                </div>
+                <% end %>
+                  </li>
+
+                <% elsif controller_name == "technicals" && controller.action_name == "index" %>
+                  <li class="nav-item">
+                    <%= search_form_for @q, url: admin_technicals_path do |f| %>
+                    <div class="input-group">
+                      <%= f.search_field :name_or_surname_cont, class:"form-control", placeholder: t('.place') + " " + t('.technical') %>
+                      <%= f.submit t('tools.index.search'), class:"btn btn-primary "%>
+                    </div>
+                    <% end %>
+                      </li>
+
+                    <% elsif controller_name == "categories" && controller.action_name == "index" %>
+                      <li class="nav-item">
+                        <%= search_form_for @q, url: admin_categories_path do |f| %>
+                        <div class="input-group">
+                          <%= f.search_field :name_cont, class:"form-control", placeholder: t('.place') + " " + t('.categories') %>
+                          <%= f.submit t('tools.index.search'), class:"btn btn-primary "%>
+                        </div>
+                        <% end %>
+                          </li>
+
+                        <% else %>
+                          <li class="nav-item">
+                          <div class="card-body">
+                            Powered by: <a class="LI-simple-link" href='https://it.linkedin.com/in/davide-fazio?trk=profile-badge'>Davide Fazio</a>
+                           </div>
+                          </li>
+
         <% end %>
         <li class="nav-item">
           <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
@@ -213,69 +253,3 @@
   });
 })(jQuery); // End of use strict
 </script>
-
-
-
-
-
-
-
-<!-- <div class="card text-center">
-  <div class="card-header">
-<ul class="nav nav-tabs card-header-tabs">
-  <li class="nav-item">
-    <%= link_to fa_icon('home'), root_path, class:"nav-link"%>
-  </li>
-  <li class="nav-item">
-    <% if controller.controller_name == "dashboard" %>
-    <%= link_to "Dashboard", admin_dashboard_index_path, class:"nav-link active"%>
-    <% else %>
-    <%= link_to "Dashboard", admin_dashboard_index_path, class:"nav-link"%>
-    <% end %>
-  </li>
-  <li class="nav-item">
-    <% if controller.controller_name == "tools" %>
-    <%= link_to t('.tools'), admin_tools_path, class:"nav-link active"%>
-    <% else %>
-    <%= link_to t('.tools'), admin_tools_path, class:"nav-link"%>
-    <% end %>
-  </li>
-  <li class="nav-item">
-    <% if controller.controller_name == "labs" %>
-    <%= link_to t('.labs'), admin_labs_path, class:"nav-link active"%>
-    <% else %>
-    <%= link_to t('.labs'), admin_labs_path, class:"nav-link"%>
-    <% end %>
-  </li>
-  <li class="nav-item">
-    <% if controller.controller_name == "technicals" %>
-    <%= link_to t('.technical'), admin_technicals_path, class:"nav-link active"%>
-    <% else %>
-    <%= link_to t('.technical'), admin_technicals_path, class:"nav-link"%>
-    <% end %>
-  </li>
-  <li class="nav-item">
-    <% if controller.controller_name == "categories" %>
-    <%= link_to t('.categories'), admin_categories_path, class:"nav-link active"%>
-    <% else %>
-    <%= link_to t('.categories'), admin_categories_path, class:"nav-link"%>
-    <% end %>
-  </li>
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%= t('.languages')%></a>
-    <div class="dropdown-menu">
-      <text class="dropdown-item">
-        <%= link_to_unless_current image_tag("if_United-Kingdom_92403.ico", size: "28x28") + " English", locale: "en"%>
-      </text>
-      <text class="dropdown-item">
-        <%= link_to_unless_current image_tag("if_Italy_92145.ico", size: "28x28") + " Italiano", locale: "it" %>
-      </text>
-    </div>
-  </li>
-  <li class="nav-item">
-  <%= link_to fa_icon('sign-out') + "Log-out", destroy_admin_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "nav-link" %>
-  </li>
-</ul>
-</div>
-  </div>
-<br> -->

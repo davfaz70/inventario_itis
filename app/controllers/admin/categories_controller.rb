@@ -3,7 +3,9 @@ class Admin::CategoriesController < Admin::AdminController
 
 
   def index
-    @categories = Category.all
+    @q = Category.ransack(params[:q])
+    @categories= @q.result(distinct: true)
+      @category = Category.new
   end
 
 
@@ -24,11 +26,23 @@ class Admin::CategoriesController < Admin::AdminController
   def create
     @category = Category.new(category_params)
     if @category.save
-      render json: @category 
+      render json: @category
+    else
+      render json: @category.errors.full_messages
+    end
+  end
+
+  def htmlcreate
+    @category = Category.new(category_params)
+    if @category.save
+      flash[:success] = t('admin.categories.create.created')
+      redirect_to admin_categories_path
     else
       render 'new'
     end
   end
+
+
 
 
   def update

@@ -106,7 +106,7 @@
     <hr>
 
 <%= t.label t('.categorychoose') %>
-<%= t.select :category_ids, Category.all.pluck(:name, :id), {multiple: true}, { multiple: true, class: "selectize" } %>
+<%= t.select :category_ids, Category.all.pluck(:name, :id), {}, { multiple: true, class: "selectize" } %>
 
 <!--<div class="field">-->
   <%#hidden_field_tag "tool[category_ids][]", nil %>
