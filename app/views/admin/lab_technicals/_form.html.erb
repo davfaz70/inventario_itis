@@ -37,9 +37,25 @@
     <%else%>
     <div class="col-md-4 col-sm-4">
       <% for technical in Technical.all %>
-        <%= t.label technical.name + " " + technical.surname %>
-        <%= radio_button_tag "lab_technical[technical_id]" , technical.id%>
-        <br>
+        <% if @relation.technical == technical %>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <%= radio_button_tag "lab_technical[technical_id]" , technical.id, true%>
+              </div>
+            </div>
+          <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= technical.name + ' ' + technical.surname%>" readonly>
+          </div>
+        <% else %>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <%= radio_button_tag "lab_technical[technical_id]" , technical.id%>
+            </div>
+          </div>
+          <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= technical.name + ' ' + technical.surname%>" readonly>
+        </div>
+        <% end %>
       <% end %>
     </div>
     <%end%>

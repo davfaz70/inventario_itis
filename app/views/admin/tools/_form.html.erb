@@ -84,6 +84,11 @@
   </div>
 </div>
 
+<%= t.label t('.categorychoose') %>
+<%= t.select :category_ids, Category.all.pluck(:name, :id), {}, { multiple: true, class: "selectize" } %>
+
+<hr>
+
 
 <%= t.label t('.labchoose') %>
 
@@ -102,28 +107,6 @@
         <% end %>
     </div>
   </div>
-
-    <hr>
-
-<%= t.label t('.categorychoose') %>
-<%= t.select :category_ids, Category.all.pluck(:name, :id), {}, { multiple: true, class: "selectize" } %>
-
-<!--<div class="field">-->
-  <%#hidden_field_tag "tool[category_ids][]", nil %>
-    <!--<div class="btn-group btn-group-toggle" data-toggle="buttons">-->
-      <%#for category in Category.all %>
-        <%#if @tool.categories.include?(category) %>
-          <!--<label class="btn btn-outline-success active">-->
-        <%#else %>
-          <!--<label class="btn btn-outline-success">-->
-        <%#end%>
-        <%# check_box_tag "tool[category_ids][]", category.id, @tool.categories.include?(category) %>
-        <%# fa_icon('tag') + " " + category.name %>
-        <!--</label>-->
-      <%#end %>
-  <!--</div>
-</div>-->
-<hr>
 
 <%= t.submit class:"btn btn-primary btn-block"%>
 

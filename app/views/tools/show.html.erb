@@ -70,11 +70,24 @@
                   </div>
                   <div class="col-lg-6">
                     <% for lab in @tool.labs %>
-                      <%= t.label lab.name %>
                       <% if @tool.labs.first == lab %>
-                        <%= radio_button_tag "tempbook[lab_id]" , lab.id, true%>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">
+                            <%= radio_button_tag "tempbook[lab_id]" , lab.id, true%>
+                          </div>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= lab.name %>" readonly>
+                      </div>
                       <% else %>
-                        <%= radio_button_tag "tempbook[lab_id]" , lab.id%>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">
+                            <%= radio_button_tag "tempbook[lab_id]" , lab.id%>
+                          </div>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= lab.name %>" readonly>
+                      </div>
                       <%end%>
                       <br>
                     <% end %>

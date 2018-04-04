@@ -12,6 +12,8 @@ class LabTechnical < ApplicationRecord
   belongs_to :lab
   belongs_to :technical
   validates :start_date, presence: true
+  validates :lab_id, presence: true
+  validates :technical_id, presence: true
   validates_with LabTechValidator
 
 end

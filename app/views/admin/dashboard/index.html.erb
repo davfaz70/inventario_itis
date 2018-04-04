@@ -1,6 +1,7 @@
-
+<h1> Dashboard </h1>
+<hr>
   <% @profs.each do |prof| %>
-  <% if prof.confirmed_at.present? %>
+  <% if prof.confirmed? %>
     <% if prof.authorized == false %>
       <div class="card">
         Autorizza <%= " " + prof.name + " " + prof.surname + " " %> cliccando qui:

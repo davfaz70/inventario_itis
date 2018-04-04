@@ -13,6 +13,7 @@ class Prof < ApplicationRecord
 
   before_save  :name
   before_save  :surname
+  default_scope -> {order(created_at: :desc)}
   def name=(s)
     write_attribute(:name, s.to_s.titleize) # The to_s is in case you get nil/non-string
   end

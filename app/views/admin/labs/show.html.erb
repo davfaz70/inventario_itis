@@ -19,7 +19,7 @@
         <% end %>
 
        <%= link_to fa_icon('trash'), admin_lab_technical_path(relation), method: :delete, data: {confirm: t('admin.tools.index.confirm')}, class:"btn btn-sm btn-danger"%>
-       <%# link_to fa_icon('pencil'), edit_admin_category_path(category), class:"btn btn-warning btn-sm" %>
+       <%= link_to fa_icon('pencil'), edit_admin_lab_lab_technical_path(@lab, relation), class:"btn btn-warning btn-sm" %>
      </div>
    </div>
   </div>

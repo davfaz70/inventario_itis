@@ -16,15 +16,27 @@ class Admin::LabTechnicalsController < Admin::AdminController
       flash[:success] = "Successfully created"
       redirect_to admin_technicals_path
     else
-      flash[:danger] = "Oooops"
-      redirect_to admin_technicals_path
+      render inline: @relation.errors.full_messages.each do |message| message  end 
+      redirect_back(fallback_location:  admin_dashboard_index_path)
     end
   end
 
   def edit
+    if params[:technical_id].present?
+      @resource = Technical.find(params[:technical_id])
+    else
+      @resource = Lab.friendly.find(params[:lab_id])
+    end
   end
 
   def update
+    if @relation.update(lab_technical_params)
+      flash[:success] = "Successfully updated"
+      redirect_to admin_technicals_path
+    else
+      flash[:danger] = "Oooops"
+      redirect_back(fallback_location:  admin_dashboard_index_path)
+    end
   end
 
   def destroy
