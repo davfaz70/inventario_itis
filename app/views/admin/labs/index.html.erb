@@ -17,9 +17,9 @@
 
 
 
-        <%= link_to fa_icon('wrench') + " " + fa_icon('plus'), admin_assign_lab_route_path(lab), class:"btn btn-success" %>
+        <%= link_to fa_icon('wrench') + " " + fa_icon('plus'), admin_assign_lab_route_path(lab), class:"btn btn-success", toggle:"tooltip", placement:"top", title: t('.assign')%>
 
-        <%= link_to fa_icon('users') + " " + fa_icon('plus'), new_admin_lab_lab_technical_path(lab), class:"btn btn-info" %>
+        <%= link_to fa_icon('users') + " " + fa_icon('plus'), new_admin_lab_lab_technical_path(lab), class:"btn btn-info", toggle:"tooltip", placement:"top", title: "Assign technical" %>
 
 
   </div>
