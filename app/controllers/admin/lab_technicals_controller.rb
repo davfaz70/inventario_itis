@@ -16,7 +16,7 @@ class Admin::LabTechnicalsController < Admin::AdminController
       flash[:success] = "Successfully created"
       redirect_to admin_technicals_path
     else
-      render inline: @relation.errors.full_messages.each do |message| message  end 
+      flash[:danger] = @relation.errors.full_messages
       redirect_back(fallback_location:  admin_dashboard_index_path)
     end
   end
@@ -34,7 +34,7 @@ class Admin::LabTechnicalsController < Admin::AdminController
       flash[:success] = "Successfully updated"
       redirect_to admin_technicals_path
     else
-      flash[:danger] = "Oooops"
+      flash[:danger] = @relation.errors.full_messages
       redirect_back(fallback_location:  admin_dashboard_index_path)
     end
   end

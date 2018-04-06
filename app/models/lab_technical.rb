@@ -5,6 +5,13 @@ class LabTechValidator < ActiveModel::Validator
         record.errors[:base] << I18n.t('tempbook.errorfd')
       end
     end
+    if record.start_date.present?
+      if record.end_date.present? == false
+        if record.start_date > Time.now
+          record.errors[:base] << "Come fa ad essere attuale se la data di inizio è nel futuro?"
+        end
+      end
+    end 
   end
 end
 

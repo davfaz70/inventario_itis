@@ -1,16 +1,22 @@
 Rails.application.routes.draw do
 
+
   get 'labs/show'
 
   get 'categories/show'
 
   devise_for :profs, only: :omniauth_callbacks, controllers: {omniauth_callbacks: 'profs/omniauth_callbacks'}
+  #devise_for :technicals, only: :omniauth_callbacks, controllers: {omniauth_callbacks: 'technicals/omniauth_callbacks'}
 
 scope '(:locale)' do
 
   devise_for :profs, skip: :omniauth_callbacks, controllers: {
     registrations: 'profs/registrations',
     confirmations: 'profs/confirmations',
+   }
+  devise_for :technicals, controllers: {
+    registrations: 'technicals/registrations',
+    confirmations: 'technicals/confirmations',
    }
   devise_for :admins, controllers: {
     registrations: 'admins/registrations'
@@ -24,10 +30,10 @@ scope '(:locale)' do
     resources :labs do
       resources :lab_technicals, only: [:new, :create, :edit, :update]
     end
+    resources :technicals, only: [:index, :show] do
+     resources :lab_technicals, only: [:new, :create, :edit, :update]
+   end
     resources :categories
-    resources :technicals do
-      resources :lab_technicals, only: [:new, :create, :edit, :update]
-    end
     resources :lab_technicals, only: [:destroy]
     resources :books, only: [:update, :destroy]
     get 'dashboard/index'

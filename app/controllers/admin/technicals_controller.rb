@@ -1,5 +1,5 @@
 class Admin::TechnicalsController < Admin::AdminController
-  before_action :set_technical, only: [:show, :edit, :update, :destroy]
+  before_action :set_technical, only: [:show, :destroy]
 
   def index
     q_param = params[:q]
@@ -9,35 +9,11 @@ class Admin::TechnicalsController < Admin::AdminController
     @technicals = @q.result(distinct: true).page(page).per(per_page)
   end
 
-  def new
-    @technical = Technical.new
-  end
 
-  def create
-    @technical = Technical.new(technical_params)
-    if @technical.save
-      flash[:success]= t('.created')
-      redirect_to admin_technicals_path
-    else
-      render 'new'
-    end
-  end
 
   def show
   end
 
-  def edit
-
-  end
-
-  def update
-    if @technical.update(technical_params)
-      flash[:success]= t('.edited')
-      redirect_to admin_technicals_path
-    else
-      render 'edit'
-    end
-  end
 
   def destroy
     if @technical.destroy

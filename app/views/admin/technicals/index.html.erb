@@ -11,8 +11,6 @@
     <div class="card-body">
       <%= mail_to technical.email %>
 
-          <%= link_to fa_icon('pencil') + " " + t('admin.tools.index.edit'), edit_admin_technical_path(technical), class:"btn btn-warning" %>
-
           <%= link_to "Assign lab", new_admin_technical_lab_technical_path(technical), class:"btn btn-dark" %>
 
 
