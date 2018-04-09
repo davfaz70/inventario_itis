@@ -3,4 +3,5 @@ class Documentation < ApplicationRecord
   validates :file, presence: true
   mount_uploader :file, FileUploader
   belongs_to :tool
+  belongs_to :request
 end

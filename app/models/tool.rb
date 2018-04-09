@@ -25,7 +25,9 @@ class Tool < ApplicationRecord
   validates :quantity, presence: true, format: {with: /([0-9]+)/}
   has_and_belongs_to_many :labs
   validates_each :labs do |tool, attr, value|
-   tool.errors.add attr, I18n.t('.tools.labs') if tool.labs.size > tool.quantity
+    if tool.quantity.present?
+     tool.errors.add attr, I18n.t('.tools.labs') if tool.labs.size > tool.quantity
+    end
   end
   has_and_belongs_to_many :categories
   has_many :tempbooks

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180404191133) do
+ActiveRecord::Schema.define(version: 20180409163244) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20180404191133) do
     t.datetime "locked_at"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.integer  "role"
     t.index ["confirmation_token"], name: "index_admins_on_confirmation_token", unique: true
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
@@ -56,6 +57,13 @@ ActiveRecord::Schema.define(version: 20180404191133) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "slug"
+  end
+
+  create_table "categories_requests", id: false, force: :cascade do |t|
+    t.integer "category_id", null: false
+    t.integer "request_id",  null: false
+    t.index ["category_id", "request_id"], name: "index_categories_requests_on_category_id_and_request_id"
+    t.index ["request_id", "category_id"], name: "index_categories_requests_on_request_id_and_category_id"
   end
 
   create_table "categories_tools", id: false, force: :cascade do |t|
@@ -89,6 +97,7 @@ ActiveRecord::Schema.define(version: 20180404191133) do
     t.integer  "tool_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "request_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -132,6 +141,7 @@ ActiveRecord::Schema.define(version: 20180404191133) do
     t.integer  "tool_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "request_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -168,12 +178,25 @@ ActiveRecord::Schema.define(version: 20180404191133) do
     t.datetime "deleted_at"
     t.string   "provider"
     t.string   "uid"
-    t.boolean  "requestpower",           default: false
     t.index ["confirmation_token"], name: "index_profs_on_confirmation_token", unique: true
     t.index ["email"], name: "index_profs_on_email", unique: true
     t.index ["reset_password_token"], name: "index_profs_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_profs_on_unlock_token", unique: true
-    t.index [nil], name: "index_profs_on_deletd_at"
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "photo"
+    t.integer  "quantity"
+    t.string   "goal"
+    t.integer  "prof_id"
+    t.integer  "technical_id"
+    t.boolean  "approved",     default: false
+    t.boolean  "money",        default: false
+    t.boolean  "arrived",      default: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   create_table "schools", force: :cascade do |t|

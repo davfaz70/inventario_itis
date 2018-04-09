@@ -10,6 +10,7 @@ class Prof < ApplicationRecord
 
   has_many :tempbooks
   has_many :books, dependent: :destroy
+  has_many :requests, dependent: :destroy
 
   before_save  :name
   before_save  :surname

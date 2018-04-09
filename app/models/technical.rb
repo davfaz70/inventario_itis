@@ -8,6 +8,7 @@ class Technical < ApplicationRecord
          validates :surname, presence: true
          has_many :lab_technicals
          has_many :labs, through: :lab_technicals
+         has_many :requests, dependent: :destroy
 
          before_save  :name
          before_save  :surname

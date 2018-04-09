@@ -1,5 +1,9 @@
 ---
 it:
+  admins:
+    schoolauthority: "Esiste già un admin che ricopre il ruolo di preside"
+    dsga: "Esiste già un admin che ricopre il ruolo di DSGA"
+    ata: "Esiste già un admin che ricopre il ruolo di ATA"
   admin:
     shared:
       menu:
@@ -88,6 +92,7 @@ it:
     photos: "Non è possibile salvare pù di 4 foto"
     labs: "Un singolo strumento non può esistere in più laboratori"
     show:
+      goal: "Motivazione"
       description: "Descrizione"
       bookings: "Prenotazioni"
       notbooked: "Non sono presenti prenotazioni"
@@ -138,7 +143,13 @@ it:
       in: "Entra"
       toold: "Visualizza tutto il parco strumenti della scuola, seleziona la categoria a cui appartengono, cerca il laboratorio in cui si trovano e molto altro ancora..."
       admin: "Gli admin hanno una grande responsabilità, questa è l'area di accesso al controllo supremo"
-
+  request:
+    notmoney: "La richiesta non è ancora stata approvata dall'autorità scolastica"
+    notarrived: "Il bene non può essere arrivato se ancora non è stato approvato dal DSGA e/o dall'autorità scolastica"
+  requests:
+    created: "Richiesta effettuata con successo"
+    new:
+      new: "Nuova richiesta d'acquisto"
 
 
 

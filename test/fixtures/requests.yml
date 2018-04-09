@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyString
+  photo: MyString
+  quantity: MyString
+  goal: MyString
+
+two:
+  name: MyString
+  description: MyString
+  photo: MyString
+  quantity: MyString
+  goal: MyString

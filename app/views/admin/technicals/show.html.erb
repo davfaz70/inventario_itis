@@ -1,0 +1,27 @@
+<h1><%= @technical.name + " " + @technical.surname %> </h1>
+<hr>
+<div class="row">
+  <% @technical.lab_technicals.each do |relation| %>
+  <div class="col-lg-3 col-sm-4 portfolio-item">
+    <div class="card h-100">
+      <div class= "card-header">
+        <%= relation.lab.name %>
+      </div>
+      <div class="card-body">
+        <% if relation.end_date.present? %>
+        <%= t('tools.show.from') + " " + relation.start_date.strftime("%d/%m/%y %k:%M").to_s%>
+        <br>
+        <%= t('tools.show.to') + " " + relation.end_date.strftime("%d/%m/%y %k:%M").to_s%>
+        <% else %>
+        <%= t('tools.show.from') + " " + relation.start_date.strftime("%d/%m/%y %k:%M").to_s%>
+        <br>
+        <b> Attuale </b>
+        <% end %>
+
+       <%= link_to fa_icon('trash'), admin_lab_technical_path(relation), method: :delete, data: {confirm: t('admin.tools.index.confirm')}, class:"btn btn-sm btn-danger"%>
+       <%= link_to fa_icon('pencil'), edit_admin_technical_lab_technical_path(@technical, relation), class:"btn btn-warning btn-sm" %>
+     </div>
+   </div>
+  </div>
+  <% end %>
+</div>

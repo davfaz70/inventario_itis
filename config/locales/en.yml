@@ -20,6 +20,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  admins:
+    schoolauthority: "School authority already exist"
+    dsga: "DSGA already exist"
+    ata: "ATA already exist"
   admin:
     shared:
       menu:
@@ -110,6 +114,7 @@ en:
     photos: "Can not save more of 4 photos"
     labs: "A single tool can not exist in multiple laboratories"
     show:
+      goal: "Goal"
       description: "Description"
       bookings: "Reservations"
       notbooked: "There are not reservations"
@@ -160,8 +165,13 @@ en:
       in: "Sign in"
       toold: "View all the school's tools, select the category they belong to, look for the laboratory they are in and much more ..."
       admin: "The admin has a great responsibility, this is the area of access to supreme control"
-
-
+  request:
+    notmoney: "The request is not approved by school authority"
+    notarrived: "The object can not be arrived if it has not been authorized by the school authority and/or DSGA before"
+  requests:
+    created: "You have done your request successfully"
+    new:
+      new: "New purchase request"
 
 
 

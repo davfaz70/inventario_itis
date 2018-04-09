@@ -31,40 +31,39 @@
           </div>
           <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#prenota">
             <div class="card-body">
-
               <% @bookings.each do |booking| %>
-              <div class="row">
-                <div class="col-md-4">
-                <b> dal: <%= " " + booking.start_date.strftime("%d/%m/%y") + " " %>
-<br>
-                    al: <%= " " + booking.end_date.strftime("%d/%m/%y") %> </b>
-</div>
-<div class="col-md-4">
-                  <i>  <%= t('tools.show.quantity') + " " + booking.quantity.to_s%> </i>
-
-<br>
-  <p> <%= booking.goal %> </p>
-</div>
-<div class="col-md-4">
-    <h5> <%= booking.prof.name + " " + booking.prof.surname %> </h5>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-6">
-
-                  <%= form_for ([:admin, booking]) do |t|  %>
-                  <%= hidden_field(:book, :confirmed, :value => true) %>
-                  <%= t.submit "Conferma Prenotazione", class: "btn btn-success" %>
-                  <% end %>
+                <div class="row">
+                  <div class="col-md-4">
+                    <b>
+                      dal: <%= " " + booking.start_date.strftime("%d/%m/%y %k:%M") + " " %>
+                      <br>
+                      al: <%= " " + booking.end_date.strftime("%d/%m/%y %k:%M") %>
+                    </b>
+                  </div>
+                  <div class="col-md-4">
+                    <i>
+                      <%= t('tools.show.quantity') + " " + booking.quantity.to_s%>
+                    </i>
+                    <br>
+                    <p> <%= booking.goal %> </p>
+                  </div>
+                  <div class="col-md-4">
+                    <h5> <%= booking.prof.name + " " + booking.prof.surname %> </h5>
+                  </div>
                 </div>
-                <div class="col-md-6">
-                <%= link_to fa_icon('trash') + " Rifiuta", admin_book_path(booking), method: :delete, data: {confirm: t('.confirm')}, class:"btn btn-outline-danger"%>
-  </div>
-  </div>
-  <hr>
-                <% end %>
-
-
+                <div class="row">
+                  <div class="col-md-6">
+                    <%= form_for ([:admin, booking]) do |t|  %>
+                      <%= hidden_field(:book, :confirmed, :value => true) %>
+                      <%= t.submit "Conferma Prenotazione", class: "btn btn-success" %>
+                    <% end %>
+                  </div>
+                  <div class="col-md-6">
+                    <%= link_to fa_icon('trash') + " Rifiuta", admin_book_path(booking), method: :delete, data: {confirm: t('.confirm')}, class:"btn btn-outline-danger"%>
+                  </div>
+                </div>
+                <hr>
+              <% end %>
             </div>
           </div>
         </div>

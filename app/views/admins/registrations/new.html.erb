@@ -9,6 +9,15 @@
   </div>
 
   <div class="field">
+    <%= f.label :Choose_role %><br />
+    <select class="custom-select mr-sm-2" name="admin[role]">
+          <option selected value=0>Preside</option>
+          <option value=1>DSGA</option>
+          <option value=2>ATA</option>
+    </select>
+  </div>
+
+  <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>

@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
 
-
-  get 'labs/show'
-
-  get 'categories/show'
-
   devise_for :profs, only: :omniauth_callbacks, controllers: {omniauth_callbacks: 'profs/omniauth_callbacks'}
   #devise_for :technicals, only: :omniauth_callbacks, controllers: {omniauth_callbacks: 'technicals/omniauth_callbacks'}
 
@@ -44,12 +39,13 @@ scope '(:locale)' do
     post 'htmlcreate(.:format)', :to => 'categories#htmlcreate', as: "htmlcreate_route"
     delete 'deleteprof/:id(.:format)', :to => 'dashboard#deleteprof', as: "deleteprof_route"
   end
-    resources :tools, only: [:index, :show] do
-      resources :tempbooks, only: [:create]
-      resources :posts, only: [:create, :edit, :update, :destroy]
-    end
-  resources :categories, only: [:show]
+  resources :tools, only: [:index, :show] do
+    resources :tempbooks, only: [:create]
+    resources :posts, only: [:create, :edit, :update, :destroy]
+  end
+  resources :categories, only: [:show, :create]
   resources :labs, only: [:show]
+  resources :requests, only: [:new, :create]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: "home#index"

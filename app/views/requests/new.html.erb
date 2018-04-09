@@ -1,0 +1,144 @@
+<h1><%= t('.new') %></h1>
+<hr>
+<%= form_for @request do |t|  %>
+
+<% if @request.errors.any? %>
+    <div id="error_explanation">
+      <% @request.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+       <%= message %>
+       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+       </button>
+      </div>
+      <% end %>
+    </div>
+  <% end %>
+<div class="row">
+  <div class="col-md-4 col-sm-6">
+    <img height="150" width="200" id="image" />
+  </div>
+  <div class="col-md-8 col-sm-6">
+<div class="custom-file">
+  <%=t.label t('admin.tools.form.photo'), class:"custom-file-label"%>
+  <%=t.file_field :photo, class:"custom-file-input"%>
+</div>
+</div>
+</div>
+
+<div class="form-group" >
+  <%=t.label t('admin.tools.form.name')%>
+  <%=t.text_field :name, class:"form-control"%>
+  <div class="invalid-feedback">Devi inserire un nome, come si chiama questo strumento? Arduino? RaspberryPie?</div>
+</div>
+
+<div class="form-group">
+  <%=t.label t('admin.tools.form.description')%>
+  <%=t.text_area :description, class:"form-control"%>
+  <div class="invalid-feedback">Devi inserire una descrizione, che cosa fa questo oggetto?</div>
+</div>
+<div class="row">
+<div class="col-md-6 col-sm-6">
+<div class="form-group">
+  <%=t.label t('tools.show.goal')%>
+  <%=t.text_area :goal, class:"form-control"%>
+</div>
+</div>
+
+<div class="col-md-6 col-sm-6">
+<div class="form-group">
+  <%=t.label t('admin.tools.form.quantity')%>
+  <%=t.text_field :quantity, class:"form-control"%>
+  <div class="invalid-feedback">Quanti ce ne sono disponibili adesso? Devi dirlo!</div>
+</div>
+</div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 col-sm-6">
+    <div class="form-group">
+    <%= t.nested_fields_for :photos do |d| %>
+      <%= d.remove_nested_fields_link t('admin.tools.form.photoremove'), data: { confirm: t('admin.tools.index.confirm') } %>
+      <br>
+
+      <%=d.file_field :picture%>
+
+    <% end %>
+    <%= t.add_nested_fields_link :photos, t('admin.tools.form.photoadd') %>
+  </div>
+  </div>
+  <div class="col-md-6 col-sm-6">
+    <div class="form-group">
+    <%= t.nested_fields_for :documentations do |d| %>
+      <%= d.remove_nested_fields_link t('admin.tools.form.docremove'), data: { confirm: t('admin.tools.index.confirm') } %>
+      <br>
+
+        <%= d.label t('admin.tools.form.docname') %>
+        <%= d.text_field :name, class:"form-control" %>
+
+        <%= d.file_field :file%>
+        <small class="form-text text-muted"> <%= t('admin.tools.form.docwarn') %> </small>
+
+    <% end %>
+    <%= t.add_nested_fields_link :documentations, t('admin.tools.form.docadd') %>
+  </div>
+  </div>
+</div>
+
+<%= t.label t('admin.tools.form.categorychoose') %>
+<%= t.select :category_ids, Category.all.pluck(:name, :id), {}, { multiple: true, class: "selectize" } %>
+
+<hr>
+
+  <%= hidden_field(:request, :prof_id, :value => current_prof.id) %>
+
+<%= t.submit class:"btn btn-primary btn-block"%>
+
+<script>
+
+document.getElementById("request_photo").onchange = function () {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+        // get loaded data and render thumbnail.
+        document.getElementById("image").src = e.target.result;
+    };
+
+    // read the image file as a data URL.
+    reader.readAsDataURL(this.files[0]);
+};
+
+
+</script>
+
+
+<% end %>
+
+
+
+<!-- Modal -->
+<div class="modal fade category-modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Category</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+<%= form_for Category.new do |t|  %>
+
+    <div class="form-group" >
+      <%=t.label t('admin.tools.form.name')%>
+      <%=t.text_field :name, class:"form-control"%>
+    </div>
+
+<%= t.submit class:"btn btn-primary btn-block"%>
+
+<% end %>
+</div>
+</div>
+</div>
+</div>
