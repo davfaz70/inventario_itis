@@ -69,9 +69,9 @@
           <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-fw fa-envelope"></i>
             <span class="d-lg-none">Messages
-              <span class="badge badge-pill badge-primary"><%= Prof.where("authorized = ?", false).count + Book.where("confirmed = ?", false).count %></span>
+              <span class="badge badge-pill badge-primary"><%= Prof.where("authorized = 'f' AND confirmed_at IS NOT NULL").count + Book.where("confirmed = ?", false).count %></span>
             </span>
-            <% if Prof.where("authorized = ?", false).count > 0 || Book.where("confirmed = ?", false).count > 0 %>
+            <% if Prof.where("authorized = ? AND confirmed_at IS NOT NULL", false).count > 0 || Book.where("confirmed = ?", false).count > 0 %>
             <span class="indicator text-primary d-none d-lg-block">
               <i class="fa fa-fw fa-circle"></i>
             </span>
@@ -80,7 +80,7 @@
           <div class="dropdown-menu" aria-labelledby="messagesDropdown">
             <h6 class="dropdown-header">New Messages:</h6>
             <div class="dropdown-divider"></div>
-            <% Prof.where("authorized = ?", false).limit(2).each do |prof| %>
+            <% Prof.where("authorized = ? AND confirmed_at IS NOT NULL", false).limit(2).each do |prof| %>
             <% if prof.confirmed? %>
             <a class="dropdown-item" href="#">
               <strong><%= prof.name + " " + prof.surname %></strong>
@@ -114,11 +114,15 @@
           <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-fw fa-bell"></i>
             <span class="d-lg-none">Alerts
-              <span class="badge badge-pill badge-warning">6 New</span>
+              <% if current_admin.role == 0 %>
+              <span class="badge badge-pill badge-warning"><%=Request.where("approved = 'f'").count%></span>
             </span>
+            <% if Request.where("approved = 'f'").count > 0 %>
             <span class="indicator text-warning d-none d-lg-block">
               <i class="fa fa-fw fa-circle"></i>
             </span>
+            <% end %>
+            <% end %>
           </a>
           <div class="dropdown-menu" aria-labelledby="alertsDropdown">
             <h6 class="dropdown-header">New Alerts:</h6>

@@ -28,6 +28,7 @@ scope '(:locale)' do
     resources :technicals, only: [:index, :show] do
      resources :lab_technicals, only: [:new, :create, :edit, :update]
    end
+    resources :requests, only: [:index, :show, :update, :destroy]
     resources :categories
     resources :lab_technicals, only: [:destroy]
     resources :books, only: [:update, :destroy]
