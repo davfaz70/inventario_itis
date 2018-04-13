@@ -1,5 +1,29 @@
+<style>
+ .list-group {
+  position: fixed;
+}
+.scrollspy-example {
+  position: relative;
+}
+</style>
+
 <h1> Dashboard </h1>
 <hr>
+<div class="row">
+  <div class=" col-lg-3 col-md-5">
+    <div id="list-example" class="list-group">
+      <a class="list-group-item list-group-item-action" href="#list-item-1">Professori</a>
+      <a class="list-group-item list-group-item-action" href="#list-item-2">Richieste d'acquisto</a>
+      <a class="list-group-item list-group-item-action" href="#list-item-3">Segnalazioni malfunzionamenti</a>
+      <a class="list-group-item list-group-item-action" href="#list-item-4">Item 4</a>
+    </div>
+  </div>
+  <div class="col-lg-9 col-md-7" >
+    <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example">
+
+    <h4 id="list-item-1">Item 1</h4>
+    <hr>
+    <br>
   <% @profs.each do |prof| %>
   <% if prof.confirmed? %>
     <% if prof.authorized == false %>
@@ -14,6 +38,45 @@
     </div>
     <% end %>
     <%end%>
-
-
   <% end %>
+  <h4 id="list-item-2">Item 2</h4>
+  <hr>
+  <br>
+  <% @requests.each do |request| %>
+    <div class="card">
+      <% if request.prof.present? %>
+        <h5> <%= request.prof.name + " " + request.prof.surname %> </h5>
+      <% else %>
+        <h5> <%= request.technical.name + " " + request.technical.surname %> </h5>
+      <% end %>
+      <%= request.name %>
+      <br>
+      <%= request.description %>
+      <br>
+      <%= request.goal %>
+      <% if current_admin.role == 0 %>
+      <%= form_for ([:admin, request]) do |t|  %>
+        <%= hidden_field(:request, :approved, :value => true) %>
+        <%= t.submit "Conferma Richiesta", data: {confirm: t('admin.tools.index.confirm')}, class: "btn btn-warning btn-sm" %>
+      <% end %>
+      <% elsif current_admin.role == 1 %>
+      <%= form_for ([:admin, request]) do |t|  %>
+        <%= hidden_field(:request, :money, :value => true) %>
+        <%= t.submit "Conferma Richiesta", data: {confirm: t('admin.tools.index.confirm')}, class: "btn btn-warning btn-sm" %>
+      <% end %>
+      <% else %>
+      <%= form_for ([:admin, request]) do |t|  %>
+        <%= hidden_field(:request, :arrived, :value => true) %>
+        <%= t.submit "Conferma Richiesta", data: {confirm: t('admin.tools.index.confirm')}, class: "btn btn-warning btn-sm" %>
+      <% end %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <h4 id="list-item-3">Item 3</h4>
+  hahhahahahah
+
+</div>
+</div>
+
+</div>

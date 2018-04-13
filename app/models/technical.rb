@@ -9,6 +9,7 @@ class Technical < ApplicationRecord
          has_many :lab_technicals
          has_many :labs, through: :lab_technicals
          has_many :requests, dependent: :destroy
+         has_many :reportings, dependent: :destroy
 
          before_save  :name
          before_save  :surname

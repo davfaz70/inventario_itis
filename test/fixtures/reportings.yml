@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tool_id: 1
+  technical_id: 1
+  description: MyString
+  quantity: MyString
+
+two:
+  tool_id: 1
+  technical_id: 1
+  description: MyString
+  quantity: MyString

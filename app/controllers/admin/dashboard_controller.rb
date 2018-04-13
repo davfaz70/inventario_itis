@@ -2,6 +2,13 @@ class Admin::DashboardController < Admin::AdminController
 
   def index
     @profs = Prof.all
+    if current_admin.role == 0
+      @requests = Request.where("approved = 'f'")
+    elsif current_admin.role == 1
+      @requests = Request.where("approved = 't' AND money = 'f'")
+    else
+      @requests = Request.where("approved = 't' AND money ='t' ")
+    end
   end
 
   def authorize
@@ -30,7 +37,7 @@ class Admin::DashboardController < Admin::AdminController
     @prof = Prof.find(params[:id])
     @prof.destroy
     redirect_back(fallback_location:  admin_dashboard_index_path)
-  end 
+  end
 
 
 end

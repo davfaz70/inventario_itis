@@ -6,7 +6,7 @@ class Admin::RequestsController < Admin::AdminController
     elsif current_admin.role == 1
       @requests = Request.where("approved = 't' AND money = 'f'")
     else
-      @requests = Request.where("approved = 't' AND money = 't' AND arrived = 'f'")
+      @requests = Request.where("approved = 't' AND money = 't'")
     end
   end
 
@@ -28,10 +28,15 @@ class Admin::RequestsController < Admin::AdminController
         @tool.quantity = @request.quantity
         if @tool.save
           @request.photos.each do |photo|
-            @tool.photos << photo
+            @photo = @tool.photos.build
+            @photo.picture = photo.picture
+            @photo.save
           end
           @request.documentations.each do |document|
-            @tool.documentations << document
+            @document = @tool.documentations.build
+            @document.name = document.name
+            @document.file = document.file
+            @document.save
           end
           @request.categories.each do |category|
             @tool.categories << category
@@ -65,6 +70,6 @@ class Admin::RequestsController < Admin::AdminController
 
 
   def request_params
-    params.require(:request).permit(:name)
+    params.require(:request).permit(:name, :approved, :money, :arrived, :description, :quantity)
   end
 end

@@ -113,8 +113,9 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-fw fa-bell"></i>
+            <% if current_admin.role == 0 %>
             <span class="d-lg-none">Alerts
-              <% if current_admin.role == 0 %>
+
               <span class="badge badge-pill badge-warning"><%=Request.where("approved = 'f'").count%></span>
             </span>
             <% if Request.where("approved = 'f'").count > 0 %>
@@ -122,38 +123,116 @@
               <i class="fa fa-fw fa-circle"></i>
             </span>
             <% end %>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="alertsDropdown">
+            <h6 class="dropdown-header">New Alerts:</h6>
+            <div class="dropdown-divider"></div>
+            <% Request.where("approved = 'f'").limit(4).each do |request| %>
+            <a class="dropdown-item" href="<%=admin_request_path(request)%>">
+              <span class="float-right"><%= request.name %> </span>
+              <span class="text-success">
+                <% if request.prof.present? %>
+                  <strong><%= request.prof.name + " " + request.prof.surname %> </strong>
+                <% else %>
+                  <strong><%= request.technical.name + " " + request.technical.surname %> </strong>
+                <% end %>
+              </span>
+
+              <span class="small float-right text-muted"><%= request.created_at.strftime("%d/%m/%y %k:%M") %></span>
+              <div class="dropdown-message small"><%= request.goal %> </div>
+              </a>
+              <div class="text-center">
+                <%= form_for ([:admin, request]) do |t|  %>
+                  <%= hidden_field(:request, :approved, :value => true) %>
+                  <%= t.submit "Conferma Richiesta", data: {confirm: t('admin.tools.index.confirm')}, class: "btn btn-warning btn-sm" %>
+                <% end %>
+                <%= link_to fa_icon('trash'), admin_request_path(request), data: { confirm: t('admin.tools.index.confirm') }, method: :delete, class:"btn btn-danger btn-sm" %>
+              </div>
+
+            <div class="dropdown-divider"></div>
+            <% end %>
+            <% end %>
+
+            <% if current_admin.role == 1 %>
+            <span class="d-lg-none">Alerts
+
+              <span class="badge badge-pill badge-warning"><%=Request.where("approved = 't' AND money = 'f'").count%></span>
+            </span>
+            <% if Request.where("approved = 't' AND money = 'f'").count > 0 %>
+            <span class="indicator text-warning d-none d-lg-block">
+              <i class="fa fa-fw fa-circle"></i>
+            </span>
             <% end %>
           </a>
           <div class="dropdown-menu" aria-labelledby="alertsDropdown">
             <h6 class="dropdown-header">New Alerts:</h6>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">
+            <% Request.where("approved = 't' AND money = 'f'").limit(4).each do |request| %>
+            <a class="dropdown-item" href="<%=admin_request_path(request)%>">
+              <span class="float-right"><%= request.name %> </span>
               <span class="text-success">
-                <strong>
-                  <i class="fa fa-long-arrow-up fa-fw"></i>Status Update</strong>
+                <% if request.prof.present? %>
+                  <strong><%= request.prof.name + " " + request.prof.surname %> </strong>
+                <% else %>
+                  <strong><%= request.technical.name + " " + request.technical.surname %> </strong>
+                <% end %>
               </span>
-              <span class="small float-right text-muted">11:21 AM</span>
-              <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
-            </a>
+
+              <span class="small float-right text-muted"><%= request.created_at.strftime("%d/%m/%y %k:%M") %></span>
+              <div class="dropdown-message small"><%= request.goal %> </div>
+              </a>
+              <div class="text-center">
+                <%= form_for ([:admin, request]) do |t|  %>
+                  <%= hidden_field(:request, :money, :value => true) %>
+                  <%= t.submit "Conferma Richiesta", data: {confirm: t('admin.tools.index.confirm')}, class: "btn btn-warning btn-sm" %>
+                <% end %>
+                <%= link_to fa_icon('trash'), admin_request_path(request), data: { confirm: t('admin.tools.index.confirm') }, method: :delete, class:"btn btn-danger btn-sm" %>
+              </div>
+
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">
-              <span class="text-danger">
-                <strong>
-                  <i class="fa fa-long-arrow-down fa-fw"></i>Status Update</strong>
-              </span>
-              <span class="small float-right text-muted">11:21 AM</span>
-              <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
-            </a>
+            <% end %>
+            <% end %>
+
+            <% if current_admin.role == 2 %>
+            <span class="d-lg-none">Alerts
+
+              <span class="badge badge-pill badge-warning"><%=Request.where("approved = 't' AND money = 't'").count%></span>
+            </span>
+            <% if Request.where("approved = 't' AND money = 't'").count > 0 %>
+            <span class="indicator text-warning d-none d-lg-block">
+              <i class="fa fa-fw fa-circle"></i>
+            </span>
+            <% end %>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="alertsDropdown">
+            <h6 class="dropdown-header">New Alerts:</h6>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">
+            <% Request.where("approved = 't' AND money = 't'").limit(4).each do |request| %>
+            <a class="dropdown-item" href="<%=admin_request_path(request)%>">
+              <span class="float-right"><%= request.name %> </span>
               <span class="text-success">
-                <strong>
-                  <i class="fa fa-long-arrow-up fa-fw"></i>Status Update</strong>
+                <% if request.prof.present? %>
+                  <strong><%= request.prof.name + " " + request.prof.surname %> </strong>
+                <% else %>
+                  <strong><%= request.technical.name + " " + request.technical.surname %> </strong>
+                <% end %>
               </span>
-              <span class="small float-right text-muted">11:21 AM</span>
-              <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
-            </a>
+
+              <span class="small float-right text-muted"><%= request.created_at.strftime("%d/%m/%y %k:%M") %></span>
+              <div class="dropdown-message small"><%= request.goal %> </div>
+              </a>
+              <div class="text-center">
+                <%= form_for ([:admin, request]) do |t|  %>
+                  <%= hidden_field(:request, :arrived, :value => true) %>
+                  <%= t.submit "Conferma Richiesta", data: {confirm: t('admin.tools.index.confirm')}, class: "btn btn-warning btn-sm" %>
+                <% end %>
+                <%= link_to fa_icon('trash'), admin_request_path(request), data: { confirm: t('admin.tools.index.confirm') }, method: :delete, class:"btn btn-danger btn-sm" %>
+              </div>
+
             <div class="dropdown-divider"></div>
+            <% end %>
+            <% end %>
+
             <a class="dropdown-item small" href="#">View all alerts</a>
           </div>
         </li>

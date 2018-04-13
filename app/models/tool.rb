@@ -33,6 +33,7 @@ class Tool < ApplicationRecord
   has_many :tempbooks
   has_many :books, dependent: :destroy
   has_many :posts, dependent: :destroy
+  has_many :reportings, dependent: :destroy
   has_many :documentations, dependent: :destroy
   accepts_nested_attributes_for :documentations, allow_destroy: true
   has_many :photos, dependent: :destroy
