@@ -1,0 +1,36 @@
+<%= form_for ([:technical, @tool, @lab, @report]) do |t|  %>
+
+  <% if @report.errors.any? %>
+    <div id="error_explanation">
+      <% @report.errors.full_messages.each do |message| %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <%= message %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-6 col-sm-6">
+      <div class="form-group" >
+        <%=t.label :description %>
+        <%=t.text_area :description, class:"form-control"%>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6">
+      <div class="form-group">
+        <%=t.label :quantity %>
+        <%=t.text_field :quantity, class:"form-control"%>
+      </div>
+    </div>
+  </div>
+
+    <%= hidden_field(:reporting, :technical_id, :value => current_technical.id) %>
+    <%= hidden_field(:reporting, :lab_id, :value => @lab.id) %>
+    <%= hidden_field(:reporting, :tool_id, :value => @tool.id) %>
+
+ <%= t.submit %>
+<% end %>

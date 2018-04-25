@@ -1,0 +1,2 @@
+module Technical::ToolsHelper
+end

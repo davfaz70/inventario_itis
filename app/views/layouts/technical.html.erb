@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ItisTorricelli</title>
+
+  <%= stylesheet_link_tag    'technical', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'technical', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no">
+</head>
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+  <%= render partial: 'technical/shared/menu'%>
+  <div class="content-wrapper">
+  <div class="container-fluid">
+
+  <!-- /menu -->
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>"><%= value %>
+         <a class="close" data-dismiss="alert">&#215;</a>
+      </div>
+    <% end %>
+  </div>
+
+  <%= yield %>
+  <div class="modal fade" id="modal"></div><!-- Modal window -->
+
+
+  <!-- footer -->
+  <%= render partial: 'technical/shared/footer'%>
+  <!-- /footer -->
+</div>
+</div>
+</body>
+
+</html>

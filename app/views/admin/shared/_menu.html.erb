@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav" style="background-color: #f8f8f8">
-    <a class="navbar-brand" href="index.html"><%= current_admin.email %></a>
+    <a class="navbar-brand" href="<%=edit_admin_registration_path%>"><%= current_admin.email %></a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -156,9 +156,9 @@
             <% if current_admin.role == 1 %>
             <span class="d-lg-none">Alerts
 
-              <span class="badge badge-pill badge-warning"><%=Request.where("approved = 't' AND money = 'f'").count%></span>
+              <span class="badge badge-pill badge-warning"><%=Request.where("approved = 't' AND money = 'f'").count + Reporting.count%></span>
             </span>
-            <% if Request.where("approved = 't' AND money = 'f'").count > 0 %>
+            <% if Request.where("approved = 't' AND money = 'f'").count > 0 || Reporting.count > 0 %>
             <span class="indicator text-warning d-none d-lg-block">
               <i class="fa fa-fw fa-circle"></i>
             </span>
@@ -191,6 +191,21 @@
 
             <div class="dropdown-divider"></div>
             <% end %>
+            <% Reporting.all.limit(4).each do |reporting| %>
+            <a class="dropdown-item" href="#">
+              <strong><%= reporting.tool.name %></strong> <%= t('tools.show.quantity') + ": " + reporting.quantity.to_s %>
+              <br>
+
+                <div class="dropdown-message small"><%= reporting.description %></div>
+
+              <span class="small float-right text-muted"><%= reporting.created_at.strftime("%d/%m/%y %k:%M") %></span>
+              <div class="dropdown-message small"><%= reporting.technical.name + " " + reporting.technical.surname %> </div>
+              </a>
+
+
+            <div class="dropdown-divider"></div>
+            <% end %>
+
             <% end %>
 
             <% if current_admin.role == 2 %>
@@ -241,7 +256,11 @@
             <%= search_form_for @q, url: admin_tools_path do |f| %>
             <div class="input-group">
               <%= f.search_field :translations_name_cont, class:"form-control", placeholder: t('tools.index.place') %>
-              <%= f.submit t('tools.index.search'), class:"btn btn-primary "%>
+              <span class="input-group-append">
+                <%= button_tag type: 'submit', class: "btn btn-primary" do %>
+                   <%= fa_icon('search') %>
+                <% end %>
+              </span>
             </div>
             <% end %>
               </li>
@@ -250,7 +269,11 @@
                 <%= search_form_for @q, url: admin_labs_path do |f| %>
                 <div class="input-group">
                   <%= f.search_field :name_cont, class:"form-control", placeholder: t('.place') + " " + t('.labs') %>
-                  <%= f.submit t('tools.index.search'), class:"btn btn-primary "%>
+                  <span class="input-group-append">
+                    <%= button_tag type: 'submit', class: "btn btn-primary" do %>
+                       <%= fa_icon('search') %>
+                    <% end %>
+                  </span>
                 </div>
                 <% end %>
                   </li>
@@ -260,7 +283,11 @@
                     <%= search_form_for @q, url: admin_technicals_path do |f| %>
                     <div class="input-group">
                       <%= f.search_field :name_or_surname_cont, class:"form-control", placeholder: t('.place') + " " + t('.technical') %>
-                      <%= f.submit t('tools.index.search'), class:"btn btn-primary "%>
+                      <span class="input-group-append">
+                        <%= button_tag type: 'submit', class: "btn btn-primary" do %>
+                           <%= fa_icon('search') %>
+                        <% end %>
+                      </span>
                     </div>
                     <% end %>
                       </li>
@@ -270,21 +297,24 @@
                         <%= search_form_for @q, url: admin_categories_path do |f| %>
                         <div class="input-group">
                           <%= f.search_field :name_cont, class:"form-control", placeholder: t('.place') + " " + t('.categories') %>
-                          <%= f.submit t('tools.index.search'), class:"btn btn-primary "%>
+                          <span class="input-group-append">
+                            <%= button_tag type: 'submit', class: "btn btn-primary" do %>
+                               <%= fa_icon('search') %>
+                            <% end %>
+                          </span>
                         </div>
                         <% end %>
                           </li>
 
                         <% else %>
                           <li class="nav-item">
-                          <div class="card-body">
-                            Powered by: <a class="LI-simple-link" href='https://it.linkedin.com/in/davide-fazio?trk=profile-badge'>Davide Fazio</a>
-                           </div>
+
+                            Powered by: <%= link_to "Davide Fazio", "https://it.linkedin.com/in/davide-fazio?trk=profile-badge" %>
+
                           </li>
 
         <% end %>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
             <%= link_to fa_icon('sign-out') + "Log-out", destroy_admin_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "nav-link" %>
         </li>
       </ul>

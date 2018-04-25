@@ -8,6 +8,15 @@
 
 <!-- Portfolio Item Heading -->
 <h1 class="my-4"> <%= @tool.name %> <small> <%= t('.quantity') + ": " + @tool.quantity.to_s %></small> </h1>
+<% @tool.reportings.each do |repo| %>
+<div class="alert alert-warning" role="alert">
+  <h4 class="alert-heading"><i class="fa fa-exclamation-triangle"></i>Warning!</h4>
+  <p><%= repo.quantity.to_s + " " %> have been reported due to malfunctions in the <%= " " + repo.lab.name + " " %> laboratory </p>
+  <hr>
+  <p class="mb-0"><%= repo.description %></p>
+  <footer class="blockquote-footer">Technical <cite title="Source Title"> <%= repo.technical.name + " " + repo.technical.surname %></cite></footer>
+</div>
+<% end %>
 
       <!-- Portfolio Item Row -->
 <div class="row">

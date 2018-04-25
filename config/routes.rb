@@ -17,6 +17,16 @@ scope '(:locale)' do
     registrations: 'admins/registrations'
   }
 
+  namespace :technical do
+    resources :tools, only: [:index, :show] do
+      resources :labs, only: [:show] do
+        resources :reportings, only: [:new, :create, :show, :edit, :update, :destroy]
+      end
+    end
+    resources :reportings, only: [:index]
+    resources :requests
+  end
+
   namespace :admin do
     resources :tools do
       resources :documentations, only: [:destroy]

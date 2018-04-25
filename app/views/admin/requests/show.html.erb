@@ -30,7 +30,7 @@
       <% end %>
     </div>
     <div clas="col-md-5">
-      <%= link_to fa_icon('trash'), admin_request_path(request), data: { confirm: t('admin.tools.index.confirm') }, method: :delete, class:"btn btn-danger btn-block" %>
+      <%= link_to fa_icon('trash'), admin_request_path(@request), data: { confirm: t('admin.tools.index.confirm') }, method: :delete, class:"btn btn-danger btn-block" %>
     </div>
     </div>
     <% elsif current_admin.role == 1 %>
@@ -42,7 +42,7 @@
       <% end %>
     </div>
     <div clas="col-md-5">
-      <%= link_to fa_icon('trash'), admin_request_path(request), data: { confirm: t('admin.tools.index.confirm') }, method: :delete, class:"btn btn-danger btn-block" %>
+      <%= link_to fa_icon('trash'), admin_request_path(@request), data: { confirm: t('admin.tools.index.confirm') }, method: :delete, class:"btn btn-danger btn-block" %>
     </div>
     </div>
     <% else %>
@@ -54,7 +54,7 @@
       <% end %>
     </div>
     <div clas="col-md-5">
-      <%= link_to fa_icon('trash'), admin_request_path(request), data: { confirm: t('admin.tools.index.confirm') }, method: :delete, class:"btn btn-danger btn-block" %>
+      <%= link_to fa_icon('trash'), admin_request_path(@request), data: { confirm: t('admin.tools.index.confirm') }, method: :delete, class:"btn btn-danger btn-block" %>
     </div>
     </div>
     <% end %>
