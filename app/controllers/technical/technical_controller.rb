@@ -1,8 +1,17 @@
 class Technical::TechnicalController < ActionController::Base
     layout 'technical'
     before_action :authenticate_technical!
+    before_action :authorized_technical
     before_action :set_i18n_locale_from_params
     # ...
+
+    def authorized_technical
+      if current_technical.authorized == false
+        flash[:danger] = "Devi essere autorizzato per accedere"
+        redirect_to root_path
+      end
+    end
+
     protected
       def set_i18n_locale_from_params
         if params[:locale]

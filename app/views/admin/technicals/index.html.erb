@@ -1,22 +1,41 @@
 <h1> <%= t('admin.shared.menu.technical') %> </h1>
 <hr>
 <div class="row">
-<% @technicals.each do |technical| %>
-<div class="col-lg-3 col-sm-4 portfolio-item">
-  <div class="card h-100">
-    <div class="card-header">
-      <%= technical.name + " " + technical.surname %>
-      <%= link_to fa_icon('user'), admin_technical_path(technical), class:"btn btn-primary" %>
-    </div>
-    <div class="card-body">
-      <%= mail_to technical.email %>
-
-          <%= link_to "Assign lab", new_admin_technical_lab_technical_path(technical), class:"btn btn-dark" %>
-
-
-      </div>
-    </div>
-  </div>
-
+  <% @technicals.each do |technical| %>
+    <% if technical.confirmed? %>
+      <% if technical.authorized == false %>
+        <div class="col-lg-3 col-sm-4 portfolio-item">
+          <div class="card h-100">
+            <div class="card-header">
+              <%= technical.name + " " + technical.surname %>
+              <%= link_to fa_icon('user'), admin_technical_path(technical), class:"btn btn-primary" %>
+            </div>
+            <div class="card-body">
+              <%= mail_to technical.email %>
+              <%= link_to "Assign lab", new_admin_technical_lab_technical_path(technical), class:"btn btn-dark" %>
+            </div>
+            <ul class="list-group list-group-flush">
+              <%= link_to "Autorizza", admin_confirm_route_path(technical.id), method: :post, class:"list-group-item list-group-item-success" %>
+            </ul>
+          </div>
+        </div>
+      <% else %>
+        <div class="col-lg-3 col-sm-4 portfolio-item">
+          <div class="card h-100">
+            <div class="card-header">
+              <%= technical.name + " " + technical.surname %>
+              <%= link_to fa_icon('user'), admin_technical_path(technical), class:"btn btn-primary" %>
+            </div>
+            <div class="card-body">
+              <%= mail_to technical.email %>
+              <%= link_to "Assign lab", new_admin_technical_lab_technical_path(technical), class:"btn btn-dark" %>
+            </div>
+            <ul class="list-group list-group-flush">
+              <%= link_to "Blocca", admin_confirm_route_path(technical.id), method: :post, class:"list-group-item list-group-item-danger" %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+    <%end%>
   <% end %>
-  </div>
+</div>

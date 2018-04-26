@@ -21,6 +21,7 @@ class Tempbook < ApplicationRecord
   validates :start_date, presence: true
   validates :end_date, presence: true
   validates :goal, presence: true
+  validates :lab_id, presence: true
   validates :quantity, presence: true, format: { with: /([1-9]+)/}
   belongs_to :tool
   belongs_to :prof

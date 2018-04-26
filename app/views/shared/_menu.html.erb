@@ -91,6 +91,29 @@
 
       <% end %>
 
+      <% if technical_signed_in? %>
+      <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdmin" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= fa_icon('cog', class:"fa fa-spin") + " Technical" %>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
+          <%= link_to "Dashboard", technical_dashboard_index_path, class: "dropdown-item" %>
+          <%= link_to "Account", edit_technical_registration_path, class:"dropdown-item" %>
+          <div class="dropdown-divider"></div>
+        <%= link_to fa_icon('sign-out') + "Log-out", destroy_technical_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "dropdown-item" %>
+      </div>
+    </li>
+    <% else %>
+    <li class="nav-item">
+      <% if controller.controller_name == "sessions"%>
+      <%= link_to fa_icon('users') + " Technical", technical_dashboard_index_path, class: "nav-link active" %>
+      <% else %>
+      <%= link_to fa_icon('users') + " Technical", technical_dashboard_index_path, class: "nav-link" %>
+      <% end %>
+    </li>
+
+      <% end %>
+
     </ul>
 
 
@@ -163,6 +186,23 @@
               <% else %>
               <li>
                 <%= link_to fa_icon('user-secret') + " Admin", admin_dashboard_index_path%>
+              </li>
+                <% end %>
+                <% if technical_signed_in? %>
+                <li>
+                <a class=" dropdown-toggle" href="#" id="DropdownAdmin" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <%= fa_icon('cog') + " Technical" %>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="DropdownAdmin">
+                    <%= link_to "Dashboard", technical_dashboard_index_path, class: "dropdown-item" %>
+                    <%= link_to "Account", edit_technical_registration_path, class:"dropdown-item" %>
+                    <div class="dropdown-divider"></div>
+                  <%= link_to fa_icon('sign-out') + "Log-out", destroy_technical_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "dropdown-item" %>
+                </div>
+              </li>
+              <% else %>
+              <li>
+                <%= link_to fa_icon('users') + " Technical", technical_reportings_path%>
               </li>
                 <% end %>
 </b>

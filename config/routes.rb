@@ -12,12 +12,14 @@ scope '(:locale)' do
   devise_for :technicals, controllers: {
     registrations: 'technicals/registrations',
     confirmations: 'technicals/confirmations',
+    sessions: 'technicals/sessions',
    }
   devise_for :admins, controllers: {
     registrations: 'admins/registrations'
   }
 
   namespace :technical do
+    get 'dashboard/index'
     resources :tools, only: [:index, :show] do
       resources :labs, only: [:show] do
         resources :reportings, only: [:new, :create, :show, :edit, :update, :destroy]
@@ -47,6 +49,7 @@ scope '(:locale)' do
     get 'labs/assign/:id(.:format)', :to => 'labs#assign', as: "assign_lab_route"
     get 'labs/assign_update/:id/:tool(.:splat)', :to => 'labs#assign_update', as: "assign_update_lab_route"
     post 'authorize/:id(.:format)', :to => 'dashboard#authorize', as: "authorize_route"
+    post 'confirm/:id(.:format)', :to => 'dashboard#confirm', as: "confirm_route"
     post 'htmlcreate(.:format)', :to => 'categories#htmlcreate', as: "htmlcreate_route"
     delete 'deleteprof/:id(.:format)', :to => 'dashboard#deleteprof', as: "deleteprof_route"
   end

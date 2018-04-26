@@ -1,6 +1,7 @@
 class Technical::RequestsController < Technical::TechnicalController
 
   def index
+    @requests = current_technical.requests.all
   end
 
   def new
@@ -16,6 +17,10 @@ class Technical::RequestsController < Technical::TechnicalController
       flash[:danger] = "Oooops"
       render 'new'
     end
+  end
+
+  def show
+    @request = Request.find(params[:id])
   end
 
   private

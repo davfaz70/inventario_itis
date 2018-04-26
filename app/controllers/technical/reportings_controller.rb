@@ -2,7 +2,7 @@ class Technical::ReportingsController < Technical::TechnicalController
   before_action :set_report, only: [:show, :edit, :update, :destroy]
 
   def index
-    @reports = current_technical.reportings
+    @reportings = current_technical.reportings
   end
 
   def new

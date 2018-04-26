@@ -1,0 +1,14 @@
+<h1> <%= t('.reportings') %> <%= link_to fa_icon('plus') + " " + t('.new'), technical_tools_path, class:"btn btn-outline-primary" %></h1>
+<hr>
+
+
+<% @reportings.each do |reporting| %>
+  <div class="card">
+    <div class="card-body">
+
+      <h4 class="card-title"><%= image_tag(reporting.tool.photo.thumb, alt: "toolphoto.jpeg") %> <%= reporting.tool.name %> <small> <%= t('tools.show.quantity') + ": " + reporting.quantity.to_s %> </small> </h4>
+      <p class="card-text"> <%= reporting.description %> </p>
+      <p class="card-text"> <%= reporting.lab.name %> </p>
+    </div>
+  </div>
+<% end %>

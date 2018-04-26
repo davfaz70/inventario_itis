@@ -1,0 +1,48 @@
+<h1> <%= t('.requests') %> <%= link_to t('.new'), new_technical_request_path, class:"btn btn-outline-primary"%> </h1>
+<hr>
+
+
+<div class="row">
+
+<% @requests.each do |request| %>
+
+  <div class="col-md-3">
+<% if request.approved == false %>
+<div class="card border-warning mb-3">
+  <div class="card-header bg-warning border-warning"><%= image_tag(request.photo.thumb, alt: "Photo") %> <%= t('.notapproved')%></div>
+  <div class="card-body text-warning">
+    <h5 class="card-title"><%= request.name %> </h5>
+    <p class="card-text text-truncate"><%= request.goal %></p>
+  </div>
+  <%= link_to technical_request_path(request), class:"card-footer bg-transparent border-warning" do%>
+  <span class="text-warning"> Visualizza </span>
+  <% end %>
+</div>
+<% elsif request.approved == true && request.money == false %>
+<div class="card border-primary mb-3">
+  <div class="card-header bg-primary border-primary"><%= image_tag(request.photo.thumb, alt: "Photo") %> <%= t('.approved')%></div>
+  <div class="card-body text-primary">
+    <h5 class="card-title"><%= request.name %> </h5>
+    <p class="card-text text-truncate"><%= request.goal %></p>
+  </div>
+  <%= link_to technical_request_path(request), class:"card-footer bg-transparent border-primary" do%>
+  <span class="text-primary"> Visualizza </span>
+  <% end %>
+</div>
+<% elsif request.approved == true && request.money == true %>
+<div class="card border-success mb-3">
+  <div class="card-header bg-success border-success"><%= image_tag(request.photo.thumb, alt: "Photo") %> <%= t('.money')%></div>
+  <div class="card-body text-success">
+    <h5 class="card-title"><%= request.name %> </h5>
+    <p class="card-text text-truncate"><%= request.goal %></p>
+  </div>
+  <%= link_to technical_request_path(request), class:"card-footer bg-transparent border-success" do%>
+  <span class="text-success"> Visualizza </span>
+  <% end %>
+</div>
+<% end %>
+</div>
+
+<% end %>
+
+</div>
