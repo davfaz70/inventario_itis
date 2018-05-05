@@ -11,8 +11,7 @@ class RequestsController < ApplicationController
       flash[:primary] = t('.created')
       redirect_to tools_path
     else
-      flash[:danger] = "Oooops"
-      redirect_to tools_path
+      render "new"
     end
   end
 

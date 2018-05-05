@@ -50,7 +50,7 @@ class Admin::RequestsController < Admin::AdminController
         end
       else
         flash[:success]= t('.updated')
-        redirect_to admin_request_path(@request)
+        redirect_to admin_dashboard_index_path
       end
     else
       render 'show'

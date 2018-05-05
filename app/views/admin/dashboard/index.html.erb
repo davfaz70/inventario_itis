@@ -13,10 +13,10 @@
               <div class="card-body-icon">
                 <i class="fa fa-fw fa-graduation-cap"></i>
               </div>
-              <div class="mr-5">26 New Prof!</div>
+              <div class="mr-5"><%=@newprofs%> <% if @newprofs == 1 %><%= t('.newprof')%> <% else %> <%= t('.newprofs') %> <% end %> </div>
             </div>
             <a class="card-footer text-white clearfix small z-1" href="#list-item-1">
-              <span class="float-left">View Details</span>
+              <span class="float-left"><%= t('.details') %></span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>
               </span>
@@ -29,10 +29,10 @@
               <div class="card-body-icon">
                 <i class="fa fa-fw fa-exclamation-triangle"></i>
               </div>
-              <div class="mr-5">11 New Reportings!</div>
+              <div class="mr-5"><%=@reportings.count%> <% if @reportings.count == 1 %><%= t('.newreporting')%> <% else %> <%= t('.newreportings') %> <% end %></div>
             </div>
             <a class="card-footer text-white clearfix small z-1" href="#list-item-2">
-              <span class="float-left">View Details</span>
+              <span class="float-left"><%= t('.details') %></span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>
               </span>
@@ -45,10 +45,10 @@
               <div class="card-body-icon">
                 <i class="fa fa-fw fa-shopping-cart"></i>
               </div>
-              <div class="mr-5">123 New Orders!</div>
+              <div class="mr-5"><%=@requests.count%> <% if @requests.count == 1 %><%= t('.newrequest')%> <% else %> <%= t('.newrequests') %> <% end %></div>
             </div>
             <a class="card-footer text-white clearfix small z-1" href="#list-item-3">
-              <span class="float-left">View Details</span>
+              <span class="float-left"><%= t('.details') %></span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>
               </span>
@@ -61,10 +61,10 @@
               <div class="card-body-icon">
                 <i class="fa fa-fw fa-bookmark"></i>
               </div>
-              <div class="mr-5">13 New Bookings!</div>
+              <div class="mr-5"><%=@bookings.count%> <% if @bookings.count == 1 %><%= t('.newbooking')%> <% else %> <%= t('.newbookings') %> <% end %></div>
             </div>
             <a class="card-footer text-white clearfix small z-1" href="#list-item-4">
-              <span class="float-left">View Details</span>
+              <span class="float-left"><%= t('.details') %></span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>
               </span>
@@ -74,12 +74,12 @@
 </div>
     <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example">
 
-    <h4 id="list-item-1">Item 1</h4>
+    <h4 id="list-item-1"><%= t('.profs') %></h4>
     <hr>
     <br>
     <div class="row">
   <% @profs.each do |prof| %>
-  <% if prof.confirmed? %>
+
     <% if prof.authorized == false %>
     <div class="col-lg-3 col-sm-4 portfolio-item">
       <div class="card h-100">
@@ -90,7 +90,7 @@
           <%= mail_to prof.email %>
         </div>
       <ul class="list-group list-group-flush">
-          <%= link_to "Autorizza",  admin_authorize_route_path(prof.id), method: :post, class:"list-group-item list-group-item-success" %>
+          <%= link_to t('.authorize'),  admin_authorize_route_path(prof.id), method: :post, class:"list-group-item list-group-item-success" %>
       </ul>
   </div>
   </div>
@@ -104,46 +104,73 @@
           <%= mail_to prof.email %>
         </div>
       <ul class="list-group list-group-flush">
-          <%= link_to "Blocca",  admin_authorize_route_path(prof.id), method: :post, class:"list-group-item list-group-item-danger" %>
+          <%= link_to t('.block'),  admin_authorize_route_path(prof.id), method: :post, class:"list-group-item list-group-item-danger" %>
       </ul>
   </div>
   </div>
     <% end %>
     <%end%>
-  <% end %>
+
 </div>
 
 
-  <h4 id="list-item-2">Item 2</h4>
+  <h4 id="list-item-2"><%= t('.reportings') %></h4>
   <hr>
   <br>
+  <div class="row">
   <% @reportings.each do |reporting| %>
-  <div class="card">
+  <div class="col-md-4">
+  <div class="card text-white bg-warning mb-3">
+    <div class="card-header">
+      <h4 class="card-title"><%= image_tag(reporting.tool.photo.thumb, alt: "toolphoto.jpeg") %> <%= reporting.tool.name %> <small> <%= t('tools.show.quantity') + ": " + reporting.quantity.to_s %> </small> </h4>
+    </div>
     <div class="card-body">
 
-      <h4 class="card-title"><%= image_tag(reporting.tool.photo.thumb, alt: "toolphoto.jpeg") %> <%= reporting.tool.name %> <small> <%= t('tools.show.quantity') + ": " + reporting.quantity.to_s %> </small> </h4>
+
       <p class="card-text"> <%= reporting.description %> </p>
       <p class="card-text"> <%= reporting.lab.name %> </p>
     </div>
   </div>
+</div>
 <% end %>
+</div>
 
 
-  <h4 id="list-item-3">Item 3</h4>
+  <h4 id="list-item-3"><%= t('.requests') %></h4>
   <hr>
   <br>
+
   <% @requests.each do |request| %>
-    <div class="card">
+
+    <div class="card text-white bg-success mb-3">
+      <div class="card-header">
       <% if request.prof.present? %>
-        <h5> <%= request.prof.name + " " + request.prof.surname %> </h5>
+        <h4 class="card-title">
+          <%= image_tag(request.photo.thumb, alt:"Photo") %>
+          <%= request.name %>
+          <small>
+            <%= request.prof.name + " " + request.prof.surname %>
+           </small>
+         </h4>
       <% else %>
-        <h5> <%= request.technical.name + " " + request.technical.surname %> </h5>
+        <h4 class="card-title">
+          <%= image_tag(request.photo.thumb, alt:"Photo") %>
+          <%= request.name %>
+          <small>
+            <%= request.technical.name + " " + request.technical.surname %>
+          </small>
+        </h4>
       <% end %>
-      <%= request.name %>
+    </div>
+    <div class="card-body">
+      <b><%= t('.description') %>:</b>
       <br>
       <%= request.description %>
+      <hr>
+      <b><%= t('.goal') %>:</b>
       <br>
       <%= request.goal %>
+      <hr>
       <% if current_admin.role == 0 %>
       <%= form_for ([:admin, request]) do |t|  %>
         <%= hidden_field(:request, :approved, :value => true) %>
@@ -161,9 +188,12 @@
       <% end %>
       <% end %>
     </div>
+    </div>
+
   <% end %>
 
-  <h4 id="list-item-4">Item 4</h4>
+
+  <h4 id="list-item-4"><%= t('.bookings') %></h4>
   <hr>
   <br>
   <div class="row">
@@ -188,12 +218,12 @@
         </div>
         <%= form_for ([:admin, booking]) do |t|  %>
           <%= hidden_field(:book, :confirmed, :value => true) %>
-          <%= t.submit "Conferma Prenotazione", class:"btn btn-success btn-block" %>
+          <%= t.submit t('admin.tools.show.confirmbooking'), data: {confirm: t('.confirm')}, class:"btn btn-success btn-block" %>
         <% end %>
 
       <ul class="list-group list-group-flush">
 
-          <%= link_to fa_icon('trash') + " Rifiuta", admin_book_path(booking), method: :delete, data: {confirm: t('.confirm')}, class:"list-group-item list-group-item-danger"%>
+          <%= link_to fa_icon('trash') + " " + t('admin.tools.show.reject'), admin_book_path(booking), method: :delete, data: {confirm: t('.confirm')}, class:"list-group-item list-group-item-danger"%>
 
 
 

@@ -13,6 +13,7 @@ it:
         languages: "Lingua"
         technical: "Tecnici"
         place: "Cerca"
+        confirm: "Sei sicuro?"
     tools:
       index:
         new: "Nuovo strumento"
@@ -29,6 +30,8 @@ it:
         delete: "Strumento eliminato con successo"
       show:
         confirm: "Sei sicuro?"
+        confirmbooking: "Conferma prenotazione"
+        reject: "Rifiuta"
       form:
         name: "Nome"
         description: "Descrizione"
@@ -81,17 +84,39 @@ it:
         delete: "Categoria eliminata con successo"
     dashboard:
       index:
+        newprof: "Nuovo professore"
+        newprofs: "Nuovi professori"
+        newreporting: "Nuova segnalazione"
+        newreportings: "Nuove segnalazioni"
+        newrequest: "Nuova richiesta"
+        newrequests: "Nuove richieste"
+        newbooking: "Nuova prenotazione"
+        newbookings: "Nuove prenotazioni"
+        details: "Vedi dettagli"
+        profs: "Professori"
+        reportings: "Segnalazioni"
+        requests: "Richieste"
+        bookings: "Prenotazioni"
+        authorize: "Autorizza"
+        block: "Blocca"
+        confirm: "Sei sicuro?"
+        description: "Descrizione"
+        goal: "Motivazione"
 
   shared:
     menu:
       tools: "Strumenti"
       languages: "Lingua"
+      technicals: "Tecnici"
+      confirm: "Sei sicuro?"
   tools:
     identifier: "Non puoi inserire più strumenti con lo stesso identificativo"
     quantity: "La quantità non può essere negativa"
     photos: "Non è possibile salvare pù di 4 foto"
     labs: "Un singolo strumento non può esistere in più laboratori"
     show:
+      warning: "Attenzione!"
+      technical: "Tecnico:"
       goal: "Motivazione"
       description: "Descrizione"
       bookings: "Prenotazioni"
@@ -107,13 +132,19 @@ it:
       confirm: "Sei sicuro?"
       quantity: "Quantità"
       otherphotos: "Altre foto"
+      start: "Data e ora inizio"
+      end: "Data e ora fine"
+      chooselab: "Scegli il laboratorio"
     index:
+      newrequest: "Nuova richiesta"
       search: "Cerca"
       place: "Cerca strumenti"
       show: "Visualizza"
       book: "Prenota"
       sure: "Sei sicuro di voler prenotare questo strumento?"
       quantity: "Quantità disponibili in magazzino:"
+      categories: "Categorie"
+      labs: "Laboratori"
   tempbook:
     errorfd: "La data di inizio deve essere prima di quella di fine, lo sanno anche i bambini"
     errorpast: "Non puoi prenotare uno strumento nel passato"
@@ -150,12 +181,15 @@ it:
     created: "Richiesta effettuata con successo"
     new:
       new: "Nuova richiesta d'acquisto"
+      quantity: "Quanti ne vuoi?"
 
-
-
-  errors:
-    messages:
-      extension_white_list_error: "Il file non ha una estensione corretta"
+  technical:
+    shared:
+      menu:
+        reportings: "Segnalazioni"
+        requests: "Richieste"
+        tools: "Strumenti"
+        languages: "Lingua"
 
   activerecord:
     models:
@@ -171,6 +205,12 @@ it:
       tempbook:
         one: "Prenotazione"
         other: "Prenotazioni"
+      request:
+        one: "Richiesta"
+        other: "Richieste"
+      documentation:
+        one: "Documentazione"
+        other: "Documentazioni"
     attributes:
       tool:
         name: "Nome"
@@ -186,6 +226,13 @@ it:
         end_date: "Data di fine"
         quantity: "Quantità"
         goal: "Motivazione"
+      request:
+        name: "Nome"
+        description: "Descrizione"
+        quantity: "Quantità"
+        goal: "Motivazione"
+      documentation:
+        name: "Nome"
     errors:
       messages:
         extension_white_list_error: "Il file non ha una estensione corretta"

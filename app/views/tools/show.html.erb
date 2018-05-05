@@ -9,13 +9,27 @@
 <!-- Portfolio Item Heading -->
 <h1 class="my-4"> <%= @tool.name %> <small> <%= t('.quantity') + ": " + @tool.quantity.to_s %></small> </h1>
 <% @tool.reportings.each do |repo| %>
-<div class="alert alert-warning" role="alert">
-  <h4 class="alert-heading"><i class="fa fa-exclamation-triangle"></i>Warning!</h4>
-  <p><%= repo.quantity.to_s + " " %> have been reported due to malfunctions in the <%= " " + repo.lab.name + " " %> laboratory </p>
-  <hr>
-  <p class="mb-0"><%= repo.description %></p>
-  <footer class="blockquote-footer">Technical <cite title="Source Title"> <%= repo.technical.name + " " + repo.technical.surname %></cite></footer>
-</div>
+  <div class="alert alert-warning" role="alert">
+    <h4 class="alert-heading">  <i class="fa fa-exclamation-triangle">  </i>  <%=" " + t('.warning')%>  </h4>
+    <% if I18n.locale.to_s == "en" %>
+      <% if repo.quantity == 1 %>
+        <p>  <%= repo.quantity.to_s + " " %> has been reported due to malfunctions in the <%= " " + repo.lab.name + " " %> laboratory </p>
+      <% else %>
+        <p><%= repo.quantity.to_s + " " %> have been reported due to malfunctions in the <%= " " + repo.lab.name + " " %> laboratory </p>
+      <% end %>
+    <% else %>
+      <% if repo.quantity == 1 %>
+        <p><%= repo.quantity.to_s + " " %> è stato segnalato per malfunzionamenti nel laboratorio <%= " " + repo.lab.name + " " %> </p>
+      <% else %>
+        <p><%= repo.quantity.to_s + " " %> sono stati segnalati per malfunzionamenti nel laboratorio<%= " " + repo.lab.name + " " %> </p>
+      <% end %>
+    <% end %>
+    <hr>
+    <p class="mb-0"><%= repo.description %></p>
+    <footer class="blockquote-footer">
+      <%= t('.technical') %> <cite title="Source Title"> <%= repo.technical.name + " " + repo.technical.surname %>  </cite>
+    </footer>
+  </div>
 <% end %>
 
       <!-- Portfolio Item Row -->
@@ -59,13 +73,13 @@
                 <div class="row">
                   <div class="col-lg-6 ">
                     <div class="form-group" >
-                      <%=t.label :Data_inizio %>
+                      <%=t.label t('.start') %>
                       <%=t.datetime_local_field :start_date, value: Time.now.strftime("%d/%m/%Y, %H:%M"), class:"form-control"%>
                     </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="form-group">
-                      <%=t.label :Data_fine %>
+                      <%=t.label t('.end') %>
                       <%=t.datetime_local_field :end_date, value: Time.now.strftime("%d/%m/%Y, %H:%M"), class:"form-control"%>
                     </div>
                   </div>
@@ -73,11 +87,12 @@
                 <div class="row">
                   <div class="col-lg-6 ">
                     <div class="form-group">
-                      <%= t.label :Quantità %>
+                      <%= t.label t('requests.new.quantity') %>
                       <%= t.text_field :quantity, value: 1, class:"form-control" %>
                     </div>
                   </div>
                   <div class="col-lg-6">
+                    <%= t('.chooselab') %>
                     <% for lab in @tool.labs %>
                       <% if @tool.labs.first == lab %>
                       <div class="input-group">
@@ -103,7 +118,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <%=t.label :Motivazione %>
+                  <%=t.label t('.goal') %>
                   <%=t.text_area :goal, class:"form-control"%>
                 </div>
 
@@ -118,63 +133,52 @@
     <% end %>
   </div>
 
-        <div class="col-lg-4 col-md-5">
-          <h3 class="my-3"> <%= t('.description') %> </h3>
-          <p> <%= @tool.description %></p>
+  <div class="col-lg-4 col-md-5">
+    <h3 class="my-3"> <%= t('.description') %> </h3>
+    <p> <%= @tool.description %></p>
 
-
-
-            <div class="panel panel-default">
-                        <div class="card-header">
-                          <ul class="nav nav-pills">
-                              <li class="active"><a href="#bookings" data-toggle="tab" class="btn btn-primary"> <%= t('.bookings') %> </a>
-                              </li>
-                              <li><a href="#documentations" data-toggle="tab" class="btn btn-primary"> <%= t('.documentation') %> </a>
-                              </li>
-                          </ul>
-                        </div>
+    <div class="panel panel-default">
+      <div class="card-header">
+        <ul class="nav nav-pills">
+          <li class="active"> <a href="#bookings" data-toggle="tab" class="btn btn-primary"> <%= t('.bookings') %> </a> </li>
+          <li> <a href="#documentations" data-toggle="tab" class="btn btn-primary"> <%= t('.documentation') %> </a> </li>
+        </ul>
+      </div>
                         <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <!-- Nav tabs -->
+      <div class="panel-body">
+        <div class="tab-content">
+          <div class="tab-pane fade in active scroll-box show" id="bookings">
+            <% if @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true).present? %>
+              <% @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true).each do |booking| %>
+                <%= booking.prof.name + " " + booking.prof.surname %> <br>
+                <%= t('.from') + " " %> <b> <%= booking.start_date.strftime("%d/%m/%y %k:%M").to_s + " " %> </b> <br>
+                <%= t('.to') + " " %> <b> <%= booking.end_date.strftime("%d/%m/%y %k:%M").to_s %> </b>
+                <br>
+                <i> <%= t('.quantity') + ": " + booking.quantity.to_s %> </i>
+                <hr>
+              <%end%>
+            <% else %>
+              <%= t('.notbooked') %>
+            <% end %>
+          </div>
 
-
-                            <!-- Tab panes -->
-                            <div class="tab-content">
-                                <div class="tab-pane fade in active scroll-box show" id="bookings">
-                                  <% if @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true).present? %>
-                                    <% @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true).each do |booking| %>
-                                       <%= booking.prof.name + " " + booking.prof.surname %> <br>
-                                        <%= t('.from') + " " %> <b> <%= booking.start_date.strftime("%d/%m/%y %k:%M").to_s + " " %> </b> <br>
-                                        <%= t('.to') + " " %> <b> <%= booking.end_date.strftime("%d/%m/%y %k:%M").to_s %> </b>
-                                      <br>
-                                      <i> <%= t('.quantity') + ": " + booking.quantity.to_s %> </i>
-                                       <hr>
-                                    <%end%>
-                                  <% else %>
-                                  <%= t('.notbooked') %>
-                                  <% end %>
-                                </div>
-                                <div class="tab-pane fade scroll-box" id="documentations">
-                                  <% if @tool.documentations.present? %>
-                                    <% @tool.documentations.each do |doc| %>
-                                      <li class="list-group-item">
-                                        <%= link_to fa_icon('cloud-download'), doc.file.url %>
-                                        <%= " " + doc.name %>
-                                      </li>
-                                    <% end %>
-                                  <% else %>
-                                    <%= t('.notdocumented') %>
-                                  <% end %>
-                                  </div>
-                                </div>
-                            </div>
-                        </div>                        <!-- /.panel-body -->
-                     </div>
-
-
-
-
-            </div>
+          <div class="tab-pane fade scroll-box" id="documentations">
+            <% if @tool.documentations.present? %>
+              <% @tool.documentations.each do |doc| %>
+                <li class="list-group-item">
+                  <%= link_to fa_icon('cloud-download'), doc.file.url %>
+                  <%= " " + doc.name %>
+                </li>
+              <% end %>
+            <% else %>
+              <%= t('.notdocumented') %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>                        <!-- /.panel-body -->
+  </div>
+</div>
 
 
 
@@ -182,63 +186,92 @@
       <!-- /.row -->
 
       <!-- Related Projects Row -->
-      <h3 class="my-4"> <%= t('.otherphotos') %> </h3>
-
-      <div class="row">
-      <% @tool.photos.each do |photo| %>
-        <div class="col-md-3 col-sm-6 mb-4">
-
-            <%= image_tag(photo.picture.standard, :alt => "booh", class:"img-fluid") %>
-
-        </div>
-        <% end %>
-
-
+<h3 class="my-4"> <%= t('.otherphotos') %> </h3>
+<div class="row">
+  <% @tool.photos.each do |photo| %>
+    <div class="col-md-3 col-sm-6 mb-4">
+      <a href="#" data-toggle="modal" data-target="#exampleModalLong">
+        <%= image_tag(photo.picture.standard, :alt => "booh", class:"img-fluid") %>
+      </a>
+    </div>
+  <% end %>
 </div>
+
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"><%= @tool.name %></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      <div class="modal-body">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <%= image_tag(@tool.photo.standard, :alt => "booh", class:"d-block w-100") %>
+            </div>
+            <% @tool.photos.each do |photo| %>
+              <div class="carousel-item">
+                <%= image_tag(photo.picture.standard, :alt => "booh", class:"d-block w-100") %>
+              </div>
+            <% end %>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
 <div class="row">
   <div class="col-lg-9 col-md-7">
-
-
-
-<div class="card my-4">
-            <h5 class="card-header"> <%= t('.comment') %> </h5>
-            <div class="card-body">
-              <%= form_for ([@tool, @tool.posts.build]) do |t|  %>
-
-                <div class="form-group">
-                  <%= t.text_area :body, class:"form-control" %>
-                </div>
-                <%= t.submit t('.leavecomment'), class:"btn btn-primary" %>
-              <% end %>
-            </div>
+    <div class="card my-4">
+      <h5 class="card-header"> <%= t('.comment') %> </h5>
+      <div class="card-body">
+        <%= form_for ([@tool, @tool.posts.build]) do |t|  %>
+          <div class="form-group">
+            <%= t.text_area :body, class:"form-control" %>
           </div>
-
-      <% @posts.each do |post| %>
-      <% if post.prof.present? %>
-          <div class="media mb-4">
-            <%= image_tag("http://placehold.it/50x50", :alt => " ", class:"d-flex mr-3 rounded-circle") %>
-            <div class="media-body">
-              <h5 class="mt-0">
-              <%= post.prof.name + " " + post.prof.surname %>
-               <% if prof_signed_in? %>
-               <% if current_prof == post.prof %>
-               <%=link_to fa_icon('pencil'), edit_tool_post_path(@tool, post), class:"btn btn-light btn-sm"%> |
-               <%=link_to fa_icon('trash'), tool_post_path(@tool, post), method: :delete, data: {confirm:t('.confirm')}, class:"btn btn-light btn-sm"%>
-               <% end %>
-               <% end %>
-               </h5>
-              <% if post.updated_at != post.created_at %>
-                <small id="edited" class="form-text text-muted"><%= t('.editedat') + " " + post.updated_at.strftime("%d/%m/%y").to_s + " " + t('.at') + " " + post.updated_at.strftime("%H:%M")%></small>
-              <% end %>
-              <%= post.body %>
-            </div>
-          </div>
+          <%= t.submit t('.leavecomment'), class:"btn btn-primary" %>
         <% end %>
+      </div>
+    </div>
+    <% @posts.each do |post| %>
+      <% if post.prof.present? %>
+        <div class="media mb-4">
+          <%= image_tag("http://placehold.it/50x50", :alt => " ", class:"d-flex mr-3 rounded-circle") %>
+          <div class="media-body">
+            <h5 class="mt-0">
+              <%= post.prof.name + " " + post.prof.surname %>
+              <% if prof_signed_in? %>
+              <% if current_prof == post.prof %>
+              <%=link_to fa_icon('pencil'), edit_tool_post_path(@tool, post), class:"btn btn-light btn-sm"%> |
+              <%=link_to fa_icon('trash'), tool_post_path(@tool, post), method: :delete, data: {confirm:t('.confirm')}, class:"btn btn-light btn-sm"%>
+              <% end %>
+              <% end %>
+            </h5>
+            <% if post.updated_at != post.created_at %>
+              <small id="edited" class="form-text text-muted"><%= t('.editedat') + " " + post.updated_at.strftime("%d/%m/%y").to_s + " " + t('.at') + " " + post.updated_at.strftime("%H:%M")%></small>
+            <% end %>
+            <%= post.body %>
+          </div>
+        </div>
       <% end %>
-
-    </div>
-    <div class="col-lg-3 col-md-5">
-      <div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="<%= I18n.locale %>" data-type="vertical" data-theme="dark" data-vanity="davide-fazio"><a class="LI-simple-link" href='https://it.linkedin.com/in/davide-fazio?trk=profile-badge'>Davide F.</a></div>
-    </div>
+    <% end %>
   </div>
+  <div class="col-lg-3 col-md-5">
+    <div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="<%= I18n.locale %>" data-type="vertical" data-theme="dark" data-vanity="davide-fazio"><a class="LI-simple-link" href='https://it.linkedin.com/in/davide-fazio?trk=profile-badge'>Davide F.</a></div>
+  </div>
+</div>

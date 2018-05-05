@@ -1,7 +1,7 @@
 class Admin::DashboardController < Admin::AdminController
 
   def index
-    @profs = Prof.all
+    @profs = Prof.where("confirmed_at IS NOT NULL")
     if current_admin.role == 0
       @requests = Request.where("approved = 'f'")
     elsif current_admin.role == 1
@@ -11,6 +11,10 @@ class Admin::DashboardController < Admin::AdminController
     end
     @bookings = Book.where("confirmed = 'f'")
     @reportings = Reporting.all
+
+    @newprofs = Prof.where("authorized = 'f' AND confirmed_at IS NOT NULL").count
+
+
   end
 
   def authorize

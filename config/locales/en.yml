@@ -33,6 +33,7 @@ en:
         languages: "Languages"
         technical: "Technicals"
         place: "Search"
+        confirm: "Are you sure?"
     tools:
       index:
         new: "New tool"
@@ -51,6 +52,8 @@ en:
         delete: "Tool successfully destroyed"
       show:
         confirm: "Are you sure?"
+        confirmbooking: "Confirm booking"
+        reject: "Reject"
       form:
         name: "Name"
         description: "Description"
@@ -103,17 +106,39 @@ en:
         delete: "Category successfully destroyed"
     dashboard:
       index:
+        newprof: "New prof"
+        newprofs: "New profs"
+        newreporting: "New reporting"
+        newreportings: "New reportings"
+        newrequest: "New request"
+        newrequests: "New requests"
+        newbooking: "New booking"
+        newbookings: "New bookings"
+        details: "View details"
+        profs: "Profs"
+        reportings: "Reportings"
+        requests: "Requests"
+        bookings: "Bookings"
+        authorize: "Authorize"
+        block: "Block"
+        confirm: "Are you sure?"
+        description: "Description"
+        goal: "Goal"
 
   shared:
     menu:
       tools: "Tools"
       languages: "Languages"
+      technicals: "Technicals"
+      confirm: "Are you sure?"
   tools:
     identifier: "You can not insert multiple tools with the same identifier"
     quantity: "The quantity can not be negative"
     photos: "Can not save more of 4 photos"
     labs: "A single tool can not exist in multiple laboratories"
     show:
+      warning: "Warning!"
+      technical: "Technical:"
       goal: "Goal"
       description: "Description"
       bookings: "Reservations"
@@ -129,12 +154,18 @@ en:
       confirm: "Are you sure?"
       quantity: "Quantity"
       otherphotos: "Other photos"
+      start: "Start date and time"
+      end: "End date and time"
+      chooselab: "Choose lab"
     index:
+      newrequest: "New request"
       book: "Book this"
       show: "Show"
       sure: "Do you really want to book this tool?"
       quantity: "Quantity available in stock:"
       search: "Search"
+      categories: "Categories"
+      labs: "Labs"
       place: "Tools search"
   tempbook:
     errorfd: "The start date must be before the end date, even the children know this"
@@ -172,6 +203,15 @@ en:
     created: "You have done your request successfully"
     new:
       new: "New purchase request"
+      quantity: "How many object you want?"
+
+  technical:
+    shared:
+      menu:
+        reportings: "Reportings"
+        requests: "Requests"
+        tools: "Tools"
+        languages: "Languages"
 
 
 

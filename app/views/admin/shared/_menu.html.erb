@@ -315,7 +315,7 @@
 
         <% end %>
         <li class="nav-item">
-            <%= link_to fa_icon('sign-out') + "Log-out", destroy_admin_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "nav-link" %>
+            <%= link_to fa_icon('sign-out') + "Log-out", destroy_admin_session_path, method: :delete, data: { confirm: t('.confirm') }, class: "nav-link" %>
         </li>
       </ul>
     </div>
