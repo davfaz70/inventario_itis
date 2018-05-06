@@ -38,6 +38,7 @@ class TempbooksController < ApplicationController
         if @book.save
           flash[:success]="Prenotato con successo"
           BookControlJob.set(wait_until: @book.start_date.to_datetime).perform_later(@book)
+          AdminMailer.new_booking(@book.prof, @book).deliver_later
           redirect_to tool_path(@tool)
         else
           flash[:danger]="C'è stato un problema, riprova"

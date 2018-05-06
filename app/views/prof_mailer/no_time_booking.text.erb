@@ -1,0 +1,13 @@
+   Non siamo riusciti a confermare in tempo
+   L'amministratore ha ignorato la sua richiesta fino ad ora
+
+     Oggi aveva in programma di usare <%= @booking.quantity.to_s + " " + @booking.tool.name.to_s %> nel laboratorio <%= @booking.lab.name.to_s %>.
+
+     Ci dispiace informarla che la prenotazione non è valida, questo perchè nessun amministratore l'ha mai confermata, quindi non può
+        usufruire del bene che intendeva utilizzare nel periodo che va dal <%= @booking.start_date.strftime("%d/%m/%y %k:%M") %> al
+        <%= @booking.end_date.strftime("%d/%m/%y %k:%M") %>.
+
+   Può sempre effettuare un'altra prenotazione ed esortare personalmente il DSGA ad approvarla, sicuri che continurà ad avvalersi di
+        questo pratico strumento, cordiali saluti
+
+     Team portale prenotazioni

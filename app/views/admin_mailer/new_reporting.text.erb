@@ -1,0 +1,23 @@
+ Nuova segnalazione
+ È molto importante
+ <% if @reporting.tool.photo.present? %>
+ <%= image_tag(@reporting.tool.photo, alt: "Photo") %>
+ <% end %>
+<% if @reporting.quantity == 1 %>
+ È stato segnalato che <%= @reporting.quantity %> <%= @reporting.tool.name %> non funziona correttamente o non funziona affatto
+<% else %>
+ Sono stati segnalati <%= @reporting.quantity %> <%= @reporting.tool.name %> che non funzionano correttamente o affatto
+<% end %>
+ Il responsabile della segnalazione è: <%= @reporting.technical.surname + " " + @reporting.technical.name %>
+
+  Ecco di seguito una descrizione della segnalazione: 
+ <%= @reporting.description %>
+
+ Si prega di considerare questa segnalazione come un evento prioritario, il periodo in cui uno strumento potrebbe rimanere segnalato senza causare
+    disagi è in media una settimana, si prega dunque di intervenire il prima possibile
+
+ Quando il bene sarà riparato, sostituito oppure gettato, si può proseguire sul portale web in due modi, se si dichiara che la segnalazione è
+  stata risolta, vuol dire che il bene è stato riparato e/o sostituito con un altro IDENTICO  (nel caso in cui il bene sia in possesso di un
+  identificativo saranno diponibili distintamente le opzioni di riparazione e sostituzione), oppure si può optare per il fatto che la segnalazione
+   non  è stata risolta, il che vuol dire che la quantità di beni segnalata è stata dismessa, scegliendo quest'ultima opzione il sistema ridurrà
+  in automatico la quantità di beni segnalati cancellando eventuali prenotazioni

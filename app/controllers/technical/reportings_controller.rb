@@ -8,12 +8,13 @@ class Technical::ReportingsController < Technical::TechnicalController
   def new
     @tool = Tool.friendly.find(params[:tool_id])
     @lab = Lab.friendly.find(params[:lab_id])
-    @report = Reporting.new
+    @reporting = Reporting.new
   end
 
   def create
-    @report = Reporting.new(report_params)
-    if @report.save
+    @reporting = Reporting.new(report_params)
+    if @reporting.save
+      AdminMailer.new_reporting(@reporting).deliver_later
       flash[:primary] = t('.created')
       redirect_to technical_reportings_path
     else
@@ -29,15 +30,15 @@ class Technical::ReportingsController < Technical::TechnicalController
   end
 
   def update
-    if @report.update(report_params)
-      redirect_to technical_tool_report_path(@report.tool, @report)
+    if @reporting.update(report_params)
+      redirect_to technical_tool_report_path(@reporting.tool, @reporting)
     else
       render 'edit'
     end
   end
 
   def destroy
-    if @report.destroy
+    if @reporting.destroy
       redirect_to technical_tool_reports_path
     else
       flash[:danger] = "Oooops"
@@ -51,7 +52,7 @@ class Technical::ReportingsController < Technical::TechnicalController
   end
 
   def set_report
-    @report = Reporting.find(params[:id])
+    @reporting = Reporting.find(params[:id])
   end
 
 end

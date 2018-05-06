@@ -5,7 +5,7 @@ class BookControlJob < ApplicationJob
     @booking = book
     if @booking.present?
     if @booking.confirmed == false
-      ProfMailer.destroy_booking(@booking.prof, @booking).deliver_now
+      ProfMailer.no_time_booking(@booking.prof, @booking).deliver_now
       @booking.destroy
     end
   end

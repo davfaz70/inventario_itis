@@ -7,6 +7,12 @@ class ProfMailer < ApplicationMailer
     mail(to: @prof.email, subject: "Una tua prenotazione è stata eliminata!")
   end
 
+  def no_time_booking(prof, booking)
+    @booking = booking
+    @prof = prof
+    mail(to: @prof.email, subject: "Una tua prenotazione non è stata confermata in tempo")
+  end
+
   def authorized(prof)
     @prof = prof
     mail(to: @prof.email, subject:"Sei stato autorizzato!")
@@ -22,5 +28,5 @@ class ProfMailer < ApplicationMailer
     @prof = prof
     mail(to: @prof.email, subject: "Una tua prenotazione è stata confermata!")
   end
-  
+
 end
