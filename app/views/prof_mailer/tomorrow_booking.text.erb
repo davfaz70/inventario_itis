@@ -1,0 +1,6 @@
+ Ricordati di dimani!
+ Domani alle <%= @booking.start_date.strftime("%k:%M") %> inizia il tuo periodo di utilizzo di <%= @booking.quantity.to_s + " " @booking.tool.name %>
+ Il suddetto bene è in programma per essere utilizzato da lei fino al: <%= @booking.end_date.strftime("%d/%m/%y %k:%M") %>.
+ La preghiamo di svolgere le attività con tali strumenti nel laboratorio: <%= @booking.lab.name %>
+
+Cordiali saluti

@@ -11,6 +11,7 @@ class Technical::RequestsController < Technical::TechnicalController
   def create
     @request = Request.new(request_params)
     if @request.save
+      AdminMailer.new_request(@request).deliver_later
       flash[:primary] = t('.created')
       redirect_to technical_requests_path
     else

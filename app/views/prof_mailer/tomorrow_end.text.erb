@@ -1,0 +1,6 @@
+ Domani scade una sua prenotazione
+ Domani alle  <%= @booking.end_date.strftime("%k:%M") %> scade il suo periodo di utilizzo di <%= @booking.quantity.to_s + " " + @booking.tool.name%>
+
+ La si invita a rendere disponibili ad altri i beni da lei prenotati entro l'ora indicata 
+
+Cordiali saluti

@@ -1,0 +1,23 @@
+ Nuova Richiesta
+<%= @person.name + " " + @person.surname %>
+
+Si prega la s.v. a consultare la seguente proposta d'acquisto per il bene: <%= @request.name %>
+Ecco di seguito i dettagli della proposta:
+
+<% if @request.photo.present? %>
+<%= image_tag(@request.photo.standard) %>
+<% end %>
+
+Descrizione:
+
+ <%= @request.description %>
+
+Motivazione:
+
+ <%= @request.goal %>
+
+ Quantità:  <%= @request.quantity %>
+
+Cordiali saluti
+
+<%= @person.name + " " + @person.surname %>

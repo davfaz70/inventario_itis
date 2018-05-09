@@ -25,6 +25,12 @@ class Admin::BooksController < Admin::AdminController
         flash[:success]="La prenotazione è stata confermata"
         LabMailer.new_booking(@booking).deliver_now
         ProfMailer.confirmed_booking(@booking.prof, @booking).deliver_later
+        if (@booking.start_date - Time.now)/1.day >= 1
+          TomorrowBookingJob.set(wait_until: @booking.start_date.to_datetime - 1.day).perform_later(@booking)
+        end
+        if (@booking.end_date - @booking.start_date)/1.day >= 2
+          TomorrowEndJob.set(wait_until: @booking.end_date.datetime - 1.day).perform(@booking)
+        end
         redirect_back(fallback_location: root_path)
       else
         flash[:danger]="Qualcosa è andato storto, riprova"

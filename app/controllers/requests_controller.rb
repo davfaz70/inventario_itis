@@ -8,6 +8,7 @@ class RequestsController < ApplicationController
   def create
     @request = Request.new(request_params)
     if @request.save
+      AdminMailer.new_request(@request).deliver_later
       flash[:primary] = t('.created')
       redirect_to tools_path
     else

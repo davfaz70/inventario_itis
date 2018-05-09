@@ -1,0 +1,23 @@
+<h1 align="center"> Nuova Richiesta </h1>
+<h4 align="center"> <%= @person.name + " " + @person.surname %> </h4>
+
+<p>Si prega la s.v. a consultare la seguente proposta d'acquisto per il bene: <%= @request.name %></p>
+<p> Ecco di seguito i dettagli della proposta:</p>
+
+<% if @request.photo.present? %>
+<%= image_tag(@request.photo.standard) %>
+<% end %>
+
+<p> <b>Descrizione:</b> </p>
+
+<p> <%= @request.description %> </p>
+
+<b> Motivazione: </b>
+
+<p> <%= @request.goal %> </p>
+
+<p> <b> Quantità: </b> <%= @request.quantity %> </p>
+
+Cordiali saluti
+<br>
+<%= @person.name + " " + @person.surname %>

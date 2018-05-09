@@ -1,0 +1,6 @@
+<h1 align="center"> Domani scade una sua prenotazione </h1>
+<h4 align="center"> Domani alle  <%= @booking.end_date.strftime("%k:%M") %> scade il suo periodo di utilizzo di <%= @booking.quantity.to_s + " " + @booking.tool.name%> </h4>
+
+<p> La si invita a rendere disponibili ad altri i beni da lei prenotati entro l'ora indicata </p>
+
+Cordiali saluti

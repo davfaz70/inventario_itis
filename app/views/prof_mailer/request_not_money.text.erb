@@ -1,0 +1,20 @@
+Un bene da te richiesto non è stato acquistato
+Il DSGA non ha ritenuto oppurtuno approvare il seguente acquisto
+
+<% if @request.photo.present? %>
+<%= image_tag(@request.photo, width: "500px", height: "300px", alt: "Photo") %>
+<% end %>
+
+<%= @request.name %>
+
+Probabilmente non sappiamo se la causa è dovuta alla quantità (<%= @request.quantity %>), oppure perché la richiesta è assurda, può comunque chiedere spiegazioni.
+
+Ecco maggiori dettagli riguardanti la richiesta d'acquisto:
+
+Descrizione:
+<%= @request.description %>
+
+Motivazione:
+<%= @request.goal %>
+
+Cordiali saluti

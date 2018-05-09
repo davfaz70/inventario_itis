@@ -1,0 +1,6 @@
+<h1 align="center"> Ricordati di dimani! </h1>
+<h4 align="center"> Domani alle <%= @booking.start_date.strftime("%k:%M") %> inizia il tuo periodo di utilizzo di <%= @booking.quantity.to_s + " " @booking.tool.name %> </h4>
+<p> Il suddetto bene è in programma per essere utilizzato da lei fino al: <%= @booking.end_date.strftime("%d/%m/%y %k:%M") %>. </p>
+<p> La preghiamo di svolgere le attività con tali strumenti nel laboratorio: <%= @booking.lab.name %> </p>
+
+Cordiali saluti

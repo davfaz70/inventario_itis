@@ -20,6 +20,21 @@ class Admin::RequestsController < Admin::AdminController
 
   def update
     if @request.update(request_params)
+      if @request.approved == true && @request.money == false
+        AdminMailer.request_approved(@request).deliver_later
+        if @request.prof.present?
+          ProfMailer.request_approved(@request.prof, @request).deliver_later
+        else
+          #TechnicalMailer.request_approved(@request.technical, @request).deliver_later
+        end
+      elsif @request.money == true && @request.arrived == false
+        AdminMailer.request_money(@request).deliver_later
+        if @request.prof.present?
+          ProfMailer.request_money(@request.prof, @request).deliver_later
+        else
+          #TechnicalMailer.request_money(@request.technical, @request).deliver_later
+        end
+      end
       if @request.arrived == true
         @tool = Tool.new
         @tool.photo = @request.photo
@@ -41,7 +56,13 @@ class Admin::RequestsController < Admin::AdminController
           @request.categories.each do |category|
             @tool.categories << category
           end
+          if @request.prof.present?
+            ProfMailer.tool_arrived(@request.prof, @tool).deliver_now
+          else
+            #TechnicalMailer.tool_arrived(@request.technical, @tool).deliver_now
+          end
           @request.destroy
+
           flash[:success]= t('.updated')
           redirect_to edit_admin_tool_path(@tool)
         else
@@ -58,6 +79,19 @@ class Admin::RequestsController < Admin::AdminController
   end
 
   def destroy
+    if current_admin.role == 0
+      if @request.prof.present?
+        ProfMailer.request_not_approved(@request.prof, @request).deliver_now
+      else
+        #TechnicalMailer.request_not_approved(@request.technical, @request).deliver_now
+      end
+    elsif current_admin.role == 1
+      if @request.prof.present?
+        ProfMailer.request_not_money(@request.prof, @request).deliver_now
+      else
+        #TechnicalMailer.request_not_money(@request.technical, @request).deliver_now
+      end
+    end
     @request.destroy
     redirect_to admin_requests_path
   end
