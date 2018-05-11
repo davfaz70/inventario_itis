@@ -8,11 +8,7 @@ class TempbooksController < ApplicationController
     if @tempbook.save
       cont = 0
       @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true).each_with_index do |b, i|
-        if @tempbook.start_date >= b.start_date && @tempbook.start_date <= b.end_date
-          cont = cont + b.quantity
-        elsif @tempbook.end_date >= b.start_date && @tempbook.end_date <= b.end_date
-          cont = cont + b.quantity
-        elsif b.start_date >= @tempbook.start_date && b.start_date <= @tempbook.end_date
+        if (@tempbook.start_date..@tempbook.end_date).overlaps?(b.start_date..b.end_date)
           cont = cont + b.quantity
         end
       end

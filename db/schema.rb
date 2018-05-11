@@ -189,7 +189,7 @@ ActiveRecord::Schema.define(version: 20180426111836) do
     t.integer  "technical_id"
     t.integer  "lab_id"
     t.string   "description"
-    t.string   "quantity"
+    t.integer  "quantity"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end

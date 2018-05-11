@@ -6,13 +6,9 @@ class Admin::BooksController < Admin::AdminController
       cont = 0
 
      @books.each do |b|
-      if @booking.start_date >= b.start_date && @booking.start_date <= b.end_date
-        cont = cont + b.quantity
-      elsif @booking.end_date >= b.start_date && @booking.end_date <= b.end_date
-        cont = cont + b.quantity
-      elsif b.start_date >= @booking.start_date && b.start_date <= @booking.end_date
-        cont = cont + b.quantity
-      end
+       if (@booking.start_date..@booking.end_date).overlaps?(b.start_date..b.end_date)
+         cont = cont + b.quantity
+       end
     end
     cont = cont + @booking.quantity
     if cont > @booking.tool.quantity
@@ -29,7 +25,7 @@ class Admin::BooksController < Admin::AdminController
           TomorrowBookingJob.set(wait_until: @booking.start_date.to_datetime - 1.day).perform_later(@booking)
         end
         if (@booking.end_date - @booking.start_date)/1.day >= 2
-          TomorrowEndJob.set(wait_until: @booking.end_date.datetime - 1.day).perform(@booking)
+          TomorrowEndJob.set(wait_until: @booking.end_date.to_datetime - 1.day).perform_later(@booking)
         end
         redirect_back(fallback_location: root_path)
       else

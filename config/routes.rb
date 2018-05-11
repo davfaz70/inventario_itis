@@ -52,6 +52,9 @@ scope '(:locale)' do
     post 'confirm/:id(.:format)', :to => 'dashboard#confirm', as: "confirm_route"
     post 'htmlcreate(.:format)', :to => 'categories#htmlcreate', as: "htmlcreate_route"
     delete 'deleteprof/:id(.:format)', :to => 'dashboard#deleteprof', as: "deleteprof_route"
+    post 'reportings/dismiss/:id(.:format)', :to => 'reportings#dismiss', as: "dismiss_route"
+    post 'reportings/fix/:id(.:format)', :to => 'reportings#fix', as: "fix_route"
+    post 'reportings/replace/:id(.:format)', :to => 'reportings#replace', as: "replace_route"
   end
   resources :tools, only: [:index, :show] do
     resources :tempbooks, only: [:create]

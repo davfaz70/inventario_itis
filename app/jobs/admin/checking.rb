@@ -19,7 +19,7 @@ class Admin::Checking < ProgressJob::Base
         end
         update_progress
       if cont > @tool.quantity
-        #ProfMailer.destroy_booking(booking.prof, booking).deliver_later
+        ProfMailer.destroy_booking(booking.prof, booking).deliver_now
         booking.destroy
       end
 

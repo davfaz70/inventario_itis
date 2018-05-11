@@ -29,7 +29,7 @@ Rails.application.configure do
   config.web_console.whitelisted_ips = '192.168.10.120'
 
   # Setup for gem devise
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: '192.168.10.120', port: 3000 }
 
   config.action_mailer.perform_deliveries = true
 

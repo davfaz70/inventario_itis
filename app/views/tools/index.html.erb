@@ -57,7 +57,7 @@
               <% if tool.photo.standard.present? %>
                 <%= link_to image_tag(tool.photo.standard, :alt => "toolphoto.jpeg", class:"card-img-top"), tool_path(tool)%>
               <% else %>
-                <%= link_to image_tag("standard_toolphoto.jpeg", :alt => "toolphoto.jpeg", class:"card-img-top"), tool_path(tool)%>
+                <%= link_to image_tag("generico.png", height: 200, :alt => "toolphoto.jpeg", class:"card-img-top"), tool_path(tool)%>
               <% end %>
                 <div class="card-body">
                   <h4 class="card-title">
@@ -77,7 +77,7 @@
       </div>
     </div>
   </div>
-  
+
   <ul class="pagination justify-content-center">
     <%= paginate @tools %>
   </ul>

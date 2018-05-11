@@ -5,7 +5,7 @@ class CreateReportings < ActiveRecord::Migration[5.0]
       t.integer :technical_id
       t.integer :lab_id
       t.string :description
-      t.string :quantity
+      t.integer :quantity
 
       t.timestamps
     end
