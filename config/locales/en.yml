@@ -212,6 +212,24 @@ en:
         requests: "Requests"
         tools: "Tools"
         languages: "Languages"
+    requests:
+      index:
+        new: "New request"
+        requests: "Requests"
+        notapproved: "Not approved requests"
+        approved: "Approved requests"
+        money: "Requests purchased"
+    reportings:
+      index:
+        new: "New reporting"
+        reportings: "Reportings"
+        confirm: "Are you sure?"
+      new:
+        quantity: "Quantity"
+        description: "Description of the fault"
+    labs:
+      index:
+        chooselabs: "Choose lab"
 
 
 

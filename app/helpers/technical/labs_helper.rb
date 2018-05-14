@@ -1,0 +1,2 @@
+module Technical::LabsHelper
+end

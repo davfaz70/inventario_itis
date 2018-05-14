@@ -1,3 +1,8 @@
+<% tool_lab %>
+<h1> <%= image_tag(@tool.photo.thumb, alt: "Photo") %> <%= @tool.name %> <small> <%= t('.quantity') + ": " + @tool.quantity.to_s %></small> </h1>
+<hr>
+<h2> <%= fa_icon('flask') + " " + @lab.name %> </h2>
+<hr>
 <%= form_for ([:technical, @tool, @lab, @reporting]) do |t|  %>
 
   <% if @reporting.errors.any? %>
@@ -16,13 +21,13 @@
   <div class="row">
     <div class="col-md-6 col-sm-6">
       <div class="form-group" >
-        <%=t.label :description %>
+        <%=t.label t('.description') %>
         <%=t.text_area :description, class:"form-control"%>
       </div>
     </div>
     <div class="col-md-6 col-sm-6">
       <div class="form-group">
-        <%=t.label :quantity %>
+        <%=t.label t('.quantity') %>
         <%=t.text_field :quantity, class:"form-control"%>
       </div>
     </div>
@@ -32,5 +37,5 @@
     <%= hidden_field(:reporting, :lab_id, :value => @lab.id) %>
     <%= hidden_field(:reporting, :tool_id, :value => @tool.id) %>
 
- <%= t.submit %>
+ <%= t.submit class:"btn btn-success" %>
 <% end %>

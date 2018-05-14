@@ -190,6 +190,24 @@ it:
         requests: "Richieste"
         tools: "Strumenti"
         languages: "Lingua"
+    requests:
+      index:
+        new: "Nuova richiesta"
+        requests: "Richieste d'acquisto"
+        notapproved: "Richieste non approvate"
+        approved: "Richieste approvate"
+        money: "Richieste acquistate"
+    reportings:
+      index:
+        new: "Nuova segnalazione"
+        reportings: "Segnalazioni"
+        confirm: "Sei sicuro?"
+      new:
+        quantity: "Quantità"
+        description: "Descrizione del guasto"
+    labs:
+      index:
+        chooselabs: "Scegli il laboratorio in cui si è guastato"
 
   activerecord:
     models:
@@ -211,6 +229,9 @@ it:
       documentation:
         one: "Documentazione"
         other: "Documentazioni"
+      reporting:
+        one: "Segnalazione"
+        other: "Segnalazioni"
     attributes:
       tool:
         name: "Nome"
@@ -233,6 +254,9 @@ it:
         goal: "Motivazione"
       documentation:
         name: "Nome"
+      reporting:
+        description: "Descrizione"
+        quantity: "Quantità"
     errors:
       messages:
         extension_white_list_error: "Il file non ha una estensione corretta"

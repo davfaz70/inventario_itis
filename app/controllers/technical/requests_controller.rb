@@ -1,7 +1,9 @@
 class Technical::RequestsController < Technical::TechnicalController
 
   def index
-    @requests = current_technical.requests.all
+    @notapproved = current_technical.requests.where("approved = 'f'")
+    @approved = current_technical.requests.where("approved = 't' AND money = 'f'")
+    @money = current_technical.requests.where("money = 't'")
   end
 
   def new
