@@ -1,0 +1,2 @@
+module Technical::BooksHelper
+end

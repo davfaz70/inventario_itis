@@ -1,2 +1,28 @@
-<h1>Technical::Labs#show</h1>
-<p>Find me in app/views/technical/labs/show.html.erb</p>
+<h1> <%= @lab.name %> <small> <%= t('.bookings') %> </small></h1>
+<hr>
+
+<div class="row">
+  <% @bookings.each do |booking| %>
+    <div class="col-md-4">
+      <div class="card h-100">
+        <div class="card-header">
+           <p class="card-title"> <%= image_tag(booking.tool.photo.thumb, alt:"Photo") %> <%= booking.tool.name %> </p>
+           <h5> <%= booking.prof.name + " " + booking.prof.surname %> </h5>
+        </div>
+        <div class="card-body">
+          <p class="card-text">
+            <b>
+              <%= t('tools.show.from') + " " + booking.start_date.strftime("%d/%m/%y %k:%M") + " " %>
+              <%= t('tools.show.to') + " " + booking.end_date.strftime("%d/%m/%y %k:%M") %>
+            </b>
+          </p>
+          <p class="card-text"> <i> <%= t('tools.show.quantity') + " " + booking.quantity.to_s%> </i> </p>
+          <p class="card-text"> <%= booking.goal %> </p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <%= link_to fa_icon('trash') + " " + t('admin.tools.show.reject'), technical_book_path(booking), method: :delete, data: {confirm: t('.confirm')}, class:"list-group-item list-group-item-danger"%>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+</div>

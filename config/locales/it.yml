@@ -208,6 +208,23 @@ it:
     labs:
       index:
         chooselabs: "Scegli il laboratorio in cui si è guastato"
+      show:
+        confirm: "Sei sicuro?"
+        bookings: "Prenotazioni"
+    dashboard:
+      index:
+        actual: "Attuale"
+
+
+
+
+
+
+
+
+
+
+
 
   activerecord:
     models:

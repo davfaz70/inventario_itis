@@ -230,6 +230,12 @@ en:
     labs:
       index:
         chooselabs: "Choose lab"
+      show:
+        confirm: "Are you sure"
+        bookings: "Bookings"
+    dashboard:
+      index:
+        actual: "Now"
 
 
 

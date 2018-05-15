@@ -21,12 +21,14 @@ scope '(:locale)' do
   namespace :technical do
     get 'dashboard/index'
     resources :tools, only: [:index, :show] do
-      resources :labs, only: [:show, :index] do
+      resources :labs, only: [:index] do
         resources :reportings, only: [:new, :create, :show, :edit, :update, :destroy]
       end
     end
+    resources :labs, only: [:show]
     resources :reportings, only: [:index]
     resources :requests
+    resources :books, only: [:destroy]
   end
 
   namespace :admin do
