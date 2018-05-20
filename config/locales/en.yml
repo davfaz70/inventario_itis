@@ -54,6 +54,7 @@ en:
         confirm: "Are you sure?"
         confirmbooking: "Confirm booking"
         reject: "Reject"
+        viewall: "View all past bookings"
       form:
         name: "Name"
         description: "Description"
@@ -124,12 +125,23 @@ en:
         confirm: "Are you sure?"
         description: "Description"
         goal: "Goal"
+        irreversible: "Are you sure? The action will be irreversible"
+        dismiss: "Dismiss the tool"
+        replace: "Replace the tool"
+        fix: "Fix the tool"
+        fixorrepair: "Replace or fix the tool"
+    update:
+      updated: "Purchase request approved"
+    destroy:
+      deleted: "Purchase request refused"
+      cannot: "You can not refuse the request for an item that has already been purchased"
 
   shared:
     menu:
       tools: "Tools"
       languages: "Languages"
       technicals: "Technicals"
+      bookings: "Bookings"
       confirm: "Are you sure?"
   tools:
     identifier: "You can not insert multiple tools with the same identifier"
@@ -204,6 +216,11 @@ en:
     new:
       new: "New purchase request"
       quantity: "How many object you want?"
+  books:
+    index:
+      bookings: "Bookings made by you"
+      notapproved: "Not approved"
+      approved: "Approved"
 
   technical:
     shared:

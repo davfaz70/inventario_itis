@@ -12,26 +12,8 @@
 
   <div class=" col-lg-3 col-md-5">
   <%= link_to t('.new'), new_admin_tool_path, class: "btn btn-primary btn-block" %>
-
-
-
-
-            <!-- Categories Widget -->
-            <div class="card my-4">
-              <h5 class="card-header">Categories</h5>
-              <div class="scroll-box">
-                <% @categories.each do |category| %>
-                   <td>  <%=link_to fa_icon('tag') + " " + category.name, "#", class:"btn btn-warning btn-sm"%>  </td>
-               <%end%>
-              </div>
-            </div>
-
-            <div class="LI-profile-badge" width="100%" data-version="v1" data-size="medium" data-locale="<%= I18n.locale %>" data-type="horizontal" data-theme="light" data-vanity="davide-fazio"><a class="LI-simple-link" href='https://it.linkedin.com/in/davide-fazio?trk=profile-badge'>Davide Fazio</a></div>
-
-
-
-
-  </div>
+            <div class="LI-profile-badge" width="100%" data-version="v1" data-size="medium" data-locale="<%= I18n.locale %>" data-type="vertical" data-theme="light" data-vanity="davide-fazio"><a class="LI-simple-link" href='https://it.linkedin.com/in/davide-fazio?trk=profile-badge'>Davide Fazio</a></div>
+   </div>
 
   <div class="col-lg-9 col-md-7">
 

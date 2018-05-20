@@ -34,10 +34,11 @@
       <% if prof_signed_in? %>
       <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= fa_icon('user-circle') + " Prof" %>
+          <%= fa_icon('user-circle') + current_prof.name + " " + current_prof.surname %>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownProfs">
           <%= link_to "Account", edit_prof_registration_path, class:"dropdown-item" %>
+          <%= link_to t('.bookings'), books_path, class:"dropdown-item" %>
           <div class="dropdown-divider"></div>
         <%= link_to fa_icon('sign-out') + "Log-out", destroy_prof_session_path, method: :delete, data: { confirm: t('.confirm') }, class: "dropdown-item" %>
       </div>
@@ -158,10 +159,11 @@
                 <% if prof_signed_in? %>
                 <li>
                 <a class=" dropdown-toggle" href="#" id="navbarDropdownProf" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <%= fa_icon('user-circle') + " Prof" %>
+                    <%= fa_icon('user-circle') + current_prof.name + " " + current_prof.surname %>
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownProf">
                     <%= link_to "Account", edit_prof_registration_path, class:"dropdown-item" %>
+                    <%= link_to t('.bookings'), books_path, class:"dropdown-item" %>
                     <div class="dropdown-divider"></div>
                   <%= link_to fa_icon('sign-out') + "Log-out", destroy_prof_session_path, method: :delete, data: { confirm: t('.confirm') }, class: "dropdown-item" %>
                 </div>

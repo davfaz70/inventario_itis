@@ -38,7 +38,8 @@ class Admin::ToolsController < Admin::AdminController
   def update
     if @tool.update(tool_params)
       if @tool.books.where('end_date >= ?', Time.now).exists?
-        @job = Delayed::Job.enqueue Admin::Checking.new(@tool, @tool.books.where('end_date >= ?', Time.now).count)
+         @job = Delayed::Job.enqueue Admin::Checking.new(@tool, @tool.books.where('end_date >= ?', Time.now).count)
+        # Admin::CheckingJob.perform_now(@tool)
       end
       flash[:success]= t('.edited')
       redirect_to admin_tool_path(@tool)

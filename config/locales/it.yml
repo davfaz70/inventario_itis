@@ -32,6 +32,7 @@ it:
         confirm: "Sei sicuro?"
         confirmbooking: "Conferma prenotazione"
         reject: "Rifiuta"
+        viewall: "Vedi tutte le prenotazioni passate"
       form:
         name: "Nome"
         description: "Descrizione"
@@ -102,12 +103,24 @@ it:
         confirm: "Sei sicuro?"
         description: "Descrizione"
         goal: "Motivazione"
+        irreversible: "Sei sicuro? L'azione sarà irreversible"
+        dismiss: "Dismetti il bene"
+        replace: "Sostituisci il bene"
+        fix: "Ripara il bene"
+        fixorrepair: "Ripara o sostituisci il bene"
+    requests:
+      update:
+        updated: "Richiesta di acquisto confermata"
+      destroy:
+        deleted: "Richiesta di acquisto rifiutata"
+        cannot: "Non puoi rifiutare la richiesta di un bene che è già stato acquistato"
 
   shared:
     menu:
       tools: "Strumenti"
       languages: "Lingua"
       technicals: "Tecnici"
+      bookings: "Prenotazioni"
       confirm: "Sei sicuro?"
   tools:
     identifier: "Non puoi inserire più strumenti con lo stesso identificativo"
@@ -182,6 +195,11 @@ it:
     new:
       new: "Nuova richiesta d'acquisto"
       quantity: "Quanti ne vuoi?"
+  books:
+    index:
+      bookings: "Prenotazioni fatte da te"
+      notapproved: "Non approvata"
+      approved: "Approvata"
 
   technical:
     shared:

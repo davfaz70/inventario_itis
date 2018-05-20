@@ -131,12 +131,12 @@
       <p class="card-text"> <%= reporting.lab.name %> </p>
     </div>
     <div class="card-footer">
-      <%= link_to "Dismetti il bene", admin_dismiss_route_path(reporting), method: :post, class:"btn btn-outline-danger" %>
+      <%= link_to t('.dismiss'), admin_dismiss_route_path(reporting), method: :post, data: {confirm: t('.irreversible')}, class:"btn btn-outline-danger" %>
       <% if reporting.tool.identifier.present? %>
-        <%= link_to "Sostituisci il bene", admin_replace_route_path(reporting), method: :post, class:"btn btn-outline-secondary" %>
-        <%= link_to "Ripara il bene", admin_fix_route_path(reporting), method: :post, class:"btn btn-outline-info" %>
+        <%= link_to t('.replace'), admin_replace_route_path(reporting), method: :post, data: {confirm: t('.irreversible')}, class:"btn btn-outline-secondary" %>
+        <%= link_to t('.fix'), admin_fix_route_path(reporting), method: :post, data: {confirm: t('.irreversible')}, class:"btn btn-outline-info" %>
       <% else %>
-      <%= link_to "Ripara e/o sostituisci il bene", admin_fix_route_path(reporting), method: :post, class:"btn btn-outline-success" %>
+      <%= link_to t('.fixorrepair'), admin_fix_route_path(reporting), method: :post, data: {confirm: t('.irreversible')}, class:"btn btn-outline-success" %>
       <% end %>
   </div>
 </div>

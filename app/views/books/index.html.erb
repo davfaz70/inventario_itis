@@ -1,0 +1,32 @@
+<h1> <%= t('.bookings') %> </h1>
+<hr>
+
+<div class="row">
+  <% @bookings.each do |booking| %>
+    <div class="col-md-3">
+      <div class="card h-100">
+        <div class="card-header">
+           <p class="card-title"> <%= image_tag(booking.tool.photo.thumb, alt:"Photo") %> <%= booking.tool.name %> </p>
+           <% if booking.confirmed == false %>
+             <div class="text-danger" >
+               <h5> <%= t('.notapproved') %> </h5>
+             </div>
+           <% else %>
+             <div class="text-success" >
+               <h5> <%= t('.approved') %> </h5>
+             </div>
+           <% end %>
+        </div>
+      <div class="card-body">
+      <p class="card-text">  <b>
+          dal: <%= " " + booking.start_date.strftime("%d/%m/%y %k:%M") + " " %>
+
+          al: <%= " " + booking.end_date.strftime("%d/%m/%y %k:%M") %>
+        </b> </p>
+        <p class="card-text"> <i> <%= t('tools.show.quantity') + " " + booking.quantity.to_s%> </i> </p>
+        <p class="card-text"> <%= booking.goal %> </p>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

@@ -35,6 +35,7 @@ scope '(:locale)' do
     resources :tools do
       resources :documentations, only: [:destroy]
       resources :photos, only: [:destroy]
+      resources :books, only: [:index]
     end
     resources :labs do
       resources :lab_technicals, only: [:new, :create, :edit, :update]
@@ -65,6 +66,7 @@ scope '(:locale)' do
   resources :categories, only: [:show, :create]
   resources :labs, only: [:show]
   resources :requests, only: [:new, :create]
+  resources :books, only: [:index]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: "home#index"

@@ -1,0 +1,11 @@
+<h1 align="center"> Un bene segnalato è stato riparato </h1>
+
+<p> Il <%= @reporting.created_at.strftime("%d/%m/%y") %> hai segnalato che <%= @reporting.quantity.to_s + " " + @reporting.tool.name %>
+  non <% if @reporting.quantity > 1 %> funzionavano <% else %> funzionava <% end %> correttamente nel laboratorio <%= @reporting.lab.name %>
+  per la segunte motivazione: </p>
+
+  <p> <%= @reporting.description %> </p>
+
+  <p> La informiamo che l'amministratore ha provveduto alla riparazione del bene </p>
+
+  <p>Cordiali saluti</p>

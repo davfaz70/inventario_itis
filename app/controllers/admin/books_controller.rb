@@ -1,5 +1,10 @@
 class Admin::BooksController < Admin::AdminController
-  before_action :set_book
+  before_action :set_book, only: [:update, :destroy]
+
+  def index
+    @tool = Tool.friendly.find(params[:tool_id])
+    @bookings = @tool.books
+  end
 
   def update
     @books = @booking.tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true)

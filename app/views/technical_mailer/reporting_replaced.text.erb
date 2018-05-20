@@ -1,0 +1,11 @@
+Un bene segnalato è stato sostituito
+
+Il <%= @reporting.created_at.strftime("%d/%m/%y") %> hai segnalato che <%= @reporting.quantity.to_s + " " + @reporting.tool.name %>
+ non funzionava correttamente nel laboratorio <%= @reporting.lab.name %>
+ per la segunte motivazione:
+
+<%= @reporting.description %>
+
+La informiamo che l'amministratore ha provveduto alla sostituzione del bene
+
+Cordiali saluti

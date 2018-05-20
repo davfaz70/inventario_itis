@@ -25,14 +25,14 @@ class Admin::RequestsController < Admin::AdminController
         if @request.prof.present?
           ProfMailer.request_approved(@request.prof, @request).deliver_later
         else
-          #TechnicalMailer.request_approved(@request.technical, @request).deliver_later
+          TechnicalMailer.request_approved(@request.technical, @request).deliver_later
         end
       elsif @request.money == true && @request.arrived == false
         AdminMailer.request_money(@request).deliver_later
         if @request.prof.present?
           ProfMailer.request_money(@request.prof, @request).deliver_later
         else
-          #TechnicalMailer.request_money(@request.technical, @request).deliver_later
+          TechnicalMailer.request_money(@request.technical, @request).deliver_later
         end
       end
       if @request.arrived == true
@@ -59,7 +59,7 @@ class Admin::RequestsController < Admin::AdminController
           if @request.prof.present?
             ProfMailer.tool_arrived(@request.prof, @tool).deliver_now
           else
-            #TechnicalMailer.tool_arrived(@request.technical, @tool).deliver_now
+            TechnicalMailer.tool_arrived(@request.technical, @tool).deliver_now
           end
           @request.destroy
 
@@ -83,17 +83,21 @@ class Admin::RequestsController < Admin::AdminController
       if @request.prof.present?
         ProfMailer.request_not_approved(@request.prof, @request).deliver_now
       else
-        #TechnicalMailer.request_not_approved(@request.technical, @request).deliver_now
+        TechnicalMailer.request_not_approved(@request.technical, @request).deliver_now
       end
     elsif current_admin.role == 1
       if @request.prof.present?
         ProfMailer.request_not_money(@request.prof, @request).deliver_now
       else
-        #TechnicalMailer.request_not_money(@request.technical, @request).deliver_now
+        TechnicalMailer.request_not_money(@request.technical, @request).deliver_now
       end
+    elsif current_admin.role == 2
+      flash[:danger] = t('.cannot')
+      redirect_to admin_dashboard_index_path
     end
     @request.destroy
-    redirect_to admin_requests_path
+    flash[:success]= t('.deleted')
+    redirect_to admin_dashboard_index_path
   end
 
   private
