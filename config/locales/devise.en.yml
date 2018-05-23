@@ -8,6 +8,8 @@ en:
         confirm: "Didn't receive confirmation instructions?"
         unlock: "Didn't receive unlock instructions?"
     confirmations:
+      new:
+        title: "Resend confirmation instructions"
       confirmed: "Your email address has been successfully confirmed."
       send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
       send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes."
@@ -36,12 +38,38 @@ en:
       failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
       success: "Successfully authenticated from %{kind} account."
     passwords:
+      edit:
+        title: "Change your password"
+        new: "New password"
+        confirm: "Confirm password"
+        submit: "Change my password"
+      new:
+        title: "Forgot your password?"
+        submit: "Send me reset password instructions"
       no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
       send_instructions: "You will receive an email with instructions on how to reset your password in a few minutes."
       send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
       updated: "Your password has been changed successfully. You are now signed in."
       updated_not_active: "Your password has been changed successfully."
     registrations:
+      edit:
+        title: "Edit"
+        waiting: "Currently waiting confirmation for:"
+        blank: "leave blank if you don't want to change it"
+        characters: "characters minimum"
+        confirm: "Password confirmation"
+        current: "Current password"
+        need: "we need your current password to confirm your changes"
+        update: "Update"
+        cancel: "Cancel my account"
+        unhappy: "Unhappy"
+      new:
+        technical: "Technical"
+        role: "Choose role"
+        rolezero: "Headmaster"
+        name: "Name"
+        surname: "Surname"
+        google: "Sign in with Google"
       destroyed: "Bye! Your account has been successfully cancelled. We hope to see you again soon."
       signed_up: "Welcome! You have signed up successfully."
       signed_up_but_inactive: "You have signed up successfully. However, we could not sign you in because your account is not yet activated."
@@ -50,6 +78,8 @@ en:
       update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address."
       updated: "Your account has been updated successfully."
     sessions:
+      new:
+        remember: "remember me"
       signed_in: "Signed in successfully."
       signed_out: "Signed out successfully."
       already_signed_out: "Signed out successfully."

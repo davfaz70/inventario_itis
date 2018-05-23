@@ -79,6 +79,7 @@ en:
         edit: "Edit"
         language: "Edit in other language"
         assign: "Lab's tools"
+        assigntech: "Lab's technicals"
         confirm: "Are you sure?"
         new: "New lab"
       form:
@@ -105,6 +106,9 @@ en:
         edited: "Category successfully updated"
       destroy:
         delete: "Category successfully destroyed"
+    lab_technicals:
+      new: "New relationship between technical and lab"
+      edit: "Edit relationship between technical and lab"
     dashboard:
       index:
         newprof: "New prof"
@@ -148,7 +152,9 @@ en:
     quantity: "The quantity can not be negative"
     photos: "Can not save more of 4 photos"
     labs: "A single tool can not exist in multiple laboratories"
+    nolabs: "You must assign at least one laboratory"
     show:
+      verify: "Check availability"
       warning: "Warning!"
       technical: "Technical:"
       goal: "Goal"
@@ -182,9 +188,19 @@ en:
   tempbook:
     errorfd: "The start date must be before the end date, even the children know this"
     errorpast: "You can not reserve a tool in the past"
+    plus: "You can not book more tools than there are actually"
   tempbooks:
     new:
-      impossible: "This tool can not be booked"
+      verify: "Check availability of"
+      go: "Go"
+    avaiable:
+      periods: "In this period"
+      periodp: "In this period"
+      tool: "tool is available"
+      tools: "tools are available"
+    create:
+      looking: "See reservations better. During this time"
+      lookings: "See reservations better. During this time"
   posts:
     create:
       created: "Comment successfully created"

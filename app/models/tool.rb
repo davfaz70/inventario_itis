@@ -1,15 +1,18 @@
 class ToolValidator < ActiveModel::Validator
   def validate(record)
+
     if record.identifier.present? && record.quantity.present?
       if record.quantity > 1
         record.errors[:base] << I18n.t('tools.identifier')
       end
     end
+
     if record.quantity.present?
       if record.quantity < 0
         record.errors[:base] << I18n.t('tools.quantity')
       end
     end
+
   end
 end
 
@@ -26,8 +29,9 @@ class Tool < ApplicationRecord
   has_and_belongs_to_many :labs
   validates_each :labs do |tool, attr, value|
     if tool.quantity.present?
-     tool.errors.add attr, I18n.t('.tools.labs') if tool.labs.size > tool.quantity
+      tool.errors.add attr, I18n.t('.tools.labs') if tool.labs.size > tool.quantity
     end
+    tool.errors.add attr, I18n.t('.tools.nolabs') if tool.labs.size < 1
   end
   has_and_belongs_to_many :categories
   has_many :tempbooks

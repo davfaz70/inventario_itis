@@ -1,6 +1,9 @@
 <h1> <%= t('admin.shared.menu.labs') %> </h1>
 <hr>
+<%= link_to t('.new'), new_admin_lab_path, class:"btn btn-primary btn-block" %>
+<hr>
 <div class="row">
+
 <% @labs.each do |lab| %>
 
 <div class="col-lg-3 col-sm-4 portfolio-item">
@@ -19,7 +22,7 @@
 
         <%= link_to fa_icon('wrench') + " " + fa_icon('plus'), admin_assign_lab_route_path(lab), class:"btn btn-success", toggle:"tooltip", placement:"top", title: t('.assign')%>
 
-        <%= link_to fa_icon('users') + " " + fa_icon('plus'), new_admin_lab_lab_technical_path(lab), class:"btn btn-info", toggle:"tooltip", placement:"top", title: "Assign technical" %>
+        <%= link_to fa_icon('users') + " " + fa_icon('plus'), new_admin_lab_lab_technical_path(lab), class:"btn btn-info", toggle:"tooltip", placement:"top", title: t('.assigntech') %>
 
 
   </div>
@@ -32,5 +35,3 @@
 <div class="paginate-container">
 <%= paginate @labs %>
 </div>
-<hr>
-<%= link_to t('.new'), new_admin_lab_path, class:"btn btn-primary btn-block" %>

@@ -1,0 +1,54 @@
+<h1> <%= t('.verify') %> <small> <%= @tool.name %> </small> </h1>
+<hr>
+
+<%= form_for ([@tool, @tempbook]), :url => {:controller => "tempbooks", :action => "avaiable"} do |t|  %>
+
+  <% if @tempbook.errors.any? %>
+    <div id="error_explanation">
+      <% @tempbook.errors.full_messages.each do |message| %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <%= message %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-lg-6 ">
+      <div class="form-group" >
+        <%=t.label t('tools.show.start') %>
+        <%=t.datetime_local_field :start_date, class:"form-control"%>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="form-group">
+        <%=t.label t('tools.show.end') %>
+        <%=t.datetime_local_field :end_date, class:"form-control"%>
+      </div>
+    </div>
+  </div>
+
+<script>
+var tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
+var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0,-1);
+var localISOTimeWithoutSeconds = localISOTime.slice(0,16);
+
+// select the "datetime-local" input to set the default value on
+var dtlInput = document.querySelector('input[name="tempbook[start_date]"]');
+var dtlInputend = document.querySelector('input[name="tempbook[end_date]"]');
+
+// set it and forget it ;)
+dtlInput.value = localISOTime.slice(0,16);
+dtlInputend.value = localISOTime.slice(0,16);
+</script>
+
+  <%= hidden_field(:tempbook, :prof_id, :value => current_prof.id) %>
+  <%= hidden_field(:tempbook, :goal, :value => "v") %>
+  <%= hidden_field(:tempbook, :quantity, :value => 1) %>
+  <%= hidden_field(:tempbook, :lab_id, :value => @tool.labs.first.id) %>
+  <br>
+  <%= t.submit t('.go'), class:"btn btn-info btn-block"%>
+<% end %>

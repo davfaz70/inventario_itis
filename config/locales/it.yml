@@ -57,6 +57,7 @@ it:
         edit: "Modifica"
         language: "Scrivi in un'altra lingua"
         assign: "Assegna strumenti"
+        assigntech: "Assegna tecnici"
         confirm: "Sei sicuro?"
         new: "Nuovo laboratorio"
       form:
@@ -71,6 +72,9 @@ it:
         edited: "Laboratorio aggiornato con successo"
       destroy:
         delete: "Laboratorio eliminato con successo"
+    lab_technicals:
+      new: "Nuova assegnazione tecnico-laboratorio"
+      edit: "Modifica assegnazione tecnico-laboratorio"
     categories:
       index:
         new: "Nuova categoria"
@@ -127,7 +131,9 @@ it:
     quantity: "La quantità non può essere negativa"
     photos: "Non è possibile salvare pù di 4 foto"
     labs: "Un singolo strumento non può esistere in più laboratori"
+    nolabs: "Devi assegnare almeno un laboratorio"
     show:
+      verify: "Verificane la disponibilità"
       warning: "Attenzione!"
       technical: "Tecnico:"
       goal: "Motivazione"
@@ -161,9 +167,19 @@ it:
   tempbook:
     errorfd: "La data di inizio deve essere prima di quella di fine, lo sanno anche i bambini"
     errorpast: "Non puoi prenotare uno strumento nel passato"
+    plus: "Non puoi prenotare più strumenti di quanti effettivamente ce ne sono"
   tempbooks:
     new:
-      impossible: "Non è possibile prenotare questo strumento"
+      verify: "Verifica la disponibilità di"
+      go: "Verifica"
+    avaiable:
+      periods: "In questo periodo è disponibile"
+      periodp: "In questo periodo sono disponibili"
+      tool: "strumento"
+      tools: "strumenti"
+    create:
+      looking: "Guarda meglio le prenotazioni. In questo periodo è disponibile"
+      lookings: "Guarda meglio le prenotazioni. In questo periodo sono disponibili"
   posts:
     create:
       created: "Commento creato con successo"
@@ -267,6 +283,9 @@ it:
       reporting:
         one: "Segnalazione"
         other: "Segnalazioni"
+      technical:
+        one: "Tecnico"
+        other: "Tecnici"
     attributes:
       tool:
         name: "Nome"
@@ -292,6 +311,12 @@ it:
       reporting:
         description: "Descrizione"
         quantity: "Quantità"
+      technical:
+        name: "Nome"
+        surname: "Cognome"
+      prof:
+        name: "Nome"
+        surname: "Cognome"
     errors:
       messages:
         extension_white_list_error: "Il file non ha una estensione corretta"

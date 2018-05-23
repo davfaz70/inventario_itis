@@ -8,7 +8,7 @@ class MyValidator < ActiveModel::Validator
       record.errors[:base] << I18n.t('tempbook.errorpast')
     end
     if record.quantity > record.tool.quantity
-      record.errors[:base] << "Non puoi prenotare più strumenti di quanti effettivamente ce ne sono"
+      record.errors[:base] << I18n.t('tempbook.plus')
     end
     if record.quantity < 0
       record.errors[:base] <<I18n.t('tools.quantity')

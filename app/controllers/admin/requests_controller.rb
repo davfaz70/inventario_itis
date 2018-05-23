@@ -41,6 +41,7 @@ class Admin::RequestsController < Admin::AdminController
         @tool.name = @request.name
         @tool.description = @request.description
         @tool.quantity = @request.quantity
+        @tool.labs << Lab.first
         if @tool.save
           @request.photos.each do |photo|
             @photo = @tool.photos.build

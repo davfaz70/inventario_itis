@@ -12,6 +12,8 @@ it:
         confirm: "Non hai ricevuto le istruzioni di conferma?"
         unlock: "Non hai ricevuto le istruzioni di sblocco?"
     confirmations:
+      new:
+        title: "Reinvio delle istruzioni di conferma"
       confirmed: "Il tuo account è stato correttamente confermato."
       send_instructions: "Entro qualche minuto riceverai un messaggio email con le istruzioni per confermare il tuo account."
       send_paranoid_instructions: "Se il tuo indirizzo email esiste nel nostro database, entro qualche minuto riceverai un messaggio email con le istruzioni per confermare il tuo account."
@@ -36,12 +38,38 @@ it:
       failure: 'Non è stato possibile autenticarti come %{kind} perché "%{reason}".'
       success: "Autenticato con successo dall'account %{kind}."
     passwords:
+      edit:
+        title: "Cambia la tua password"
+        new: "Nuova password"
+        confirm: "Conferma password"
+        submit: "Cambia la mia password"
+      new:
+        title: "Hai dimenticato la password?"
+        submit: "Inviami le istruzioni per il recupero"
       no_token: "Non è possibile accedere a questa pagina se non provieni da una e-mail di ripristino della password. Se provieni da una e-mail di ripristino della password, assicurarti di utilizzare l'URL completo."
       send_instructions: "Entro qualche minuto riceverai un messaggio email con le istruzioni per reimpostare la tua password."
       send_paranoid_instructions: "Se il tuo indirizzo email esiste nel nostro database, entro qualche minuto riceverai un messaggio email con le istruzioni per ripristinare la password."
       updated: "La tua password è stata cambiata correttamente. Ora sei collegato."
       updated_not_active: "La tua password è stata cambiata correttamente."
     registrations:
+      edit:
+        title: "Aggiorna"
+        waiting: "Stiamo aspettando la conferma per:"
+        blank: "lascia il campo vuoto se non intendi modificarla"
+        characters: "caratteri minimo"
+        confirm: "Conferma password"
+        current: "Attuale password"
+        need: "abbiamo bisogno che tu confermi le tue modifiche con la tua attuale password"
+        update: "Aggiorna"
+        cancel: "Cancella il mio account"
+        unhappy: "Insoddisfatto"
+      new:
+        technical: "Tecnico"
+        role: "Seleziona il tuo ruolo"
+        rolezero: "Preside"
+        name: "Nome"
+        surname: "Cognome"
+        google: "Accedi con Google"
       destroyed: "Arrivederci! Il tuo account è stato cancellato. Speriamo di rivederti presto."
       signed_up: "Benvenuto! Ti sei registrato correttamente."
       signed_up_but_inactive: "Ti sei registrato correttamente. Tuttavia non puoi effettuare l'accesso perché il tuo account non è stato ancora attivato."
@@ -50,6 +78,8 @@ it:
       update_needs_confirmation: "Il tuo account è stato aggiornato, tuttavia è necessario verificare il tuo nuovo indirizzo email. Entro qualche minuto riceverai un messaggio email con le istruzioni per confermare il tuo nuovo indirizzo email."
       updated: "Il tuo account è stato aggiornato."
     sessions:
+      new:
+        remember: "ricordami"
       signed_in: "Accesso effettuato con successo."
       signed_out: "Sei uscito correttamente."
       already_signed_out: "Sei uscito correttamente."

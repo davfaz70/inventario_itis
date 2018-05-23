@@ -1,5 +1,9 @@
-<p>Welcome <%= @email %>!</p>
+<p>Benvenuto/a <%= @email %>!</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>Puoi confermare il tuo account cliccando sul link qua sotto:</p>
 
 <p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+
+<p> <b> Importante: </b> &nbsp Se non hai mai richiesto un account su questo portale, <u> non </u> cliccare sul link, o
+  potresti autorizzare qualche malintenzionato a usare questo indirizzo email per effettuare operazioni sul portale, piuttosto
+  cancella immediatamente questa email </p>

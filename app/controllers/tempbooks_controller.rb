@@ -2,6 +2,35 @@ class TempbooksController < ApplicationController
   before_action :authenticate_prof!, only: [:new]
   before_action :authorized_prof, only: [:create]
 
+  def new
+    @tool = Tool.friendly.find(params[:tool_id])
+    @tempbook = @tool.tempbooks.build
+  end
+
+  def avaiable
+    @tool = Tool.friendly.find(params[:tool_id])
+    @tempbook = @tool.tempbooks.build(tempbook_params)
+    if @tempbook.save
+      cont = 0
+      @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true).each_with_index do |b, i|
+        if (@tempbook.start_date..@tempbook.end_date).overlaps?(b.start_date..b.end_date)
+          cont = cont + b.quantity
+        end
+      end
+      max =  @tool.quantity - cont
+        if max == 1
+          flash[:info]="#{t('.periods')} #{max} #{t('.tool')}"
+        else
+          flash[:info]="#{t('.periodp')} #{max} #{t('.tools')}"
+        end
+      @tempbook.destroy
+      redirect_to tool_path(@tool)
+    else
+      render :new
+    end
+  end
+
+
   def create
     @tool = Tool.friendly.find(params[:tool_id])
     @tempbook = @tool.tempbooks.build(tempbook_params)
@@ -16,9 +45,9 @@ class TempbooksController < ApplicationController
       if cont > @tool.quantity
         max = @tool.quantity - cont + @tempbook.quantity
         if max == 1
-          flash[:danger]="Guarda meglio le prenotazioni, in questo periodo è disponibile #{max} strumento"
+          flash[:danger]="#{t('.looking')} #{max} #{t('tempbooks.avaiable.tool')}"
         else
-          flash[:danger]="Guarda meglio le prenotazioni, in questo periodo sono disponibili #{max} strumenti"
+          flash[:danger]="#{t('.lookings')} #{max} #{t('tempbooks.avaiable.tools')}"
         end
         @tempbook.destroy
         redirect_to tool_path(@tool)

@@ -1,0 +1,98 @@
+<h1> <%= t('technical.requests.index.requests') %> <%= link_to t('tools.index.newrequest'), new_request_path, class: "btn btn-outline-primary" %></h1>
+<hr>
+
+
+<div class="row">
+
+  <div class="panel panel-default">
+    <div class="card-header">
+      <ul class="nav nav-pills">
+        <li class="active"> <a href="#notapproved" data-toggle="tab" class="btn btn-warning"> <%= t('technical.requests.index.notapproved') %> </a> </li> &nbsp &nbsp
+        <li> <a href="#approved" data-toggle="tab" class="btn btn-primary"> <%= t('technical.requests.index.approved') %> </a> </li> &nbsp &nbsp
+        <li> <a href="#money" data-toggle="tab" class="btn btn-success"> <%= t('technical.requests.index.money') %> </a> </li>
+      </ul>
+    </div>
+  </div>
+</div>
+                      <!-- /.panel-heading -->
+    <div class="panel-body">
+      <div class="tab-content">
+        <div class="tab-pane fade in active show" id="notapproved">
+          <h1> <%= t('technical.requests.index.notapproved') %> </h1>
+          <hr>
+
+          <div class="row">
+
+          <% @notapproved.each do |request| %>
+          <div class="col-md-3">
+            <div class="card">
+              <div class="card-header">
+                <%= image_tag(request.photo.thumb, alt: "Photo") %> <h5 class="card-title"><%= request.name %> </h5>
+              </div>
+              <div class="card-body">
+                <p class="card-text text-truncate"><%= request.description %></p>
+                <p class="card-text text-truncate"><%= request.quantity %></p>
+                <p class="card-text text-truncate"><%= request.goal %></p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <%= link_to fa_icon('eye') + " " + t('tools.index.show'), request_path(request), class:"list-group-item list-group-item-warning" %>
+              </ul>
+            </div>
+            </div>
+          <% end %>
+
+      </div>
+
+        </div>
+
+        <div class="tab-pane fade" id="approved">
+          <h1> <%= t('technical.requests.index.approved') %> </h1>
+          <hr>
+          <div class="row">
+
+          <% @approved.each do |request| %>
+          <div class="col-md-3">
+            <div class="card">
+              <div class="card-header">
+                <%= image_tag(request.photo.thumb, alt: "Photo") %> <h5 class="card-title"><%= request.name %> </h5>
+              </div>
+              <div class="card-body">
+                <p class="card-text text-truncate"><%= request.description %></p>
+                <p class="card-text text-truncate"><%= request.quantity %></p>
+                <p class="card-text text-truncate"><%= request.goal %></p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <%= link_to fa_icon('eye') + " " + t('tools.index.show'), request_path(request), class:"list-group-item list-group-item-primary" %>
+              </ul>
+            </div>
+          </div>
+          <% end %>
+</div>
+        </div>
+
+        <div class="tab-pane fade" id="money">
+          <h1> <%= t('technical.requests.index.money') %> </h1>
+          <hr>
+          <div class="row">
+          <% @money.each do |request| %>
+          <div class="col-md-3">
+            <div class="card">
+              <div class="card-header">
+                <%= image_tag(request.photo.thumb, alt: "Photo") %> <h5 class="card-title"><%= request.name %> </h5>
+              </div>
+              <div class="card-body">
+                <p class="card-text text-truncate"><%= request.description %></p>
+                <p class="card-text text-truncate"><%= request.quantity %></p>
+                <p class="card-text text-truncate"><%= request.goal %></p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <%= link_to fa_icon('eye') + " " + t('tools.index.show'), request_path(request), class:"list-group-item list-group-item-success" %>
+              </ul>
+            </div>
+          </div>
+          <% end %>
+        </div>
+        </div>
+
+      </div>
+    </div>

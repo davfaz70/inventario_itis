@@ -16,6 +16,16 @@ class RequestsController < ApplicationController
     end
   end
 
+  def index
+    @notapproved = current_prof.requests.where("approved = 'f'")
+    @approved = current_prof.requests.where("approved = 't' AND money = 'f'")
+    @money = current_prof.requests.where("money = 't'")
+  end
+
+  def show
+    @request = Request.find(params[:id])
+  end
+
   private
 
   def request_params

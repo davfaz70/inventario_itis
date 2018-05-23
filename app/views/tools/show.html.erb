@@ -41,6 +41,7 @@
       <% image_tag("generico.png", :alt => "toolphoto.jpeg", class:"img-fluid") %>
     <% end %>
     <br>
+    <%= link_to t('.verify'), new_tool_tempbook_path(@tool), class: "btn btn-info btn-block" %>
     <br>
     <% if prof_signed_in? && @tool.quantity > 0%>
       <div id="prenota">
