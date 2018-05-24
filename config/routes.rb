@@ -72,6 +72,8 @@ Rails.application.routes.draw do
     resources :requests, only: [:new, :create, :index, :show]
     resources :books, only: [:index]
 
+    get 'privacy', :to => 'gdpr#privacy'
+
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
     root to: "home#index"
     resources :schools

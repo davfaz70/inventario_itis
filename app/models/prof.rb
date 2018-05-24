@@ -1,3 +1,13 @@
+class AgreeValidator < ActiveModel::Validator
+  def validate(record)
+
+    if record.agree == false
+      record.errors[:base] << I18n.t('devise.agree')
+    end
+
+  end
+end
+
 class Prof < ApplicationRecord
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable
@@ -15,6 +25,10 @@ class Prof < ApplicationRecord
   before_save  :name
   before_save  :surname
   default_scope -> {order(created_at: :desc)}
+
+  validates_with AgreeValidator
+
+
   def name=(s)
     write_attribute(:name, s.to_s.titleize) # The to_s is in case you get nil/non-string
   end

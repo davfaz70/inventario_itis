@@ -48,11 +48,11 @@ class Admin::DashboardController < Admin::AdminController
     end
 
     if @technical.save
-      #if @technical.authorized == true
-        #TechnicalMailer.authorized(@technical).deliver_later
-      #else
-        #TechnicalMailer.unauthorized(@technical).deliver_later
-    #  end
+      if @technical.authorized == true
+        TechnicalMailer.authorized(@technical).deliver_later
+      else
+        TechnicalMailer.unauthorized(@technical).deliver_later
+      end
       flash[:success]="ok"
       redirect_back(fallback_location:  admin_dashboard_index_path)
     else
@@ -64,6 +64,7 @@ class Admin::DashboardController < Admin::AdminController
 
   def deleteprof
     @prof = Prof.find(params[:id])
+    ProfMailer.destroyed(@prof).deliver_now
     @prof.destroy
     redirect_back(fallback_location:  admin_dashboard_index_path)
   end

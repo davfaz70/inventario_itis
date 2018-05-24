@@ -26,7 +26,7 @@
       <div class= "col-md-7">
       <%= form_for ([:admin, @request]) do |t|  %>
         <%= hidden_field(:request, :approved, :value => true) %>
-        <%= t.submit "Conferma Richiesta", data: {confirm: t('admin.tools.index.confirm')}, class: "btn btn-warning btn-block" %>
+        <%= t.submit t('admin.dashboard.index.requestconfirm'), data: {confirm: t('admin.tools.index.confirm')}, class: "btn btn-warning btn-block" %>
       <% end %>
     </div>
     <div clas="col-md-5">
@@ -38,7 +38,7 @@
       <div class= "col-md-7">
       <%= form_for ([:admin, @request]) do |t|  %>
         <%= hidden_field(:request, :money, :value => true) %>
-        <%= t.submit "Conferma Richiesta", data: {confirm: t('admin.tools.index.confirm')}, class: "btn btn-warning btn-block" %>
+        <%= t.submit t('admin.dashboard.index.requestconfirm'), data: {confirm: t('admin.tools.index.confirm')}, class: "btn btn-warning btn-block" %>
       <% end %>
     </div>
     <div clas="col-md-5">
@@ -50,7 +50,7 @@
       <div class= "col-md-7">
       <%= form_for ([:admin, @request]) do |t|  %>
         <%= hidden_field(:request, :arrived, :value => true) %>
-        <%= t.submit "Conferma Richiesta", data: {confirm: t('admin.tools.index.confirm')}, class: "btn btn-warning btn-block" %>
+        <%= t.submit t('admin.dashboard.index.requestconfirm'), data: {confirm: t('admin.tools.index.confirm')}, class: "btn btn-warning btn-block" %>
       <% end %>
     </div>
     <div clas="col-md-5">

@@ -14,49 +14,10 @@
         </div>
         <div class="col-sm-4">
           <h2 class="mt-4"> <%= t('.developer') %> </h2>
-          <div class="LI-profile-badge" width="100%" data-version="v1" data-size="medium" data-locale="<%= I18n.locale %>" data-type="horizontal" data-theme="light" data-vanity="davide-fazio"><a class="LI-simple-link" href='https://it.linkedin.com/in/davide-fazio?trk=profile-badge'>Davide F.</a></div>
+          <div class="LI-profile-badge" width="100%" data-version="v1" data-size="medium" data-locale="<%= I18n.locale %>" data-type="vertical" data-theme="light" data-vanity="davide-fazio"><a class="LI-simple-link" href='https://it.linkedin.com/in/davide-fazio?trk=profile-badge'>Davide F.</a></div>
         </div>
       </div>
       <br>
-      <!-- /.row -->
-
-      <div class="row">
-        <div class="card-group">
-        <div class="col-sm-6 my-6">
-          <div class="card">
-            <%=image_tag("silhouette.jpg", :width => 300, :height => 200, :alt => "Docente", class:"card-img-top")%>
-            <div class="card-body">
-              <h4 class="card-title"><%= t('.professors') %></h4>
-              <p class="card-text"><%= t('.account') %></p>
-            </div>
-            <div class="card-footer">
-              <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <%= t('.sign') %>
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <%= link_to  t('.up'), new_prof_registration_path, class:"dropdown-item"%>
-                  <%= link_to  t('.in'), new_prof_session_path, class:"dropdown-item"%>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-6 my-6">
-          <div class="card">
-            <%=image_tag("tools.jpeg", :width => 300, :height => 200, :alt => "Tools", class:"card-img-top")%>
-            <div class="card-body">
-              <h4 class="card-title"><%= t('shared.menu.tools')%></h4>
-              <p class="card-text"> <%= t('.toold') %> </p>
-            </div>
-            <div class="card-footer">
-              <%= link_to t('shared.menu.tools'), tools_path, class:"btn btn-secondary" %>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
       <!-- /.row -->
 
 </div>

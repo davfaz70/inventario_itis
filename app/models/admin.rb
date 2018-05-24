@@ -1,5 +1,6 @@
 class AdminValidator < ActiveModel::Validator
   def validate(record)
+
     if Admin.exists?(role: 0) && record.role == 0
       if record.email != Admin.where("role = 0").first.email
         record.errors[:base] << I18n.t('admins.schoolauthority')
@@ -13,6 +14,11 @@ class AdminValidator < ActiveModel::Validator
         record.errors[:base] << I18n.t('admins.ata')
       end
     end
+
+    if record.agree == false
+      record.errors[:base] << I18n.t('devise.agree')
+    end
+
   end
 end
 class Admin < ApplicationRecord

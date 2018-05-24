@@ -134,6 +134,8 @@ en:
         replace: "Replace the tool"
         fix: "Fix the tool"
         fixorrepair: "Replace or fix the tool"
+        requestconfirm: "Confirm request"
+        delete: "Delete"
     update:
       updated: "Purchase request approved"
     destroy:
@@ -213,8 +215,8 @@ en:
     index:
       header: "Inventory of "
       do: "What we do"
-      first: "Our goal was to create a web application that can manage the school inventory so that you can have more time to devote to your projects and your students, what you see is our success in what we have designed"
-      second: "It would not make sense to create just a window, now you can book an instrument when you want, this site is designed to manage all your bookings, warn you when it's time to return the item and much more"
+      first: "Our goal is to create a web application that can manage the school inventory, so you can have more time to devote to your projects and your students, what you see is our success in what we have designed."
+      second: "It would not make sense to create just a window, now you can book a tool when you want, this site is designed to manage all your reservations, warn you when it's time to return the item and much more."
       third: "If what you are looking for is not there? No problem! We have created a function on purpose that allows you to make a purchase request to the school, what can we do more to simplify the creation of your projects?"
       developer: "Developer"
       professors: "Professors"
@@ -237,6 +239,31 @@ en:
       bookings: "Bookings made by you"
       notapproved: "Not approved"
       approved: "Approved"
+  gdpr:
+    privacy:
+      infoprivacy: "Privacy Disclaimer"
+      whoweare: "Who are we and why are we providing this document?"
+      whofirst: "The web application in question is an automatic system created and managed by Fazio Davide (in the following 'The owner' or 'The developer'), to ensure that the processing of Personal Data takes place in full compliance with the European Regulations (GDPR), this document is submitted with all the information concerning the way in which the system uses your Personal Data."
+      whomanagedata: "Who will process your Personal Data?"
+      managefirst: "The data you provide us will not be processed directly by the owner, but by the automatic system (this means that the developer can not in any way view, modify or delete the data that you will enter on this web platform)."
+      managesecond: "Considering this, it will treat your data what is classified in article 4 to point 7 of the GDPR as a service, they will be managed in a totally automatic way."
+      contact: "Who can you contact?"
+      contactfirst: "For questions you can write to the address "
+      finality: "For what purposes will your Personal Data be used?"
+      finalityfirst: "In order to allow your registration on the Website, sending notifications by email and verification of identity, the Service needs to collect some of your Personal Data, as requested in the registration form. The service will manage your Personal Data in a totally automatic way, allowing you to access your account, receive notifications, make reservations and use all the other services. Your Personal Data will not be used in any way for direct or indirect marketing purposes or for profiling purposes and will not be disclosed to third parties."
+      finalitysecond: "In the case of professors and laboratory technicians the following Personal Data (email, name and surname), will be visible to the admin (Headmaster, DSGA, ATA Administrator) for the identification of the identity."
+      finalitythird: "To allow the Service to carry out the above processing activities it is necessary to fill in all the fields on the form. In the absence of only one of these data, it will not be possible to proceed with the provision of services."
+      finalityfourth: "In the case of professors, if you decide to access via oAuth (ie through social profile), the collection of your personal data will be carried out by the Data Controller at third parties or at the manager of the social you have used to access the Internet sites."
+      time: "How long will your Personal Data be processed?"
+      timefirst: "In accordance with article 5, paragraph 1, point e) of the GDPR which states 'Personal Data may be stored for longer periods provided that they are processed solely for the purpose of archiving in the public interest', your Personal Data will be processed until the termination of the existing contractual relationship between you and the Service (that is until you delete your account) without prejudice to a further retention period which may be imposed by law as provided for by Recital 65 of the GDPR."
+      revoke: "Is it possible to revoke the consent given and how?"
+      revokefirst: "As foreseen by the GDPR, if you have given your consent to the processing of your Personal Data for one or more purposes for which you have been requested, you can, at any time, revoke it without prejudice to the laicity of treatment based on consent given before revocation."
+      revokesecond: "To delete personal data from the web portal, go to the 'account' section and click on the 'cancel my account' button. Since this cancellation does not affect the laicity of the processing carried out prior to the revocation, it is possible that the Data concerning some services, such as reservations, remain in the database in accordance with point E of this disclosure."
+      where: "Where will your Personal Data be processed?"
+      wherefirst: "Your Personal Data will be processed within the territory of the European Union."
+
+
+
 
   technical:
     shared:

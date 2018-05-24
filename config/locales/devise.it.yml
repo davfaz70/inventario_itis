@@ -6,6 +6,7 @@
 
 it:
   devise:
+    agree: "Devi accettare le Norme sulla Privacy"
     shared:
       links:
         forgot: "Hai dimenticato la password?"
@@ -63,7 +64,10 @@ it:
         update: "Aggiorna"
         cancel: "Cancella il mio account"
         unhappy: "Insoddisfatto"
+        confirmdelete: "Sei sicuro?"
       new:
+        agree: "Ho letto e accetto le "
+        privacy: "norme sulla privacy"
         technical: "Tecnico"
         role: "Seleziona il tuo ruolo"
         rolezero: "Preside"

@@ -112,6 +112,8 @@ it:
         replace: "Sostituisci il bene"
         fix: "Ripara il bene"
         fixorrepair: "Ripara o sostituisci il bene"
+        requestconfirm: "Conferma richiesta"
+        delete: "Elimina"
     requests:
       update:
         updated: "Richiesta di acquisto confermata"
@@ -192,8 +194,8 @@ it:
     index:
       header: "Inventario "
       do: "Cosa facciamo"
-      first: "Il nostro obiettivo era quello di creare un'applicazione web in grado di gestire l'inventario scolastico, in modo che tu possa avere più tempo da dedicare ai tuoi progetti e ai tuoi studenti, quello che vedi è il nostro successo in ciò che abbiamo ideato"
-      second: "Non avrebbe senso creare solo una vetrina, adesso puoi prenotare uno strumento quando vuoi tu, questo sito è progettato per gestire tutte le tue prenotazioni, avvisarti quando è il momento di restituire l'oggetto e molto altro"
+      first: "Il nostro obiettivo è quello di creare un'applicazione web in grado di gestire l'inventario scolastico, in modo che tu possa avere più tempo da dedicare ai tuoi progetti e ai tuoi studenti, quello che vedi è il nostro successo in ciò che abbiamo ideato."
+      second: "Non avrebbe avuto senso creare solo una vetrina, adesso puoi prenotare uno strumento quando vuoi tu, questo sito è progettato per gestire tutte le tue prenotazioni, avvisarti quando è il momento di restituire l'oggetto e molto altro."
       third: "E se quello che cerchi non c'è? Nessun problema! Abbiamo creato apposta una funzione che ti permette di fare una richiesta d'acquisto alla scuola, cosa possiamo fare di più per semplificarti la creazione dei tuoi progetti? "
       developer: "Sviluppatore"
       professors: "Docenti"
@@ -216,6 +218,28 @@ it:
       bookings: "Prenotazioni fatte da te"
       notapproved: "Non approvata"
       approved: "Approvata"
+  gdpr:
+    privacy:
+      infoprivacy: "Informativa Privacy"
+      whoweare: "Chi siamo e perché ti stiamo fornendo questo documento?"
+      whofirst: "L'applicazione web in questione è un sistema automatico creato e gestito da Fazio Davide (nel seguto 'Il titolare' o 'Lo sviluppatore'), per garantirti che il trattamento dei Dati Personali avvenga nel pieno rispetto delle Nomative Europee (GDPR), ti viene sottoposto questo documento con tutte le informazioni riguardanti il modo in cui il sistema usa i tuoi Dati Personali."
+      whomanagedata: "Chi tratterà i tuoi Dati Personali?"
+      managefirst: "I dati che ci fornirai non saranno trattati direttamente dal titolare, ma dal sistema automatico (ciò significa che lo sviluppatore non potrà in alcun modo visualizzare, modificare o cancellare i dati che immetterai su questa piattaforma web)."
+      managesecond: "Alla luce di questo, tratterà i tuoi dati ciò che nell'articolo 4 al punto 7 del GDPR viene classificato come servizio, verrano inoltre gestiti in maniera totalmente automatica."
+      contact: "A chi puoi rivolgerti?"
+      contactfirst: "Per chiarimenti o domande puoi scrivere all'indirizzo "
+      finality: "Per quali finalità saranno utilizzati i tuoi Dati Personali?"
+      finalityfirst: "Al fine di consentire la tua registrazione sul Sito Internet, l'invio di notifiche per email e la verifica dell'identità, il Servizio ha necessità di raccogliere alcuni dei tuoi Dati Personali, così come richiesto nel modulo di iscrizione. Il servizio gestirà in maniera totalmente automatica i tuoi Dati Personali consentendoti di accedere al tuo account, ricevere notifiche, effettuare prenotazioni e usufruire di tutti gli altri servizi. I tuoi Dati Personali non saranno in alcun modo usati per scopi di marketing diretto o indiretto o con finalità di profilazione né saranno divulgati a Terzi."
+      finalitysecond: "Nel caso di professori e tecnici di laboratorio i seguenti Dati Personali (email, nome e cognome), saranno visibili agli admin (Preside, DSGA, Amministratore ATA) per l'accertamento dell'identità."
+      finalitythird: "Per consentire al Servizio di effettuare le attività di Trattamento di cui sopra è necessario compilare tutti i campi del modulo. In mancanza di uno solo di questi dati non sarà possibile procedere all'erogazione dei servizi."
+      finalityfourth: "Nel caso dei professori, qualora decidessi di accedere tramite oAuth (cioè tramite profilo Social), la raccolta dei tuoi dati pesonali sarà effettuata dal Titolare del Trattamento presso terzi ossia presso il gestore del social che hai utiizzato per accedere ai Siti Internet."
+      time: "Per quanto tempo saranno trattati i tuoi Dati Personali?"
+      timefirst: "In conformità all'articolo 5, comma 1, punto e) del GDPR che afferma 'I Dati Personali possono essere conservati per periodi più lunghi a condizione che siano trattati esclusivamente a fini di archiviazione nel pubblico interesse', i tuoi Dati Personali saranno trattati fino alla cessazione dei rapporti contrattuali in essere tra te e il Servizio (cioè fino a che non eliminerai il tuo account) fatto salvo un ulteriore periodo di conservazione che potrà essere imposto da norme di legge come previsto dal Considerando 65 del GDPR."
+      revoke: "È possibile revocare il consenso prestato ed in che modo?"
+      revokefirst: "Come previsto dal GDPR, qualora tu abbia prestato il tuo consenso al Trattamento dei tuoi Dati Personali per una o più finalità per le quali ti è stato richiesto, potrai, in qualsiasi momento, revocarlo senza pregiudicare la leicità del Trattamento basato sul consenso prestato prima della revoca."
+      revokesecond: "Per eliminare i dati personali dal portale web accedi alla sezione 'account' e fai click sul pulsante 'cancella il mio account'. Poiché questa cancellazione non pregiudica la leicità del trattamento effettuato prima della revoca, è possibile che i Dati riguardanti alcuni servizi, come le prenotazioni, rimangano nel database in conformità al punto E di questa informativa."
+      where: "Dove saranno trattati i tuoi Dati Personali?"
+      wherefirst: "I tuoi Dati Personali saranno trattati all'interno del territorio dell'Unione Europea."
 
   technical:
     shared:

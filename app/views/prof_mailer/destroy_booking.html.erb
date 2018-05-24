@@ -1,10 +1,10 @@
 
-    <h1 align="center"> Una tua prenotazione è stata cancellata </h1>
-    <p> Ecco i dati che si riferiscono alla prenotazione </p>
-    <ul>
-      <li> <%= @booking.start_date %> </li>
-      <li> <%= @booking.end_date %> </li>
-      <li> <%= @booking.tool.name %> </li>
-      <li> <%= @booking.quantity %> </li>
-    </ul>
-    <p> L'admin ormai l'ha cancellata, devi ritornare su http://192.168.10.120:3000 per poter effettuare una nuova prenotazione </p>
+<h1 align="center"> Una tua prenotazione è stata cancellata </h1>
+<h4 align="center"> <%= @booking.quantity %> <%= @booking.tool.name %> </h4>
+<p> Dettagli: </p>
+<% if @booking.tool.photo.present? %>
+<%= image_tag(@booking.tool.photo, alt: "Photo") %>
+<% end %>
+<p> Periodo di utilizzo: dal <%= @booking.start_date.strftime("%d/%m/%y %k:%M") %> al <%= @booking.end_date.strftime("%d/%m/%y %k:%M") %> </p>
+<p> Motivazione: <%= @booking.goal %> </p>
+<p> Laboratorio: <%= @booking.lab.name %> </p>

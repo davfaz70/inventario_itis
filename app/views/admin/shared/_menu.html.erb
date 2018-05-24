@@ -1,3 +1,4 @@
+<% menu %>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav" style="background-color: #f8f8f8">
     <a class="navbar-brand" href="<%=edit_admin_registration_path%>"><%= current_admin.email %></a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,9 +70,9 @@
           <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-fw fa-envelope"></i>
             <span class="d-lg-none">Messages
-              <span class="badge badge-pill badge-primary"><%= Prof.where("authorized = 'f' AND confirmed_at IS NOT NULL").count + Book.where("confirmed = ?", false).count %></span>
+              <span class="badge badge-pill badge-primary"><%= @count %></span>
             </span>
-            <% if Prof.where("authorized = ? AND confirmed_at IS NOT NULL", false).count > 0 || Book.where("confirmed = ?", false).count > 0 %>
+            <% if @count > 0 %>
             <span class="indicator text-primary d-none d-lg-block">
               <i class="fa fa-fw fa-circle"></i>
             </span>
@@ -80,20 +81,19 @@
           <div class="dropdown-menu" aria-labelledby="messagesDropdown">
             <h6 class="dropdown-header">New Messages:</h6>
             <div class="dropdown-divider"></div>
-            <% Prof.where("authorized = ? AND confirmed_at IS NOT NULL", false).limit(2).each do |prof| %>
+            <% @profs.each do |prof| %>
             <% if prof.confirmed? %>
             <a class="dropdown-item" href="#">
               <strong><%= prof.name + " " + prof.surname %></strong>
               <span class="small float-right text-muted"><%= prof.created_at.strftime("%d/%m/%y %k:%M") %> </span>
               <div class="text-center">
               <%= link_to "Autorizza", admin_authorize_route_path(prof.id), method: :post, data: {confirm: t('admin.tools.index.confirm')}, class:"btn btn-success btn-sm"%>
-              <%= link_to fa_icon('trash'), admin_deleteprof_route_path(prof.id), data: { confirm: t('admin.tools.index.confirm') }, method: :delete, class:"btn btn-danger btn-sm" %>
               </div>
             </a>
             <div class="dropdown-divider"></div>
             <% end %>
             <% end %>
-            <% Book.where("confirmed = ?", false).limit(2).each do |booking| %>
+            <% @bookings.each do |booking| %>
             <a class="dropdown-item" href="<%=admin_tool_path(booking.tool)%>">
               <strong><%= booking.tool.name %></strong> <%= t('tools.show.quantity') + ": " + booking.quantity.to_s %>
               <span class="small float-right text-muted"><%= " " + t('tools.show.to') + " " + booking.end_date.strftime("%d/%m/%y %k:%M").to_s%></span>
@@ -116,9 +116,9 @@
             <% if current_admin.role == 0 %>
             <span class="d-lg-none">Alerts
 
-              <span class="badge badge-pill badge-warning"><%=Request.where("approved = 'f'").count%></span>
+              <span class="badge badge-pill badge-warning"><%= @requestcountna %></span>
             </span>
-            <% if Request.where("approved = 'f'").count > 0 %>
+            <% if @requestcountna > 0 %>
             <span class="indicator text-warning d-none d-lg-block">
               <i class="fa fa-fw fa-circle"></i>
             </span>
@@ -127,7 +127,7 @@
           <div class="dropdown-menu" aria-labelledby="alertsDropdown">
             <h6 class="dropdown-header">New Alerts:</h6>
             <div class="dropdown-divider"></div>
-            <% Request.where("approved = 'f'").limit(4).each do |request| %>
+            <% @requestsna.each do |request| %>
             <a class="dropdown-item" href="<%=admin_request_path(request)%>">
               <span class="float-right"><%= request.name %> </span>
               <span class="text-success">
@@ -156,9 +156,9 @@
             <% if current_admin.role == 1 %>
             <span class="d-lg-none">Alerts
 
-              <span class="badge badge-pill badge-warning"><%=Request.where("approved = 't' AND money = 'f'").count + Reporting.count%></span>
+              <span class="badge badge-pill badge-warning"><%= @requestrepo %></span>
             </span>
-            <% if Request.where("approved = 't' AND money = 'f'").count > 0 || Reporting.count > 0 %>
+            <% if @requestrepo > 0 %>
             <span class="indicator text-warning d-none d-lg-block">
               <i class="fa fa-fw fa-circle"></i>
             </span>
@@ -167,7 +167,7 @@
           <div class="dropdown-menu" aria-labelledby="alertsDropdown">
             <h6 class="dropdown-header">New Alerts:</h6>
             <div class="dropdown-divider"></div>
-            <% Request.where("approved = 't' AND money = 'f'").limit(4).each do |request| %>
+            <% @requestsa.each do |request| %>
             <a class="dropdown-item" href="<%=admin_request_path(request)%>">
               <span class="float-right"><%= request.name %> </span>
               <span class="text-success">
@@ -191,7 +191,7 @@
 
             <div class="dropdown-divider"></div>
             <% end %>
-            <% Reporting.all.limit(4).each do |reporting| %>
+            <% @reportings.each do |reporting| %>
             <a class="dropdown-item" href="#">
               <strong><%= reporting.tool.name %></strong> <%= t('tools.show.quantity') + ": " + reporting.quantity.to_s %>
               <br>
@@ -211,9 +211,9 @@
             <% if current_admin.role == 2 %>
             <span class="d-lg-none">Alerts
 
-              <span class="badge badge-pill badge-warning"><%=Request.where("approved = 't' AND money = 't'").count%></span>
+              <span class="badge badge-pill badge-warning"><%= @requestcountm %></span>
             </span>
-            <% if Request.where("approved = 't' AND money = 't'").count > 0 %>
+            <% if  @requestcountm > 0 %>
             <span class="indicator text-warning d-none d-lg-block">
               <i class="fa fa-fw fa-circle"></i>
             </span>
@@ -222,7 +222,7 @@
           <div class="dropdown-menu" aria-labelledby="alertsDropdown">
             <h6 class="dropdown-header">New Alerts:</h6>
             <div class="dropdown-divider"></div>
-            <% Request.where("approved = 't' AND money = 't'").limit(4).each do |request| %>
+            <% @requestsm.each do |request| %>
             <a class="dropdown-item" href="<%=admin_request_path(request)%>">
               <span class="float-right"><%= request.name %> </span>
               <span class="text-success">

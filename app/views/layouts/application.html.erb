@@ -10,6 +10,8 @@
   </head>
 
   <body>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <font face="Raleway">
     <%= render partial: "shared/menu" %>
     <% if controller.controller_name == "home" %>
       <header class="business-header">
@@ -22,6 +24,7 @@
         </div>
       </header>
     <%end %>
+    <br>
     <div id="page-content-wrapper">
       <div class="container-fluid">
         <br>
@@ -38,6 +41,7 @@
         <%= render partial: "shared/footer" %>
       </div>
     </div>
+    </font>
 
   </body>
 </html>

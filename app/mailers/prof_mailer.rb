@@ -71,5 +71,10 @@ class ProfMailer < ApplicationMailer
     mail(to: @prof.email, subject: "Il bene da te richiesto non è stato acquistato")
   end
 
+  def destroyed(prof)
+    @prof = prof
+    mail(to: @prof.email, subject: "Sei stato cancellato")
+  end
+
 
 end

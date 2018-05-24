@@ -28,7 +28,7 @@
 
             <!-- Categories Widget -->
             <div class="card my-4">
-              <h5 class="card-header">Categories</h5>
+              <h5 class="card-header"><%= t('tools.index.categories') %></h5>
               <div class="scroll-box">
                 <% @categories.each do |category| %>
                    <td>  <%=link_to fa_icon('tag') + " " + category.name, category_path(category), class:"btn btn-warning btn-sm"%>  </td>
@@ -36,7 +36,7 @@
               </div>
             </div>
               <div class="card my-4">
-              <h5 class="card-header">Labs</h5>
+              <h5 class="card-header"><%= t('tools.index.labs') %></h5>
               <div class="scroll-box">
                 <% @labs.each do |lab| %>
                    <td>  <%=link_to fa_icon('flask') + " " + lab.name, lab_path(lab), class:"btn btn-primary btn-sm"%>  </td>

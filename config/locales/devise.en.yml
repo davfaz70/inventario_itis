@@ -2,6 +2,7 @@
 
 en:
   devise:
+    agree: "You must accept the Privacy Policy"
     shared:
       links:
         forgot: "Forgot your password?"
@@ -63,7 +64,10 @@ en:
         update: "Update"
         cancel: "Cancel my account"
         unhappy: "Unhappy"
+        confirmdelete: "Are you sure?"
       new:
+        agree: "I have read and accept the "
+        privacy: "privacy policy"
         technical: "Technical"
         role: "Choose role"
         rolezero: "Headmaster"

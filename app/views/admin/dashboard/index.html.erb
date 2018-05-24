@@ -80,7 +80,7 @@
     <div class="row">
   <% @profs.each do |prof| %>
 
-    <% if prof.authorized == false %>
+
     <div class="col-lg-3 col-sm-4 portfolio-item">
       <div class="card h-100">
         <div class="card-header">
@@ -89,26 +89,20 @@
         <div class="card-body">
           <%= mail_to prof.email %>
         </div>
+        <% if prof.authorized == false %>
       <ul class="list-group list-group-flush">
           <%= link_to t('.authorize'),  admin_authorize_route_path(prof.id), method: :post, class:"list-group-item list-group-item-success" %>
+          <% if prof.books.present? == false && prof.requests.present? == false %>
+            <%= link_to fa_icon('trash') + " " + t('.delete'), admin_deleteprof_route_path(prof.id), data: { confirm: t('admin.tools.index.confirm') }, method: :delete, class:"list-group-item list-group-item-danger" %>
+          <% end %>
       </ul>
-  </div>
-  </div>
-    <% else %>
-    <div class="col-lg-3 col-sm-4 portfolio-item">
-      <div class="card h-100">
-        <div class="card-header">
-          <%= prof.name + " " + prof.surname %>
-        </div>
-        <div class="card-body">
-          <%= mail_to prof.email %>
-        </div>
+      <% else %>
       <ul class="list-group list-group-flush">
           <%= link_to t('.block'),  admin_authorize_route_path(prof.id), method: :post, class:"list-group-item list-group-item-danger" %>
       </ul>
+      <% end %>
   </div>
   </div>
-    <% end %>
     <%end%>
 
 </div>
@@ -183,19 +177,21 @@
       <% if current_admin.role == 0 %>
       <%= form_for ([:admin, request]) do |t|  %>
         <%= hidden_field(:request, :approved, :value => true) %>
-        <%= t.submit "Conferma Richiesta", data: {confirm: t('admin.tools.index.confirm')}, class: "btn btn-warning btn-sm" %>
+        <%= t.submit t('.requestconfirm'), data: {confirm: t('admin.tools.index.confirm')}, class: "btn btn-warning btn-sm" %>
       <% end %>
       <% elsif current_admin.role == 1 %>
       <%= form_for ([:admin, request]) do |t|  %>
         <%= hidden_field(:request, :money, :value => true) %>
-        <%= t.submit "Conferma Richiesta", data: {confirm: t('admin.tools.index.confirm')}, class: "btn btn-warning btn-sm" %>
+        <%= t.submit t('.requestconfirm'), data: {confirm: t('admin.tools.index.confirm')}, class: "btn btn-warning btn-sm" %>
       <% end %>
       <% else %>
       <%= form_for ([:admin, request]) do |t|  %>
         <%= hidden_field(:request, :arrived, :value => true) %>
-        <%= t.submit "Conferma Richiesta", data: {confirm: t('admin.tools.index.confirm')}, class: "btn btn-warning btn-sm" %>
+        <%= t.submit t('.requestconfirm'), data: {confirm: t('admin.tools.index.confirm')}, class: "btn btn-warning btn-sm" %>
       <% end %>
       <% end %>
+
+      <%= link_to fa_icon('eye'), admin_request_path(request), class:"btn btn-primary" %>
     </div>
     </div>
 

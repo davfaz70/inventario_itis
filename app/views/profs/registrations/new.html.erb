@@ -30,6 +30,12 @@
     <%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control" %>
   </div>
 
+  <div class="field">
+    <%= f.check_box :agree %>
+    <%= t('devise.registrations.new.agree') %> <%= link_to t('devise.registrations.new.privacy'),  privacy_path %>
+  </div>
+  <br>
+
   <div class="actions">
     <%= f.submit "Sign up", class:"btn btn-success btn-lg btn-block" %>
   </div>

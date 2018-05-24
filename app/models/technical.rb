@@ -11,6 +11,8 @@ class Technical < ApplicationRecord
          has_many :requests, dependent: :destroy
          has_many :reportings, dependent: :destroy
 
+         validates_with AgreeValidator
+
          before_save  :name
          before_save  :surname
         # default_scope -> {order(created_at: :desc)}
