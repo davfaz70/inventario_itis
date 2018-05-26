@@ -8,6 +8,9 @@ image: ruby:2.4.0
 pipelines:
   default:
     - step:
+        name: Deploy to production
+        deployment: production
+
         caches:
           - bundler
         script: # Modify the commands below to build your repository.
