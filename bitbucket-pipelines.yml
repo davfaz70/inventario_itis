@@ -16,7 +16,7 @@ pipelines:
         script: # Modify the commands below to build your repository. 
         
           - bundle install
-          - rake db:migrate
+          - rails db:migrate
           - bin/delayed_job start
 
 definitions:
