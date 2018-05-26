@@ -14,7 +14,7 @@ pipelines:
         caches:
           - bundler
         script: # Modify the commands below to build your repository. 
-          - rails db:migrate
+          - rake db:migrate
           - bundle install
           - bin/delayed_job start
 
