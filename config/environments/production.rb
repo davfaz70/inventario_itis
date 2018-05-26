@@ -63,7 +63,7 @@ Rails.application.configure do
     config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
     port:                 587,
-    domain:               '138.68.103.125',
+    domain:               'www.inventarioitis.tk',
     user_name:            ENV['EMAIL_CLIENT'],
     password:             ENV['EMAIL_PASSWORD'],
     authentication:       :plain,
