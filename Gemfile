@@ -5,6 +5,10 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'capistrano-passenger'
+
+gem 'capistrano-rvm'
+
 gem 'pg', group: :production
 
 gem "selectize-rails"
@@ -90,6 +94,8 @@ group :development, :test do
 end
 
 group :development do
+  gem "capistrano", "~> 3.10", require: false
+  gem "capistrano-rails", "~> 1.3", require: false
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'

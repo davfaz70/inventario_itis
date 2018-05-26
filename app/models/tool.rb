@@ -47,6 +47,9 @@ class Tool < ApplicationRecord
   accepts_nested_attributes_for :photos, allow_destroy: true
   before_save :name
   before_save :description
+
+  default_scope -> {order(name: :asc)}
+
   validates_with ToolValidator
   paginates_per 12
 
