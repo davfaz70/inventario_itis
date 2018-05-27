@@ -181,6 +181,7 @@ ActiveRecord::Schema.define(version: 20180526184650) do
     t.string   "uid"
     t.boolean  "agree",                  default: false
     t.index ["confirmation_token"], name: "index_profs_on_confirmation_token", unique: true
+    t.index ["deleted_at"], name: "index_profs_on_deleted_at"
     t.index ["email"], name: "index_profs_on_email", unique: true
     t.index ["reset_password_token"], name: "index_profs_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_profs_on_unlock_token", unique: true
