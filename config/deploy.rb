@@ -2,7 +2,7 @@
 lock "~> 3.10.2"
 
 set :application, "itis_torricelli"
-set :repo_url, 'git@github.com:davfaz70/itis_torricelli.git'
+set :repo_url, 'git@bitbucket.org:nexor1/itis_torricelli.git'
 
 set :deploy_to, '/home/davide/itis_torricelli'
 
