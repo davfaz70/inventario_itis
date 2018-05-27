@@ -2,9 +2,9 @@
 lock "~> 3.10.2"
 
 set :application, "itis_torricelli"
-set :repository, 'git@bitbucket.org:nexor1/itis_torricelli.git'
+set :repo_url, 'git@github.com:davfaz70/itis_torricelli.git'
 
-set :deploy_to, '/home/deploy/itis_torricelli'
+set :deploy_to, '/home/davide/itis_torricelli'
 
 append :linked_files, "config/database.yml", "config/secrets.yml"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads"
