@@ -51,7 +51,9 @@ class Prof < ApplicationRecord
             surname: data['last_name'],
             provider: provider
          )
+
          prof.skip_confirmation!
+
          AdminMailer.new_confirmated_prof(prof).deliver_later
      end
 
