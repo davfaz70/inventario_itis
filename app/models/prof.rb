@@ -49,12 +49,13 @@ class Prof < ApplicationRecord
             password: Devise.friendly_token[0,20],
             uid: uid,
             surname: data['last_name'],
-            provider: provider
+            provider: provider,
+            agree: true
          )
 
          prof.skip_confirmation!
 
-         AdminMailer.new_confirmated_prof(prof).deliver_later
+        # AdminMailer.new_confirmated_prof(prof).deliver_later
      end
 
   prof
