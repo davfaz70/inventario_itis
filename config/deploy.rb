@@ -44,7 +44,8 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bund
 # set :ssh_options, verify_host_key: :secure
 
 
-
+set :delayed_job_server_role, :worker
+set :delayed_job_args, "-n 2"
 # Number of delayed_job workers
 # default value: 1
 set :delayed_job_workers, 2
