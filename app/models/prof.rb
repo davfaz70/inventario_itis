@@ -55,7 +55,7 @@ class Prof < ApplicationRecord
 
          prof.skip_confirmation!
 
-        # AdminMailer.new_confirmated_prof(prof).deliver_later
+         AdminMailer.new_confirmated_prof(prof).deliver_later
      end
 
   prof
