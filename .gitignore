@@ -24,3 +24,7 @@ config/secrets.yml
 
 .env
 config/database.yml\nconfig/secrets.yml
+
+/public/uploads/*
+
+/public/assets
