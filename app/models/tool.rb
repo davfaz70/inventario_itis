@@ -20,7 +20,7 @@ class Tool < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
   mount_uploader :photo, PhotoUploader
-  #process_in_background :photo
+  process_in_background :photo
   translates :name, :description
   validates :name, presence: true
   validates :identifier, uniqueness: true, :allow_blank => true
