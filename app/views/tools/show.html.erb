@@ -226,11 +226,11 @@ dtlInputend.value = localISOTime.slice(0,16);
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <%= image_tag(@tool.photo.standard, :alt => "booh", class:"d-block w-100") %>
+              <%= image_tag(@tool.photo, :alt => "booh", class:"d-block w-100") %>
             </div>
             <% @tool.photos.each do |photo| %>
               <div class="carousel-item">
-                <%= image_tag(photo.picture.standard, :alt => "booh", class:"d-block w-100") %>
+                <%= image_tag(photo.picture, :alt => "booh", class:"d-block w-100") %>
               </div>
             <% end %>
           </div>

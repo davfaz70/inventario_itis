@@ -13,7 +13,7 @@ class Admin::LabTechnicalsController < Admin::AdminController
   def create
     @relation = LabTechnical.new(lab_technical_params)
     if @relation.save
-      flash[:success] = "Successfully created"
+      flash[:success] = t('admin.lab_technicals.success')
       redirect_to admin_technicals_path
     else
       flash[:danger] = @relation.errors.full_messages
@@ -31,7 +31,7 @@ class Admin::LabTechnicalsController < Admin::AdminController
 
   def update
     if @relation.update(lab_technical_params)
-      flash[:success] = "Successfully updated"
+      flash[:success] = t('admin.lab_technicals.updated')
       redirect_to admin_technicals_path
     else
       flash[:danger] = @relation.errors.full_messages
@@ -41,7 +41,7 @@ class Admin::LabTechnicalsController < Admin::AdminController
 
   def destroy
     if @relation.destroy
-      flash[:success]= t('.delete')
+      flash[:success]= t('admin.lab_technicals.deleted')
       redirect_back(fallback_location:  admin_dashboard_index_path)
     else
       redirect_back(fallback_location:  admin_dashboard_index_path)

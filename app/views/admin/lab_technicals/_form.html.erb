@@ -84,5 +84,5 @@
     <%= hidden_field(:lab_technical, :lab_id, :value => labo.id) %>
   <%end%>
 
- <%= t.submit %>
+ <%= t.submit I18n.t('admin.lab_technicals.create'), class:"btn btn-success"%>
  <% end %>

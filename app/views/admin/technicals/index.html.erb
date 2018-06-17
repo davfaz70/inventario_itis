@@ -12,10 +12,10 @@
             </div>
             <div class="card-body">
               <%= mail_to technical.email %>
-              <%= link_to "Assign lab", new_admin_technical_lab_technical_path(technical), class:"btn btn-dark" %>
+              <%= link_to t('admin.lab_technicals.create'), new_admin_technical_lab_technical_path(technical), class:"btn btn-info" %>
             </div>
             <ul class="list-group list-group-flush">
-              <%= link_to "Autorizza", admin_confirm_route_path(technical.id), method: :post, class:"list-group-item list-group-item-success" %>
+              <%= link_to t('admin.dashboard.index.authorize'), admin_confirm_route_path(technical.id), method: :post, class:"list-group-item list-group-item-success" %>
             </ul>
           </div>
         </div>
@@ -28,10 +28,10 @@
             </div>
             <div class="card-body">
               <%= mail_to technical.email %>
-              <%= link_to "Assign lab", new_admin_technical_lab_technical_path(technical), class:"btn btn-dark" %>
+              <%= link_to t('admin.lab_technicals.create'), new_admin_technical_lab_technical_path(technical), class:"btn btn-info" %>
             </div>
             <ul class="list-group list-group-flush">
-              <%= link_to "Blocca", admin_confirm_route_path(technical.id), method: :post, class:"list-group-item list-group-item-danger" %>
+              <%= link_to t('admin.dashboard.index.block'), admin_confirm_route_path(technical.id), method: :post, class:"list-group-item list-group-item-danger" %>
             </ul>
           </div>
         </div>

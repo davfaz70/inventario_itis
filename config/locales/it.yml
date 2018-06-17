@@ -75,6 +75,10 @@ it:
     lab_technicals:
       new: "Nuova assegnazione tecnico-laboratorio"
       edit: "Modifica assegnazione tecnico-laboratorio"
+      create: "Assegna Laboratorio"
+      success: "Laboratorio assegnato con successo"
+      updated: "Aggiornato con successo"
+      deleted: "Assegnazione eliminata con successo"
     categories:
       index:
         new: "Nuova categoria"
@@ -272,6 +276,25 @@ it:
     dashboard:
       index:
         actual: "Attuale"
+    tools:
+      show:
+        warning: "Attenzione!"
+        technical: "Tecnico:"
+        goal: "Motivazione"
+        description: "Descrizione"
+        bookings: "Prenotazioni"
+        notbooked: "Non sono presenti prenotazioni"
+        from: "Dal"
+        to: "al"
+        documentation: "Documentazione"
+        notdocumented: "Non è presente alcuna documentazione"
+        comment: "Lascia un parere sul prodotto"
+        leavecomment: "Commenta"
+        editedat: "Modificato il"
+        at: "alle"
+        confirm: "Sei sicuro?"
+        quantity: "Quantità"
+        otherphotos: "Altre foto"
 
 
 

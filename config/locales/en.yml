@@ -109,6 +109,10 @@ en:
     lab_technicals:
       new: "New relationship between technical and lab"
       edit: "Edit relationship between technical and lab"
+      create: "Assign Lab"
+      success: "Successfully created"
+      updated: "Successfully updated"
+      deleted: "Successfully deleted"
     dashboard:
       index:
         newprof: "New prof"
@@ -233,7 +237,7 @@ en:
     created: "You have done your request successfully"
     new:
       new: "New purchase request"
-      quantity: "How many object you want?"
+      quantity: "How many object do you want?"
   books:
     index:
       bookings: "Bookings made by you"
@@ -296,6 +300,25 @@ en:
     dashboard:
       index:
         actual: "Now"
+    tools:
+      show:
+        warning: "Warning!"
+        technical: "Technical:"
+        goal: "Goal"
+        description: "Description"
+        bookings: "Reservations"
+        notbooked: "There are not reservations"
+        from: "From"
+        to: "to"
+        documentation: "Documentation"
+        notdocumented: "There are not documentations"
+        comment: "Leave a comment on product"
+        leavecomment: "Comment it"
+        editedat: "Modified on"
+        at: "at"
+        confirm: "Are you sure?"
+        quantity: "Quantity"
+        otherphotos: "Other photos"
 
 
 
