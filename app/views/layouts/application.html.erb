@@ -2,10 +2,11 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ItisTorricelli</title>
+    <link rel="shortcut icon" href="https://png.icons8.com/wired/50/000000/move-by-trolley.png" />
+    <title>  <%= t('layouts.app.title') %></title>
     <%= csrf_meta_tags %>
     <meta name="keywords" content="Inventario-itis Inventario-torricelli Inventory-itis Inventory-torricelli Inventario scolastico">
-    <meta name="description" content="Inventario scolastico dell'Itis E Torricelli a gestione interna per le prenotazioni e le richiesta d'acquisto">
+    <meta name="description" content="<%= I18n.t('layouts.app.description') %>">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -40,6 +41,7 @@
         </div>
         <%= yield %>
         <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+
         <%= render partial: "shared/footer" %>
       </div>
     </div>

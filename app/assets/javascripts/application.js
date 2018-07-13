@@ -20,3 +20,10 @@
 //= require selectize
 //= require_tree .
 //= require tools
+//= require clipboard
+$(document).ready(function(){
+
+  var clipboard = new Clipboard('.btn');
+  console.log(clipboard);
+
+});

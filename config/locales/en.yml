@@ -20,6 +20,14 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  layouts:
+    app:
+      title: "InventoryItis"
+      description: "School inventory of Itis E Torricelli for internal management for bookings and purchase requests"
+    admin:
+      title: "AdminInventory"
+    technical:
+      title: "TechnicalInventory"
   admins:
     schoolauthority: "School authority already exist"
     dsga: "DSGA already exist"
@@ -153,6 +161,8 @@ en:
       technicals: "Technicals"
       bookings: "Bookings"
       confirm: "Are you sure?"
+    footer:
+      donate: "Donate"
   tools:
     identifier: "You can not insert multiple tools with the same identifier"
     quantity: "The quantity can not be negative"

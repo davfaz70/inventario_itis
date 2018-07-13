@@ -1,5 +1,37 @@
 <hr>
+
+<span class="small float-right text-muted">
+<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#donateModal">
+  <%= t('.donate') %>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="donateModal" tabindex="-1" role="dialog" aria-labelledby="donateModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="donateModalLabel">  <%= t('.donate') %> </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= link_to fa_icon('paypal') + " PayPal", "http://paypal.me/pools/c/8654CtI2Kj", class:"list-group-item" %>
+        <li class="list-group-item">
+          <%= fa_icon('btc') %> <textfield id="btc">14vZ781oJrLbiedGik6K5fK6cDjLnMAfe8</textfield>
+          <!-- Trigger -->
+          <button class="btn" data-clipboard-action="copy" data-clipboard-target="#btc">
+              <%= fa_icon('clipboard')%>
+          </button>
+        </li>
+      </div>
+
+    </div>
+  </div>
+</div>
+</span>
+
 <a href="https://www.iubenda.com/privacy-policy/50660312" class="iubenda-white iubenda-embed " title="Privacy Policy">Privacy Policy</a>
  <script type="text/javascript">
  (function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);
-</script> 
+</script>

@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'clipboard-rails'
+
 gem 'capistrano3-delayed-job'
 
 gem 'capistrano-passenger'

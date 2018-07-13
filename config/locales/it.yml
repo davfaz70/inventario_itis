@@ -1,5 +1,13 @@
 ---
 it:
+  layouts:
+    app:
+      title: "InventarioItis"
+      description: "Inventario scolastico dell'Itis E Torricelli a gestione interna per le prenotazioni e le richiesta d'acquisto"
+    admin:
+      title: "InventarioAdmin"
+    technical:
+      title: "InventarioTecnici"
   admins:
     schoolauthority: "Esiste già un admin che ricopre il ruolo di preside"
     dsga: "Esiste già un admin che ricopre il ruolo di DSGA"
@@ -132,6 +140,8 @@ it:
       technicals: "Tecnici"
       bookings: "Prenotazioni"
       confirm: "Sei sicuro?"
+    footer:
+      donate: "Supportaci"
   tools:
     identifier: "Non puoi inserire più strumenti con lo stesso identificativo"
     quantity: "La quantità non può essere negativa"
