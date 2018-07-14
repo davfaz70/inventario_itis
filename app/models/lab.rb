@@ -10,7 +10,7 @@ class Lab < ApplicationRecord
   has_many :books, dependent: :destroy
   has_many :reportings, dependent: :destroy
 
-  paginates_per 5
+  paginates_per 24
   before_save :name
   before_save :subject
   def name=(s)

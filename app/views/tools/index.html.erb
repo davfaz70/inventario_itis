@@ -1,45 +1,76 @@
-<style>
-        .scroll-box {
-            overflow-y: scroll;
-            height: 150px;
-            padding: 1rem
-        }
-</style>
-
 <h1 class="text-center"> <%= t('shared.menu.tools') %> </h1>
+<% if params[:q].present? %>
+  <% if params[:q][:categories_name_cont].present? %>
+    <h3 class="text-center"> <%= params[:q][:categories_name_cont] %> </h3>
+  <% end %>
+  <% if params[:q][:labs_name_cont].present? %>
+    <h3 class="text-center"> <%= params[:q][:labs_name_cont] %> </h3>
+  <% end %>
+<% end %>
 
   <div class="row">
     <div class=" col-lg-3 col-md-5">
 
       <%= link_to t('.newrequest'),  new_request_path, class:"btn btn-outline-primary btn-block" %>
-      <div class="card my-4">
-        <h5 class="card-header"><%= t('.search') %> </h5>
-        <div class="card-body">
-          <%= search_form_for @q do |f| %>
-            <div class="input-group">
-                <%= f.search_field :translations_name_cont, class:"form-control", placeholder: t('.place') %>
-                <%= f.submit t('.search'), class:"btn btn-secondary "%>
+      <br>
+
+      <%= search_form_for @q do |f| %>
+        <div class="input-group">
+            <%= f.search_field :translations_name_cont, class:"form-control", placeholder: t('.place') %>
+            <%= f.submit t('.search'), class:"btn btn-secondary "%>
+        </div>
+      <% end %>
+      <br>
+
+      <div id="accordion" role="tablist">
+        <div class="card">
+          <div class="card-header" role="tab" id="headingOne">
+            <h5 class="mb-0">
+              <a data-toggle="collapse" href="#collapseOne" role="button" aria-expanded="false" aria-controls="collapseOne">
+                <%= fa_icon('tag') + " " + t('.categories') %>
+              </a>
+            </h5>
+          </div>
+
+          <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+              <% @categories.each do |category| %>
+                <%= search_form_for @q do |f| %>
+                  <%= f.search_field :categories_name_cont, value: category.name, type:"hidden" %>
+                  <td>
+                    <%= button_tag type:"submit", class: "btn btn-warning btn-sm btn-block" do %>
+                      <%= fa_icon('tag') + " " + category.name %>
+                    <% end %>
+                  </td>
+                <% end %>
+                <br>
+              <%end%>
             </div>
-          <% end %>
+          </div>
         </div>
-      </div>
-
-      <!-- Categories Widget -->
-      <div class="card my-4">
-        <h5 class="card-header"><%= t('.categories') %></h5>
-        <div class="scroll-box">
-          <% @categories.each do |category| %>
-            <td>  <%=link_to fa_icon('tag') + " " + category.name, category_path(category), class:"btn btn-warning btn-sm"%>  </td>
-          <%end%>
-        </div>
-      </div>
-
-      <div class="card my-4">
-        <h5 class="card-header"><%= t('.labs') %></h5>
-        <div class="scroll-box">
-          <% @labs.each do |lab| %>
-            <td>  <%=link_to fa_icon('flask') + " " + lab.name, lab_path(lab), class:"btn btn-primary btn-sm"%>  </td>
-          <%end%>
+        <div class="card">
+          <div class="card-header" role="tab" id="headingTwo">
+            <h5 class="mb-0">
+              <a class="collapsed" data-toggle="collapse" href="#collapseTwo" role="button" aria-expanded="false" aria-controls="collapseTwo">
+                <%= fa_icon('flask') + " " + t('.labs') %>
+              </a>
+            </h5>
+          </div>
+          <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div class="card-body">
+              <% @labs.each do |lab| %>
+                <%= search_form_for @q do |f| %>
+                  <%= f.search_field :labs_name_cont, value: lab.name, type:"hidden" %>
+                  <td>
+                    <%= button_tag type:"submit", class: "btn btn-primary btn-sm btn-block" do %>
+                      <%= fa_icon('flask') + " " + lab.name %>
+                    <% end %>
+                  </td>
+                <% end %>
+                <hr>
+              <%end%>
+            </div>
+          </div>
         </div>
       </div>
 
