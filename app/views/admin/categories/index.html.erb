@@ -1,25 +1,27 @@
 <h1> <%= t('admin.shared.menu.categories') %> </h1>
 <hr>
+
 <%= form_for ([:admin, @category]), :url => {:controller => "categories", :action => "htmlcreate"} do |t|  %>
-<div class="form-group" >
-  <%=t.label t('admin.categories.form.name')%>
-  <%=t.text_field :name, class:"form-control"%>
-</div>
-<%= t.submit class:"btn btn-primary btn-block"%>
+  <div class="form-group" >
+    <%=t.label t('admin.categories.form.name')%>
+    <%=t.text_field :name, class:"form-control"%>
+  </div>
+  <%= t.submit class:"btn btn-primary btn-block"%>
 <% end %>
 <hr>
+
 <div class="row">
-<% @categories.each do |category| %>
-<div class="col-lg-3 col-sm-4 portfolio-item">
-  <div class="card h-100">
-    <div class= "card-header">
-      <%= fa_icon('tag') + " " + category.name %>
+  <% @categories.each do |category| %>
+    <div class="col-lg-3 col-sm-4 portfolio-item">
+      <div class="card h-100">
+        <div class= "card-header">
+          <%= fa_icon('tag') + " " + category.name %>
+        </div>
+        <div class="card-body">
+          <%= link_to fa_icon('trash'), admin_category_path(category), method: :delete, data: {confirm: category.name + ", " + t('.confirm')}, class:"btn btn-sm btn-danger"%>
+          <%= link_to fa_icon('pencil'), edit_admin_category_path(category), class:"btn btn-warning btn-sm" %>
+        </div>
+      </div>
     </div>
-    <div class="card-body">
-     <%= link_to fa_icon('trash'), admin_category_path(category), method: :delete, data: {confirm: category.name + ", " + t('.confirm')}, class:"btn btn-sm btn-danger"%>
-     <%= link_to fa_icon('pencil'), edit_admin_category_path(category), class:"btn btn-warning btn-sm" %>
-   </div>
- </div>
-</div>
-<% end %>
+  <% end %>
 </div>

@@ -1,5 +1,7 @@
 class Admin::DashboardController < Admin::AdminController
 
+  #for more information about current_admin.role and request see controllers/admin/request_controller.rb
+
   def index
     @profs = Prof.where("confirmed_at IS NOT NULL")
     if current_admin.role == 0
@@ -13,8 +15,6 @@ class Admin::DashboardController < Admin::AdminController
     @reportings = Reporting.all
 
     @newprofs = Prof.where("authorized = 'f' AND confirmed_at IS NOT NULL").count
-
-
   end
 
   def authorize

@@ -1,5 +1,7 @@
 class Technical::RequestsController < Technical::TechnicalController
 
+#for more info about policy of request see controllers/admin/request_controller.rb 
+
   def index
     @notapproved = current_technical.requests.where("approved = 'f'")
     @approved = current_technical.requests.where("approved = 't' AND money = 'f'")

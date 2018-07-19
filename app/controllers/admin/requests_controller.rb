@@ -1,5 +1,11 @@
 class Admin::RequestsController < Admin::AdminController
   before_action :set_request, only: [:show, :update, :destroy]
+
+  # there are three types of admins:
+  # the role 0 = headmaster, he can approve or delete a new request, so he see only the requests that are not approved
+  # the role 1 = dsga, he check if the school have enough money for an approved request, if yes, he order the tool in the request, if not, he reject it, so he see only the requests that are approved
+  # the role 2 = ata, when a new tool arrive, he insert it in this system, if the tool was request by someone, he click on button and the tool is automatically created, so he see only the requests that are ordered
+
   def index
     if current_admin.role == 0
       @requests = Request.where("approved = 'f'")
@@ -10,6 +16,7 @@ class Admin::RequestsController < Admin::AdminController
     end
   end
 
+  # a request must made by one prof OR one technical
   def show
     if @request.prof.present?
       @subject = @request.prof
@@ -18,17 +25,19 @@ class Admin::RequestsController < Admin::AdminController
     end
   end
 
+  #when an admin click on button, he update the request, the update depends on the request's state
+
   def update
     if @request.update(request_params)
       if @request.approved == true && @request.money == false
-        AdminMailer.request_approved(@request).deliver_later
+        AdminMailer.request_approved(@request).deliver_later #this email notify at the dsga that a new request was approved
         if @request.prof.present?
-          ProfMailer.request_approved(@request.prof, @request).deliver_later
+          ProfMailer.request_approved(@request.prof, @request).deliver_later #if the request was made by a prof, this email will notify at the prof that his request was approved
         else
           TechnicalMailer.request_approved(@request.technical, @request).deliver_later
         end
       elsif @request.money == true && @request.arrived == false
-        AdminMailer.request_money(@request).deliver_later
+        AdminMailer.request_money(@request).deliver_later #this email notify at the ata that a new request tool was ordered
         if @request.prof.present?
           ProfMailer.request_money(@request.prof, @request).deliver_later
         else

@@ -1,6 +1,11 @@
 class Admin::ReportingsController < Admin::AdminController
   before_action :set_reporting
 
+  #when a tool is reported, the admin can:
+  #to dispose the quantity of object reported
+  #fix the quantity of object reported
+  #replace the quantity of object reported (if the tool have an identifier, else this action is the same of fix)
+
   def dismiss
     @tool = @reporting.tool
     if @tool.quantity < @reporting.quantity
@@ -11,7 +16,7 @@ class Admin::ReportingsController < Admin::AdminController
       @tool.save
     end
     if @tool.books.where('end_date >= ?', Time.now).exists?
-      @job = Delayed::Job.enqueue Admin::Checking.new(@tool, @tool.books.where('end_date >= ?', Time.now).count)
+      @job = Delayed::Job.enqueue Admin::Checking.new(@tool, @tool.books.where('end_date >= ?', Time.now).count) #for more info about this job see jobs/admin/checking.rb
     end
     TechnicalMailer.reporting_dismissed(@reporting.technical, @reporting).deliver_now
     @reporting.destroy

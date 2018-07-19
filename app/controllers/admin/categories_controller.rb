@@ -32,6 +32,8 @@ class Admin::CategoriesController < Admin::AdminController
     end
   end
 
+  #because I can create a category with selectize gem, I've created the method htmlcreate for create a category by the normal html form
+
   def htmlcreate
     @category = Category.new(category_params)
     if @category.save
@@ -54,8 +56,6 @@ class Admin::CategoriesController < Admin::AdminController
     end
   end
 
-  # DELETE /professions/1
-  # DELETE /professions/1.json
   def destroy
     if @category.destroy
       flash[:success]= t('.delete')

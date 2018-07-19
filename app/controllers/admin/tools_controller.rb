@@ -25,7 +25,7 @@ class Admin::ToolsController < Admin::AdminController
   end
 
   def show
-    @bookings = @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, false)
+    @bookings = @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, false) #for more info about this job see jobs/admin/checking.rb
   end
 
   def choose

@@ -3,4 +3,5 @@ class BooksController < ApplicationController
   def index
     @bookings = current_prof.books
   end
+  #This is a controller only for show the reservations of logged prof, chech the app/views/books/index.html.erb for more information
 end

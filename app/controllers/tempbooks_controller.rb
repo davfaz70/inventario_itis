@@ -2,21 +2,25 @@ class TempbooksController < ApplicationController
   before_action :authenticate_prof!, only: [:new]
   before_action :authorized_prof, only: [:create]
 
+  # A tempbook is a temporary booking, it is useful for check the availability of tools without make a real booking
+  # A tempbook permit to the system to check if the booking that i want to create not make conflict to other confirmated bookings
+
   def new
     @tool = Tool.friendly.find(params[:tool_id])
     @tempbook = @tool.tempbooks.build
   end
 
-  def avaiable
+  def avaiable #this method check the availability of a tool in a range of time
     @tool = Tool.friendly.find(params[:tool_id])
     @tempbook = @tool.tempbooks.build(tempbook_params)
     if @tempbook.save
-      cont = 0
+      cont = 0 #this variable count how many times the range of time that i have choice overlaps with other bookings
       @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true).each_with_index do |b, i|
         if (@tempbook.start_date..@tempbook.end_date).overlaps?(b.start_date..b.end_date)
-          cont = cont + b.quantity
+          cont = cont + b.quantity #since in a reservation I can choose how many tools to use, the variable cont must contain the number of tools booked
         end
       end
+      #at the end, the variable cont contain the number of tools that are already booked for this range of time
       max =  @tool.quantity - cont
         if max == 1
           flash[:info]="#{t('.periods')} #{max} #{t('.tool')}"
@@ -30,13 +34,13 @@ class TempbooksController < ApplicationController
     end
   end
 
-
+  # When a prof make a booking, the system must check that the booking are not in conflict with other confirmated reservations
   def create
     @tool = Tool.friendly.find(params[:tool_id])
     @tempbook = @tool.tempbooks.build(tempbook_params)
     if @tempbook.save
-      cont = 0
-      @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true).each_with_index do |b, i|
+      cont = 0 #this variable and the following loop have the same purpose that in 'avaiable' method
+      @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true).each_with_index do |b, i| # for simplify the procedure, the system check only reservations that are already confirmed
         if (@tempbook.start_date..@tempbook.end_date).overlaps?(b.start_date..b.end_date)
           cont = cont + b.quantity
         end
@@ -51,7 +55,7 @@ class TempbooksController < ApplicationController
         end
         @tempbook.destroy
         redirect_to tool_path(@tool)
-      else
+      else #if the booking are not in conflict with other confirmated resarvations, the system create a new book entity
         @book = @tool.books.build
         @book.prof_id = @tempbook.prof_id
         @book.start_date = @tempbook.start_date
@@ -62,8 +66,8 @@ class TempbooksController < ApplicationController
         @tempbook.destroy
         if @book.save
           flash[:success]="Prenotato con successo"
-          BookControlJob.set(wait_until: @book.start_date.to_datetime).perform_later(@book)
-          AdminMailer.new_booking(@book.prof, @book).deliver_later
+          BookControlJob.set(wait_until: @book.start_date.to_datetime).perform_later(@book) #if the booking are not confirmed before the start date, is unuseful store it in the database
+          AdminMailer.new_booking(@book.prof, @book).deliver_later #this email notify at the admin that a new booking was created
           redirect_to tool_path(@tool)
         else
           flash[:danger]="C'è stato un problema, riprova"

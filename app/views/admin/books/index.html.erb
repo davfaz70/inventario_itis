@@ -1,10 +1,14 @@
 <h1> <%= t('shared.menu.bookings') + " " + @tool.name%>  <%= image_tag(@tool.photo.thumb, alt:"Photo") %></h1>
 <hr>
 
+<!-- start row -->
 <div class="row">
   <% @bookings.each do |booking| %>
+  <!-- start col -->
     <div class="col-md-3">
+      <!-- start card -->
       <div class="card h-100">
+
         <div class="card-header">
            <h4 class="card-title"> <%= booking.prof.name + " " + booking.prof.surname %>  </h4>
            <% if booking.confirmed == false %>
@@ -17,16 +21,22 @@
              </div>
            <% end %>
         </div>
-      <div class="card-body">
-      <p class="card-text">  <b>
-          dal: <%= " " + booking.start_date.strftime("%d/%m/%y %k:%M") + " " %>
 
-          al: <%= " " + booking.end_date.strftime("%d/%m/%y %k:%M") %>
-        </b> </p>
-        <p class="card-text"> <i> <%= t('tools.show.quantity') + " " + booking.quantity.to_s%> </i> </p>
-        <p class="card-text"> <%= booking.goal %> </p>
+        <div class="card-body">
+          <p class="card-text">  <b>
+            <%= t('tools.show.from') + " " + booking.start_date.strftime("%d/%m/%y %k:%M") + " " %>
+            <br>
+            <%= t('tools.show.to') + " " + booking.end_date.strftime("%d/%m/%y %k:%M") %>   </b>
+          </p>
+          <p class="card-text"> <i> <%= t('tools.show.quantity') + " " + booking.quantity.to_s%> </i> </p>
+          <p class="card-text"> <%= booking.lab.name %> </p>
+          <p class="card-text"> <%= booking.goal %> </p>
+        </div>
+
       </div>
+    <!-- end card -->
     </div>
-  </div>
+  <!-- end col -->
   <% end %>
 </div>
+<!-- end row -->

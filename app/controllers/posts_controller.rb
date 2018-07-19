@@ -6,7 +6,7 @@ class PostsController < ApplicationController
 
   def create
     @post = @tool.posts.build(post_params)
-    @post.prof_id = current_prof.id
+    @post.prof_id = current_prof.id #associate the post to one prof
     if @post.save
       flash[:primary] = t('.created')
       redirect_to tool_path(@tool)
@@ -15,6 +15,7 @@ class PostsController < ApplicationController
       redirect_to tool_path(@tool)
     end
   end
+  #A post can be created by an authorized prof and must be associate to one tool
 
   def edit
 

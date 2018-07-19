@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
        redirect_back(fallback_location: root_path)
      end
    end
+   #This method run when the user call an action that require the devise entity current_prof was authorized by admin
 
 
 
