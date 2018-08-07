@@ -1,259 +1,247 @@
-<% menu %>
+<% menu #this is a method defined in helpers/admin/admin_helper.rb%>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav" style="background-color: #f8f8f8">
-    <a class="navbar-brand" href="<%=edit_admin_registration_path%>"><%= current_admin.email %></a>
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-          <a class="nav-link" href="<%=admin_dashboard_index_path%>">
-            <i class="fa fa-fw fa-dashboard"></i>
-            <span class="nav-link-text">Dashboard</span>
-          </a>
-        </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="<%= t('.labs') %>">
-          <a class="nav-link" href="<%=admin_labs_path%>">
-            <i class="fa fa-fw fa-flask"></i>
-            <span class="nav-link-text"><%= t('.labs') %></span>
-          </a>
-        </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="<%= t('.technical') %>">
-          <a class="nav-link" href="<%=admin_technicals_path%>">
-            <i class="fa fa-fw fa-users"></i>
-            <span class="nav-link-text"><%= t('.technical') %></span>
-          </a>
-        </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="<%= t('.tools') %>">
-          <a class="nav-link" href="<%=admin_tools_path%>">
-            <i class="fa fa-fw fa-wrench"></i>
-            <span class="nav-link-text"><%= t('.tools') %></span>
-          </a>
-        </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="<%= t('.categories') %>">
-          <a class="nav-link" href="<%=admin_categories_path%>">
-            <i class="fa fa-fw fa-tag"></i>
-            <span class="nav-link-text"><%= t('.categories') %></span>
-          </a>
-        </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="<%= t('.languages')%>">
-          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti" data-parent="#exampleAccordion">
-            <i class="fa fa-fw fa-language"></i>
-            <span class="nav-link-text"><%= t('.languages')%></span>
-          </a>
-          <ul class="sidenav-second-level collapse" id="collapseMulti">
-            <li>
-              <%= link_to_unless_current image_tag("if_United-Kingdom_92403.ico", size: "28x28") + " English", locale: "en"%>
-            </li>
-            <li>
-              <%= link_to_unless_current image_tag("if_Italy_92145.ico", size: "28x28") + " Italiano", locale: "it" %>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Home">
-          <a class="nav-link" href="/">
-            <i class="fa fa-fw fa-home"></i>
-            <span class="nav-link-text">Home</span>
-          </a>
-        </li>
+  <a class="navbar-brand" href="<%=edit_admin_registration_path%>"><%= current_admin.email %></a>
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarResponsive">
+    <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+        <a class="nav-link" href="<%=admin_dashboard_index_path%>">
+          <i class="fa fa-fw fa-dashboard"></i>
+          <span class="nav-link-text">Dashboard</span>
+        </a>
+      </li>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="<%= t('.labs') %>">
+        <a class="nav-link" href="<%=admin_labs_path%>">
+          <i class="fa fa-fw fa-flask"></i>
+          <span class="nav-link-text"><%= t('.labs') %></span>
+        </a>
+      </li>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="<%= t('.technical') %>">
+        <a class="nav-link" href="<%=admin_technicals_path%>">
+          <i class="fa fa-fw fa-users"></i>
+          <span class="nav-link-text"><%= t('.technical') %></span>
+        </a>
+      </li>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="<%= t('.tools') %>">
+        <a class="nav-link" href="<%=admin_tools_path%>">
+          <i class="fa fa-fw fa-wrench"></i>
+          <span class="nav-link-text"><%= t('.tools') %></span>
+        </a>
+      </li>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="<%= t('.categories') %>">
+        <a class="nav-link" href="<%=admin_categories_path%>">
+          <i class="fa fa-fw fa-tag"></i>
+          <span class="nav-link-text"><%= t('.categories') %></span>
+        </a>
+      </li>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="<%= t('.languages')%>">
+        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti" data-parent="#exampleAccordion">
+          <i class="fa fa-fw fa-language"></i>
+          <span class="nav-link-text"><%= t('.languages')%></span>
+        </a>
+        <ul class="sidenav-second-level collapse" id="collapseMulti">
+          <li>
+            <%= link_to_unless_current image_tag("if_United-Kingdom_92403.ico", size: "28x28") + " English", locale: "en"%>
+          </li>
+          <li>
+            <%= link_to_unless_current image_tag("if_Italy_92145.ico", size: "28x28") + " Italiano", locale: "it" %>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Home">
+        <a class="nav-link" href="/">
+          <i class="fa fa-fw fa-home"></i>
+          <span class="nav-link-text">Home</span>
+        </a>
+      </li>
+    </ul>
 
-      </ul>
-      <ul class="navbar-nav sidenav-toggler">
-        <li class="nav-item">
-          <a class="nav-link text-center" id="sidenavToggler">
-            <i class="fa fa-fw fa-angle-left"></i>
-          </a>
-        </li>
-      </ul>
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-fw fa-envelope"></i>
-            <span class="d-lg-none">Messages
-              <span class="badge badge-pill badge-primary"><%= @count %></span>
-            </span>
-            <% if @count > 0 %>
+    <ul class="navbar-nav sidenav-toggler">
+      <li class="nav-item">
+        <a class="nav-link text-center" id="sidenavToggler">
+          <i class="fa fa-fw fa-angle-left"></i>
+        </a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+
+      <!-- start dropdown messages -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-fw fa-envelope"></i>
+          <span class="d-lg-none"> <%= t('.messages') %>
+            <span class="badge badge-pill badge-primary"> <%= @count %> </span>
+          </span>
+          <% if @count > 0 %>
             <span class="indicator text-primary d-none d-lg-block">
               <i class="fa fa-fw fa-circle"></i>
             </span>
-            <% end %>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="messagesDropdown">
-            <h6 class="dropdown-header">New Messages:</h6>
-            <div class="dropdown-divider"></div>
-            <% @profs.each do |prof| %>
+          <% end %>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="messagesDropdown">
+          <h6 class="dropdown-header"> <%= t('.newmessages') %> </h6>
+          <div class="dropdown-divider"></div>
+          <% @profs.each do |prof| %>
             <% if prof.confirmed? %>
-            <a class="dropdown-item" href="#">
-              <strong><%= prof.name + " " + prof.surname %></strong>
-              <span class="small float-right text-muted"><%= prof.created_at.strftime("%d/%m/%y %k:%M") %> </span>
-              <div class="text-center">
-              <%= link_to "Autorizza", admin_authorize_route_path(prof.id), method: :post, data: {confirm: t('admin.tools.index.confirm')}, class:"btn btn-success btn-sm"%>
-              </div>
-            </a>
-            <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="<%= admin_dashboard_index_path %>">
+                <strong> <%= prof.name + " " + prof.surname %> </strong>
+                <span class="small float-right text-muted"> <%= prof.created_at.strftime("%d/%m/%y %k:%M") %> </span>
+                <div class="text-center">
+                  <%= link_to t('admin.dashboard.index.authorize'), admin_authorize_route_path(prof.id), method: :post, data: {confirm: t('admin.tools.index.confirm')}, class:"btn btn-success btn-sm"%>
+                </div>
+              </a>
+              <div class="dropdown-divider"></div>
             <% end %>
-            <% end %>
-            <% @bookings.each do |booking| %>
+          <% end %>
+          <% @bookings.each do |booking| %>
             <a class="dropdown-item" href="<%=admin_tool_path(booking.tool)%>">
               <strong><%= booking.tool.name %></strong> <%= t('tools.show.quantity') + ": " + booking.quantity.to_s %>
-              <span class="small float-right text-muted"><%= " " + t('tools.show.to') + " " + booking.end_date.strftime("%d/%m/%y %k:%M").to_s%></span>
-              <span class="small float-right text-muted"><%= t('tools.show.from') + " " + booking.start_date.strftime("%d/%m/%y %k:%M").to_s%></span>
-              <div class="dropdown-message small"><%= booking.prof.surname + " " + booking.prof.name %></div>
-              <div class="dropdown-message small"><%= booking.goal %></div>
+              <span class="small float-right text-muted"> <%= " " + t('tools.show.to') + " " + booking.end_date.strftime("%d/%m/%y %k:%M").to_s%> </span>
+              <span class="small float-right text-muted"> <%= t('tools.show.from') + " " + booking.start_date.strftime("%d/%m/%y %k:%M").to_s%> </span>
+              <div class="dropdown-message small"> <%= booking.prof.surname + " " + booking.prof.name %> </div>
+              <div class="dropdown-message small"> <%= booking.goal %> </div>
               <%= form_for ([:admin, booking]) do |t|  %>
-              <%= hidden_field(:book, :confirmed, :value => true) %>
-              <%= t.submit "Conferma Prenotazione", data: {confirm: t('admin.tools.index.confirm')}, class: "btn btn-info btn-sm" %>
+                <%= hidden_field(:book, :confirmed, :value => true) %>
+                <%= t.submit "Conferma Prenotazione", data: {confirm: t('admin.tools.index.confirm')}, class: "btn btn-info btn-sm" %>
               <% end %>
             </a>
             <div class="dropdown-divider"></div>
-            <% end %>
-            <a class="dropdown-item small" href="#">View all messages</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
+          <% end %>
+          <a class="dropdown-item small" href="<%=admin_dashboard_index_path%>"> <%= t('.allmessages') %> </a>
+        </div>
+      </li>
+      <!-- end dropdown messages -->
+      <!-- start dropdown alerts -->
+      <li class="nav-item dropdown">
+        <!-- start control if admin role = 0, for more information about role of admin, see controllers/admin/requests_controller.rb -->
+        <% if current_admin.role == 0 %>
           <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-fw fa-bell"></i>
-            <% if current_admin.role == 0 %>
-            <span class="d-lg-none">Alerts
-
+            <span class="d-lg-none"> <%= t('.alerts') %>
               <span class="badge badge-pill badge-warning"><%= @requestcountna %></span>
             </span>
             <% if @requestcountna > 0 %>
-            <span class="indicator text-warning d-none d-lg-block">
-              <i class="fa fa-fw fa-circle"></i>
-            </span>
+              <span class="indicator text-warning d-none d-lg-block">
+                <i class="fa fa-fw fa-circle"></i>
+              </span>
             <% end %>
           </a>
           <div class="dropdown-menu" aria-labelledby="alertsDropdown">
-            <h6 class="dropdown-header">New Alerts:</h6>
+            <h6 class="dropdown-header"> <%= t('.newalerts') %> </h6>
             <div class="dropdown-divider"></div>
             <% @requestsna.each do |request| %>
-            <a class="dropdown-item" href="<%=admin_request_path(request)%>">
-              <span class="float-right"><%= request.name %> </span>
-              <span class="text-success">
+              <a class="dropdown-item" href="<%=admin_request_path(request)%>">
+                <span class="text-success">
+                 <strong><%= request.name %></strong>
+                </span>
+                <%= t('tools.show.quantity') + ": " + request.quantity.to_s %>
+                <span class="small float-right text-muted"> <%= request.created_at.strftime("%d/%m/%y %k:%M").to_s%> </span>
                 <% if request.prof.present? %>
-                  <strong><%= request.prof.name + " " + request.prof.surname %> </strong>
+                  <div class="dropdown-message small"> <%= request.prof.surname + " " + request.prof.name %> </div>
                 <% else %>
-                  <strong><%= request.technical.name + " " + request.technical.surname %> </strong>
+                  <div class="dropdown-message small"> <%= request.technical.name + " " + request.technical.surname %> </div>
                 <% end %>
-              </span>
-
-              <span class="small float-right text-muted"><%= request.created_at.strftime("%d/%m/%y %k:%M") %></span>
-              <div class="dropdown-message small"><%= request.goal %> </div>
+                <div class="dropdown-message small"> <%= request.goal %> </div>
               </a>
-              <div class="text-center">
-                <%= form_for ([:admin, request]) do |t|  %>
-                  <%= hidden_field(:request, :approved, :value => true) %>
-                  <%= t.submit "Conferma Richiesta", data: {confirm: t('admin.tools.index.confirm')}, class: "btn btn-warning btn-sm" %>
-                <% end %>
-                <%= link_to fa_icon('trash'), admin_request_path(request), data: { confirm: t('admin.tools.index.confirm') }, method: :delete, class:"btn btn-danger btn-sm" %>
-              </div>
-
-            <div class="dropdown-divider"></div>
+              <div class="dropdown-divider"></div>
             <% end %>
-            <% end %>
-
-            <% if current_admin.role == 1 %>
-            <span class="d-lg-none">Alerts
-
-              <span class="badge badge-pill badge-warning"><%= @requestrepo %></span>
+            <a class="dropdown-item small" href="<%=admin_dashboard_index_path%>"> <%= t('.allalerts') %> </a>
+          </div>
+        <% end %>
+        <!-- end role 0 -->
+        <!-- start role 1 -->
+        <% if current_admin.role == 1 %>
+          <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-fw fa-bell"></i>
+            <span class="d-lg-none"> <%= t('.alerts') %>
+              <span class="badge badge-pill badge-warning"> <%= @requestrepo %> </span>
             </span>
             <% if @requestrepo > 0 %>
-            <span class="indicator text-warning d-none d-lg-block">
-              <i class="fa fa-fw fa-circle"></i>
-            </span>
+              <span class="indicator text-warning d-none d-lg-block">
+                <i class="fa fa-fw fa-circle"></i>
+              </span>
             <% end %>
           </a>
           <div class="dropdown-menu" aria-labelledby="alertsDropdown">
-            <h6 class="dropdown-header">New Alerts:</h6>
+          <h6 class="dropdown-header"> <%= t('.newalerts') %> </h6>
             <div class="dropdown-divider"></div>
             <% @requestsa.each do |request| %>
-            <a class="dropdown-item" href="<%=admin_request_path(request)%>">
-              <span class="float-right"><%= request.name %> </span>
-              <span class="text-success">
+              <a class="dropdown-item" href="<%=admin_request_path(request)%>">
+                <span class="text-success">
+                 <strong><%= request.name %></strong>
+                </span>
+                <%= t('tools.show.quantity') + ": " + request.quantity.to_s %>
+                <span class="small float-right text-muted"> <%= request.created_at.strftime("%d/%m/%y %k:%M").to_s%> </span>
                 <% if request.prof.present? %>
-                  <strong><%= request.prof.name + " " + request.prof.surname %> </strong>
+                  <div class="dropdown-message small"> <%= request.prof.surname + " " + request.prof.name %> </div>
                 <% else %>
-                  <strong><%= request.technical.name + " " + request.technical.surname %> </strong>
+                  <div class="dropdown-message small"> <%= request.technical.name + " " + request.technical.surname %> </div>
                 <% end %>
-              </span>
-
-              <span class="small float-right text-muted"><%= request.created_at.strftime("%d/%m/%y %k:%M") %></span>
-              <div class="dropdown-message small"><%= request.goal %> </div>
+                <div class="dropdown-message small"> <%= request.goal %> </div>
               </a>
-              <div class="text-center">
-                <%= form_for ([:admin, request]) do |t|  %>
-                  <%= hidden_field(:request, :money, :value => true) %>
-                  <%= t.submit "Conferma Richiesta", data: {confirm: t('admin.tools.index.confirm')}, class: "btn btn-warning btn-sm" %>
-                <% end %>
-                <%= link_to fa_icon('trash'), admin_request_path(request), data: { confirm: t('admin.tools.index.confirm') }, method: :delete, class:"btn btn-danger btn-sm" %>
-              </div>
-
-            <div class="dropdown-divider"></div>
+              <div class="dropdown-divider"></div>
             <% end %>
             <% @reportings.each do |reporting| %>
-            <a class="dropdown-item" href="#">
-              <strong><%= reporting.tool.name %></strong> <%= t('tools.show.quantity') + ": " + reporting.quantity.to_s %>
-              <br>
-
-                <div class="dropdown-message small"><%= reporting.description %></div>
-
-              <span class="small float-right text-muted"><%= reporting.created_at.strftime("%d/%m/%y %k:%M") %></span>
-              <div class="dropdown-message small"><%= reporting.technical.name + " " + reporting.technical.surname %> </div>
+              <a class="dropdown-item" href="<%=admin_dashboard_index_path%>">
+                <span class="text-warning">
+                  <strong> <%= reporting.tool.name %> </strong>
+                </span>
+                <%= t('tools.show.quantity') + ": " + reporting.quantity.to_s %>
+                <br>
+                <div class="dropdown-message small"> <%= reporting.description %> </div>
+                <span class="small float-right text-muted"> <%= reporting.created_at.strftime("%d/%m/%y %k:%M") %> </span>
+                <div class="dropdown-message small"> <%= reporting.technical.name + " " + reporting.technical.surname %> </div>
               </a>
-
-
-            <div class="dropdown-divider"></div>
+              <div class="dropdown-divider"></div>
             <% end %>
-
-            <% end %>
-
-            <% if current_admin.role == 2 %>
-            <span class="d-lg-none">Alerts
-
-              <span class="badge badge-pill badge-warning"><%= @requestcountm %></span>
+            <a class="dropdown-item small" href="<%=admin_dashboard_index_path%>"> <%= t('.allalerts') %> </a>
+          </div>
+        <% end %>
+        <!-- end role 1 -->
+        <!-- start role 2 -->
+        <% if current_admin.role == 2 %>
+          <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-fw fa-bell"></i>
+            <span class="d-lg-none"> <%= t('.alerts') %>
+              <span class="badge badge-pill badge-warning"> <%= @requestcountm %> </span>
             </span>
             <% if  @requestcountm > 0 %>
-            <span class="indicator text-warning d-none d-lg-block">
-              <i class="fa fa-fw fa-circle"></i>
-            </span>
+              <span class="indicator text-warning d-none d-lg-block">
+                <i class="fa fa-fw fa-circle"></i>
+              </span>
             <% end %>
           </a>
           <div class="dropdown-menu" aria-labelledby="alertsDropdown">
-            <h6 class="dropdown-header">New Alerts:</h6>
+          <h6 class="dropdown-header"> <%= t('.newalerts') %> </h6>
             <div class="dropdown-divider"></div>
             <% @requestsm.each do |request| %>
-            <a class="dropdown-item" href="<%=admin_request_path(request)%>">
-              <span class="float-right"><%= request.name %> </span>
-              <span class="text-success">
+              <a class="dropdown-item" href="<%=admin_request_path(request)%>">
+                <span class="text-success">
+                 <strong><%= request.name %></strong>
+                </span>
+                <%= t('tools.show.quantity') + ": " + request.quantity.to_s %>
+                <span class="small float-right text-muted"> <%= request.created_at.strftime("%d/%m/%y %k:%M").to_s%> </span>
                 <% if request.prof.present? %>
-                  <strong><%= request.prof.name + " " + request.prof.surname %> </strong>
+                  <div class="dropdown-message small"> <%= request.prof.surname + " " + request.prof.name %> </div>
                 <% else %>
-                  <strong><%= request.technical.name + " " + request.technical.surname %> </strong>
+                  <div class="dropdown-message small"> <%= request.technical.name + " " + request.technical.surname %> </div>
                 <% end %>
-              </span>
-
-              <span class="small float-right text-muted"><%= request.created_at.strftime("%d/%m/%y %k:%M") %></span>
-              <div class="dropdown-message small"><%= request.goal %> </div>
+                <div class="dropdown-message small"> <%= request.goal %> </div>
               </a>
-              <div class="text-center">
-                <%= form_for ([:admin, request]) do |t|  %>
-                  <%= hidden_field(:request, :arrived, :value => true) %>
-                  <%= t.submit "Conferma Richiesta", data: {confirm: t('admin.tools.index.confirm')}, class: "btn btn-warning btn-sm" %>
-                <% end %>
-                <%= link_to fa_icon('trash'), admin_request_path(request), data: { confirm: t('admin.tools.index.confirm') }, method: :delete, class:"btn btn-danger btn-sm" %>
-              </div>
-
-            <div class="dropdown-divider"></div>
+              <div class="dropdown-divider"></div>
             <% end %>
-            <% end %>
-
-            <a class="dropdown-item small" href="#">View all alerts</a>
+            <a class="dropdown-item small" href="<%=admin_dashboard_index_path%>"> <%= t('.allalerts') %> </a>
           </div>
-        </li>
-        <% if controller_name == "tools" && controller.action_name == "index" %>
-          <li class="nav-item">
-            <%= search_form_for @q, url: admin_tools_path do |f| %>
+        <% end %>
+        <!-- end role 2 -->
+      </li>
+      <!-- end dropdown alerts -->
+      <!-- start search forms -->
+      <% if controller_name == "tools" && controller.action_name == "index" %>
+        <li class="nav-item">
+          <%= search_form_for @q, url: admin_tools_path do |f| %>
             <div class="input-group">
               <%= f.search_field :translations_name_cont, class:"form-control", placeholder: t('tools.index.place') %>
               <span class="input-group-append">
@@ -262,63 +250,58 @@
                 <% end %>
               </span>
             </div>
-            <% end %>
-              </li>
-            <% elsif controller_name == "labs" && controller.action_name == "index" %>
-              <li class="nav-item">
-                <%= search_form_for @q, url: admin_labs_path do |f| %>
-                <div class="input-group">
-                  <%= f.search_field :name_cont, class:"form-control", placeholder: t('.place') + " " + t('.labs') %>
-                  <span class="input-group-append">
-                    <%= button_tag type: 'submit', class: "btn btn-primary" do %>
-                       <%= fa_icon('search') %>
-                    <% end %>
-                  </span>
-                </div>
-                <% end %>
-                  </li>
-
-                <% elsif controller_name == "technicals" && controller.action_name == "index" %>
-                  <li class="nav-item">
-                    <%= search_form_for @q, url: admin_technicals_path do |f| %>
-                    <div class="input-group">
-                      <%= f.search_field :name_or_surname_cont, class:"form-control", placeholder: t('.place') + " " + t('.technical') %>
-                      <span class="input-group-append">
-                        <%= button_tag type: 'submit', class: "btn btn-primary" do %>
-                           <%= fa_icon('search') %>
-                        <% end %>
-                      </span>
-                    </div>
-                    <% end %>
-                      </li>
-
-                    <% elsif controller_name == "categories" && controller.action_name == "index" %>
-                      <li class="nav-item">
-                        <%= search_form_for @q, url: admin_categories_path do |f| %>
-                        <div class="input-group">
-                          <%= f.search_field :name_cont, class:"form-control", placeholder: t('.place') + " " + t('.categories') %>
-                          <span class="input-group-append">
-                            <%= button_tag type: 'submit', class: "btn btn-primary" do %>
-                               <%= fa_icon('search') %>
-                            <% end %>
-                          </span>
-                        </div>
-                        <% end %>
-                          </li>
-
-                        <% else %>
-                          <li class="nav-item">
-
-                            Powered by: <%= link_to "Davide Fazio", "https://it.linkedin.com/in/davide-fazio?trk=profile-badge" %>
-
-                          </li>
-
-        <% end %>
-        <li class="nav-item">
-            <%= link_to fa_icon('sign-out') + "Log-out", destroy_admin_session_path, method: :delete, data: { confirm: t('.confirm') }, class: "nav-link" %>
+          <% end %>
         </li>
-      </ul>
-    </div>
+      <% elsif controller_name == "labs" && controller.action_name == "index" %>
+        <li class="nav-item">
+          <%= search_form_for @q, url: admin_labs_path do |f| %>
+            <div class="input-group">
+              <%= f.search_field :name_cont, class:"form-control", placeholder: t('.place') + " " + t('.labs') %>
+              <span class="input-group-append">
+                <%= button_tag type: 'submit', class: "btn btn-primary" do %>
+                  <%= fa_icon('search') %>
+                <% end %>
+              </span>
+            </div>
+          <% end %>
+        </li>
+      <% elsif controller_name == "technicals" && controller.action_name == "index" %>
+        <li class="nav-item">
+          <%= search_form_for @q, url: admin_technicals_path do |f| %>
+            <div class="input-group">
+              <%= f.search_field :name_or_surname_cont, class:"form-control", placeholder: t('.place') + " " + t('.technical') %>
+              <span class="input-group-append">
+                <%= button_tag type: 'submit', class: "btn btn-primary" do %>
+                  <%= fa_icon('search') %>
+                <% end %>
+              </span>
+            </div>
+          <% end %>
+        </li>
+      <% elsif controller_name == "categories" && controller.action_name == "index" %>
+        <li class="nav-item">
+          <%= search_form_for @q, url: admin_categories_path do |f| %>
+            <div class="input-group">
+              <%= f.search_field :name_cont, class:"form-control", placeholder: t('.place') + " " + t('.categories') %>
+              <span class="input-group-append">
+                <%= button_tag type: 'submit', class: "btn btn-primary" do %>
+                  <%= fa_icon('search') %>
+                <% end %>
+              </span>
+            </div>
+          <% end %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          Powered by: <%= link_to "Davide Fazio", "https://it.linkedin.com/in/davide-fazio?trk=profile-badge" %>
+        </li>
+      <% end %>
+      <!-- end serach form -->
+      <li class="nav-item">
+        <%= link_to fa_icon('sign-out') + "Log-out", destroy_admin_session_path, method: :delete, data: { confirm: t('.confirm') }, class: "nav-link" %>
+      </li>
+    </ul>
+  </div>
 </nav>
 
 <script>

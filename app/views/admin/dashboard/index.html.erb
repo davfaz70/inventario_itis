@@ -159,7 +159,7 @@
             </h4>
           </div>
           <div class="card-body">
-            <p class="card-text"> <%= reporting.description %> </p>
+            <p class="card-text"> <%= simple_format(reporting.description) %> </p>
             <p class="card-text"> <%= reporting.lab.name %> </p>
           </div>
           <div class="card-footer">
@@ -220,11 +220,11 @@
       <div class="card-body">
         <b> <%= t('.description') %>: </b>
         <br>
-        <%= request.description %>
+        <%= simple_format(request.description) %>
         <hr>
         <b> <%= t('.goal') %>: </b>
         <br>
-        <%= request.goal %>
+        <%= simple_format(request.goal) %>
       </div>
       <div class="card-footer">
         <% if request.prof.present? %>
@@ -264,7 +264,7 @@
               </b>
             </p>
             <p class="card-text"> <i> <%= t('tools.show.quantity') + " " + booking.quantity.to_s %> </i> </p>
-            <p class="card-text"> <%= booking.goal %> </p>
+            <p class="card-text"> <%= simple_format(booking.goal) %> </p>
           </div>
           <%= form_for ([:admin, booking]) do |t|  %>
             <%= hidden_field(:book, :confirmed, :value => true) %>

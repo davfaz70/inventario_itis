@@ -1,160 +1,141 @@
 <%= form_for ([:admin, @tool]) do |t|  %>
 
-<% if @tool.errors.any? %>
+  <% if @tool.errors.any? %>
     <div id="error_explanation">
       <% @tool.errors.full_messages.each do |message| %>
-      <div class="alert alert-danger alert-dismissible fade show" role="alert">
-       <%= message %>
-       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-         <span aria-hidden="true">&times;</span>
-       </button>
-      </div>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <%= message %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
       <% end %>
     </div>
   <% end %>
-<div class="row">
-  <div class="col-md-4 col-sm-6">
-    <img height="150" width="200" id="image" />
+
+  <div class="row">
+    <div class="col-md-4 col-sm-6">
+      <img height="150" width="200" id="image" />
+    </div>
+    <div class="col-md-8 col-sm-6">
+      <div class="custom-file">
+        <%= t.label t('.photo'), class:"custom-file-label" %>
+        <%= t.file_field :photo, class:"custom-file-input" %>
+      </div>
+    </div>
   </div>
-  <div class="col-md-8 col-sm-6">
-<div class="custom-file">
-  <%=t.label t('.photo'), class:"custom-file-label"%>
-  <%=t.file_field :photo, class:"custom-file-input"%>
-</div>
-</div>
-</div>
 
-<div class="form-group" >
-  <%=t.label t('.name')%>
-  <%=t.text_field :name, class:"form-control"%>
-  <div class="invalid-feedback">Devi inserire un nome, come si chiama questo strumento? Arduino? RaspberryPie?</div>
-</div>
-
-<div class="form-group">
-  <%=t.label t('.description')%>
-  <%=t.text_area :description, class:"form-control"%>
-  <div class="invalid-feedback">Devi inserire una descrizione, che cosa fa questo oggetto?</div>
-</div>
-<div class="row">
-<div class="col-md-6 col-sm-6">
-<div class="form-group">
-  <%=t.label t('.identifier')%>
-  <%=t.text_field :identifier, class:"form-control"%>
-  <div class="invalid-feedback">Devi inserire un numero di giorni standard per questo strumento</div>
-</div>
-</div>
-
-<div class="col-md-6 col-sm-6">
-<div class="form-group">
-  <%=t.label t('.quantity')%>
-  <%=t.text_field :quantity, class:"form-control"%>
-  <div class="invalid-feedback">Quanti ce ne sono disponibili adesso? Devi dirlo!</div>
-</div>
-</div>
-</div>
-
-<div class="row">
-  <div class="col-md-6 col-sm-6">
-    <div class="form-group">
-    <%= t.nested_fields_for :photos do |d| %>
-      <%= d.remove_nested_fields_link t('.photoremove'), data: { confirm: t('admin.tools.index.confirm') } %>
-      <br>
-
-      <%=d.file_field :picture%>
-
-    <% end %>
-    <%= t.add_nested_fields_link :photos, t('.photoadd') %>
+  <div class="form-group" >
+    <%= t.label t('.name') %>
+    <%= t.text_field :name, class:"form-control" %>
   </div>
+
+  <div class="form-group">
+    <%= t.label t('.description') %>
+    <%= t.text_area :description, class:"form-control" %>
   </div>
-  <div class="col-md-6 col-sm-6">
-    <div class="form-group">
-    <%= t.nested_fields_for :documentations do |d| %>
-      <%= d.remove_nested_fields_link t('.docremove'), data: { confirm: t('admin.tools.index.confirm') } %>
-      <br>
 
-        <%= d.label t('.docname') %>
-        <%= d.text_field :name, class:"form-control" %>
-
-        <%= d.file_field :file%>
-        <small class="form-text text-muted"> <%= t('.docwarn') %> </small>
-
-    <% end %>
-    <%= t.add_nested_fields_link :documentations, t('.docadd') %>
+  <div class="row">
+    <div class="col-md-6 col-sm-6">
+      <div class="form-group">
+        <%= t.label t('.identifier') %>
+        <%= t.text_field :identifier, class:"form-control" %>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6">
+      <div class="form-group">
+        <%= t.label t('.quantity') %>
+        <%= t.text_field :quantity, class:"form-control" %>
+      </div>
+    </div>
   </div>
+
+  <div class="row">
+    <div class="col-md-6 col-sm-6">
+      <div class="form-group">
+        <%= t.nested_fields_for :photos do |d| %>
+          <%= d.remove_nested_fields_link t('.photoremove'), data: { confirm: t('admin.tools.index.confirm') } %>
+          <br>
+          <%= d.file_field :picture %>
+        <% end %>
+        <%= t.add_nested_fields_link :photos, t('.photoadd') %>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6">
+      <div class="form-group">
+        <%= t.nested_fields_for :documentations do |d| %>
+          <%= d.remove_nested_fields_link t('.docremove'), data: { confirm: t('admin.tools.index.confirm') } %>
+          <br>
+          <%= d.label t('.docname') %>
+          <%= d.text_field :name, class:"form-control" %>
+          <%= d.file_field :file%>
+          <small class="form-text text-muted"> <%= t('.docwarn') %> </small>
+        <% end %>
+        <%= t.add_nested_fields_link :documentations, t('.docadd') %>
+      </div>
+    </div>
   </div>
-</div>
 
-<%= t.label t('.categorychoose') %>
-<%= t.select :category_ids, Category.all.pluck(:name, :id), {}, { multiple: true, class: "selectize" } %>
+  <%= t.label t('.categorychoose') %>
+  <%= t.select :category_ids, Category.all.pluck(:name, :id), {}, { multiple: true, class: "selectize" } %>
+  <hr>
 
-<hr>
-
-
-<%= t.label t('.labchoose') %>
-
-<div class="field">
-  <%= hidden_field_tag "tool[lab_ids][]", nil %>
-    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-      <% for lab in Lab.all %>
+  <%= t.label t('.labchoose') %>
+  <div class="field">
+    <%= hidden_field_tag "tool[lab_ids][]", nil %>
+      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <% for lab in Lab.all %>
           <% if @tool.labs.include?(lab) %>
             <label class="btn btn-outline-secondary active">
           <% else %>
             <label class="btn btn-outline-secondary">
           <%end%>
-          <%= check_box_tag "tool[lab_ids][]", lab.id, @tool.labs.include?(lab) %>
-          <%= lab.name %>
-          </label>
+              <%= check_box_tag "tool[lab_ids][]", lab.id, @tool.labs.include?(lab) %>
+              <%= lab.name %>
+            </label>
         <% end %>
     </div>
   </div>
+  <hr>
+  <br>
 
-<%= t.submit class:"btn btn-primary btn-block"%>
+  <%= t.submit class:"btn btn-primary btn-block"%>
 
-<script>
+  <script>
+    document.getElementById("tool_photo").onchange = function () {
+        var reader = new FileReader();
 
-document.getElementById("tool_photo").onchange = function () {
-    var reader = new FileReader();
+        reader.onload = function (e) {
+            // get loaded data and render thumbnail.
+            document.getElementById("image").src = e.target.result;
+        };
 
-    reader.onload = function (e) {
-        // get loaded data and render thumbnail.
-        document.getElementById("image").src = e.target.result;
+        // read the image file as a data URL.
+        reader.readAsDataURL(this.files[0]);
     };
-
-    // read the image file as a data URL.
-    reader.readAsDataURL(this.files[0]);
-};
-
-
-</script>
-
+  </script>
 
 <% end %>
-
-
 
 <!-- Modal -->
 <div class="modal fade category-modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New Category</h5>
+        <h5 class="modal-title" id="exampleModalLabel"> <%= t('admin.categories.index.new') %> </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-
-<%= form_for ([:admin, Category.new]) do |t|  %>
-
-    <div class="form-group" >
-      <%=t.label t('.name')%>
-      <%=t.text_field :name, class:"form-control"%>
+        <%= form_for ([:admin, Category.new]) do |t|  %>
+          <div class="form-group" >
+            <%= t.label t('.name') %>
+            <%= t.text_field :name, class:"form-control" %>
+          </div>
+          <%= t.submit class:"btn btn-primary btn-block"%>
+        <% end %>
+      </div>
     </div>
-
-<%= t.submit class:"btn btn-primary btn-block"%>
-
-<% end %>
-</div>
-</div>
-</div>
+  </div>
 </div>

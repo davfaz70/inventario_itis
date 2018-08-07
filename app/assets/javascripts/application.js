@@ -23,7 +23,7 @@
 //= require clipboard
 $(document).ready(function(){
 
-  var clipboard = new Clipboard('.btn');
+  var clipboard = new Clipboard('.btnclipboard');
   console.log(clipboard);
 
 });

@@ -5,7 +5,7 @@
       <% @relation.errors.full_messages.each do |message| %>
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
           <%= message %>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -13,70 +13,80 @@
     </div>
   <% end %>
 
+  <!-- start row -->
   <div class="row">
+    <!-- start col -->
     <div class="col-md-4 col-sm-4">
       <div class="form-group" >
         <%=t.label t('tools.show.start') %>
         <%=t.date_field :start_date, class:"form-control"%>
       </div>
     </div>
+    <!-- end col -->
+    <!-- start col -->
     <div class="col-md-4 col-sm-4">
       <div class="form-group">
         <%=t.label t('tools.show.end') %>
         <%=t.date_field :end_date, class:"form-control"%>
       </div>
     </div>
+    <!-- end col -->
     <%if params[:technical_id].present?%>
-    <div class="col-md-4 col-sm-4">
-      <% for lab in Lab.all %>
-      <% if @relation.lab == lab %>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <div class="input-group-text">
-            <%= radio_button_tag "lab_technical[lab_id]" , lab.id, true%>
-          </div>
-        </div>
-        <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= lab.name %>" readonly>
-      </div>
-      <% else %>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <div class="input-group-text">
-            <%= radio_button_tag "lab_technical[lab_id]" , lab.id%>
-          </div>
-        </div>
-        <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= lab.name %>" readonly>
-      </div>
-      <% end %>
-      <% end %>
-    </div>
-    <%else%>
-    <div class="col-md-4 col-sm-4">
-      <% for technical in Technical.all %>
-        <% if @relation.technical == technical %>
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text">
-                <%= radio_button_tag "lab_technical[technical_id]" , technical.id, true%>
+      <!-- start tecnical col -->
+      <div class="col-md-4 col-sm-4">
+        <% for lab in Lab.all %>
+          <% if @relation.lab == lab %>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <%= radio_button_tag "lab_technical[lab_id]" , lab.id, true%>
+                </div>
               </div>
+              <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= lab.name %>" readonly>
             </div>
-          <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= technical.name + ' ' + technical.surname%>" readonly>
-          </div>
-        <% else %>
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <div class="input-group-text">
-              <%= radio_button_tag "lab_technical[technical_id]" , technical.id%>
+          <% else %>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <%= radio_button_tag "lab_technical[lab_id]" , lab.id%>
+                </div>
+              </div>
+              <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= lab.name %>" readonly>
             </div>
-          </div>
-          <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= technical.name + ' ' + technical.surname%>" readonly>
-        </div>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
+      </div>
+      <!-- end technical col -->
+    <%else%>
+      <!-- start lab col -->
+      <div class="col-md-4 col-sm-4">
+        <% for technical in Technical.all %>
+          <% if @relation.technical == technical %>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <%= radio_button_tag "lab_technical[technical_id]" , technical.id, true%>
+                </div>
+              </div>
+              <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= technical.name + ' ' + technical.surname%>" readonly>
+            </div>
+          <% else %>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <%= radio_button_tag "lab_technical[technical_id]" , technical.id%>
+                </div>
+              </div>
+              <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= technical.name + ' ' + technical.surname%>" readonly>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <!-- end lab col -->
     <%end%>
-
   </div>
+  <!-- end row -->
+
   <%if params[:technical_id].present?%>
     <%= hidden_field(:lab_technical, :technical_id, :value => params[:technical_id]) %>
   <%else%>
@@ -84,5 +94,6 @@
     <%= hidden_field(:lab_technical, :lab_id, :value => labo.id) %>
   <%end%>
 
- <%= t.submit I18n.t('admin.lab_technicals.create'), class:"btn btn-success"%>
- <% end %>
+  <%= t.submit I18n.t('admin.lab_technicals.create'), class:"btn btn-success"%>
+
+<% end %>

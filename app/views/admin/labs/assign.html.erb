@@ -5,22 +5,30 @@
   <%end%>
 </p>
 
-    <%= hidden_field_tag "lab[tool_ids][]", nil %>
-      <div class="list-group">
-        <% @tools.each do |tool| %>
-          <% if tool.name.present? %>
-            <% if @lab.tools.include?(tool) %>
-              <%= link_to image_tag(tool.photo.thumb) + " " + tool.name, admin_assign_update_lab_route_path(@lab, tool), class:"list-group-item active"%>
-            <% else %>
-              <% if tool.labs.size == tool.quantity %>
-                <%= link_to image_tag(tool.photo.thumb) + " " + tool.name, admin_assign_update_lab_route_path(@lab, tool), class:"list-group-item disabled"%>
-              <% else %>
-                <%= link_to image_tag(tool.photo.thumb) + " " + tool.name, admin_assign_update_lab_route_path(@lab, tool), class:"list-group-item "%>
-              <% end %>
-            <%end%>
-          <% end %>
+<!-- a tool can be assigned to one or more laboratories,
+     but it can not be assigned to a number of laboratories greater than the available quantity.
+     For example: two backers can not be in three laboratories. -->
+
+<%= hidden_field_tag "lab[tool_ids][]", nil %>
+
+<div class="list-group">
+  <% @tools.each do |tool| %>
+    <% if tool.name.present? %>
+      <% if @lab.tools.include?(tool) %>
+        <%= link_to image_tag(tool.photo.thumb) + " " + tool.name, admin_assign_update_lab_route_path(@lab, tool), class:"list-group-item active"%>
+      <% else %>
+        <% if tool.labs.size == tool.quantity %>
+          <%= link_to image_tag(tool.photo.thumb) + " " + tool.name, admin_assign_update_lab_route_path(@lab, tool), class:"list-group-item disabled"%>
+        <% else %>
+          <%= link_to image_tag(tool.photo.thumb) + " " + tool.name, admin_assign_update_lab_route_path(@lab, tool), class:"list-group-item "%>
         <% end %>
-      </div>
+      <%end%>
+    <% end %>
+  <% end %>
+</div>
+
 <hr>
-      <%= link_to "OK", admin_labs_path, class:"btn btn-success btn-block" %>
-    <hr>
+
+<%= link_to "OK", admin_labs_path, class:"btn btn-success btn-block" %>
+
+<hr>

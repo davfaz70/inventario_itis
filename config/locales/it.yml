@@ -15,6 +15,12 @@ it:
   admin:
     shared:
       menu:
+        messages: "Messaggi"
+        newmessages: "Nuovi messaggi"
+        allmessages: "Vedi tutti i messaggi"
+        alerts: "Avvisi"
+        newalerts: "Nuovi avvisi"
+        allalerts: "Vedi tutti gli avvisi"
         tools: "Strumenti"
         labs: "Laboratori"
         categories: "Categorie"
@@ -24,6 +30,7 @@ it:
         confirm: "Sei sicuro?"
     tools:
       index:
+        unconfirmedbookings: "Prenotazioni da confermare"
         new: "Nuovo strumento"
         search: "Cerca"
         place: "Cerca uno strumento"
@@ -74,6 +81,8 @@ it:
       assign:
         search: "Cerca"
         place: "Cerca uno strumento"
+      show:
+        present: "Attuale"
       create:
         created: "Laboratorio creato con successo"
       update:
@@ -232,28 +241,6 @@ it:
       bookings: "Prenotazioni fatte da te"
       notapproved: "Non approvata"
       approved: "Approvata"
-  gdpr:
-    privacy:
-      infoprivacy: "Informativa Privacy"
-      whoweare: "Chi siamo e perché ti stiamo fornendo questo documento?"
-      whofirst: "L'applicazione web in questione è un sistema automatico creato e gestito da Fazio Davide (nel seguto 'Il titolare' o 'Lo sviluppatore'), per garantirti che il trattamento dei Dati Personali avvenga nel pieno rispetto delle Nomative Europee (GDPR), ti viene sottoposto questo documento con tutte le informazioni riguardanti il modo in cui il sistema usa i tuoi Dati Personali."
-      whomanagedata: "Chi tratterà i tuoi Dati Personali?"
-      managefirst: "I dati che ci fornirai non saranno trattati direttamente dal titolare, ma dal sistema automatico (ciò significa che lo sviluppatore non potrà in alcun modo visualizzare, modificare o cancellare i dati che immetterai su questa piattaforma web)."
-      managesecond: "Alla luce di questo, tratterà i tuoi dati ciò che nell'articolo 4 al punto 7 del GDPR viene classificato come servizio, verrano inoltre gestiti in maniera totalmente automatica."
-      contact: "A chi puoi rivolgerti?"
-      contactfirst: "Per chiarimenti o domande puoi scrivere all'indirizzo "
-      finality: "Per quali finalità saranno utilizzati i tuoi Dati Personali?"
-      finalityfirst: "Al fine di consentire la tua registrazione sul Sito Internet, l'invio di notifiche per email e la verifica dell'identità, il Servizio ha necessità di raccogliere alcuni dei tuoi Dati Personali, così come richiesto nel modulo di iscrizione. Il servizio gestirà in maniera totalmente automatica i tuoi Dati Personali consentendoti di accedere al tuo account, ricevere notifiche, effettuare prenotazioni e usufruire di tutti gli altri servizi. I tuoi Dati Personali non saranno in alcun modo usati per scopi di marketing diretto o indiretto o con finalità di profilazione né saranno divulgati a Terzi."
-      finalitysecond: "Nel caso di professori e tecnici di laboratorio i seguenti Dati Personali (email, nome e cognome), saranno visibili agli admin (Preside, DSGA, Amministratore ATA) per l'accertamento dell'identità."
-      finalitythird: "Per consentire al Servizio di effettuare le attività di Trattamento di cui sopra è necessario compilare tutti i campi del modulo. In mancanza di uno solo di questi dati non sarà possibile procedere all'erogazione dei servizi."
-      finalityfourth: "Nel caso dei professori, qualora decidessi di accedere tramite oAuth (cioè tramite profilo Social), la raccolta dei tuoi dati pesonali sarà effettuata dal Titolare del Trattamento presso terzi ossia presso il gestore del social che hai utiizzato per accedere ai Siti Internet."
-      time: "Per quanto tempo saranno trattati i tuoi Dati Personali?"
-      timefirst: "In conformità all'articolo 5, comma 1, punto e) del GDPR che afferma 'I Dati Personali possono essere conservati per periodi più lunghi a condizione che siano trattati esclusivamente a fini di archiviazione nel pubblico interesse', i tuoi Dati Personali saranno trattati fino alla cessazione dei rapporti contrattuali in essere tra te e il Servizio (cioè fino a che non eliminerai il tuo account) fatto salvo un ulteriore periodo di conservazione che potrà essere imposto da norme di legge come previsto dal Considerando 65 del GDPR."
-      revoke: "È possibile revocare il consenso prestato ed in che modo?"
-      revokefirst: "Come previsto dal GDPR, qualora tu abbia prestato il tuo consenso al Trattamento dei tuoi Dati Personali per una o più finalità per le quali ti è stato richiesto, potrai, in qualsiasi momento, revocarlo senza pregiudicare la leicità del Trattamento basato sul consenso prestato prima della revoca."
-      revokesecond: "Per eliminare i dati personali dal portale web accedi alla sezione 'account' e fai click sul pulsante 'cancella il mio account'. Poiché questa cancellazione non pregiudica la leicità del trattamento effettuato prima della revoca, è possibile che i Dati riguardanti alcuni servizi, come le prenotazioni, rimangano nel database in conformità al punto E di questa informativa."
-      where: "Dove saranno trattati i tuoi Dati Personali?"
-      wherefirst: "I tuoi Dati Personali saranno trattati all'interno del territorio dell'Unione Europea."
 
   technical:
     shared:
@@ -269,6 +256,8 @@ it:
         notapproved: "Richieste non approvate"
         approved: "Richieste approvate"
         money: "Richieste acquistate"
+      create:
+        created: "Richiesta effettuata con successo!"
     reportings:
       index:
         new: "Nuova segnalazione"

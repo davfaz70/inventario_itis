@@ -46,7 +46,6 @@ class Tool < ApplicationRecord
   end
   accepts_nested_attributes_for :photos, allow_destroy: true
   before_save :name
-  before_save :description
 
   default_scope -> {order(name: :asc)}
 
@@ -55,9 +54,6 @@ class Tool < ApplicationRecord
 
   def name=(s)
     write_attribute(:name, s.to_s.capitalize)
-  end
-  def description=(s)
-    write_attribute(:description, s.to_s.capitalize)
   end
   def self.with_translated_name(name_string)
   with_translations(I18n.locale).where('tool_translations.name' => name_string)

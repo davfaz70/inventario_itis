@@ -1,6 +1,7 @@
 <h1> <%= t('admin.shared.menu.categories') %> </h1>
 <hr>
 
+<!-- because a category can be created by selectize, i need to specify the destination of html form -->
 <%= form_for ([:admin, @category]), :url => {:controller => "categories", :action => "htmlcreate"} do |t|  %>
   <div class="form-group" >
     <%=t.label t('admin.categories.form.name')%>

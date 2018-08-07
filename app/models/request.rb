@@ -32,12 +32,8 @@ class Request < ApplicationRecord
   belongs_to :prof
   belongs_to :technical
   before_save :name
-  before_save :description
   validates_with RequestValidator
   def name=(s)
     write_attribute(:name, s.to_s.capitalize)
-  end
-  def description=(s)
-    write_attribute(:description, s.to_s.capitalize)
   end
 end
