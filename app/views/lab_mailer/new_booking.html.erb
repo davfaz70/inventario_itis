@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h1 align="center"> <%= @technical.name + " " + @technical.surname %> </h1>
-    <p> L'admin ha appena autorizzato <%= @booking.prof.name + " " + @booking.prof.surname %> ad usare <%= @booking.tool.name %> nel suo laboratorio</p>
-    <p> Il periodo di utilizzo di tale strumento va dal <%= @booking.start_date %> al <%= @booking.end_date %> </p>
-    <p> Il totale degli srumenti che verranno utilizzati in questa prenotazione è di: <%= @booking.quantity %> </p>
-    <p> Cordiali saluti </p>
-  </body>
-</html>
+<h1 align="center"> <%= @technical.name + " " + @technical.surname %> </h1>
+<p> L'admin ha appena autorizzato <%= @booking.prof.name + " " + @booking.prof.surname %> ad usare <%= @booking.tool.name %> nel suo laboratorio</p>
+<p> Il periodo di utilizzo di tale strumento va dal <%= @booking.start_date %> al <%= @booking.end_date %> </p>
+<p> Il totale degli srumenti che verranno utilizzati in questa prenotazione è di: <%= @booking.quantity %> </p>
+<p> Cordiali saluti </p>

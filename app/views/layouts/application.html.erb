@@ -15,37 +15,35 @@
   <body>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <font face="Raleway">
-    <%= render partial: "shared/menu" %>
-    <% if controller.controller_name == "home" %>
-      <header class="business-header">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12">
-              <h1 class="display-3 text-center text-white mt-5"> <%= t('home.index.header') %> ITIS E Torricelli </h1>
+      <%= render partial: "shared/menu" %>
+      <% if controller.controller_name == "home" %>
+        <header class="business-header">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12">
+                <h1 class="display-3 text-center text-white mt-5"> <%= t('home.index.header') %> ITIS E Torricelli </h1>
+              </div>
             </div>
           </div>
-        </div>
-      </header>
-    <%end %>
-    <br>
-    <div id="page-content-wrapper">
-      <div class="container-fluid">
-        <br>
+        </header>
+      <%end %>
+      <br>
+      <div id="page-content-wrapper">
+        <div class="container-fluid">
+          <br>
 
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <% flash.each do |key, value| %>
-            <div class="alert alert-<%= key %>"><%= value %>
-               <a class="close" data-dismiss="alert">&#215;</a>
-            </div>
-          <% end %>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <% flash.each do |key, value| %>
+              <div class="alert alert-<%= key %>"><%= value %>
+                 <a class="close" data-dismiss="alert">&#215;</a>
+              </div>
+            <% end %>
+          </div>
+          <%= yield %>
+          <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+          <%= render partial: "shared/footer" %>
         </div>
-        <%= yield %>
-        <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
-
-        <%= render partial: "shared/footer" %>
       </div>
-    </div>
     </font>
-
   </body>
 </html>

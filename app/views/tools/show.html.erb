@@ -6,44 +6,51 @@
         }
 </style>
 
-<!-- Portfolio Item Heading -->
-<h1 class="my-4"> <%= @tool.name %> <small> <%= t('.quantity') + ": " + @tool.quantity.to_s %></small> </h1>
+<h1 class="my-4"> <%= @tool.name %> </h1>
+<h3> <%= t('.quantity') + ": " + @tool.quantity.to_s %> </h3>
+<br>
+
 <% @tool.reportings.each do |repo| %>
   <div class="alert alert-warning" role="alert">
-    <h4 class="alert-heading">  <i class="fa fa-exclamation-triangle">  </i>  <%=" " + t('.warning')%>  </h4>
+    <h4 class="alert-heading">  <i class="fa fa-exclamation-triangle">  </i>  <%= " " + t('.warning') %>  </h4>
     <% if I18n.locale.to_s == "en" %>
       <% if repo.quantity == 1 %>
-        <p>  <%= repo.quantity.to_s + " " %> has been reported due to malfunctions in the <%= " " + repo.lab.name + " " %> laboratory </p>
+        <p> <%= repo.quantity.to_s + " " %> has been reported due to malfunctions in the <%= " " + repo.lab.name + " " %> laboratory </p>
       <% else %>
-        <p><%= repo.quantity.to_s + " " %> have been reported due to malfunctions in the <%= " " + repo.lab.name + " " %> laboratory </p>
+        <p> <%= repo.quantity.to_s + " " %> have been reported due to malfunctions in the <%= " " + repo.lab.name + " " %> laboratory </p>
       <% end %>
     <% else %>
       <% if repo.quantity == 1 %>
-        <p><%= repo.quantity.to_s + " " %> è stato segnalato per malfunzionamenti nel laboratorio <%= " " + repo.lab.name + " " %> </p>
+        <p> <%= repo.quantity.to_s + " " %> è stato segnalato per malfunzionamenti nel laboratorio <%= " " + repo.lab.name + " " %> </p>
       <% else %>
-        <p><%= repo.quantity.to_s + " " %> sono stati segnalati per malfunzionamenti nel laboratorio<%= " " + repo.lab.name + " " %> </p>
+        <p> <%= repo.quantity.to_s + " " %> sono stati segnalati per malfunzionamenti nel laboratorio <%= " " + repo.lab.name + " " %> </p>
       <% end %>
     <% end %>
     <hr>
-    <p class="mb-0"><%= repo.description %></p>
+    <p class="mb-0"> <%= repo.description %> </p>
     <footer class="blockquote-footer">
       <%= t('.technical') %> <cite title="Source Title"> <%= repo.technical.name + " " + repo.technical.surname %>  </cite>
     </footer>
   </div>
 <% end %>
-
-      <!-- Portfolio Item Row -->
+<!-- start row -->
 <div class="row">
+  <!-- start col -->
   <div class="col-lg-8 col-md-7">
     <% if @tool.photo.present? %>
-      <%= image_tag(@tool.photo, :alt => "toolphoto.jpeg", class:"img-fluid") %>
+      <a href="#" data-toggle="modal" data-target="#exampleModalLong">
+        <%= image_tag(@tool.photo, :alt => "toolphoto.jpeg", class:"img-fluid") %>
+      </a>
     <% else %>
       <% image_tag("generico.png", :alt => "toolphoto.jpeg", class:"img-fluid") %>
     <% end %>
     <br>
+    <br>
     <%= link_to t('.verify'), new_tool_tempbook_path(@tool), class: "btn btn-info btn-block" %>
     <br>
+    <br>
     <% if prof_signed_in? && @tool.quantity > 0%>
+      <!-- start booking card -->
       <div id="prenota">
         <div class="card">
           <div class="card-header" id="headingTwo">
@@ -55,15 +62,13 @@
           </div>
           <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#prenota">
             <div class="card-body">
-
               <%= form_for ([@tool, @tempbook]) do |t|  %>
-
                 <% if @tempbook.errors.any? %>
                   <div id="error_explanation">
                     <% @tempbook.errors.full_messages.each do |message| %>
                       <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <%= message %>
-                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
@@ -74,14 +79,15 @@
                 <div class="row">
                   <div class="col-lg-6 ">
                     <div class="form-group" >
-                      <%=t.label t('.start') %>
-                      <%=t.datetime_local_field :start_date, class:"form-control"%>
+                      <%= t.label t('.start') %>
+                      <%= t.datetime_local_field :start_date, class:"form-control" %>
                     </div>
                   </div>
+
                   <div class="col-lg-6">
                     <div class="form-group">
-                      <%=t.label t('.end') %>
-                      <%=t.datetime_local_field :end_date, class:"form-control"%>
+                      <%= t.label t('.end') %>
+                      <%= t.datetime_local_field :end_date, class:"form-control" %>
                     </div>
                   </div>
                 </div>
@@ -101,58 +107,64 @@ dtlInputend.value = localISOTime.slice(0,16);
 </script>
 
                 <div class="row">
+
                   <div class="col-lg-6 ">
                     <div class="form-group">
                       <%= t.label t('requests.new.quantity') %>
                       <%= t.text_field :quantity, value: 1, class:"form-control" %>
                     </div>
                   </div>
+
                   <div class="col-lg-6">
                     <%= t('.chooselab') %>
                     <% for lab in @tool.labs %>
                       <% if @tool.labs.first == lab %>
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <div class="input-group-text">
-                            <%= radio_button_tag "tempbook[lab_id]" , lab.id, true%>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              <%= radio_button_tag "tempbook[lab_id]" , lab.id, true%>
+                            </div>
                           </div>
+                          <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= lab.name %>" readonly>
                         </div>
-                        <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= lab.name %>" readonly>
-                      </div>
                       <% else %>
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <div class="input-group-text">
-                            <%= radio_button_tag "tempbook[lab_id]" , lab.id%>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              <%= radio_button_tag "tempbook[lab_id]" , lab.id%>
+                            </div>
                           </div>
+                          <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= lab.name %>" readonly>
                         </div>
-                        <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= lab.name %>" readonly>
-                      </div>
                       <%end%>
                       <br>
                     <% end %>
                   </div>
+
                 </div>
+
                 <div class="form-group">
-                  <%=t.label t('.goal') %>
-                  <%=t.text_area :goal, class:"form-control"%>
+                  <%= t.label t('.goal') %>
+                  <%= t.text_area :goal, class:"form-control" %>
                 </div>
 
                 <%= hidden_field(:tempbook, :prof_id, :value => current_prof.id) %>
                 <br>
-                <%= t.submit class:"btn btn-success btn-block"%>
+                <%= t.submit class:"btn btn-success btn-block" %>
               <% end %>
             </div>
           </div>
         </div>
       </div>
+      <!-- end booking card -->
     <% end %>
   </div>
-
+  <!-- end col -->
+  <!-- start col -->
   <div class="col-lg-4 col-md-5">
     <h3 class="my-3"> <%= t('.description') %> </h3>
-    <p> <%= @tool.description %></p>
-
+    <p> <%= simple_format(@tool.description) %></p>
+    <!-- start panel -->
     <div class="panel panel-default">
       <div class="card-header">
         <ul class="nav nav-pills">
@@ -160,7 +172,7 @@ dtlInputend.value = localISOTime.slice(0,16);
           <li> <a href="#documentations" data-toggle="tab" class="btn btn-primary"> <%= t('.documentation') %> </a> </li>
         </ul>
       </div>
-                        <!-- /.panel-heading -->
+
       <div class="panel-body">
         <div class="tab-content">
           <div class="tab-pane fade in active scroll-box show" id="bookings">
@@ -192,16 +204,13 @@ dtlInputend.value = localISOTime.slice(0,16);
           </div>
         </div>
       </div>
-    </div>                        <!-- /.panel-body -->
+    </div>
+    <!-- end panel -->
   </div>
+  <!-- end col -->
 </div>
+<!-- end row -->
 
-
-
-
-      <!-- /.row -->
-
-      <!-- Related Projects Row -->
 <h3 class="my-4"> <%= t('.otherphotos') %> </h3>
 <div class="row">
   <% @tool.photos.each do |photo| %>
@@ -272,16 +281,18 @@ dtlInputend.value = localISOTime.slice(0,16);
             <h5 class="mt-0">
               <%= post.prof.name + " " + post.prof.surname %>
               <% if prof_signed_in? %>
-              <% if current_prof == post.prof %>
-              <%=link_to fa_icon('pencil'), edit_tool_post_path(@tool, post), class:"btn btn-light btn-sm"%> |
-              <%=link_to fa_icon('trash'), tool_post_path(@tool, post), method: :delete, data: {confirm:t('.confirm')}, class:"btn btn-light btn-sm"%>
-              <% end %>
+                <% if current_prof == post.prof %>
+                  <%=link_to fa_icon('pencil'), edit_tool_post_path(@tool, post), class:"btn btn-light btn-sm"%> |
+                  <%=link_to fa_icon('trash'), tool_post_path(@tool, post), method: :delete, data: {confirm:t('.confirm')}, class:"btn btn-light btn-sm"%>
+                <% end %>
               <% end %>
             </h5>
             <% if post.updated_at != post.created_at %>
-              <small id="edited" class="form-text text-muted"><%= t('.editedat') + " " + post.updated_at.strftime("%d/%m/%y").to_s + " " + t('.at') + " " + post.updated_at.strftime("%H:%M")%></small>
+              <small id="edited" class="form-text text-muted">
+                <%= t('.editedat') + " " + post.updated_at.strftime("%d/%m/%y").to_s + " " + t('.at') + " " + post.updated_at.strftime("%H:%M")%>
+              </small>
             <% end %>
-            <%= post.body %>
+            <%= simple_format(post.body) %>
           </div>
         </div>
       <% end %>

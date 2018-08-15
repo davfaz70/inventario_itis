@@ -1,57 +1,88 @@
-<h1 class="my-4"> <%= @request.name %>  <small> <%= t('tools.show.quantity') + " " + @request.quantity.to_s %></small> </h1>
-      <h3> <%= @request.prof.name + " " + @request.prof.surname %> </h3>
-
-      <!-- Portfolio Item Row -->
+<h1 class="my-4"> <%= @request.name %>
+  <br>
+  <small>
+    <p> <%= @request.prof.name + " " + @request.prof.surname %> </p>
+  </small>
+</h1>
+<!-- start row -->
 <div class="row">
+  <!-- start col -->
   <div class="col-lg-8 col-md-7">
     <% if @request.photo.present? %>
-      <%= image_tag(@request.photo, :alt => "toolphoto.jpeg", class:"img-fluid") %>
+      <a href="#" data-toggle="modal" data-target="#exampleModalLong">
+        <%= image_tag(@request.photo, :alt => "toolphoto.jpeg", class:"img-fluid") %>
+      </a>
     <% else %>
       <% image_tag("standard_toolphoto.jpeg", :alt => "toolphoto.jpeg", class:"img-fluid") %>
     <% end %>
     <br>
     <br>
-    <p> <%= @request.goal %> </p>
+    <p> <%= simple_format(@request.goal) %> </p>
     <hr>
-
-
-
   </div>
+  <!-- end col -->
+  <!-- start col -->
+  <div class="col-lg-4 col-md-5">
+    <h3> <%= t('tools.show.quantity') + ": " + @request.quantity.to_s %> </h3>
 
+    <h3 class="my-3"> <%= t('tools.show.description') %> </h3>
+    <p> <%= simple_format(@request.description) %> </p>
+    <ul class="list-group">
+      <% @request.documentations.each do |doc| %>
+        <li class="list-group-item">
+          <%= link_to fa_icon('cloud-download'), doc.file.url %>
+          <%= " " + doc.name + " " %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <!-- end col -->
+</div>
+<!-- end row -->
 
+<h3 class="my-4"> <%= t('tools.show.otherphotos') %> </h3>
 
+<div class="row">
+  <% @request.photos.each do |photo| %>
+    <div class="col-md-3 col-sm-6 mb-4">
+      <a href="#" data-toggle="modal" data-target="#exampleModalLong">
+        <%= image_tag(photo.picture.standard, :alt => "booh", class:"img-fluid") %>
+      </a>
+    </div>
+  <% end %>
+</div>
 
-
-
-
-        <div class="col-lg-4 col-md-5">
-          <h3 class="my-3"> <%= t('tools.show.description') %> </h3>
-          <p> <%= @request.description %></p>
-
-          <ul class="list-group">
-            <% @request.documentations.each do |doc| %>
-              <li class="list-group-item">
-                <%= link_to fa_icon('cloud-download'), doc.file.url %>
-                <%= " " + doc.name + " " %>
-              </li>
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"> <%= @request.name %> </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <%= image_tag(@request.photo, :alt => "booh", class:"d-block w-100") %>
+            </div>
+            <% @request.photos.each do |photo| %>
+              <div class="carousel-item">
+                <%= image_tag(photo.picture, :alt => "booh", class:"d-block w-100") %>
+              </div>
             <% end %>
-          </ul>
-
-
-
-      </div>
-
-
-      </div>
-      <!-- /.row -->
-
-      <!-- Related Projects Row -->
-      <h3 class="my-4"> <%= t('tools.show.otherphotos') %> </h3>
-
-      <div class="row">
-        <% @request.photos.each do |photo| %>
-          <div class="col-md-3 col-sm-6 mb-4">
-            <%= image_tag(photo.picture.standard, :alt => "booh", class:"img-fluid") %>
           </div>
-        <% end %>
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
       </div>
+    </div>
+  </div>
+</div>

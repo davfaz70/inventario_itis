@@ -1,4 +1,3 @@
-
 <style>
  .navbar {
   position: fixed;
@@ -9,212 +8,211 @@
 </style>
 
 <b>
-<nav class="navbar navbar-expand-md navbar-dark" style="background-color: rgba(50, 50, 50, 0.7)">
+  <!-- start desktop navbar -->
+  <nav class="navbar navbar-expand-md navbar-dark" style="background-color: rgba(50, 50, 50, 0.7)">
+    <a class="navbar-brand" href="/"> <%= fa_icon('home') %> </a>
+    <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Toggle navigation" id="menu-toggle">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <a class="navbar-brand" href="/"><%= fa_icon('home') %></a>
-  <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Toggle navigation" id="menu-toggle">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto ">
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto ">
-      <li class="nav-item ">
-        <!--<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
-        <%= link_to  "ITIS", 'http://www.itisetorricelli.it/', target: :_blank, class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <% if controller.controller_name == "tools" %>
-        <%= link_to t('.tools'), tools_path, class: "nav-link active" %>
+        <li class="nav-item ">
+          <!--<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
+          <%= link_to  "ITIS", 'http://www.itisetorricelli.it/', target: :_blank, class: "nav-link" %>
+        </li>
+
+        <li class="nav-item">
+          <% if controller.controller_name == "tools" %>
+            <%= link_to t('.tools'), tools_path, class: "nav-link active" %>
+          <% else %>
+            <%= link_to t('.tools'), tools_path, class: "nav-link" %>
+          <% end %>
+        </li>
+
+        <% if prof_signed_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= fa_icon('user-circle') + current_prof.name + " " + current_prof.surname %>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownProfs">
+              <%= link_to "Account", edit_prof_registration_path, class:"dropdown-item" %>
+              <%= link_to t('.bookings'), books_path, class:"dropdown-item" %>
+              <%= link_to t('technical.requests.index.requests'), requests_path, class:"dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <%= link_to fa_icon('sign-out') + "Log-out", destroy_prof_session_path, method: :delete, data: { confirm: t('.confirm') }, class: "dropdown-item" %>
+            </div>
+          </li>
         <% else %>
-        <%= link_to t('.tools'), tools_path, class: "nav-link" %>
+          <li class="nav-item">
+            <% if controller.controller_name == "sessions"%>
+              <%= link_to fa_icon('user') + " Prof", new_prof_session_path, class: "nav-link active" %>
+            <% else %>
+              <%= link_to fa_icon('user') + " Prof", new_prof_session_path, class: "nav-link" %>
+            <% end %>
+          </li>
         <% end %>
-      </li>
 
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= fa_icon('language') + " " + t('.languages') %>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <text class="dropdown-item">
+              <%= link_to_unless_current image_tag("if_United-Kingdom_92403.ico", size: "28x28") + " English", locale: "en"%>
+            </text>
+            <text class="dropdown-item">
+              <%= link_to_unless_current image_tag("if_Italy_92145.ico", size: "28x28") + " Italiano", locale: "it" %>
+            </text>
+          </div>
+        </li>
+      </ul>
 
-      <% if prof_signed_in? %>
-      <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= fa_icon('user-circle') + current_prof.name + " " + current_prof.surname %>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownProfs">
-          <%= link_to "Account", edit_prof_registration_path, class:"dropdown-item" %>
-          <%= link_to t('.bookings'), books_path, class:"dropdown-item" %>
-          <%= link_to t('technical.requests.index.requests'), requests_path, class:"dropdown-item" %>
-          <div class="dropdown-divider"></div>
-        <%= link_to fa_icon('sign-out') + "Log-out", destroy_prof_session_path, method: :delete, data: { confirm: t('.confirm') }, class: "dropdown-item" %>
-      </div>
-      </li>
-      <% else %>
-      <li class="nav-item">
-        <% if controller.controller_name == "sessions"%>
-        <%= link_to fa_icon('user') + " Prof", new_prof_session_path, class: "nav-link active" %>
+      <ul class="navbar-nav ml-auto ">
+        <% if admin_signed_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdmin" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= fa_icon('cog', class:"fa fa-spin") + " Admin" %>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
+              <%= link_to "Dashboard", admin_dashboard_index_path, class: "dropdown-item" %>
+              <%= link_to "Account", edit_admin_registration_path, class:"dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <%= link_to fa_icon('sign-out') + "Log-out", destroy_admin_session_path, method: :delete, data: { confirm: t('.confirm') }, class: "dropdown-item" %>
+            </div>
+          </li>
         <% else %>
-        <%= link_to fa_icon('user') + " Prof", new_prof_session_path, class: "nav-link" %>
+          <li class="nav-item">
+            <% if controller.controller_name == "sessions"%>
+              <%= link_to fa_icon('user-secret') + " Admin", admin_dashboard_index_path, class: "nav-link active" %>
+            <% else %>
+              <%= link_to fa_icon('user-secret') + " Admin", admin_dashboard_index_path, class: "nav-link" %>
+            <% end %>
+          </li>
         <% end %>
-      </li>
-      <% end %>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= fa_icon('language') + " " + t('.languages') %>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <text class="dropdown-item">
-            <%= link_to_unless_current image_tag("if_United-Kingdom_92403.ico", size: "28x28") + " English", locale: "en"%>
-          </text>
-          <text class="dropdown-item">
-            <%= link_to_unless_current image_tag("if_Italy_92145.ico", size: "28x28") + " Italiano", locale: "it" %>
-          </text>
-        </div>
-      </li>
-    </ul>
 
-    <ul class="navbar-nav ml-auto ">
-
-      <% if admin_signed_in? %>
-      <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdmin" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= fa_icon('cog', class:"fa fa-spin") + " Admin" %>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
-          <%= link_to "Dashboard", admin_dashboard_index_path, class: "dropdown-item" %>
-          <%= link_to "Account", edit_admin_registration_path, class:"dropdown-item" %>
-          <div class="dropdown-divider"></div>
-        <%= link_to fa_icon('sign-out') + "Log-out", destroy_admin_session_path, method: :delete, data: { confirm: t('.confirm') }, class: "dropdown-item" %>
-      </div>
-    </li>
-    <% else %>
-    <li class="nav-item">
-      <% if controller.controller_name == "sessions"%>
-      <%= link_to fa_icon('user-secret') + " Admin", admin_dashboard_index_path, class: "nav-link active" %>
-      <% else %>
-      <%= link_to fa_icon('user-secret') + " Admin", admin_dashboard_index_path, class: "nav-link" %>
-      <% end %>
-    </li>
-
-      <% end %>
-
-      <% if technical_signed_in? %>
-      <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownTechnicals" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= fa_icon('cog', class:"fa fa-spin") + " " + t('.technicals') %>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownTechnicals">
-          <%= link_to "Dashboard", technical_dashboard_index_path, class: "dropdown-item" %>
-          <%= link_to "Account", edit_technical_registration_path, class:"dropdown-item" %>
-          <div class="dropdown-divider"></div>
-        <%= link_to fa_icon('sign-out') + "Log-out", destroy_technical_session_path, method: :delete, data: { confirm: t('.confirm') }, class: "dropdown-item" %>
-      </div>
-    </li>
-    <% else %>
-    <li class="nav-item">
-      <% if controller.controller_name == "sessions"%>
-      <%= link_to fa_icon('users') + " " + t('.technicals'), technical_dashboard_index_path, class: "nav-link active" %>
-      <% else %>
-      <%= link_to fa_icon('users') + " " + t('.technicals'), technical_dashboard_index_path, class: "nav-link" %>
-      <% end %>
-    </li>
-
-      <% end %>
-
-    </ul>
-
-
-
-
-
-
-  </div>
-</nav>
+        <% if technical_signed_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownTechnicals" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= fa_icon('cog', class:"fa fa-spin") + " " + t('.technicals') %>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownTechnicals">
+              <%= link_to "Dashboard", technical_dashboard_index_path, class: "dropdown-item" %>
+              <%= link_to "Account", edit_technical_registration_path, class:"dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <%= link_to fa_icon('sign-out') + "Log-out", destroy_technical_session_path, method: :delete, data: { confirm: t('.confirm') }, class: "dropdown-item" %>
+            </div>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <% if controller.controller_name == "sessions"%>
+              <%= link_to fa_icon('users') + " " + t('.technicals'), technical_dashboard_index_path, class: "nav-link active" %>
+            <% else %>
+              <%= link_to fa_icon('users') + " " + t('.technicals'), technical_dashboard_index_path, class: "nav-link" %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+  <!-- end desktop navbar -->
 </b>
 
+<!-- start mobile wrapper -->
 <div id="wrapper">
+  <!-- Sidebar -->
+  <div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      <b>
 
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-              <b>
-                <li class="sidebar-brand">
-                    <a href="/">
-                        <%= fa_icon('home') + " Home"%>
-                    </a>
-                </li>
-                <li>
-                    <%= link_to fa_icon('graduation-cap') + " ITIS", 'http://www.itisetorricelli.it/', target: :_blank %>
-                </li>
-                <li>
-                    <%= link_to fa_icon('wrench') + " " + t('.tools'), tools_path%>
-                </li>
-                <li>
-                  <a class=" dropdown-toggle" href="#" id="wrapdrop" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <%= fa_icon('language') + " " + t('.languages') %>
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="wrapdrop">
-                    <text class="dropdown-item">
-                      <%= link_to_unless_current image_tag("if_United-Kingdom_92403.ico", size: "28x28") + " English", locale: "en"%>
-                    </text>
-                    <text class="dropdown-item">
-                      <%= link_to_unless_current image_tag("if_Italy_92145.ico", size: "28x28") + " Italiano", locale: "it" %>
-                    </text>
-                  </div>
-                </li>
-                <% if prof_signed_in? %>
-                <li>
-                <a class=" dropdown-toggle" href="#" id="navbarDropdownProf" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <%= fa_icon('user-circle') + current_prof.name + " " + current_prof.surname %>
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownProf">
-                    <%= link_to "Account", edit_prof_registration_path, class:"dropdown-item" %>
-                    <%= link_to t('.bookings'), books_path, class:"dropdown-item" %>
-                    <%= link_to t('technical.requests.index.requests'), requests_path, class:"dropdown-item" %>
-                    <div class="dropdown-divider"></div>
-                  <%= link_to fa_icon('sign-out') + "Log-out", destroy_prof_session_path, method: :delete, data: { confirm: t('.confirm') }, class: "dropdown-item" %>
-                </div>
-              </li>
-              <% else %>
-                <li>
-                  <%= link_to fa_icon('user') + " Prof", new_prof_session_path %>
-                </li>
-                <% end %>
-                <% if admin_signed_in? %>
-                <li>
-                <a class=" dropdown-toggle" href="#" id="DropdownAdmin" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <%= fa_icon('cog') + " Admin" %>
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="DropdownAdmin">
-                    <%= link_to "Dashboard", admin_dashboard_index_path, class: "dropdown-item" %>
-                    <%= link_to "Account", edit_admin_registration_path, class:"dropdown-item" %>
-                    <div class="dropdown-divider"></div>
-                  <%= link_to fa_icon('sign-out') + "Log-out", destroy_admin_session_path, method: :delete, data: { confirm: t('.confirm') }, class: "dropdown-item" %>
-                </div>
-              </li>
-              <% else %>
-              <li>
-                <%= link_to fa_icon('user-secret') + " Admin", admin_dashboard_index_path%>
-              </li>
-                <% end %>
-                <% if technical_signed_in? %>
-                <li>
-                <a class=" dropdown-toggle" href="#" id="DropdownTechnical" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <%= fa_icon('cog') + " " + t('.technicals') %>
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="DropdownTechnical">
-                    <%= link_to "Dashboard", technical_dashboard_index_path, class: "dropdown-item" %>
-                    <%= link_to "Account", edit_technical_registration_path, class:"dropdown-item" %>
-                    <div class="dropdown-divider"></div>
-                  <%= link_to fa_icon('sign-out') + "Log-out", destroy_technical_session_path, method: :delete, data: { confirm: t('.confirm') }, class: "dropdown-item" %>
-                </div>
-              </li>
-              <% else %>
-              <li>
-                <%= link_to fa_icon('users') + " " + t('.technicals'), technical_dashboard_index_path%>
-              </li>
-                <% end %>
-</b>
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
+        <li class="sidebar-brand">
+          <a href="/">
+            <%= fa_icon('home') + " Home"%>
+          </a>
+        </li>
 
-        <!-- Page Content -->
+        <li>
+          <%= link_to fa_icon('graduation-cap') + " ITIS", 'http://www.itisetorricelli.it/', target: :_blank %>
+        </li>
+        <li>
+          <%= link_to fa_icon('wrench') + " " + t('.tools'), tools_path%>
+        </li>
+
+        <li>
+          <a class=" dropdown-toggle" href="#" id="wrapdrop" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= fa_icon('language') + " " + t('.languages') %>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="wrapdrop">
+            <text class="dropdown-item">
+              <%= link_to_unless_current image_tag("if_United-Kingdom_92403.ico", size: "28x28") + " English", locale: "en"%>
+            </text>
+            <text class="dropdown-item">
+              <%= link_to_unless_current image_tag("if_Italy_92145.ico", size: "28x28") + " Italiano", locale: "it" %>
+            </text>
+          </div>
+        </li>
+
+        <% if prof_signed_in? %>
+          <li>
+            <a class=" dropdown-toggle" href="#" id="navbarDropdownProf" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= fa_icon('user-circle') + current_prof.name + " " + current_prof.surname %>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownProf">
+              <%= link_to "Account", edit_prof_registration_path, class:"dropdown-item" %>
+              <%= link_to t('.bookings'), books_path, class:"dropdown-item" %>
+              <%= link_to t('technical.requests.index.requests'), requests_path, class:"dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <%= link_to fa_icon('sign-out') + "Log-out", destroy_prof_session_path, method: :delete, data: { confirm: t('.confirm') }, class: "dropdown-item" %>
+            </div>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to fa_icon('user') + " Prof", new_prof_session_path %>
+          </li>
+        <% end %>
+
+        <% if admin_signed_in? %>
+          <li>
+            <a class=" dropdown-toggle" href="#" id="DropdownAdmin" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= fa_icon('cog') + " Admin" %>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="DropdownAdmin">
+              <%= link_to "Dashboard", admin_dashboard_index_path, class: "dropdown-item" %>
+              <%= link_to "Account", edit_admin_registration_path, class:"dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <%= link_to fa_icon('sign-out') + "Log-out", destroy_admin_session_path, method: :delete, data: { confirm: t('.confirm') }, class: "dropdown-item" %>
+            </div>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to fa_icon('user-secret') + " Admin", admin_dashboard_index_path%>
+          </li>
+        <% end %>
+
+        <% if technical_signed_in? %>
+          <li>
+            <a class=" dropdown-toggle" href="#" id="DropdownTechnical" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= fa_icon('cog') + " " + t('.technicals') %>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="DropdownTechnical">
+              <%= link_to "Dashboard", technical_dashboard_index_path, class: "dropdown-item" %>
+              <%= link_to "Account", edit_technical_registration_path, class:"dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <%= link_to fa_icon('sign-out') + "Log-out", destroy_technical_session_path, method: :delete, data: { confirm: t('.confirm') }, class: "dropdown-item" %>
+            </div>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to fa_icon('users') + " " + t('.technicals'), technical_dashboard_index_path%>
+          </li>
+        <% end %>
+      </b>
+    </ul>
+  </div>
+  <!-- /#sidebar-wrapper -->
+</div>
+<!-- end mobile wrapper -->
 
 
 
