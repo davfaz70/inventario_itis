@@ -1,27 +1,30 @@
 <h1>Dashboard</h1>
+<h4><%= current_technical.name + " " + current_technical.surname %> </h4>
 <hr>
-<h1><%= current_technical.name + " " + current_technical.surname %> </h1>
-<hr>
+
 <div class="row">
   <% @relations.each do |relation| %>
-  <div class="col-lg-3 col-sm-4 portfolio-item">
-    <div class="card h-100">
-      <div class= "card-header">
-        <%= relation.lab.name %>
+    <div class="col-lg-3 col-sm-4 portfolio-item">
+      <div class="card h-100">
+        <div class= "card-header">
+          <%= relation.lab.name %>
+        </div>
+        <div class="card-body">
+          <% if relation.end_date.present? %>
+            <%= t('tools.show.from') + " " + relation.start_date.strftime("%d/%m/%y %k:%M").to_s%>
+            <br>
+            <%= t('tools.show.to') + " " + relation.end_date.strftime("%d/%m/%y %k:%M").to_s%>
+            <% if relation.end_date > Time.now %>
+              <%= link_to fa_icon('eye'), technical_lab_path(relation.lab), class: "btn btn-block btn-outline-primary" %>
+            <% end %>
+          <% else %>
+            <%= t('tools.show.from') + " " + relation.start_date.strftime("%d/%m/%y %k:%M").to_s%>
+            <br>
+            <b> <%= t('.actual') %> </b>
+            <%= link_to fa_icon('eye'), technical_lab_path(relation.lab), class: "btn btn-block btn-outline-primary" %>
+          <% end %>
+        </div>
       </div>
-      <div class="card-body">
-        <% if relation.end_date.present? %>
-        <%= t('tools.show.from') + " " + relation.start_date.strftime("%d/%m/%y %k:%M").to_s%>
-        <br>
-        <%= t('tools.show.to') + " " + relation.end_date.strftime("%d/%m/%y %k:%M").to_s%>
-        <% else %>
-        <%= t('tools.show.from') + " " + relation.start_date.strftime("%d/%m/%y %k:%M").to_s%>
-        <br>
-        <b> <%= t('.actual') %> </b>
-        <% end %>
-        <%= link_to fa_icon('eye'), technical_lab_path(relation.lab), class: "btn btn-block btn-outline-primary" %>
-     </div>
-   </div>
-  </div>
+    </div>
   <% end %>
 </div>

@@ -1,14 +1,14 @@
-<h1> <%= t('.reportings') %> <%= link_to fa_icon('plus') + " " + t('.new'), technical_tools_path, class:"btn btn-outline-primary" %></h1>
+<h1> <%= t('.reportings') %> </h1>
 <hr>
-
 
 <% @reportings.each do |reporting| %>
   <div class="card">
     <div class="card-body">
-      <div class="text-right">
-      <%= link_to fa_icon('trash'), technical_tool_lab_reporting_path(reporting.tool, reporting.lab, reporting), method: :delete, data: {confirm: t('.confirm')}, class: "btn btn-outline-danger" %>
-    </div>
-      <h4 class="card-title"><%= image_tag(reporting.tool.photo.thumb, alt: "toolphoto.jpeg") %> <%= reporting.tool.name %> <small> <%= t('tools.show.quantity') + ": " + reporting.quantity.to_s %> </small> </h4>
+      <span class="small float-right text-muted">
+        <%= link_to fa_icon('trash'), technical_tool_lab_reporting_path(reporting.tool, reporting.lab, reporting), method: :delete, data: {confirm: t('.confirm')}, class: "btn btn-outline-danger" %>
+        <%= link_to fa_icon('pencil'), edit_technical_tool_lab_reporting_path(reporting.tool, reporting.lab, reporting), class: "btn btn-outline-warning" %>
+      </span>
+      <h4 class="card-title"> <%= image_tag(reporting.tool.photo.thumb, alt: "toolphoto.jpeg") %> <%= reporting.tool.name %> <small> <%= t('tools.show.quantity') + ": " + reporting.quantity.to_s %> </small> </h4>
       <p class="card-text"> <%= reporting.description %> </p>
       <p class="card-text"> <%= reporting.lab.name %> </p>
     </div>

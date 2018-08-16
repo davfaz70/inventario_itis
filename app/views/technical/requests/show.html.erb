@@ -1,60 +1,99 @@
-<h1 class="my-4"> <%= @request.name %>
-  <small>
-      <p> <%= @request.technical.name + " " + @request.technical.surname %> </p>
-  </small>
-</h1>
+<div class="row">
+  <div class="col-md-4 col-sm-4">
+    <h2 class="my-4"> <%= @request.name %> </h2>
+  </div>
+  <div class="col-md-4 col-sm-4">
+    <h2 class="my-4"> <%= t('tools.show.quantity') + ": " + @request.quantity.to_s %> </h2>
+  </div>
+  <div class="col-md-4 col-sm-4">
+    <% if @request.approved == false %>
+      <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+        <div class="card-header"> <h2> <%= t('.noapproved') %> </h2> </div>
+      </div>
+    <% elsif @request.money == false %>
+      <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+        <div class="card-header"> <h2> <%= t('.approved') %> </h2> </div>
+      </div>
+    <% else %>
+      <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+        <div class="panel-header"> <h2> <%= t('.money') %> </h2> </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<br>
 
-      <!-- Portfolio Item Row -->
+
 <div class="row">
   <div class="col-lg-8 col-md-7">
     <% if @request.photo.present? %>
-      <%= image_tag(@request.photo, :alt => "toolphoto.jpeg", class:"img-fluid") %>
+      <a href="#" data-toggle="modal" data-target="#exampleModalLong">
+        <%= image_tag(@request.photo, :alt => "toolphoto.jpeg", class:"img-fluid") %>
+      </a>
     <% else %>
       <% image_tag("standard_toolphoto.jpeg", :alt => "toolphoto.jpeg", class:"img-fluid") %>
     <% end %>
     <br>
     <br>
-    <p> <%= @request.goal %> </p>
+    <p> <%= simple_format(@request.goal) %> </p>
     <hr>
-
-    
-
   </div>
+  <div class="col-lg-4 col-md-5">
+    <h3 class="my-3"> <%= t('tools.show.description') %> </h3>
+    <p> <%= simple_format(@request.description) %></p>
+    <ul class="list-group">
+      <% @request.documentations.each do |doc| %>
+        <li class="list-group-item">
+          <%= link_to fa_icon('cloud-download'), doc.file.url %>
+          <%= " " + doc.name + " " %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
 
+<h3 class="my-4"> <%= t('tools.show.otherphotos') %> </h3>
+<div class="row">
+  <% @request.photos.each do |photo| %>
+    <div class="col-md-3 col-sm-6 mb-4">
+      <a href="#" data-toggle="modal" data-target="#exampleModalLong">
+        <%= image_tag(photo.picture.standard, :alt => "booh", class:"img-fluid") %>
+      </a>
+    </div>
+  <% end %>
+</div>
 
-
-
-
-
-
-        <div class="col-lg-4 col-md-5">
-          <h3 class="my-3"> <%= t('tools.show.description') %> </h3>
-          <p> <%= @request.description %></p>
-
-          <ul class="list-group">
-            <% @request.documentations.each do |doc| %>
-              <li class="list-group-item">
-                <%= link_to fa_icon('cloud-download'), doc.file.url %>
-                <%= " " + doc.name + " " %>
-              </li>
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"> <%= @request.name %> </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <%= image_tag(@request.photo, :alt => "booh", class:"d-block w-100") %>
+            </div>
+            <% @request.photos.each do |photo| %>
+              <div class="carousel-item">
+                <%= image_tag(photo.picture, :alt => "booh", class:"d-block w-100") %>
+              </div>
             <% end %>
-          </ul>
-
-
-
-      </div>
-
-
-      </div>
-      <!-- /.row -->
-
-      <!-- Related Projects Row -->
-      <h3 class="my-4"> <%= t('tools.show.otherphotos') %> </h3>
-
-      <div class="row">
-        <% @request.photos.each do |photo| %>
-          <div class="col-md-3 col-sm-6 mb-4">
-            <%= image_tag(photo.picture.standard, :alt => "booh", class:"img-fluid") %>
           </div>
-        <% end %>
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
       </div>
+    </div>
+  </div>
+</div>

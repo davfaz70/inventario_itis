@@ -1,98 +1,103 @@
-<h1> <%= t('.requests') %> <%= link_to t('.new'), new_technical_request_path, class:"btn btn-outline-primary"%> </h1>
-<hr>
-
-
-<div class="row">
-
-  <div class="panel panel-default">
-    <div class="card-header">
+<span class="small float-right text-muted">
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <%= t('.status') %>
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
       <ul class="nav nav-pills">
-        <li class="active"> <a href="#notapproved" data-toggle="tab" class="btn btn-warning"> <%= t('.notapproved') %> </a> </li> &nbsp &nbsp
-        <li> <a href="#approved" data-toggle="tab" class="btn btn-primary"> <%= t('.approved') %> </a> </li> &nbsp &nbsp
-        <li> <a href="#money" data-toggle="tab" class="btn btn-success"> <%= t('.money') %> </a> </li>
+        <li> <a class="dropdown-item" href="#notapproved" data-toggle="tab"> <%= t('.notapproved') %> </a> </li>
+        <li> <a class="dropdown-item" href="#approved" data-toggle="tab"> <%= t('.approved') %> </a> </li>
+        <li> <a class="dropdown-item" href="#money" data-toggle="tab"> <%= t('.money') %> </a> </li>
       </ul>
     </div>
   </div>
-</div>
-                      <!-- /.panel-heading -->
-    <div class="panel-body">
-      <div class="tab-content">
-        <div class="tab-pane fade in active show" id="notapproved">
-          <h1> <%= t('.notapproved') %> </h1>
-          <hr>
+</span>
 
-          <div class="row">
+<h1> <%= t('.requests') %> <%= link_to t('.new'), new_technical_request_path, class:"btn btn-outline-primary"%> </h1>
+<hr>
 
-          <% @notapproved.each do |request| %>
+<div class="panel-body">
+  <div class="tab-content">
+    <!-- start not approved request -->
+    <div class="tab-pane fade in active show" id="notapproved">
+      <div class="text-center">
+        <h3> <%= t('.notapproved') %> </h3>
+      </div>
+      <hr>
+      <div class="row">
+        <% @notapproved.each do |request| %>
           <div class="col-md-3">
             <div class="card">
               <div class="card-header">
-                <%= image_tag(request.photo.thumb, alt: "Photo") %> <h5 class="card-title"><%= request.name %> </h5>
+                <%= image_tag(request.photo.thumb, alt: "Photo") %> <h5 class="card-title"> <%= request.name %> </h5>
               </div>
               <div class="card-body">
-                <p class="card-text text-truncate"><%= request.description %></p>
-                <p class="card-text text-truncate"><%= request.quantity %></p>
-                <p class="card-text text-truncate"><%= request.goal %></p>
+                <p class="card-text text-truncate"> <%= request.description %> </p>
+                <p class="card-text text-truncate"> <%= request.quantity %> </p>
+                <p class="card-text text-truncate"> <%= request.goal %> </p>
               </div>
               <ul class="list-group list-group-flush">
                 <%= link_to fa_icon('eye') + " " + t('tools.index.show'), technical_request_path(request), class:"list-group-item list-group-item-warning" %>
               </ul>
             </div>
-            </div>
-          <% end %>
-
+          </div>
+        <% end %>
       </div>
-
-        </div>
-
-        <div class="tab-pane fade" id="approved">
-          <h1> <%= t('.approved') %> </h1>
-          <hr>
-          <div class="row">
-
-          <% @approved.each do |request| %>
+    </div>
+    <!-- end not approved request -->
+    <!-- start approved request -->
+    <div class="tab-pane fade" id="approved">
+      <div class="text-center">
+        <h3> <%= t('.approved') %> </h3>
+      </div>
+      <hr>
+      <div class="row">
+        <% @approved.each do |request| %>
           <div class="col-md-3">
             <div class="card">
               <div class="card-header">
                 <%= image_tag(request.photo.thumb, alt: "Photo") %> <h5 class="card-title"><%= request.name %> </h5>
               </div>
               <div class="card-body">
-                <p class="card-text text-truncate"><%= request.description %></p>
-                <p class="card-text text-truncate"><%= request.quantity %></p>
-                <p class="card-text text-truncate"><%= request.goal %></p>
+                <p class="card-text text-truncate"> <%= request.description %> </p>
+                <p class="card-text text-truncate"> <%= request.quantity %> </p>
+                <p class="card-text text-truncate"> <%= request.goal %> </p>
               </div>
               <ul class="list-group list-group-flush">
                 <%= link_to fa_icon('eye') + " " + t('tools.index.show'), technical_request_path(request), class:"list-group-item list-group-item-primary" %>
               </ul>
             </div>
           </div>
-          <% end %>
-</div>
-        </div>
-
-        <div class="tab-pane fade" id="money">
-          <h1> <%= t('.money') %> </h1>
-          <hr>
-          <div class="row">
-          <% @money.each do |request| %>
+        <% end %>
+      </div>
+    </div>
+    <!-- end approved request -->
+    <!-- start enough money for request -->
+    <div class="tab-pane fade" id="money">
+      <div class="text-center">
+        <h3> <%= t('.money') %> </h3>
+      </div>
+      <hr>
+      <div class="row">
+        <% @money.each do |request| %>
           <div class="col-md-3">
             <div class="card">
               <div class="card-header">
                 <%= image_tag(request.photo.thumb, alt: "Photo") %> <h5 class="card-title"><%= request.name %> </h5>
               </div>
               <div class="card-body">
-                <p class="card-text text-truncate"><%= request.description %></p>
-                <p class="card-text text-truncate"><%= request.quantity %></p>
-                <p class="card-text text-truncate"><%= request.goal %></p>
+                <p class="card-text text-truncate"> <%= request.description %> </p>
+                <p class="card-text text-truncate"> <%= request.quantity %> </p>
+                <p class="card-text text-truncate"> <%= request.goal %> </p>
               </div>
               <ul class="list-group list-group-flush">
                 <%= link_to fa_icon('eye') + " " + t('tools.index.show'), technical_request_path(request), class:"list-group-item list-group-item-success" %>
               </ul>
             </div>
           </div>
-          <% end %>
-        </div>
-        </div>
-
+        <% end %>
       </div>
     </div>
+    <!-- end enough money for request -->
+  </div>
+</div>

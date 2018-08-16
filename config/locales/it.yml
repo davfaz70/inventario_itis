@@ -251,11 +251,16 @@ it:
         languages: "Lingua"
     requests:
       index:
+        status: "Stato della richiesta"
         new: "Nuova richiesta"
         requests: "Richieste d'acquisto"
         notapproved: "Richieste non approvate"
         approved: "Richieste approvate"
         money: "Richieste acquistate"
+      show:
+        noapproved: "NON APPROVATA"
+        approved: "APPROVATA"
+        money: "ACQUISTATA"
       create:
         created: "Richiesta effettuata con successo!"
     reportings:
@@ -266,6 +271,9 @@ it:
       new:
         quantity: "Quantità"
         description: "Descrizione del guasto"
+        new: "Nuova segnalazione"
+      edit:
+        edit: "Modifica segnalazione"
     labs:
       index:
         chooselabs: "Scegli il laboratorio in cui si è guastato"

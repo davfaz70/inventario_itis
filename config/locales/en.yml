@@ -274,7 +274,12 @@ en:
         tools: "Tools"
         languages: "Languages"
     requests:
+      show:
+        noapproved: "NO APPROVED"
+        approved: "APPROVED"
+        money: "PURCHASED"
       index:
+        status: "Request status"
         new: "New request"
         requests: "Requests"
         notapproved: "Not approved requests"
@@ -288,8 +293,11 @@ en:
         reportings: "Reportings"
         confirm: "Are you sure?"
       new:
+        new: "New reporting"
         quantity: "Quantity"
         description: "Description of the fault"
+      edit:
+        edit: "Edit reporting"
     labs:
       index:
         chooselabs: "Choose lab"

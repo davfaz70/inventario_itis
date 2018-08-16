@@ -1,42 +1,43 @@
 <style>
-        .scroll-box {
-            overflow-y: scroll;
-            height: 200px;
-            padding: 1rem
-        }
+  .scroll-box {
+    overflow-y: scroll;
+    height: 200px;
+    padding: 1rem
+  }
 </style>
 
 <!-- Portfolio Item Heading -->
 <h1 class="my-4"> <%= @tool.name %> <small> <%= t('.quantity') + ": " + @tool.quantity.to_s %></small> </h1>
 <% @tool.reportings.each do |repo| %>
   <div class="alert alert-warning" role="alert">
-    <h4 class="alert-heading">  <i class="fa fa-exclamation-triangle">  </i>  <%=" " + t('.warning')%>  </h4>
+    <h4 class="alert-heading">  <i class="fa fa-exclamation-triangle">  </i>  <%= " " + t('.warning') %>  </h4>
     <% if I18n.locale.to_s == "en" %>
       <% if repo.quantity == 1 %>
         <p>  <%= repo.quantity.to_s + " " %> has been reported due to malfunctions in the <%= " " + repo.lab.name + " " %> laboratory </p>
       <% else %>
-        <p><%= repo.quantity.to_s + " " %> have been reported due to malfunctions in the <%= " " + repo.lab.name + " " %> laboratory </p>
+        <p> <%= repo.quantity.to_s + " " %> have been reported due to malfunctions in the <%= " " + repo.lab.name + " " %> laboratory </p>
       <% end %>
     <% else %>
       <% if repo.quantity == 1 %>
-        <p><%= repo.quantity.to_s + " " %> è stato segnalato per malfunzionamenti nel laboratorio <%= " " + repo.lab.name + " " %> </p>
+        <p> <%= repo.quantity.to_s + " " %> è stato segnalato per malfunzionamenti nel laboratorio <%= " " + repo.lab.name + " " %> </p>
       <% else %>
-        <p><%= repo.quantity.to_s + " " %> sono stati segnalati per malfunzionamenti nel laboratorio<%= " " + repo.lab.name + " " %> </p>
+        <p> <%= repo.quantity.to_s + " " %> sono stati segnalati per malfunzionamenti nel laboratorio <%= " " + repo.lab.name + " " %> </p>
       <% end %>
     <% end %>
     <hr>
-    <p class="mb-0"><%= repo.description %></p>
+    <p class="mb-0"> <%= simple_format(repo.description) %> </p>
     <footer class="blockquote-footer">
       <%= t('.technical') %> <cite title="Source Title"> <%= repo.technical.name + " " + repo.technical.surname %>  </cite>
     </footer>
   </div>
 <% end %>
 
-      <!-- Portfolio Item Row -->
 <div class="row">
   <div class="col-lg-8 col-md-7">
     <% if @tool.photo.present? %>
-      <%= image_tag(@tool.photo, :alt => "toolphoto.jpeg", class:"img-fluid") %>
+      <a href="#" data-toggle="modal" data-target="#exampleModalLong">
+        <%= image_tag(@tool.photo, :alt => "toolphoto.jpeg", class:"img-fluid") %>
+      </a>
     <% else %>
       <% image_tag("standard_toolphoto.jpeg", :alt => "toolphoto.jpeg", class:"img-fluid") %>
     <% end %>
@@ -44,11 +45,9 @@
     <br>
     <%= link_to fa_icon('exclamation-triangle'), technical_tool_labs_path(@tool), class:"btn btn-warning btn-block" %>
   </div>
-
   <div class="col-lg-4 col-md-5">
     <h3 class="my-3"> <%= t('.description') %> </h3>
-    <p> <%= @tool.description %></p>
-
+    <p> <%= simple_format(@tool.description) %></p>
     <div class="panel panel-default">
       <div class="card-header">
         <ul class="nav nav-pills">
@@ -56,7 +55,7 @@
           <li> <a href="#documentations" data-toggle="tab" class="btn btn-primary"> <%= t('.documentation') %> </a> </li>
         </ul>
       </div>
-                        <!-- /.panel-heading -->
+
       <div class="panel-body">
         <div class="tab-content">
           <div class="tab-pane fade in active scroll-box show" id="bookings">
@@ -89,16 +88,10 @@
         </div>
       </div>
     </div>
-                           <!-- /.panel-body -->
+
   </div>
 </div>
 
-
-
-
-      <!-- /.row -->
-
-      <!-- Related Projects Row -->
 <h3 class="my-4"> <%= t('.otherphotos') %> </h3>
 <div class="row">
   <% @tool.photos.each do |photo| %>

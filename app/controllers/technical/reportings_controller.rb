@@ -29,7 +29,7 @@ class Technical::ReportingsController < Technical::TechnicalController
 
   def update
     if @reporting.update(reporting_params)
-      redirect_to technical_tool_report_path(@reporting.tool, @reporting)
+      redirect_to technical_reportings_path
     else
       render 'edit'
     end

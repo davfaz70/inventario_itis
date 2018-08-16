@@ -19,19 +19,19 @@
     <div class="col-md-4 col-sm-4">
       <div class="form-group" >
         <%=t.label t('tools.show.start') %>
-        <%=t.date_field :start_date, class:"form-control"%>
+        <%=t.date_field :start_date, class:"form-control" %>
       </div>
     </div>
     <!-- end col -->
     <!-- start col -->
     <div class="col-md-4 col-sm-4">
       <div class="form-group">
-        <%=t.label t('tools.show.end') %>
-        <%=t.date_field :end_date, class:"form-control"%>
+        <%= t.label t('tools.show.end') %>
+        <%= t.date_field :end_date, class:"form-control" %>
       </div>
     </div>
     <!-- end col -->
-    <%if params[:technical_id].present?%>
+    <% if params[:technical_id].present? %>
       <!-- start tecnical col -->
       <div class="col-md-4 col-sm-4">
         <% for lab in Lab.all %>
@@ -39,7 +39,7 @@
             <div class="input-group">
               <div class="input-group-prepend">
                 <div class="input-group-text">
-                  <%= radio_button_tag "lab_technical[lab_id]" , lab.id, true%>
+                  <%= radio_button_tag "lab_technical[lab_id]" , lab.id, true %>
                 </div>
               </div>
               <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= lab.name %>" readonly>
@@ -48,7 +48,7 @@
             <div class="input-group">
               <div class="input-group-prepend">
                 <div class="input-group-text">
-                  <%= radio_button_tag "lab_technical[lab_id]" , lab.id%>
+                  <%= radio_button_tag "lab_technical[lab_id]" , lab.id %>
                 </div>
               </div>
               <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= lab.name %>" readonly>
@@ -65,7 +65,7 @@
             <div class="input-group">
               <div class="input-group-prepend">
                 <div class="input-group-text">
-                  <%= radio_button_tag "lab_technical[technical_id]" , technical.id, true%>
+                  <%= radio_button_tag "lab_technical[technical_id]" , technical.id, true %>
                 </div>
               </div>
               <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= technical.name + ' ' + technical.surname%>" readonly>
@@ -74,7 +74,7 @@
             <div class="input-group">
               <div class="input-group-prepend">
                 <div class="input-group-text">
-                  <%= radio_button_tag "lab_technical[technical_id]" , technical.id%>
+                  <%= radio_button_tag "lab_technical[technical_id]" , technical.id %>
                 </div>
               </div>
               <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= technical.name + ' ' + technical.surname%>" readonly>

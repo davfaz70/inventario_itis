@@ -1,42 +1,117 @@
-<h1> Tools </h1>
-<hr>
-<% @labs.each do |relation| %>
-<h3> <%= fa_icon('flask') + " " + relation.lab.name %> </h3>
-<hr>
-<div class="row">
-<% relation.lab.tools.each do |tool| %>
-
-  <% if tool.name.present? %>
-
-    <div class="col-lg-4 col-sm-6 portfolio-item">
-      <div class="card h-100">
-
-        <% if tool.photo.standard.present? %>
-          <%= link_to image_tag(tool.photo.standard, :alt => "toolphoto.jpeg", class:"card-img-top"), technical_tool_path(tool)%>
-        <% else %>
-          <%= link_to image_tag("standard_toolphoto.jpeg", :alt => "toolphoto.jpeg", class:"card-img-top"), technical_tool_path(tool)%>
-        <% end %>
-
-          <div class="card-body">
-            <h4 class="card-title">
-              <%= tool.name %>
-            </h4>
-            <p class="card-text text-truncate">
-              <%= tool.description %>
-            </p>
-            <%= link_to fa_icon('exclamation-triangle'), new_technical_tool_lab_reporting_path(tool, relation.lab), class:"btn btn-outline-warning btn-block" %>
-
-          </div>
-          <ul class="list-group list-group-flush">
-
-              <%= link_to fa_icon('eye') + " " + t('tools.index.show'), technical_tool_path(tool), class:"list-group-item list-group-item-primary" %>
-
-          </ul>
-        </div>
-      </div>
-
+<h1 class="text-center"> <%= t('shared.menu.tools') %> </h1>
+<% if params[:q].present? %>
+  <% if params[:q][:categories_name_cont].present? %>
+    <h3 class="text-center"> <%= params[:q][:categories_name_cont] %> </h3>
+  <% end %>
+  <% if params[:q][:labs_name_cont].present? %>
+    <h3 class="text-center"> <%= params[:q][:labs_name_cont] %> </h3>
+  <% end %>
+  <% if params[:q][:translations_name_cont].present? %>
+    <h3 class="text-center"> "<%= params[:q][:translations_name_cont] %>" </h3>
   <% end %>
 <% end %>
 
-</div>
-<% end %>
+  <div class="row">
+    <div class=" col-lg-3 col-md-5">
+
+      <%= link_to t('tools.index.newrequest'),  new_technical_request_path, class:"btn btn-outline-primary btn-block" %>
+      <br>
+
+      <%= search_form_for @q, url: technical_tools_path do |f| %>
+        <div class="input-group">
+            <%= f.search_field :translations_name_cont, class:"form-control", placeholder: t('tools.index.place') %>
+            <%= f.submit t('tools.index.search'), class:"btn btn-secondary "%>
+        </div>
+      <% end %>
+      <br>
+
+      <div id="accordion" role="tablist">
+        <div class="card">
+          <div class="card-header" role="tab" id="headingOne">
+            <h5 class="mb-0">
+              <a data-toggle="collapse" href="#collapseOne" role="button" aria-expanded="false" aria-controls="collapseOne">
+                <%= fa_icon('tag') + " " + t('tools.index.categories') %>
+              </a>
+            </h5>
+          </div>
+
+          <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+              <% @categories.each do |category| %>
+                <%= search_form_for @q, url: technical_tools_path do |f| %>
+                  <%= f.search_field :categories_name_cont, value: category.name, type:"hidden" %>
+                  <td>
+                    <%= button_tag type:"submit", class: "btn btn-warning btn-sm btn-block" do %>
+                      <%= fa_icon('tag') + " " + category.name %>
+                    <% end %>
+                  </td>
+                <% end %>
+                <br>
+              <%end%>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" role="tab" id="headingTwo">
+            <h5 class="mb-0">
+              <a class="collapsed" data-toggle="collapse" href="#collapseTwo" role="button" aria-expanded="false" aria-controls="collapseTwo">
+                <%= fa_icon('flask') + " " + t('tools.index.labs') %>
+              </a>
+            </h5>
+          </div>
+          <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div class="card-body">
+              <% @labs.each do |lab| %>
+                <%= search_form_for @q, url: technical_tools_path do |f| %>
+                  <%= f.search_field :labs_name_cont, value: lab.name, type:"hidden" %>
+                  <td>
+                    <%= button_tag type:"submit", class: "btn btn-primary btn-sm btn-block" do %>
+                      <%= fa_icon('flask') + " " + lab.name %>
+                    <% end %>
+                  </td>
+                <% end %>
+                <hr>
+              <%end%>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+      <div class="LI-profile-badge" width="100%" data-version="v1" data-size="medium" data-locale="<%= I18n.locale %>" data-type="horizontal" data-theme="light" data-vanity="davide-fazio"><a class="LI-simple-link" href='https://it.linkedin.com/in/davide-fazio?trk=profile-badge'>Davide F.</a></div>
+      <br>
+    </div>
+
+    <div class="col-lg-9 col-md-7">
+      <div class="row">
+        <% @tools.each do |tool| %>
+          <% if tool.name.present? %>
+            <div class="col-lg-4 col-sm-6 portfolio-item">
+              <div class="card h-100">
+              <% if tool.photo.standard.present? %>
+                <%= link_to image_tag(tool.photo.standard, :alt => "toolphoto.jpeg", class:"card-img-top"), technical_tool_path(tool)%>
+              <% else %>
+                <%= link_to image_tag("generico.png", height: 200, :alt => "toolphoto.jpeg", class:"card-img-top"), technical_tool_path(tool)%>
+              <% end %>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <%= tool.name %>
+                  </h4>
+                  <p class="card-text text-truncate">
+                    <%= tool.description %>
+                  </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <%= link_to fa_icon('eye') + " " + t('tools.index.show'), technical_tool_path(tool), class:"list-group-item list-group-item-primary" %>
+                </ul>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <ul class="pagination justify-content-center">
+    <%= paginate @tools %>
+  </ul>
