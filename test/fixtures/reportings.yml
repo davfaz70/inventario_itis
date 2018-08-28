@@ -2,12 +2,13 @@
 
 one:
   tool_id: 1
-  technical_id: 1
+  technical_id: 298486374
   description: MyString
   quantity: MyString
 
 two:
-  tool_id: 1
+  tool_id: 2
+  lab_id: 1
   technical_id: 1
   description: MyString
   quantity: MyString

@@ -1,15 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 1
+  slug: tool
   photo: MyString
-  name: MyString
-  description: MyString
-  days: 1
-  deadline: 2017-12-28 16:48:27
+  identifier: 12wwe4554
+  quantity: 1
 
 two:
+  id: 2
+  slug: tools2
   photo: MyString
-  name: MyString
-  description: MyString
-  days: 1
-  deadline: 2017-12-28 16:48:27
+  identifier:
+  quantity: 20

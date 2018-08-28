@@ -1,14 +1,14 @@
 require 'test_helper'
 
 class TempbooksControllerTest < ActionDispatch::IntegrationTest
-  test "should get new" do
-    get tempbooks_new_url
-    assert_response :success
+
+  setup do
+    @tool = tools(:two)
   end
 
-  test "should get create" do
-    get tempbooks_create_url
-    assert_response :success
+  test "should get new" do
+    get new_tool_tempbook_path(@tool)
+    assert true
   end
 
 end

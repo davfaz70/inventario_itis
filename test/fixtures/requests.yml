@@ -6,6 +6,7 @@ one:
   photo: MyString
   quantity: MyString
   goal: MyString
+  technical_id: 298486374
 
 two:
   name: MyString
@@ -13,3 +14,4 @@ two:
   photo: MyString
   quantity: MyString
   goal: MyString
+  prof_id: 298486374

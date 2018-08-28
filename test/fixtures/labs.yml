@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  id: 1
+  name: S-18
+  slug: s-18
   subject: MyString
 
 two:
-  name: MyString
+  id: 2
+  name: O-15
+  slug: o-15
   subject: MyString

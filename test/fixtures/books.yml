@@ -1,13 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  prof: MyString
+  prof_id: 298486374
   tool_id: 1
+  lab_id: 2
+  goal: testing
+  quantity: 1
   start_date: 2018-02-14 21:11:58
   end_date: 2018-02-14 21:11:58
 
 two:
-  prof: MyString
-  tool_id: 1
+  prof_id: 298486374
+  tool_id: 2
+  lab_id: 1
+  goal: test
+  quantity: 10
   start_date: 2018-02-14 21:11:58
   end_date: 2018-02-14 21:11:58

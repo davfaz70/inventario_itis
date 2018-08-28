@@ -264,6 +264,10 @@ it:
       create:
         created: "Richiesta effettuata con successo!"
     reportings:
+      create:
+        created: "Segnalazione creata con successo!"
+      destroy:
+        deleted: "Segnalazione eliminata con successo!!"
       index:
         new: "Nuova segnalazione"
         reportings: "Segnalazioni"
@@ -272,8 +276,10 @@ it:
         quantity: "Quantità"
         description: "Descrizione del guasto"
         new: "Nuova segnalazione"
+        notyourlab: "Questo non è un tuo attuale laboratorio"
       edit:
         edit: "Modifica segnalazione"
+        notyourlab: "Questo non è un tuo attuale laboratorio"
     labs:
       index:
         chooselabs: "Scegli il laboratorio in cui si è guastato"

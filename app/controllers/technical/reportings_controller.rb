@@ -1,12 +1,12 @@
 class Technical::ReportingsController < Technical::TechnicalController
   before_action :set_reporting, only: [:show, :edit, :update, :destroy]
+  before_action :set_variables_and_control, only: [:new, :edit]
 
   def index
     @reportings = current_technical.reportings
   end
 
   def new
-
     @reporting = Reporting.new
   end
 
@@ -25,6 +25,7 @@ class Technical::ReportingsController < Technical::TechnicalController
   end
 
   def edit
+
   end
 
   def update
@@ -53,6 +54,20 @@ class Technical::ReportingsController < Technical::TechnicalController
 
   def set_reporting
     @reporting = Reporting.find(params[:id])
+  end
+
+  def set_variables_and_control
+    @tool = Tool.friendly.find(params[:tool_id])
+    @lab = Lab.friendly.find(params[:lab_id])
+    if current_technical.labs.include?(@lab)
+      if current_technical.lab_technicals.where("lab_id=?", @lab.id).first.end_date != nil
+        redirect_back(fallback_location:  technical_reportings_path)
+        flash[:danger] = t('.notyourlab')
+      end
+    else
+      redirect_back(fallback_location:  technical_reportings_path)
+      flash[:danger] = t('.notyourlab')
+    end
   end
 
 end

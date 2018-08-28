@@ -288,6 +288,10 @@ en:
       create:
         created: "Request successfully created!"
     reportings:
+      create:
+        created: "Reporting successfully created!"
+      destroy:
+        deleted: "Reporting successfully destroyed!"
       index:
         new: "New reporting"
         reportings: "Reportings"
@@ -296,8 +300,10 @@ en:
         new: "New reporting"
         quantity: "Quantity"
         description: "Description of the fault"
+        notyourlab: "This is not your actual lab!"
       edit:
         edit: "Edit reporting"
+        notyourlab: "This is not your actual lab!" 
     labs:
       index:
         chooselabs: "Choose lab"
