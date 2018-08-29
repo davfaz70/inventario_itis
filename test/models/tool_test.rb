@@ -5,34 +5,56 @@ class ToolTest < ActiveSupport::TestCase
 
   setup do
     @lab = labs(:one)
+    @labtwo = labs(:two)
+    @tool = Tool.new(name: "test", description: "test per i models", slug: "test", identifier: "qualcosa", quantity: 1)
+    @tool.labs << @lab
+  end
+
+  test "tool save" do
+    assert @tool.save
   end
 
   test "tool's labs" do
-    tool = Tool.new
-    tool.name = "Test"
-    tool.description = "Tool must have one or more labs"
-    tool.slug = "test"
-    tool.identifier =  "Something"
-    tool.quantity = 1
-    assert_not tool.save, "Tool must have one or more labs"
+    @tool.labs.delete(@lab)
+    assert_not @tool.save, "Tool must have one or more labs"
   end
 
-  test "tool quantity must be positive or zero" do
-    tool = Tool.new(name: "testing", description: "See the failed test!", slug: "testing", identifier:"")
-    tool.labs << @lab
-    tool.quantity = -1
-    assert tool.invalid?, "Quantity must be more or equal to 0"
+  test "number labs" do
+    @tool.labs << @labtwo
+    assert_not @tool.save, "There is one tool, how can this tool stay in two labs?"
   end
 
-  test "tool identifier" do
-    tool = Tool.new
-    tool.name = "Test"
-    tool.description = "Should not save more than one tool if this have an identifier"
-    tool.slug = "test"
-    tool.identifier = "Something"
-    tool.quantity = 2
-    tool.labs << @lab
-    assert_not tool.save, "If the tool have identifier, the quantity of it must not be greater than one "
+  test "tool quantity must be positive" do
+    @tool.quantity = -1
+    assert @tool.invalid?, "Quantity must be more of 0"
   end
+
+  test "tool identifier quantity" do
+    @tool.quantity = 2
+    assert_not @tool.save, "If the tool have identifier, the quantity of it must not be greater than one "
+  end
+
+  test "quantity without identifier" do
+    @tool.identifier = nil
+    @tool.quantity = 2
+    assert @tool.save
+  end
+
+  test "tool name" do
+    @tool.name = nil
+    assert_not @tool.save
+  end
+
+  test "tool quantity" do
+    @tool.quantity = nil
+    assert_not @tool.save
+  end
+
+  test "tool description" do
+    @tool.description = nil
+    assert_not @tool.save
+  end
+
+
 
 end
