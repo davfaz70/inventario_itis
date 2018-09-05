@@ -5,9 +5,9 @@ class AdminMailer < ApplicationMailer
     mail(to: Admin.where("role = 1").first.email, subject: "Presto! Devi autorizzare un nuovo professore")
   end
 
-  def new_booking(prof, booking)
-    @prof = prof
-    @booking = booking
+  def new_booking
+    @prof = params[:prof]
+    @booking = params[:book]
     mail(to: Admin.where("role = 1").first.email, subject: "Nuova prenotazione")
   end
 
@@ -27,7 +27,7 @@ class AdminMailer < ApplicationMailer
       @person = @request.prof
     else
       @preson = @request.technical
-    end 
+    end
     mail(to: Admin.where("role = 0").first.email, subject: "Nuova proposta d'acquisto")
   end
 

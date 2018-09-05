@@ -29,8 +29,8 @@ class Request < ApplicationRecord
   end
   accepts_nested_attributes_for :photos, allow_destroy: true
   has_and_belongs_to_many :categories
-  belongs_to :prof
-  belongs_to :technical
+  belongs_to :prof, optional: true
+  belongs_to :technical, optional: true
   before_save :name
   validates_with RequestValidator
   def name=(s)

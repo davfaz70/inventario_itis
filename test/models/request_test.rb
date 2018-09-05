@@ -2,7 +2,9 @@ require 'test_helper'
 
 class RequestTest < ActiveSupport::TestCase
   setup do
+    @technical = technicals(:one)
     @request = Request.new(name: "Richiesta", description:"Richiesta esempio", quantity: 10, goal: "Vediamo se il test passa", technical_id: 298486374, approved:false, money:false, arrived:false)
+    @request.technical = @technical
   end
 
   test "request valid" do

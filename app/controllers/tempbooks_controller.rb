@@ -66,8 +66,8 @@ class TempbooksController < ApplicationController
         @tempbook.destroy
         if @book.save
           flash[:success]="Prenotato con successo"
-          BookControlJob.set(wait_until: @book.start_date.to_datetime).perform_later(@book) #if the booking are not confirmed before the start date, is unuseful store it in the database
-          AdminMailer.new_booking(@book.prof, @book).deliver_later #this email notify at the admin that a new booking was created
+          #BookControlJob.set(wait_until: @book.start_date.to_datetime).perform_later(@book) #if the booking are not confirmed before the start date, is unuseful store it in the database
+          AdminMailer.with(book: @book, prof: @book.prof).new_booking.deliver_later #this email notify at the admin that a new booking was created
           redirect_to tool_path(@tool)
         else
           flash[:danger]="C'è stato un problema, riprova"
