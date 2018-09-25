@@ -1,24 +1,22 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## This web app require:
 
-Things you may want to cover:
+* Rail 5.2.1
+* Ruby 2.5.0
+* sqlite in development
+* PostgreSQL in production
 
-* Ruby version
+## Getting started
 
-* System dependencies
+Clone the repo, ensure you have the **minimagik** library installed on your computer and all requirements.
+The application require a file called **.env** for work in development, in this file are all secret key for sending email and run the Google Oauth, so you should create this file and fill it with:
+```
+EMAIL_CLIENT=YOUR_EMAIL_CLIENT_HERE
+EMAIL_PASSWORD=YOUR_EMAIL_PASSWORD_HERE
+CLIENT_SECRET=YOUR_CLIENT_SECRET_FOR_GOOGLE_OAUTH
+CLIENT_ID=YOUR_CLIENT_ID_FOR_GOOGLE_OAUTH
+```
+For run the application you should enter ```bin/delayed_job start``` command before ```rails s```.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+More in the wiki
