@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :null_session
   before_action :set_i18n_locale_from_params
   # ...
   protected
