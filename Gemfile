@@ -57,7 +57,7 @@ gem "font-awesome-rails"
 gem 'rails-i18n'
 
 # Bootstrap is useful for better style of components (ex buttons, input fields, ecc...)
-gem 'bootstrap', '~> 4.0.0.beta3'
+gem 'bootstrap', '~> 4.1.3'
 
 # Carrierwave is useful for file storage (ex: photos, documents, ecc...)
 gem 'carrierwave'
