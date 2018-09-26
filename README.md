@@ -9,8 +9,8 @@
 
 ## Getting started
 
-Clone the repo, ensure you have the **minimagik** library installed on your computer and all requirements.
-The application require a file called **.env** for work in development, in this file are all secret key for sending email and run the Google Oauth, so you should create this file and fill it with:
+Clone the repo, ensure you have the **minimagick** library installed on your computer and all requirements.
+The application require a file called **.env** for work in development, in this file are stored all secret key for sending email and run the Google Oauth, so you should create this file and fill it with:
 ```
 EMAIL_CLIENT=YOUR_EMAIL_CLIENT_HERE
 EMAIL_PASSWORD=YOUR_EMAIL_PASSWORD_HERE
