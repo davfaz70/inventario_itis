@@ -2,7 +2,7 @@
 <hr>
 
 <!-- because a category can be created by selectize, i need to specify the destination of html form -->
-<%= form_for ([:admin, @category]), :url => {:controller => "categories", :action => "htmlcreate"} do |t|  %>
+<%= form_tag([:admin, @category]), {:url admin_htmlcreate_route_path} do |t|  %>
   <div class="form-group" >
     <%=t.label t('admin.categories.form.name')%>
     <%=t.text_field :name, class:"form-control"%>

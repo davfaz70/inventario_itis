@@ -10,9 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_26_184650) do
+ActiveRecord::Schema.define(version: 2019_01_04_145855) do
 
-  create_table "admins", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "admins", id: :serial, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -40,7 +43,7 @@ ActiveRecord::Schema.define(version: 2018_05_26_184650) do
     t.index ["unlock_token"], name: "index_admins_on_unlock_token", unique: true
   end
 
-  create_table "books", force: :cascade do |t|
+  create_table "books", id: :serial, force: :cascade do |t|
     t.string "prof_id"
     t.integer "tool_id"
     t.datetime "start_date"
@@ -53,7 +56,7 @@ ActiveRecord::Schema.define(version: 2018_05_26_184650) do
     t.string "goal"
   end
 
-  create_table "categories", force: :cascade do |t|
+  create_table "categories", id: :serial, force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -74,7 +77,7 @@ ActiveRecord::Schema.define(version: 2018_05_26_184650) do
     t.index ["tool_id", "category_id"], name: "index_categories_tools_on_tool_id_and_category_id"
   end
 
-  create_table "delayed_jobs", force: :cascade do |t|
+  create_table "delayed_jobs", id: :serial, force: :cascade do |t|
     t.integer "priority", default: 0, null: false
     t.integer "attempts", default: 0, null: false
     t.text "handler", null: false
@@ -92,7 +95,7 @@ ActiveRecord::Schema.define(version: 2018_05_26_184650) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
-  create_table "documentations", force: :cascade do |t|
+  create_table "documentations", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "file"
     t.integer "tool_id"
@@ -101,7 +104,7 @@ ActiveRecord::Schema.define(version: 2018_05_26_184650) do
     t.integer "request_id"
   end
 
-  create_table "friendly_id_slugs", force: :cascade do |t|
+  create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
     t.string "sluggable_type", limit: 50
@@ -113,7 +116,7 @@ ActiveRecord::Schema.define(version: 2018_05_26_184650) do
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
   end
 
-  create_table "lab_technicals", force: :cascade do |t|
+  create_table "lab_technicals", id: :serial, force: :cascade do |t|
     t.integer "lab_id"
     t.integer "technical_id"
     t.datetime "start_date"
@@ -122,7 +125,7 @@ ActiveRecord::Schema.define(version: 2018_05_26_184650) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "labs", force: :cascade do |t|
+  create_table "labs", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "subject"
     t.datetime "created_at", null: false
@@ -137,7 +140,7 @@ ActiveRecord::Schema.define(version: 2018_05_26_184650) do
     t.index ["tool_id", "lab_id"], name: "index_labs_tools_on_tool_id_and_lab_id"
   end
 
-  create_table "photos", force: :cascade do |t|
+  create_table "photos", id: :serial, force: :cascade do |t|
     t.string "picture"
     t.integer "tool_id"
     t.datetime "created_at", null: false
@@ -145,7 +148,7 @@ ActiveRecord::Schema.define(version: 2018_05_26_184650) do
     t.integer "request_id"
   end
 
-  create_table "posts", force: :cascade do |t|
+  create_table "posts", id: :serial, force: :cascade do |t|
     t.string "body"
     t.integer "prof_id"
     t.integer "tool_id"
@@ -153,7 +156,7 @@ ActiveRecord::Schema.define(version: 2018_05_26_184650) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "profs", force: :cascade do |t|
+  create_table "profs", id: :serial, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -187,7 +190,7 @@ ActiveRecord::Schema.define(version: 2018_05_26_184650) do
     t.index ["unlock_token"], name: "index_profs_on_unlock_token", unique: true
   end
 
-  create_table "reportings", force: :cascade do |t|
+  create_table "reportings", id: :serial, force: :cascade do |t|
     t.integer "tool_id"
     t.integer "technical_id"
     t.integer "lab_id"
@@ -197,7 +200,7 @@ ActiveRecord::Schema.define(version: 2018_05_26_184650) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "requests", force: :cascade do |t|
+  create_table "requests", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.string "photo"
@@ -212,7 +215,7 @@ ActiveRecord::Schema.define(version: 2018_05_26_184650) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "technicals", force: :cascade do |t|
+  create_table "technicals", id: :serial, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -242,7 +245,7 @@ ActiveRecord::Schema.define(version: 2018_05_26_184650) do
     t.index ["unlock_token"], name: "index_technicals_on_unlock_token", unique: true
   end
 
-  create_table "tempbooks", force: :cascade do |t|
+  create_table "tempbooks", id: :serial, force: :cascade do |t|
     t.string "prof_id"
     t.integer "tool_id"
     t.datetime "start_date"
@@ -265,7 +268,7 @@ ActiveRecord::Schema.define(version: 2018_05_26_184650) do
     t.index ["tool_id"], name: "index_tool_translations_on_tool_id"
   end
 
-  create_table "tools", force: :cascade do |t|
+  create_table "tools", id: :serial, force: :cascade do |t|
     t.string "photo"
     t.string "identifier"
     t.integer "quantity"

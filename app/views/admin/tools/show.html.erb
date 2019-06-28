@@ -168,7 +168,9 @@
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <%= image_tag(@tool.photo, :alt => "booh", class:"d-block w-100") %>
+              <% if @tool.photo.present? %>
+                <%= image_tag(@tool.photo, :alt => "booh", class:"d-block w-100") %>
+              <% end %>
             </div>
             <% @tool.photos.each do |photo| %>
               <div class="carousel-item">
