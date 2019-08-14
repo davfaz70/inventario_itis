@@ -25,7 +25,7 @@ gem "paranoia", "~> 2.2"
 
 gem 'progress_job'
 
-gem "mini_magick"
+gem "mini_magick", ">= 4.9.4"
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
@@ -59,13 +59,13 @@ gem "font-awesome-rails"
 gem 'rails-i18n'
 
 # Bootstrap is useful for better style of components (ex buttons, input fields, ecc...)
-gem 'bootstrap', '~> 4.1.3'
+gem 'bootstrap'
 
 # Carrierwave is useful for file storage (ex: photos, documents, ecc...)
 gem 'carrierwave'
 
 # Devise is useful for sign-up and log-in and this gem control all authorization
-gem 'devise'
+gem 'devise', ">= 4.6.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'
@@ -117,7 +117,7 @@ group :test do
 		gem 'capybara', '>= 2.15'
 		gem 'selenium-webdriver'
 		# Easy installation and use of chromedriver to run system tests with Chrome
-		gem 'chromedriver-helper'
+		gem 'webdrivers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
