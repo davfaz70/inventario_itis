@@ -12,9 +12,9 @@ default: &default
 development:
   adapter: postgresql
   host: 127.0.0.1
-  database: itis_torricelli
+  database: inventario
   username: davide
-  password: DavidinoProvaDb001
+  password: <%= ENV['DATABASE_PASSWORD'] %>
   encoding: unicode
   pool: 5
 
