@@ -1,7 +1,7 @@
  Nuova segnalazione
  È molto importante
  <% if @reporting.tool.photo.present? %>
- <%= image_tag(@reporting.tool.photo, alt: "Photo") %>
+ <%= image_tag(@reporting.tool.photo_url, alt: "Photo") %>
  <% end %>
 <% if @reporting.quantity == 1 %>
  È stato segnalato che <%= @reporting.quantity %> <%= @reporting.tool.name %> non funziona correttamente o non funziona affatto
@@ -10,7 +10,7 @@
 <% end %>
  Il responsabile della segnalazione è: <%= @reporting.technical.surname + " " + @reporting.technical.name %>
 
-  Ecco di seguito una descrizione della segnalazione: 
+  Ecco di seguito una descrizione della segnalazione:
  <%= @reporting.description %>
 
  Si prega di considerare questa segnalazione come un evento prioritario, il periodo in cui uno strumento potrebbe rimanere segnalato senza causare

@@ -1,3 +1,19 @@
 
     <h1 align="center"> Complimenti  <%= " " + @prof.name.to_s + " " + @prof.surname %> </h1>
     <p> Sei stato autorizzato dall'admin </p>
+    <p> Adesso sei in grado di prenotare strumenti, fare richieste di acquisto e di .. riflettere su quanto lavoro c'è dietro questo progetto </p>
+    <hr>
+    <p>
+    <%= link_to "Prenota l'uso di qualcosa", tools_url, class:"btn btn-primary btn-lg btn-block" %>
+    </p>
+    <hr>
+    <p>
+    <%= link_to "Richiedi un nuovo strumento!", new_request_url, class: "btn btn-primary btn-lg btn-block" %>
+    </p>
+    <hr>
+    <div class="alert alert-success" role="alert">
+      <h4 class="alert-heading">E ora?</h4>
+      <p>Ora potresti supportare questo progetto, affinché cresca e ottenga sempre più successo, per la tua comodità!</p>
+      <hr>
+      <p class="mb-0">Che una grande vergogna ricada su di me se non supporto il progetto! <%= link_to "Supporta!", "http://paypal.me/pools/c/8654CtI2Kj", class:"btn btn-success" %></p>
+    </div>

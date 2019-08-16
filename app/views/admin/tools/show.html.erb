@@ -169,7 +169,7 @@
           <div class="carousel-inner">
             <div class="carousel-item active">
               <% if @tool.photo.present? %>
-                <%= image_tag(@tool.photo, :alt => "booh", class:"d-block w-100") %>
+                <%= image_tag(@tool.photo_url, :alt => "booh", class:"d-block w-100") %>
               <% end %>
             </div>
             <% @tool.photos.each do |photo| %>

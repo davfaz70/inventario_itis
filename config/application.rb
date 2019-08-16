@@ -21,14 +21,14 @@ module ItisTorricelli
     config.active_job.queue_adapter = :delayed_job
 
     config.time_zone='Rome'
-    config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
+    config.i18n.available_locales = [:en, :it]
     config.i18n.default_locale = :it
+  #  config.action_mailer.default_url_options = { host: '192.168.1.7' }
+  #  config.i18n.fallbacks = [I18n.default_locale]
 
     # Where the I18n library should search for translation files
-    I18n.load_path += Dir[Rails.root.join('lib', 'locale', '*.{rb,yml}')]
 
-    # Whitelist locales available for the application
-    I18n.available_locales = [:it, :en]
+
 
 
 

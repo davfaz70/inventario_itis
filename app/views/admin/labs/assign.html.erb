@@ -15,12 +15,12 @@
   <% @tools.each do |tool| %>
     <% if tool.name.present? %>
       <% if @lab.tools.include?(tool) %>
-        <%= link_to image_tag(tool.photo.thumb) + " " + tool.name, admin_assign_update_lab_route_path(@lab, tool), class:"list-group-item active"%>
+        <%= link_to image_tag(tool.photo.thumb.url) + " " + tool.name, admin_assign_update_lab_route_path(@lab, tool), class:"list-group-item active"%>
       <% else %>
         <% if tool.labs.size == tool.quantity %>
-          <%= link_to image_tag(tool.photo.thumb) + " " + tool.name, admin_assign_update_lab_route_path(@lab, tool), class:"list-group-item disabled"%>
+          <%= link_to image_tag(tool.photo.thumb.url) + " " + tool.name, admin_assign_update_lab_route_path(@lab, tool), class:"list-group-item disabled"%>
         <% else %>
-          <%= link_to image_tag(tool.photo.thumb) + " " + tool.name, admin_assign_update_lab_route_path(@lab, tool), class:"list-group-item "%>
+          <%= link_to image_tag(tool.photo.thumb.url) + " " + tool.name, admin_assign_update_lab_route_path(@lab, tool), class:"list-group-item "%>
         <% end %>
       <%end%>
     <% end %>

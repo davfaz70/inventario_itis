@@ -152,7 +152,7 @@
         <div class="card text-white bg-warning mb-3">
           <div class="card-header">
             <h4 class="card-title">
-              <%= image_tag(reporting.tool.photo.thumb, alt: "toolphoto.jpeg") %> <%= reporting.tool.name %>
+              <%= image_tag(reporting.tool.photo.thumb.url, alt: "toolphoto.jpeg") %> <%= reporting.tool.name %>
               <small>
                 <%= t('tools.show.quantity') + ": " + reporting.quantity.to_s %>
               </small>
@@ -252,7 +252,7 @@
         <!-- start card -->
         <div class="card h-100">
           <div class="card-header">
-             <p class="card-title"> <%= image_tag(booking.tool.photo.thumb, alt:"Photo") %> <%= booking.tool.name %> </p>
+             <p class="card-title"> <%= image_tag(booking.tool.photo.thumb.url, alt:"Photo") %> <%= booking.tool.name %> </p>
              <h5> <%= booking.prof.name + " " + booking.prof.surname %> </h5>
           </div>
           <div class="card-body">

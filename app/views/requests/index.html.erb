@@ -1,19 +1,23 @@
+<style>
+
+</style>
+
 <h1> <%= t('technical.requests.index.requests') %> <%= link_to t('tools.index.newrequest'), new_request_path, class: "btn btn-outline-primary" %> </h1>
 <hr>
 <!-- start row -->
-<div class="row">
+
   <!-- start panel header -->
-  <div class="panel panel-default">
+  <div class="panel panel-default" width="100">
     <div class="card-header">
       <ul class="nav nav-pills">
         <li class="active"> <a href="#notapproved" data-toggle="tab" class="btn btn-warning"> <%= t('technical.requests.index.notapproved') %> </a> </li> &nbsp &nbsp
-        <li> <a href="#approved" data-toggle="tab" class="btn btn-primary"> <%= t('technical.requests.index.approved') %> </a> </li>
-        <li> <a href="#money" data-toggle="tab" class="btn btn-success"> <%= t('technical.requests.index.money') %> </a> </li>
+        <li> <a href="#approved" data-toggle="tab" class="btn btn-primary"> <%= t('technical.requests.index.approved') %> </a> </li> &nbsp &nbsp
+        <li> <a href="#money" data-toggle="tab" class="btn btn-success"> <%= t('technical.requests.index.money') %> </a> </li> &nbsp &nbsp
       </ul>
     </div>
   </div>
   <!-- end panel header -->
-</div>
+
 <!-- end row -->
 <!-- start panel body -->
 <div class="panel-body">

@@ -3,10 +3,8 @@
     <h4 align="center"> <%= @booking.quantity %> <%= @booking.tool.name %> </h4>
     <p> Dettagli: </p>
     <% if @booking.tool.photo.present? %>
-    <%= image_tag(@booking.tool.photo, alt: "Photo") %>
+    <%= image_tag(@booking.tool.photo_url, alt: "Photo") %>
     <% end %>
     <p> Periodo di utilizzo: dal <%= @booking.start_date.strftime("%d/%m/%y %k:%M") %> al <%= @booking.end_date.strftime("%d/%m/%y %k:%M") %> </p>
     <p> Motivazione: <%= @booking.goal %> </p>
     <p> Laboratorio: <%= @booking.lab.name %> </p>
-
-    

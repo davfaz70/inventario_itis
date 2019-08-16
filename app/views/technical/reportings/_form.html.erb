@@ -1,7 +1,7 @@
 <% tool_lab #this method is defined in helpers/technical/reportings_helper.rb %>
 <div class="row">
   <div class="col-md-4 col-sm-4">
-    <h4> <%= image_tag(@tool.photo.thumb, alt: "Photo") %> <%= @tool.name %> </h4>
+    <h4> <%= image_tag(@tool.photo.thumb.url, alt: "Photo") %> <%= @tool.name %> </h4>
   </div>
   <div class="col-md-4 col-sm-4">
     <h4> <%= t('technical.reportings.new.quantity') + ": " + @tool.quantity.to_s %> </h4>
