@@ -112,9 +112,16 @@
         <div class="card h-100">
           <div class="card-header">
             <%= prof.name + " " + prof.surname %>
+            <small id="edited" class="form-text text-muted">
+              <%= t('.registered_at') + ": " + prof.created_at.strftime("%d/%m/%y %k:%M") %>
+            </small>
           </div>
           <div class="card-body">
             <%= mail_to prof.email %>
+            <br>
+            <%= t('.bookings') + ": " + prof.books.count.to_s %>
+            <br>
+            <%= t('.requests') + ": " + prof.requests.count.to_s %>
           </div>
           <!-- if a prof has not been authorized by admin, the admin can authorize him or, if the prof never have made bookings and/or requests the admin can delete him -->
           <!-- if a prof has been authorized by the administrator, the administrator may no longer authorize him -->

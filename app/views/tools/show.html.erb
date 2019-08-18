@@ -44,6 +44,16 @@
     <% else %>
       <% image_tag("generico.png", :alt => "toolphoto.jpeg", class:"img-fluid") %>
     <% end %>
+    <h3 class="my-4"> <%= t('.otherphotos') %> </h3>
+    <div class="row">
+      <% @tool.photos.each do |photo| %>
+        <div class="col-md-3 col-sm-6 mb-4">
+          <a href="#" data-toggle="modal" data-target="#exampleModalLong">
+            <%= image_tag(photo.picture.standard.url, :alt => "booh", class:"img-fluid") %>
+          </a>
+        </div>
+      <% end %>
+    </div>
     <br>
     <br>
     <%= link_to t('.verify'), new_tool_tempbook_path(@tool), class: "btn btn-info btn-block" %>
@@ -165,17 +175,16 @@ dtlInputend.value = localISOTime.slice(0,16);
     <h3 class="my-3"> <%= t('.description') %> </h3>
     <p> <%= simple_format(@tool.description) %></p>
     <!-- start panel -->
-    <div class="panel panel-default">
-      <div class="card-header">
-        <ul class="nav nav-pills">
-          <li class="active"> <a href="#bookings" data-toggle="tab" class="btn btn-primary"> <%= t('.bookings') %> </a> </li>
-          <li> <a href="#documentations" data-toggle="tab" class="btn btn-primary"> <%= t('.documentation') %> </a> </li>
-        </ul>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="list-group" id="list-tab" role="tablist">
+          <a href="#bookings" data-toggle="tab" class="list-group-item text-center list-group-item-action active" id="bookings-list" aria-controls="bookings">  <%= t('.bookings') %> </a>
+          <a href="#documentations" data-toggle="tab" class="list-group-item text-center list-group-item-action" id="docs-list" aria-controls="docs"> <%= t('.documentation') %> </a>
+        </div>
       </div>
-
-      <div class="panel-body">
-        <div class="tab-content">
-          <div class="tab-pane fade in active scroll-box show" id="bookings">
+      <div class="col-md-8">
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade active scroll-box show border" id="bookings">
             <% if @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true).present? %>
               <% @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true).each do |booking| %>
                 <%= booking.prof.name + " " + booking.prof.surname %> <br>
@@ -190,7 +199,7 @@ dtlInputend.value = localISOTime.slice(0,16);
             <% end %>
           </div>
 
-          <div class="tab-pane fade scroll-box" id="documentations">
+          <div class="tab-pane fade scroll-box border" id="documentations">
             <% if @tool.documentations.present? %>
               <% @tool.documentations.each do |doc| %>
                 <li class="list-group-item">
@@ -205,22 +214,14 @@ dtlInputend.value = localISOTime.slice(0,16);
         </div>
       </div>
     </div>
+
     <!-- end panel -->
   </div>
   <!-- end col -->
 </div>
 <!-- end row -->
 
-<h3 class="my-4"> <%= t('.otherphotos') %> </h3>
-<div class="row">
-  <% @tool.photos.each do |photo| %>
-    <div class="col-md-3 col-sm-6 mb-4">
-      <a href="#" data-toggle="modal" data-target="#exampleModalLong">
-        <%= image_tag(photo.picture.standard, :alt => "booh", class:"img-fluid") %>
-      </a>
-    </div>
-  <% end %>
-</div>
+
 
 <% if @tool.photo.present? %>
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -240,7 +241,7 @@ dtlInputend.value = localISOTime.slice(0,16);
             </div>
             <% @tool.photos.each do |photo| %>
               <div class="carousel-item">
-                <%= image_tag(photo.picture, :alt => "booh", class:"d-block w-100") %>
+                <%= image_tag(photo.picture_url, :alt => "booh", class:"d-block w-100") %>
               </div>
             <% end %>
           </div>
@@ -278,7 +279,11 @@ dtlInputend.value = localISOTime.slice(0,16);
     <% @posts.each do |post| %>
       <% if post.prof.present? %>
         <div class="media mb-4">
-          <%= image_tag("http://placehold.it/50x50", :alt => " ", class:"d-flex mr-3 rounded-circle") %>
+          <% if post.prof.picture.present? %>
+            <%=image_tag(post.prof.picture_url, :alt => " ", class:"d-flex mr-3 rounded-circle", size: "50x50") %>
+          <% else %>
+            <%= image_tag("Professor_Farnsworth_50.jpg", :alt => " ", class:"d-flex mr-3 rounded-circle") %>
+          <% end %>
           <div class="media-body">
             <h5 class="mt-0">
               <%= post.prof.name + " " + post.prof.surname %>

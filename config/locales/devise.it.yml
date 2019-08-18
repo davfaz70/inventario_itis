@@ -71,6 +71,7 @@ it:
         technical: "Tecnico"
         role: "Seleziona il tuo ruolo"
         rolezero: "Preside"
+        picture: "Seleziona una foto per il tuo profilo"
         name: "Nome"
         surname: "Cognome"
         google: "Accedi con Google"

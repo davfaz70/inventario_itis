@@ -142,6 +142,7 @@ en:
       deleted: "Successfully deleted"
     dashboard:
       index:
+        registered_at: "Registered at"
         newprof: "New prof"
         newprofs: "New profs"
         newreporting: "New reporting"

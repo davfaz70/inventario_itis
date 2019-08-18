@@ -71,6 +71,7 @@ en:
         technical: "Technical"
         role: "Choose role"
         rolezero: "Headmaster"
+        picture: "Select photo for your profile"
         name: "Name"
         surname: "Surname"
         google: "Sign in with Google"

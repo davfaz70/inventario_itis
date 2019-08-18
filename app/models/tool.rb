@@ -48,6 +48,7 @@ class Tool < ApplicationRecord
   before_save :name
 
 #  default_scope -> {order(name: :asc)}
+  #default_scope with_translations.order("name ASC")
 
   validates_with ToolValidator
   paginates_per 12
