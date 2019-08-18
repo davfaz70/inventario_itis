@@ -110,6 +110,7 @@ it:
         delete: "Categoria eliminata con successo"
     dashboard:
       index:
+        registered_at: "Registrato il"
         newprof: "Nuovo professore"
         newprofs: "Nuovi professori"
         newreporting: "Nuova segnalazione"

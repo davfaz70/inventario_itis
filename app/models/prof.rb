@@ -15,6 +15,8 @@ class Prof < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable, omniauth_providers: [:google_oauth2]
 
+  mount_uploader :picture, PhotoUploader
+
   validates :name, presence: true
   validates :surname, presence: true
 
@@ -50,6 +52,7 @@ class Prof < ApplicationRecord
             uid: uid,
             surname: data['last_name'],
             provider: provider,
+            #picture: data['image'],
             agree: true
          )
 
