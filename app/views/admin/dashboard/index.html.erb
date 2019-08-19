@@ -220,7 +220,7 @@
           <%= link_to fa_icon('eye') + " " + t('tools.index.show'), admin_request_path(request), class:"btn btn-primary" %>
         </span>
         <h4 class="card-title">
-          <%= image_tag(request.photo.thumb, alt:"Photo") %>
+          <%= image_tag(request.photo.thumb.url, alt:"Photo") %>
           <%= request.name %>
         </h4>
       </div>

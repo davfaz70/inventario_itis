@@ -1,10 +1,6 @@
  Una tua richiesta non è stata approvata
  Il/la preside non ha ritenuto oppurtuno approvare la seguente richiesta
 
-<% if @request.photo.present? %>
-<%= image_tag(@request.photo) %>
-<% end %>
-
  <%= @request.name %>
 
 Probabilmente non sappiamo se la causa è dovuta alla quantità (<%= @request.quantity %>), oppure perché la richiesta è assurda, può comunque chiedere spiegazioni.

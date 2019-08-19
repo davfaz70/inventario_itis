@@ -1,10 +1,6 @@
 <h1 align="center"> Una tua richiesta non è stata approvata </h1>
 <h4 align="center"> Il/la preside non ha ritenuto oppurtuno approvare la seguente richiesta </h4>
 
-<% if @request.photo.present? %>
-<%= image_tag(@request.photo) %>
-<% end %>
-
 <p> <%= @request.name %> </p>
 
 <p> Probabilmente non sappiamo se la causa è dovuta alla quantità (<%= @request.quantity %>), oppure perché la richiesta è assurda,

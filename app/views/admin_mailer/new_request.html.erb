@@ -5,7 +5,7 @@
 <p> Ecco di seguito i dettagli della proposta:</p>
 
 <% if @request.photo.present? %>
-<%= image_tag(@request.photo.standard) %>
+<%= image_tag(@request.photo.standard.url) %>
 <% end %>
 
 <p> <b>Descrizione:</b> </p>

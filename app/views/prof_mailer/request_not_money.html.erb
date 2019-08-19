@@ -1,10 +1,6 @@
 <h1 align="center"> Un bene da te richiesto non è stato acquistato </h1>
 <h4 align="center"> Il DSGA non ha ritenuto oppurtuno approvare il seguente acquisto </h4>
 
-<% if @request.photo.present? %>
-<%= image_tag(@request.photo, width: "500px", height: "300px", alt: "Photo") %>
-<% end %>
-
 <p> <%= @request.name %> </p>
 
 <p> Probabilmente non sappiamo se la causa è dovuta alla quantità (<%= @request.quantity %>), oppure perché la richiesta è assurda,

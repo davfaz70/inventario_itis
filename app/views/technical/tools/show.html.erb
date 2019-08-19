@@ -97,7 +97,7 @@
   <% @tool.photos.each do |photo| %>
     <div class="col-md-3 col-sm-6 mb-4">
       <a href="#" data-toggle="modal" data-target="#exampleModalLong">
-        <%= image_tag(photo.picture.standard, :alt => "booh", class:"img-fluid") %>
+        <%= image_tag(photo.picture.standard.url, :alt => "booh", class:"img-fluid") %>
       </a>
     </div>
   <% end %>
@@ -120,7 +120,7 @@
             </div>
             <% @tool.photos.each do |photo| %>
               <div class="carousel-item">
-                <%= image_tag(photo.picture.standard, :alt => "booh", class:"d-block w-100") %>
+                <%= image_tag(photo.picture.standard.url, :alt => "booh", class:"d-block w-100") %>
               </div>
             <% end %>
           </div>

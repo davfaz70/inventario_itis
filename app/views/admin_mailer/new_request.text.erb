@@ -5,7 +5,7 @@ Si prega la s.v. a consultare la seguente proposta d'acquisto per il bene: <%= @
 Ecco di seguito i dettagli della proposta:
 
 <% if @request.photo.present? %>
-<%= image_tag(@request.photo.standard) %>
+<%= image_tag(@request.photo.standard.url) %>
 <% end %>
 
 Descrizione:
