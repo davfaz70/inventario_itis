@@ -225,6 +225,7 @@ GEM
     orm_adapter (0.5.0)
     paranoia (2.4.2)
       activerecord (>= 4.0, < 6.1)
+    pg (1.1.4)
     polyamorous (2.3.0)
       activerecord (>= 5.0)
     popper_js (1.14.5)
@@ -379,6 +380,7 @@ DEPENDENCIES
   omniauth-google-oauth2
   omniauth-rails_csrf_protection
   paranoia (~> 2.2)
+  pg
   progress_job
   puma (~> 3.11)
   rails (~> 5.2.1)
