@@ -31,7 +31,7 @@ Rails.application.configure do
 	config.active_storage.service = :local
 
   # Setup for gem devise
-  config.action_mailer.default_url_options = { host: 'https://itisinventario.herokuapp.com'}
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   config.action_mailer.perform_deliveries = true
 
@@ -39,7 +39,7 @@ Rails.application.configure do
     config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
     port:                 587,
-    domain:               'https://itisinventario.herokuapp.com',
+    domain:               'localhost:3000',
     user_name:            ENV['EMAIL_CLIENT'],
     password:             ENV['EMAIL_PASSWORD'],
     authentication:       :plain,
