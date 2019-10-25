@@ -10,17 +10,20 @@ class Admin::ReportingsController < Admin::AdminController
     @tool = @reporting.tool
     if @tool.quantity < @reporting.quantity
       @tool.quantity = 0
-      @tool.save
     else
       @tool.quantity = @tool.quantity - @reporting.quantity
-      @tool.save
     end
-    if @tool.books.where('end_date >= ?', Time.now).exists?
-      @job = Delayed::Job.enqueue Admin::Checking.new(@tool, @tool.books.where('end_date >= ?', Time.now).count) #for more info about this job see jobs/admin/checking.rb
+    if @tool.save
+      flash[:success] = "Success"
+      if @tool.books.where('end_date >= ?', Time.now).exists?
+        @job = Delayed::Job.enqueue Admin::Checking.new(@tool, @tool.books.where('end_date >= ?', Time.now).count) #for more info about this job see jobs/admin/checking.rb
+      end
+      TechnicalMailer.reporting_dismissed(@reporting.technical, @reporting).deliver_now
+      @reporting.destroy
+      flash[:danger] = t('.dismiss')
+    else
+      flash[:danger] = "oops"
     end
-    TechnicalMailer.reporting_dismissed(@reporting.technical, @reporting).deliver_now
-    @reporting.destroy
-    flash[:danger] = t('.dismiss')
     redirect_to admin_dashboard_index_path
   end
 
