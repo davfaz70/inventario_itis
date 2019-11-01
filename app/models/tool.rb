@@ -47,7 +47,7 @@ class Tool < ApplicationRecord
   accepts_nested_attributes_for :photos, allow_destroy: true
   before_save :name
 
-#  default_scope -> {order(name: :asc)}
+  #default_scope -> {order(name: :asc)}
   #default_scope with_translations.order("name ASC")
 
   validates_with ToolValidator
