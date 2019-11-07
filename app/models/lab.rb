@@ -3,12 +3,14 @@ class Lab < ApplicationRecord
   friendly_id :name, use: :slugged
   validates :name, presence: true, uniqueness: true
   validates :subject, presence: true
-  has_and_belongs_to_many :tools
+  has_many :labs_tools
+  has_many :tools, through: :labs_tools
   has_many :lab_technicals
   has_many :technicals, through: :lab_technicals
   has_many :tempbooks
   has_many :books, dependent: :destroy
   has_many :reportings, dependent: :destroy
+  accepts_nested_attributes_for :labs_tools
 
   paginates_per 24
   before_save :name

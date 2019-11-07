@@ -79,23 +79,42 @@
   <%= t.label t('.categorychoose') %>
   <%= t.select :category_ids, Category.all.pluck(:name, :id), {}, { multiple: true, class: "selectize" } %>
   <hr>
+  <% all_labs = [] %>
 
-  <%= t.label t('.labchoose') %>
-  <div class="field">
-    <%= hidden_field_tag "tool[lab_ids][]", nil %>
-      <div class="btn-group btn-group-toggle" data-toggle="buttons">
-        <% for lab in Lab.all %>
-          <% if @tool.labs.include?(lab) %>
-            <label class="btn btn-outline-secondary active">
-          <% else %>
-            <label class="btn btn-outline-secondary">
-          <%end%>
-              <%= check_box_tag "tool[lab_ids][]", lab.id, @tool.labs.include?(lab) %>
-              <%= lab.name %>
-            </label>
-        <% end %>
-    </div>
-  </div>
+  <% counter = 0%>
+    <%= t.nested_fields_for :labs_tools do |d| %>
+      <%= d.remove_nested_fields_link "Rimuovi laboratorio", data: { confirm: t('admin.tools.index.confirm') } %>
+      <% counter = counter + 1 %>
+
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-6 col-sm-6">
+            <% for lab in Lab.all %>
+              <% if @tool.labs.include?(lab) && (all_labs.include?(lab.id) == false) && (all_labs.length != counter)%>
+                <%= d.radio_button :lab_id , lab.id, checked: true %>
+                <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= lab.name %>" readonly>
+                <% all_labs.push(lab.id) %>
+              <% else %>
+                <%= d.radio_button :lab_id , lab.id, checked: false %>
+                <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= lab.name %>" readonly>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="col-md-6 col-md-6">
+            <div class="field">
+              <%= d.label t('.quantity') %>
+              <%= d.text_field :quantity, class: "form-control" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    <% end %>
+    <%= t.add_nested_fields_link :labs_tools, "lab" %>
+
+
   <hr>
   <br>
 

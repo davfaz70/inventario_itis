@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_18_163157) do
+ActiveRecord::Schema.define(version: 2019_11_04_112953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2019_08_18_163157) do
     t.index ["confirmation_token"], name: "index_admins_on_confirmation_token", unique: true
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+    t.index ["role"], name: "role_unique", unique: true
     t.index ["unlock_token"], name: "index_admins_on_unlock_token", unique: true
   end
 
@@ -133,11 +134,15 @@ ActiveRecord::Schema.define(version: 2019_08_18_163157) do
     t.string "slug"
   end
 
-  create_table "labs_tools", id: false, force: :cascade do |t|
-    t.integer "lab_id", null: false
-    t.integer "tool_id", null: false
-    t.index ["lab_id", "tool_id"], name: "index_labs_tools_on_lab_id_and_tool_id"
-    t.index ["tool_id", "lab_id"], name: "index_labs_tools_on_tool_id_and_lab_id"
+  create_table "labs_tools", force: :cascade do |t|
+    t.bigint "lab_id"
+    t.bigint "tool_id"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lab_id", "tool_id"], name: "index_labs_tools_on_lab_id_and_tool_id", unique: true
+    t.index ["lab_id"], name: "index_labs_tools_on_lab_id"
+    t.index ["tool_id"], name: "index_labs_tools_on_tool_id"
   end
 
   create_table "photos", id: :serial, force: :cascade do |t|
