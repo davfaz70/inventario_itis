@@ -17,7 +17,7 @@ class Admin::BooksController < Admin::AdminController
        end
     end
     cont = cont + @booking.quantity
-    if cont > @booking.tool.quantity
+    if cont > @booking.tool.labs_tools.where("lab_id = ?", @book.lab_id).first.quantity
       flash[:danger]="Questo prodotto non è più disponibile per questo periodo, la prenotazione è stata eliminata ed è stato comunicato tutto al prenotatore"
       ProfMailer.destroy_booking(@booking.prof, @booking).deliver_now # this email notify at the prof that his booking was deleted because an other booking at the same range of time was confirmed before
       @booking.destroy

@@ -259,7 +259,11 @@
         <!-- start card -->
         <div class="card h-100">
           <div class="card-header">
+            <% if booking.tool.photo.present? %>
              <p class="card-title"> <%= image_tag(booking.tool.photo.thumb.url, alt:"Photo") %> <%= booking.tool.name %> </p>
+             <% else %>
+             <p class="card-title">  <%= booking.tool.name %> </p>
+             <% end %>
              <h5> <%= booking.prof.name + " " + booking.prof.surname %> </h5>
           </div>
           <div class="card-body">

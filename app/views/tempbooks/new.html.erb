@@ -31,6 +31,17 @@
     </div>
   </div>
 
+
+
+        <% for lab in @tool.labs_tools %>
+          <div class="form-group" >
+            <%= t.radio_button :lab_id , lab.lab_id, checked: false %>
+            <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= Lab.find(lab.lab_id).name + " qui ci possono essere fino a: " + lab.quantity.to_s + " strumenti disponibili" %>" readonly>
+          </div>
+        <% end %>
+
+
+
 <script>
 var tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
 var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0,-1);
@@ -48,7 +59,9 @@ dtlInputend.value = localISOTime.slice(0,16);
   <%= hidden_field(:tempbook, :prof_id, :value => current_prof.id) %>
   <%= hidden_field(:tempbook, :goal, :value => "v") %>
   <%= hidden_field(:tempbook, :quantity, :value => 1) %>
-  <%= hidden_field(:tempbook, :lab_id, :value => @tool.labs.first.id) %>
+  <% if @tool.labs.size > 0 %>
+    <%= hidden_field(:tempbook, :lab_id, :value => @tool.labs.first.id) %>
+  <% end %>
   <br>
   <%= t.submit t('.go'), class:"btn btn-info btn-block" %>
 <% end %>

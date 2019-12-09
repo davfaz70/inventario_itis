@@ -1,7 +1,7 @@
 class ReportValidator < ActiveModel::Validator
   def validate(record)
     if record.quantity.present?
-      if record.quantity > record.tool.quantity
+      if record.quantity > record.tool.labs_tools.where("lab_id=?", record.lab_id).first.quantity
         record.errors[:base] << "Non possono esserci più oggetti guasti di quanti sono effetivamente presenti"
       end
       if record.quantity < 0

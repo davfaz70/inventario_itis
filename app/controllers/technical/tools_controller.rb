@@ -5,7 +5,7 @@ class Technical::ToolsController < Technical::TechnicalController
     per_page = params[:per_page]
     lab = params[:lab]
     category = params[:category]
-    
+
     @q = Tool.with_translations(I18n.locale).ransack(q_param)
     @tools = @q.result(distinct: true).page(page).per(per_page).includes(:categories, :labs)
 
@@ -15,5 +15,9 @@ class Technical::ToolsController < Technical::TechnicalController
 
   def show
     @tool = Tool.friendly.find(params[:id])
+    @quantity = 0
+    for lab in @tool.labs_tools
+      @quantity += lab.quantity
+    end
   end
 end

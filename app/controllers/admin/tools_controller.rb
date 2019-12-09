@@ -20,12 +20,19 @@ class Admin::ToolsController < Admin::AdminController
       flash[:success]= t('.created')
       redirect_to admin_tool_path(@tool)
     else
-      render 'new'
+      @tool.errors.full_messages.each do |message|
+        flash[:danger] = message
+      end
+      redirect_to new_admin_tool_path
     end
   end
 
   def show
     @bookings = @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, false) #for more info about this job see jobs/admin/checking.rb
+    @quantity = 0
+    for lab in @tool.labs_tools
+      @quantity += lab.quantity
+    end
   end
 
   def choose
@@ -37,10 +44,6 @@ class Admin::ToolsController < Admin::AdminController
 
   def update
     if @tool.update(tool_params)
-      if @tool.books.where('end_date >= ?', Time.now).exists?
-         @job = Delayed::Job.enqueue Admin::Checking.new(@tool, @tool.books.where('end_date >= ?', Time.now).count)
-        # Admin::CheckingJob.perform_now(@tool)
-      end
       flash[:success]= t('.edited')
       redirect_to admin_tool_path(@tool)
     else

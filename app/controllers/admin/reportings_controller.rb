@@ -8,16 +8,19 @@ class Admin::ReportingsController < Admin::AdminController
 
   def dismiss
     @tool = @reporting.tool
-    if @tool.quantity < @reporting.quantity
-      @tool.quantity = 0
+    @lab = @tool.labs_tools.where("lab_id = ?", @reporting.lab_id).first
+    quantity = @lab.quantity
+    if  quantity < @reporting.quantity
+      @lab.quantity = 0
     else
-      @tool.quantity = @tool.quantity - @reporting.quantity
+      quantity = quantity - @reporting.quantity
+      @lab.quantity = quantity
     end
-    if @tool.save
+    if @lab.save
       flash[:success] = "Success"
-      if @tool.books.where('end_date >= ?', Time.now).exists?
-        @job = Delayed::Job.enqueue Admin::Checking.new(@tool, @tool.books.where('end_date >= ?', Time.now).count) #for more info about this job see jobs/admin/checking.rb
-      end
+    #  if @tool.books.where('end_date >= ?', Time.now).exists?
+    #    @job = Delayed::Job.enqueue Admin::Checking.new(@tool, @tool.books.where('end_date >= ?', Time.now).count) #for more info about this job see jobs/admin/checking.rb
+    #  end
       TechnicalMailer.reporting_dismissed(@reporting.technical, @reporting).deliver_now
       @reporting.destroy
       flash[:danger] = t('.dismiss')

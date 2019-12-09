@@ -7,7 +7,7 @@
 </style>
 
 <!-- Portfolio Item Heading -->
-<h1 class="my-4"> <%= @tool.name %> <small> <%= t('.quantity') + ": " + @tool.quantity.to_s %></small> </h1>
+<h1 class="my-4"> <%= @tool.name %> <small> <%= t('.quantity') + ": " + @quantity.to_s %></small> </h1>
 <% @tool.reportings.each do |repo| %>
   <div class="alert alert-warning" role="alert">
     <h4 class="alert-heading">  <i class="fa fa-exclamation-triangle">  </i>  <%= " " + t('.warning') %>  </h4>

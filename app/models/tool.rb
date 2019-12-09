@@ -1,15 +1,12 @@
 class ToolValidator < ActiveModel::Validator
   def validate(record)
 
-    if record.identifier.present? && record.quantity.present?
-      if record.quantity > 1
+    if record.identifier.present? && record.labs.size > 1
         record.errors[:base] << I18n.t('tools.identifier')
-      end
     end
-
-    if record.quantity.present?
-      if record.quantity < 0
-        record.errors[:base] << I18n.t('tools.quantity')
+    if record.identifier.present? && record.labs_tools.size == 1
+      if record.labs_tools.first.quantity > 1
+        record.errors[:base] << I18n.t('tools.identifier')
       end
     end
 
@@ -25,7 +22,7 @@ class Tool < ApplicationRecord
   validates :name, presence: true
   validates :identifier, uniqueness: true, :allow_blank => true
   validates :description, presence: true
-  validates :quantity, presence: true, format: {with: /([0-9]+)/}
+  
   has_many :labs_tools, dependent: :destroy
   has_many :labs, through: :labs_tools
   accepts_nested_attributes_for :labs_tools, allow_destroy: true
