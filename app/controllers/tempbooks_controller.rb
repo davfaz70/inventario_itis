@@ -7,21 +7,26 @@ class TempbooksController < ApplicationController
 
   def new
     @tool = Tool.friendly.find(params[:tool_id])
+    if @tool.labs.size == 0
+      flash[:danger]="#{t('tempbooks.avaiable.periodp')} 0 #{t('tempbooks.avaiable.tools')}"
+      redirect_to tool_path(@tool)
+    end
     @tempbook = @tool.tempbooks.build
   end
 
   def avaiable #this method check the availability of a tool in a range of time
     @tool = Tool.friendly.find(params[:tool_id])
+
     @tempbook = @tool.tempbooks.build(tempbook_params)
     if @tempbook.save
       cont = 0 #this variable count how many times the range of time that i have choice overlaps with other bookings
-      @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true).each_with_index do |b, i|
+      @tool.books.where('end_date >= ? AND confirmed = ? AND lab_id = ?', Time.now, true, @tempbook.lab_id).each_with_index do |b, i|
         if (@tempbook.start_date..@tempbook.end_date).overlaps?(b.start_date..b.end_date)
           cont = cont + b.quantity #since in a reservation I can choose how many tools to use, the variable cont must contain the number of tools booked
         end
       end
       #at the end, the variable cont contain the number of tools that are already booked for this range of time
-      max =  @tool.quantity - cont
+      max =  @tool.labs_tools.where("lab_id = ?", @tempbook.lab_id).first.quantity - cont
         if max == 1
           flash[:info]="#{t('.periods')} #{max} #{t('.tool')}"
         else
@@ -40,14 +45,15 @@ class TempbooksController < ApplicationController
     @tempbook = @tool.tempbooks.build(tempbook_params)
     if @tempbook.save
       cont = 0 #this variable and the following loop have the same purpose that in 'avaiable' method
-      @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true).each_with_index do |b, i| # for simplify the procedure, the system check only reservations that are already confirmed
+      @tool.books.where('end_date >= ? AND confirmed = ? AND lab_id = ?', Time.now, true, @tempbook.lab_id).each_with_index do |b, i| # for simplify the procedure, the system check only reservations that are already confirmed
         if (@tempbook.start_date..@tempbook.end_date).overlaps?(b.start_date..b.end_date)
           cont = cont + b.quantity
         end
       end
       cont = cont + @tempbook.quantity
-      if cont > @tool.quantity
-        max = @tool.quantity - cont + @tempbook.quantity
+      quantity_tool = @tool.labs_tools.where("lab_id = ?", @tempbook.lab_id).first.quantity
+      if cont > quantity_tool
+        max = quantity_tool - cont + @tempbook.quantity
         if max == 1
           flash[:danger]="#{t('.looking')} #{max} #{t('tempbooks.avaiable.tool')}"
         else
@@ -84,7 +90,7 @@ class TempbooksController < ApplicationController
 
   def control(tool)
     @tool = tool
-    if @tool.quantity == 0
+    if @tool.labs_tools = []
       flash[:danger] = t('.impossible')
       redirect_to tools_path
     end

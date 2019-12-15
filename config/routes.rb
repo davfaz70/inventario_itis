@@ -38,6 +38,7 @@ Rails.application.routes.draw do
           resources :documentations, only: [:destroy]
           resources :photos, only: [:destroy]
           resources :books, only: [:index]
+          resources :labs_tool, only: [:destroy]
         end
         resources :labs do
           resources :lab_technicals, only: [:new, :create, :edit, :update]
@@ -52,7 +53,7 @@ Rails.application.routes.draw do
         get 'dashboard/index'
         get 'tools/choose/:id(.:format)', :to => 'tools#choose', as: "choose_tool_route"
         get 'labs/assign/:id(.:format)', :to => 'labs#assign', as: "assign_lab_route"
-        get 'labs/assign_update/:id/:tool(.:splat)', :to => 'labs#assign_update', as: "assign_update_lab_route"
+        post 'labs/assign_update/:id/(.:format)', :to => 'labs#assign_update', as: "assign_update_lab_route"
         post 'authorize/:id(.:format)', :to => 'dashboard#authorize', as: "authorize_route"
         post 'confirm/:id(.:format)', :to => 'dashboard#confirm', as: "confirm_route"
         post 'htmlcreate(.:format)', :to => 'categories#htmlcreate', as: "htmlcreate_route"

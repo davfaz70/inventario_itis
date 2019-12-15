@@ -15,6 +15,10 @@ class ToolsController < ApplicationController
   end
 
   def show
+    @quantity = 0
+    for lab in @tool.labs_tools
+      @quantity += lab.quantity
+    end
     @posts = @tool.posts
     @tempbook = @tool.tempbooks.build
   end

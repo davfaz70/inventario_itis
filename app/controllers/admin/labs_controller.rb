@@ -27,23 +27,22 @@ class Admin::LabsController < Admin::AdminController
   end
 
   def assign
-    @q = Tool.ransack(params[:q])
-    @tools = @q.result(distinct: true)
+
+    @lab_tool = LabsTool.new
+  end
+
+  def edit_tool
+  end
+
+  def destroy_tool
   end
 
   def assign_update
-      @tool = Tool.friendly.find(params[:tool])
-      if @lab.tools.include?(@tool)
-        @lab.tools.delete(@tool)
-        redirect_to admin_assign_lab_route_path(@lab)
+      @lab_tool = LabsTool.new(labs_tool_params)
+      if @lab_tool.save
+        redirect_to admin_lab_path
       else
-        if @tool.labs.size == @tool.quantity
-          flash[:danger] = I18n.t('.tools.labs')
-          redirect_to admin_assign_lab_route_path(@lab)
-        else
-          @tool.labs << @lab
-          redirect_to admin_assign_lab_route_path(@lab)
-        end
+        render 'assign_tool'
       end
   end
 
@@ -78,5 +77,9 @@ class Admin::LabsController < Admin::AdminController
 
   def lab_params
     params.require(:lab).permit(:name, :subject, { tool_ids:[]})
+  end
+
+  def labs_tool_params
+    params.require(:labs_tool).permit(:tool_id, :lab_id, :quantity)
   end
 end

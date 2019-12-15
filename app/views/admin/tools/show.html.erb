@@ -7,7 +7,7 @@
 </style>
 
 <h1 class="my-4"> <%= @tool.name %> </h1>
-<h3> <%= t('tools.show.quantity') + ": " + @tool.quantity.to_s %> </h3>
+<h3> <%= t('tools.show.quantity') + ": " + @quantity.to_s %> </h3>
 <br>
 <!-- start row -->
 <div class="row">
@@ -95,7 +95,7 @@
     <h3 class="my-3"> <%= t('tools.show.description') %> </h3>
     <p> <%= simple_format(@tool.description) %> </p>
     <!-- start panel -->
-    
+
     <div class="panel panel-default">
       <div class="card-header">
         <ul class="nav nav-pills">

@@ -15,9 +15,9 @@
         </div>
         <div class="card-body">
           <h5 class="card-title"> <%= lab.subject %> </h5>
-           <p class="card-text"> <%= t('.labtools') %> <span class="badge badge-primary badge-pill"> <%=lab.tools.size %> </span> </p> 
-          <%= link_to fa_icon('wrench') + " " + fa_icon('plus'), admin_assign_lab_route_path(lab), class:"btn btn-success", toggle:"tooltip", placement:"top", title: t('.assign')%>
-          <%= link_to fa_icon('users') + " " + fa_icon('plus'), new_admin_lab_lab_technical_path(lab), class:"btn btn-info", toggle:"tooltip", placement:"top", title: t('.assigntech') %>
+           <p class="card-text"> <%= t('.labtools') %> <span class="badge badge-primary badge-pill"> <%=lab.tools.size %> </span> </p>
+          <%# link_to fa_icon('wrench') + " " + fa_icon('plus'), admin_assign_lab_route_path(lab), class:"btn btn-success", toggle:"tooltip", placement:"top", title: t('.assign')%>
+          <%= link_to fa_icon('users') + " " + fa_icon('plus') + " " + t('.assigntech'), new_admin_lab_lab_technical_path(lab), class:"btn btn-info", toggle:"tooltip", placement:"top", title: t('.assigntech') %>
         </div>
       </div>
     </div>

@@ -7,7 +7,8 @@ class MyValidator < ActiveModel::Validator
       if record.start_date < Time.now
         record.errors[:base] << I18n.t('tempbook.errorpast')
       end
-      if record.quantity > record.tool.quantity
+      labq = record.tool.labs_tools.where("lab_id = ?", record.lab.id).first
+      if record.quantity > labq.quantity
         record.errors[:base] << I18n.t('tempbook.plus')
       end
       if record.quantity < 0

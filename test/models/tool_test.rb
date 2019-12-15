@@ -24,29 +24,8 @@ class ToolTest < ActiveSupport::TestCase
     assert_not @tool.save, "There is one tool, how can this tool stay in two labs?"
   end
 
-  test "tool quantity must be positive" do
-    @tool.quantity = -1
-    assert @tool.invalid?, "Quantity must be more of 0"
-  end
-
-  test "tool identifier quantity" do
-    @tool.quantity = 2
-    assert_not @tool.save, "If the tool have identifier, the quantity of it must not be greater than one "
-  end
-
-  test "quantity without identifier" do
-    @tool.identifier = nil
-    @tool.quantity = 2
-    assert @tool.save
-  end
-
   test "tool name" do
     @tool.name = nil
-    assert_not @tool.save
-  end
-
-  test "tool quantity" do
-    @tool.quantity = nil
     assert_not @tool.save
   end
 

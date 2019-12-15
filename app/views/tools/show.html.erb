@@ -7,7 +7,7 @@
 </style>
 
 <h1 class="my-4"> <%= @tool.name %> </h1>
-<h3> <%= t('.quantity') + ": " + @tool.quantity.to_s %> </h3>
+<h3> <%= t('.quantity') + ": " + @quantity.to_s %> </h3>
 <br>
 
 <% @tool.reportings.each do |repo| %>
@@ -59,7 +59,7 @@
     <%= link_to t('.verify'), new_tool_tempbook_path(@tool), class: "btn btn-info btn-block" %>
     <br>
     <br>
-    <% if prof_signed_in? && @tool.quantity > 0%>
+    <% if prof_signed_in? && @tool.labs.size > 0%>
       <!-- start booking card -->
       <div id="prenota">
         <div class="card">
