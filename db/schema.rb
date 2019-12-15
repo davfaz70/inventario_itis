@@ -40,7 +40,6 @@ ActiveRecord::Schema.define(version: 2019_11_04_112953) do
     t.index ["confirmation_token"], name: "index_admins_on_confirmation_token", unique: true
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
-    t.index ["role"], name: "role_unique", unique: true
     t.index ["unlock_token"], name: "index_admins_on_unlock_token", unique: true
   end
 

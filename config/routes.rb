@@ -38,6 +38,7 @@ Rails.application.routes.draw do
           resources :documentations, only: [:destroy]
           resources :photos, only: [:destroy]
           resources :books, only: [:index]
+          resources :labs_tool, only: [:destroy]
         end
         resources :labs do
           resources :lab_technicals, only: [:new, :create, :edit, :update]

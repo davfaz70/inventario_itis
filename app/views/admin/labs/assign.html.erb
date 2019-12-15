@@ -3,28 +3,46 @@
 <!-- a tool can be assigned to one or more laboratories,
      but it can not be assigned to a number of laboratories greater than the available quantity.
      For example: two backers can not be in three laboratories. -->
-
-
-
-     <% all_tool = []
-     for tool in Tool.all
-       if (tool.labs.include?(@lab) == false) && ( (tool.identifier.present? == false) || (tool.identifier.present? && tool.labs.size == 0) ) 
-         all_tool.push(tool)
-       end
-     end %>
-
-
-        <%= form_for @lab_tool, url: admin_assign_update_lab_route_path do |t| %>
-
-          <%= t.hidden_field(:lab_id, :value => @lab.id) %>
-          <% for tool in all_tool %>
-          <%= t.radio_button :tool_id , tool.id, checked: false %>
-          <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= tool.name %>" readonly>
-          <% end %>
-          <%= t.label "Quantità" %>
-          <%= t.text_field :quantity %>
-          <%= t.submit "Assegna" %>
-        <% end %>
-
-
+<%
+all_tool = []
+  for tool in Tool.all
+    if (tool.labs.include?(@lab) == false) && ( (tool.identifier.present? == false) || (tool.identifier.present? && tool.labs.size == 0) )
+      all_tool.push(tool)
+    end
+  end
+%>
+<%= form_for @lab_tool, url: admin_assign_update_lab_route_path do |t| %>
+  <%= t.hidden_field(:lab_id, :value => @lab.id) %>
+  <% for tool in all_tool %>
+    <%= t.radio_button :tool_id , tool.id, checked: false %>
+    <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= tool.name %>" readonly>
+  <% end %>
+  <%= t.label "Quantità" %>
+  <%= t.text_field :quantity %>
+  <%= t.submit "Assegna" %>
+<% end %>
 <hr>
+<!--
+<div class="row">
+  <%# for tool in all_tool %>
+      <div class="col-lg-4 col-sm-6 portfolio-item">
+        <div class="card h-100">
+        <%# if tool.photo.standard.present? %>
+          <%# link_to image_tag(tool.photo.standard.url, :alt => "toolphoto.jpeg", class:"card-img-top"), tool_path(tool)%>
+        <%# else %>
+          <%# link_to image_tag("generico.png", height: 200, :alt => "toolphoto.jpeg", class:"card-img-top"), tool_path(tool)%>
+        <%# end %>
+          <div class="card-body">
+            <h4 class="card-title">
+              <%# tool.name %>
+            </h4>
+
+          </div>
+          <ul class="list-group list-group-flush">
+            <%# link_to "Assegna", tool_path(tool), class:"list-group-item list-group-item-primary" %>
+          </ul>
+        </div>
+      </div>
+  <%# end %>
+</div>
+-->

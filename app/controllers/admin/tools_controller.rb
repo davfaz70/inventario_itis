@@ -20,10 +20,11 @@ class Admin::ToolsController < Admin::AdminController
       flash[:success]= t('.created')
       redirect_to admin_tool_path(@tool)
     else
-      @tool.errors.full_messages.each do |message|
-        flash[:danger] = message
-      end
-      redirect_to new_admin_tool_path
+      #@tool.errors.full_messages.each do |message|
+      #  flash[:danger] = message
+      #end
+      #redirect_to new_admin_tool_path
+      render 'new'
     end
   end
 
