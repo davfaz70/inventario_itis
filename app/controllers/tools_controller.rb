@@ -20,7 +20,7 @@ class ToolsController < ApplicationController
       @quantity += lab.quantity
     end
     @posts = @tool.posts
-    @tempbook = @tool.tempbooks.build
+    @booking = @tool.books.build
   end
 
   private

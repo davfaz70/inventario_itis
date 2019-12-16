@@ -1,11 +1,11 @@
-<h1> <%= t('.verify') %> <small> <%= @tool.name %> </small> </h1>
+<h1> <%= t('.verify') %> <%= @tool.name %> </h1>
 <hr>
 
-<%= form_for ([@tool, @tempbook]), :url => {:controller => "tempbooks", :action => "avaiable"} do |t|  %>
+<%= form_for ([@tool, @booking]), :url => {:controller => "books", :action => "avaiable"} do |t|  %>
 
-  <% if @tempbook.errors.any? %>
+  <% if @booking.errors.any? %>
     <div id="error_explanation">
-      <% @tempbook.errors.full_messages.each do |message| %>
+      <% @booking.errors.full_messages.each do |message| %>
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
           <%= message %>
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -48,20 +48,17 @@ var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0,-1);
 var localISOTimeWithoutSeconds = localISOTime.slice(0,16);
 
 // select the "datetime-local" input to set the default value on
-var dtlInput = document.querySelector('input[name="tempbook[start_date]"]');
-var dtlInputend = document.querySelector('input[name="tempbook[end_date]"]');
+var dtlInput = document.querySelector('input[name="booking[start_date]"]');
+var dtlInputend = document.querySelector('input[name="booking[end_date]"]');
 
 // set it and forget it ;)
 dtlInput.value = localISOTime.slice(0,16);
 dtlInputend.value = localISOTime.slice(0,16);
 </script>
 
-  <%= hidden_field(:tempbook, :prof_id, :value => current_prof.id) %>
-  <%= hidden_field(:tempbook, :goal, :value => "v") %>
-  <%= hidden_field(:tempbook, :quantity, :value => 1) %>
-  <% if @tool.labs.size > 0 %>
-    <%= hidden_field(:tempbook, :lab_id, :value => @tool.labs.first.id) %>
-  <% end %>
+  <%= hidden_field(:book, :prof_id, :value => current_prof.id) %>
+  <%= hidden_field(:book, :goal, :value => "v") %>
+  <%= hidden_field(:book, :quantity, :value => 1) %>
   <br>
   <%= t.submit t('.go'), class:"btn btn-info btn-block" %>
 <% end %>

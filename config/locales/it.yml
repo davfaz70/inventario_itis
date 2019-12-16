@@ -182,6 +182,7 @@ it:
       start: "Data e ora inizio"
       end: "Data e ora fine"
       chooselab: "Scegli il laboratorio"
+      booking: "Prenota!"
     index:
       newrequest: "Nuova richiesta"
       search: "Cerca"
@@ -196,18 +197,6 @@ it:
     errorfd: "La data di inizio deve essere prima di quella di fine, lo sanno anche i bambini"
     errorpast: "Non puoi prenotare uno strumento nel passato"
     plus: "Non puoi prenotare più strumenti di quanti effettivamente ce ne sono"
-  tempbooks:
-    new:
-      verify: "Verifica la disponibilità di"
-      go: "Verifica"
-    avaiable:
-      periods: "In questo periodo è disponibile"
-      periodp: "In questo periodo sono disponibili"
-      tool: "strumento"
-      tools: "strumenti"
-    create:
-      looking: "Guarda meglio le prenotazioni. In questo periodo è disponibile"
-      lookings: "Guarda meglio le prenotazioni. In questo periodo sono disponibili"
   posts:
     create:
       created: "Commento creato con successo"
@@ -244,6 +233,17 @@ it:
       bookings: "Prenotazioni fatte da te"
       notapproved: "Non approvata"
       approved: "Approvata"
+    new:
+      verify: "Verifica la disponibilità di"
+      go: "Verifica"
+    avaiable:
+      periods: "In questo periodo è disponibile"
+      periodp: "In questo periodo sono disponibili"
+      tool: "strumento"
+      tools: "strumenti"
+    create:
+      looking: "Guarda meglio le prenotazioni. In questo periodo è disponibile"
+      lookings: "Guarda meglio le prenotazioni. In questo periodo sono disponibili"
 
   technical:
     shared:
