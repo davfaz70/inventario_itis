@@ -58,7 +58,7 @@ it:
         add_lab: "Aggiungi questo strumento ad un laboratorio"
         error: "Proibiscono che questo strumento venga salvato"
         photo: "Foto"
-        labchoose: "Seleziona i laboratori in cui si trova"
+        labchoose: "Seleziona il laboratorio in cui si trova"
         categorychoose: "Seleziona le categorie a cui appartiene"
         docremove: "Rimuovi documento"
         docname: "Nome del documento"

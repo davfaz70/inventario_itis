@@ -146,10 +146,10 @@ dtlInputend.value = localISOTime.slice(0,16);
                         <div class="input-group">
                           <div class="input-group-prepend">
                             <div class="input-group-text">
-                              <%= radio_button_tag "tempbook[lab_id]" , lab.id%>
+                              <%= radio_button_tag "tempbook[lab_id]" , l.id%>
                             </div>
                           </div>
-                          <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= lab.name %>" readonly>
+                          <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= l.name + "   Max " + t('.quantity') + ": " + lab.quantity.to_s %>" readonly>
                         </div>
                       <%end%>
                       <br>

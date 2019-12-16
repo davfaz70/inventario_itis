@@ -30,39 +30,15 @@
 
   <div class="row">
     <div class="col-md-6 col-sm-6">
-      <%# Questo vettore memorizza l'id dei laboratori assegnati allo
-      strumento man mano che ci sono i vari nested_fields_for che li
-      mostrano, in modo da ricordarsi quali sono già stati selezionati
-      dai radio button %>
-      <% all_labs = [] %>
-
-      <% counter = 0%>
         <%= t.nested_fields_for :labs_tools do |d| %>
-
           <%= d.remove_nested_fields_link t('.remove_lab'), data: { confirm: t('admin.tools.index.confirm') }, class: "btn btn-danger" %>
-          <%# Ad ogni nested_fields_for viene incrementata la variabile di 1 %>
-          <% counter = counter + 1 %>
-
+          <br>
+          <br>
           <div class="form-group">
             <div class="row">
               <div class="col-md-6 col-sm-6">
-                <% for lab in Lab.all %>
-                <%# Il primo controllo è verificare se il laboratorio è stato assegnato allo strumento,
-                il secondo controllo serve per vedere se è già stato selezionato in qualche altro radio_button,
-                per capire il terzo dobbiamo ricordarci che qui siamo in un ciclo dentro un'altro ciclo, quindi
-                finché 'counter' sarà diverso (cioè maggiore) del numero di elementi presenti in all_labs, vuol dire
-                che il laboratorio in questione non è mai stato selezionato in nessun altro nested_fields_for %>
-                  <% if @tool.labs.include?(lab) && (all_labs.include?(lab.id) == false) && (all_labs.length != counter)%>
-                    <%= d.radio_button :lab_id , lab.id, checked: true %>
-                    <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= lab.name %>" readonly>
-                    <%# Dato che questo laboratorio è stato selezionato si può procedere a
-                    inserirlo dentro all_labs %>
-                    <% all_labs.push(lab.id) %>
-                  <% else %>
-                    <%= d.radio_button :lab_id , lab.id, checked: false %>
-                    <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= lab.name %>" readonly>
-                  <% end %>
-                <% end %>
+                <%= d.label t('.labchoose') %>
+                <%= d.collection_select :lab_id, Lab.order(:name), :id, :name, {}, {:class => "form-control"} %>
               </div>
               <div class="col-md-6 col-md-6">
                 <div class="field">

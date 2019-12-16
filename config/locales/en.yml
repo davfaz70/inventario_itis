@@ -90,7 +90,7 @@ en:
         add_lab: "Add lab for this tool"
         error: "Proibithed to this tool to being saved"
         photo: "Photo"
-        labchoose: "Select the labs where i can find this tool"
+        labchoose: "Select the tool's lab"
         categorychoose: "Select the categories of this tool"
         docremove: "Remove document"
         docname: "Name of file"
