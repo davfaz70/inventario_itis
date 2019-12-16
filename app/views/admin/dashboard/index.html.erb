@@ -159,7 +159,10 @@
         <div class="card text-white bg-warning mb-3">
           <div class="card-header">
             <h4 class="card-title">
-              <%= image_tag(reporting.tool.photo.thumb.url, alt: "toolphoto.jpeg") %> <%= reporting.tool.name %>
+              <% if reporting.tool.photos.first.present? %>
+                <%= image_tag(reporting.tool.photos.first.picture.thumb.url, alt: "toolphoto.jpeg") %>
+              <% end %>
+              <%= reporting.tool.name %>
               <small>
                 <%= t('tools.show.quantity') + ": " + reporting.quantity.to_s %>
               </small>
@@ -220,7 +223,9 @@
           <%= link_to fa_icon('eye') + " " + t('tools.index.show'), admin_request_path(request), class:"btn btn-primary" %>
         </span>
         <h4 class="card-title">
-          <%= image_tag(request.photo.thumb.url, alt:"Photo") %>
+          <% if request.photos.first.present? %>
+            <%= image_tag(request.photos.first.picture.thumb.url, alt:"Photo") %>
+          <% end %>
           <%= request.name %>
         </h4>
       </div>
@@ -259,11 +264,12 @@
         <!-- start card -->
         <div class="card h-100">
           <div class="card-header">
-            <% if booking.tool.photo.present? %>
-             <p class="card-title"> <%= image_tag(booking.tool.photo.thumb.url, alt:"Photo") %> <%= booking.tool.name %> </p>
-             <% else %>
-             <p class="card-title">  <%= booking.tool.name %> </p>
-             <% end %>
+            <p class="card-title">
+              <% if booking.tool.photos.first.present? %>
+                <%= image_tag(booking.tool.photos.first.picture.thumb.url, alt:"Photo") %>
+              <% end %>
+              <%= booking.tool.name %>
+            </p>
              <h5> <%= booking.prof.name + " " + booking.prof.surname %> </h5>
           </div>
           <div class="card-body">

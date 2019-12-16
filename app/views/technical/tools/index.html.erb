@@ -88,8 +88,8 @@
           <% if tool.name.present? %>
             <div class="col-lg-4 col-sm-6 portfolio-item">
               <div class="card h-100">
-              <% if tool.photo.standard.present? %>
-                <%= link_to image_tag(tool.photo.standard.url, :alt => "toolphoto.jpeg", class:"card-img-top"), technical_tool_path(tool)%>
+              <% if tool.photos.first.present? %>
+                <%= link_to image_tag(tool.photos.first.picture.standard.url, :alt => "toolphoto.jpeg", class:"card-img-top"), technical_tool_path(tool)%>
               <% else %>
                 <%= link_to image_tag("generico.png", height: 200, :alt => "toolphoto.jpeg", class:"card-img-top"), technical_tool_path(tool)%>
               <% end %>

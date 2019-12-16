@@ -30,8 +30,6 @@ end
 class Tool < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
-  mount_uploader :photo, PhotoUploader
-  process_in_background :photo
   translates :name, :description
   validates :name, presence: true
   validates :identifier, uniqueness: true, :allow_blank => true
@@ -51,7 +49,7 @@ class Tool < ApplicationRecord
   validates_each :photos do |tool, attr, value|
    tool.errors.add attr, I18n.t('.tools.photos') if tool.photos.size > 4
   end
-  accepts_nested_attributes_for :photos, allow_destroy: true 
+  accepts_nested_attributes_for :photos, allow_destroy: true
   before_save :name
 
 #  default_scope -> {order(name: :asc)}

@@ -15,8 +15,6 @@ class RequestValidator < ActiveModel::Validator
 end
 
 class Request < ApplicationRecord
-  mount_uploader :photo, PhotoUploader
-  process_in_background :photo
   validates :name, presence: true
   validates :description, presence: true
   validates :goal, presence: true

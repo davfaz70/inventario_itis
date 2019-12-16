@@ -1,9 +1,6 @@
 <h1 align="center"> Nuova prenotazione </h1>
 <p> <%= @prof.name + " " + @prof.surname %> vorrebbe prenotare <%= @booking.quantity %> <%= @booking.tool.name %> </p>
 <p> Dettagli: </p>
-<% if @booking.tool.photo.present? %>
-<%= image_tag(@booking.tool.photo_url, alt: "Photo") %>
-<% end %>
 <p> Periodo di utilizzo: dal <%= @booking.start_date.strftime("%d/%m/%y %k:%M") %> al <%= @booking.end_date.strftime("%d/%m/%y %k:%M") %> </p>
 <p> Motivazione: <%= @booking.goal %> </p>
 <p> Laboratorio: <%= @booking.lab.name %> </p>

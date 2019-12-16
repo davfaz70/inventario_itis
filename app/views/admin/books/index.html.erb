@@ -1,4 +1,9 @@
-<h1> <%= t('shared.menu.bookings') + " " + @tool.name%>  <%= image_tag(@tool.photo.thumb.url, alt:"Photo") %></h1>
+<h1>
+  <%= t('shared.menu.bookings') + " " + @tool.name%>
+  <% if @tool.photos.first.present? %>
+    <%= image_tag(@tool.photos.first.picture.thumb.url, alt:"Photo") %>
+  <% end %>
+</h1>
 <hr>
 
 <!-- start row -->

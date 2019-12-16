@@ -1,8 +1,5 @@
  Nuova segnalazione
  È molto importante
- <% if @reporting.tool.photo.present? %>
- <%= image_tag(@reporting.tool.photo_url, alt: "Photo") %>
- <% end %>
 <% if @reporting.quantity == 1 %>
  È stato segnalato che <%= @reporting.quantity %> <%= @reporting.tool.name %> non funziona correttamente o non funziona affatto
 <% else %>

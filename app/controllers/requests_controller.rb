@@ -22,7 +22,7 @@ class RequestsController < ApplicationController
   def index
     # the requests have three fields, approved, money and arrived
     # for more information how it work see app/controllers/admin/request_controller.rb
-    
+
     @notapproved = current_prof.requests.where("approved = 'f'")
     @approved = current_prof.requests.where("approved = 't' AND money = 'f'")
     @money = current_prof.requests.where("money = 't'")
@@ -35,7 +35,7 @@ class RequestsController < ApplicationController
   private
 
   def request_params
-    params.require(:request).permit(:photo, :name, :description, :quantity, :goal, :prof_id, :technical_id, {photos_attributes: [:id, :picture, :tool_id, :request_id, :_destroy]}, {documentations_attributes: [:id, :name, :file, :tool_id, :request_id, :_destroy]}, { category_ids:[]})
+    params.require(:request).permit(:name, :description, :quantity, :goal, :prof_id, :technical_id, {photos_attributes: [:id, :picture, :tool_id, :request_id, :_destroy]}, {documentations_attributes: [:id, :name, :file, :tool_id, :request_id, :_destroy]}, { category_ids:[]})
   end
 
 end

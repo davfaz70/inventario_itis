@@ -13,10 +13,10 @@
 <div class="row">
   <!-- start col -->
   <div class="col-lg-8 col-md-7">
-    <% if @tool.photo.present? %>
-      <a href="#" data-toggle="modal" data-target="#exampleModalLong">
-        <%= image_tag(@tool.photo_url, :alt => "toolphoto", class:"img-fluid") %>
-      </a>
+    <% if @tool.photos.first.present? %>
+        <a href="#" data-toggle="modal" data-target="#exampleModalLong">
+          <%= image_tag(@tool.photos.first.picture_url, :alt => "toolphoto", class:"img-fluid") %>
+        </a>
     <% else %>
       <% image_tag("standard_toolphoto.jpeg", :alt => "toolphoto", class:"img-fluid") %>
     <% end %>
@@ -169,8 +169,8 @@
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <% if @tool.photo.present? %>
-                <%= image_tag(@tool.photo_url, :alt => "booh", class:"d-block w-100") %>
+              <% if @tool.photos.first.present? %>
+                <%= image_tag(@tool.photos.first.picture_url, :alt => "booh", class:"d-block w-100") %>
               <% end %>
             </div>
             <% @tool.photos.each do |photo| %>

@@ -8,7 +8,15 @@
         <%= link_to fa_icon('trash'), technical_tool_lab_reporting_path(reporting.tool, reporting.lab, reporting), method: :delete, data: {confirm: t('.confirm')}, class: "btn btn-outline-danger" %>
         <%= link_to fa_icon('pencil'), edit_technical_tool_lab_reporting_path(reporting.tool, reporting.lab, reporting), class: "btn btn-outline-warning" %>
       </span>
-      <h4 class="card-title"> <%= image_tag(reporting.tool.photo.thumb.url, alt: "toolphoto.jpeg") %> <%= reporting.tool.name %> <small> <%= t('tools.show.quantity') + ": " + reporting.quantity.to_s %> </small> </h4>
+      <h4 class="card-title">
+        <% if reporting.tool.photos.first.present? %>
+          <%= image_tag(reporting.tool.photos.first.picture.thumb.url, alt: "toolphoto.jpeg") %>
+        <% end %>
+        <%= reporting.tool.name %>
+        <small>
+          <%= t('tools.show.quantity') + ": " + reporting.quantity.to_s %>
+        </small>
+      </h4>
       <p class="card-text"> <%= reporting.description %> </p>
       <p class="card-text"> <%= reporting.lab.name %> </p>
     </div>

@@ -15,18 +15,6 @@
     </div>
   <% end %>
 
-  <div class="row">
-    <div class="col-md-4 col-sm-6">
-      <img height="150" width="200" id="image" />
-    </div>
-    <div class="col-md-8 col-sm-6">
-      <div class="custom-file">
-        <%= t.label t('admin.tools.form.photo'), class:"custom-file-label" %>
-        <%= t.file_field :photo, class:"custom-file-input" %>
-      </div>
-    </div>
-  </div>
-
   <div class="form-group" >
     <%= t.label t('admin.tools.form.name') %>
     <%= t.text_field :name, class:"form-control" %>
@@ -56,24 +44,24 @@
     <div class="col-md-6 col-sm-6">
       <div class="form-group">
         <%= t.nested_fields_for :photos do |d| %>
-          <%= d.remove_nested_fields_link t('admin.tools.form.photoremove'), data: { confirm: t('admin.tools.index.confirm') } %>
+          <%= d.remove_nested_fields_link t('admin.tools.form.photoremove'), data: { confirm: t('admin.tools.index.confirm') }, class:"btn btn-danger" %>
           <br>
           <%= d.file_field :picture %>
         <% end %>
-        <%= t.add_nested_fields_link :photos, t('admin.tools.form.photoadd') %>
+        <%= t.add_nested_fields_link :photos, t('admin.tools.form.photoadd'), class:"btn btn-success" %>
       </div>
     </div>
     <div class="col-md-6 col-sm-6">
       <div class="form-group">
         <%= t.nested_fields_for :documentations do |d| %>
-          <%= d.remove_nested_fields_link t('admin.tools.form.docremove'), data: { confirm: t('admin.tools.index.confirm') } %>
+          <%= d.remove_nested_fields_link t('admin.tools.form.docremove'), data: { confirm: t('admin.tools.index.confirm') }, class:"btn btn-danger" %>
           <br>
           <%= d.label t('admin.tools.form.docname') %>
           <%= d.text_field :name, class:"form-control" %>
           <%= d.file_field :file %>
           <small class="form-text text-muted"> <%= t('admin.tools.form.docwarn') %> </small>
         <% end %>
-        <%= t.add_nested_fields_link :documentations, t('admin.tools.form.docadd') %>
+        <%= t.add_nested_fields_link :documentations, t('admin.tools.form.docadd'), class:"btn btn-success" %>
       </div>
     </div>
   </div>

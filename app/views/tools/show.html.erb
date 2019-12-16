@@ -37,10 +37,14 @@
 <div class="row">
   <!-- start col -->
   <div class="col-lg-8 col-md-7">
-    <% if @tool.photo.present? %>
-      <a href="#" data-toggle="modal" data-target="#exampleModalLong">
-        <%= image_tag(@tool.photo_url, :alt => "toolphoto.jpeg", class:"img-fluid") %>
-      </a>
+    <% if @tool.photos.first.present? %>
+      <% if @tool.photos.first.picture.present? %>
+        <a href="#" data-toggle="modal" data-target="#exampleModalLong">
+          <%= image_tag(@tool.photos.first.picture_url, :alt => "toolphoto.jpeg", class:"img-fluid") %>
+        </a>
+      <% else %>
+        <% image_tag("generico.png", :alt => "toolphoto.jpeg", class:"img-fluid") %>
+      <% end %>
     <% else %>
       <% image_tag("generico.png", :alt => "toolphoto.jpeg", class:"img-fluid") %>
     <% end %>
@@ -127,15 +131,16 @@ dtlInputend.value = localISOTime.slice(0,16);
 
                   <div class="col-lg-6">
                     <%= t('.chooselab') %>
-                    <% for lab in @tool.labs %>
-                      <% if @tool.labs.first == lab %>
+                    <% for lab in @tool.labs_tools %>
+                      <% l = Lab.find(lab.lab_id) %>
+                      <% if @tool.labs.first == l %>
                         <div class="input-group">
                           <div class="input-group-prepend">
                             <div class="input-group-text">
-                              <%= radio_button_tag "tempbook[lab_id]" , lab.id, true%>
+                              <%= radio_button_tag "tempbook[lab_id]" , l.id, true%>
                             </div>
                           </div>
-                          <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= lab.name %>" readonly>
+                          <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= l.name + "   Max " + t('.quantity') + ": " + lab.quantity.to_s %>" readonly>
                         </div>
                       <% else %>
                         <div class="input-group">
@@ -222,42 +227,43 @@ dtlInputend.value = localISOTime.slice(0,16);
 <!-- end row -->
 
 
-
-<% if @tool.photo.present? %>
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle"> <%= @tool.name %> </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <%= image_tag(@tool.photo_url, :alt => "booh", class:"d-block w-100") %>
-            </div>
-            <% @tool.photos.each do |photo| %>
-              <div class="carousel-item">
-                <%= image_tag(photo.picture_url, :alt => "booh", class:"d-block w-100") %>
+<% if @tool.photos.first.present? %>
+  <% if @tool.photos.first.picture.present? %>
+  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle"> <%= @tool.name %> </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <%= image_tag(@tool.photos.first.picture_url, :alt => "booh", class:"d-block w-100") %>
               </div>
-            <% end %>
+              <% @tool.photos.each do |photo| %>
+                <div class="carousel-item">
+                  <%= image_tag(photo.picture_url, :alt => "booh", class:"d-block w-100") %>
+                </div>
+                <% end %>
+              </div>
+              <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
           </div>
-          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  <% end %>
 <% end %>
 
 

@@ -6,7 +6,12 @@
     <div class="col-md-3">
       <div class="card h-100">
         <div class="card-header">
-          <p class="card-title"> <%= image_tag(booking.tool.photo.thumb.url, alt:"Photo") %> <%= booking.tool.name %> </p>
+          <p class="card-title">
+            <% if booking.tool.photos.first.present? %>
+              <%= image_tag(booking.tool.photos.first.picture.thumb.url, alt:"Photo") %> 
+            <% end %>
+            <%= booking.tool.name %>
+          </p>
           <% if booking.confirmed == false %>
             <div class="text-danger" >
               <h5> <%= t('.notapproved') %> </h5>

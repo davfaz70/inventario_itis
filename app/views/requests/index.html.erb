@@ -33,7 +33,10 @@
           <div class="col-md-3">
             <div class="card">
               <div class="card-header">
-                <%= image_tag(request.photo.thumb.url, alt: "Photo") %> <h5 class="card-title"><%= request.name %> </h5>
+                <% if request.photos.first.present? %>
+                  <%= image_tag(request.photos.first.picture.thumb.url, alt: "Photo") %>
+                <% end %>
+                <h5 class="card-title"> <%= request.name %> </h5>
               </div>
               <div class="card-body">
                 <p class="card-text text-truncate"> <%= request.description %> </p>
@@ -59,7 +62,11 @@
           <div class="col-md-3">
             <div class="card">
               <div class="card-header">
-                <%= image_tag(request.photo.thumb.url, alt: "Photo") %> <h5 class="card-title"><%= request.name %> </h5>
+                <% if request.photos.first.present? %>
+                  <%= image_tag(request.photos.first.picture.thumb.url, alt: "Photo") %> <h5 class="card-title"><%= request.name %> </h5>
+                <% else %>
+                  <h5 class="card-title"> <%= request.name %> </h5>
+                <% end %>
               </div>
               <div class="card-body">
                 <p class="card-text text-truncate"><%= request.description %></p>
@@ -85,7 +92,11 @@
           <div class="col-md-3">
             <div class="card">
               <div class="card-header">
-                <%= image_tag(request.photo.thumb.url, alt: "Photo") %> <h5 class="card-title"><%= request.name %> </h5>
+                <% if request.photos.first.present? %>
+                  <%= image_tag(request.photos.first.picture.thumb.url, alt: "Photo") %> <h5 class="card-title"><%= request.name %> </h5>
+                <% else %>
+                  <h5 class="card-title"> <%= request.name %> </h5>
+                <% end %>
               </div>
               <div class="card-body">
                 <p class="card-text text-truncate"><%= request.description %></p>

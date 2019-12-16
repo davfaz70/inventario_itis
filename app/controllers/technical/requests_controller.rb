@@ -1,6 +1,6 @@
 class Technical::RequestsController < Technical::TechnicalController
 
-#for more info about policy of request see controllers/admin/request_controller.rb 
+#for more info about policy of request see controllers/admin/request_controller.rb
 
   def index
     @notapproved = current_technical.requests.where("approved = 'f'")
@@ -19,7 +19,6 @@ class Technical::RequestsController < Technical::TechnicalController
       flash[:primary] = t('.created')
       redirect_to technical_requests_path
     else
-      flash[:danger] = "Oooops"
       render 'new'
     end
   end
@@ -31,7 +30,7 @@ class Technical::RequestsController < Technical::TechnicalController
   private
 
   def request_params
-    params.require(:request).permit(:photo, :name, :description, :quantity, :goal, :prof_id, :technical_id, {photos_attributes: [:id, :picture, :tool_id, :request_id, :_destroy]}, {documentations_attributes: [:id, :name, :file, :tool_id, :request_id, :_destroy]}, { category_ids:[]})
+    params.require(:request).permit(:name, :description, :quantity, :goal, :prof_id, :technical_id, {photos_attributes: [:id, :picture, :tool_id, :request_id, :_destroy]}, {documentations_attributes: [:id, :name, :file, :tool_id, :request_id, :_destroy]}, { category_ids:[]})
   end
 
 end

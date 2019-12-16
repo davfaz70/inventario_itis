@@ -4,10 +4,6 @@
 <p>Si prega la s.v. a consultare la seguente proposta d'acquisto per il bene: <%= @request.name %></p>
 <p> Ecco di seguito i dettagli della proposta:</p>
 
-<% if @request.photo.present? %>
-<%= image_tag(@request.photo.standard.url) %>
-<% end %>
-
 <p> <b>Descrizione:</b> </p>
 
 <p> <%= @request.description %> </p>

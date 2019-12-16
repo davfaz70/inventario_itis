@@ -19,8 +19,8 @@
           <div class="col-lg-4 col-sm-6 portfolio-item">
             <!-- start card -->
             <div class="card h-100">
-              <% if tool.photo.standard.present? %>
-                <%= link_to image_tag(tool.photo.standard.url, :alt => "toolphoto.jpeg", class:"card-img-top"), admin_tool_path(tool)%>
+              <% if tool.photos.first.present? %>
+                <%= link_to image_tag(tool.photos.first.picture.standard.url, :alt => "toolphoto.jpeg", class:"card-img-top"), admin_tool_path(tool)%>
               <% else %>
                 <%= link_to image_tag("standard_toolphoto.jpeg", :alt => "toolphoto.jpeg", class:"card-img-top"), admin_tool_path(tool)%>
               <% end %>

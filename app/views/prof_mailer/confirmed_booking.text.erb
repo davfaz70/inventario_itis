@@ -1,9 +1,7 @@
  Una tua prenotazione è stata confermata
  <%= @booking.quantity %> <%= @booking.tool.name %>
  Dettagli:
-<% if @booking.tool.photo.present? %>
-<%= image_tag(@booking.tool.photo_url, alt: "Photo") %>
-<% end %>
+
 Periodo di utilizzo: dal <%= @booking.start_date.strftime("%d/%m/%y %k:%M") %> al <%= @booking.end_date.strftime("%d/%m/%y %k:%M") %>
  Motivazione: <%= @booking.goal %>
  Laboratorio: <%= @booking.lab.name %>

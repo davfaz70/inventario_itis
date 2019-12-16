@@ -46,7 +46,6 @@ class Admin::RequestsController < Admin::AdminController
       end
       if @request.arrived == true
         @tool = Tool.new
-        @tool.photo = @request.photo
         @tool.name = @request.name
         @tool.description = @request.description
         if @tool.save
