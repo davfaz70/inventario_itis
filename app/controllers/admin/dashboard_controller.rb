@@ -11,7 +11,7 @@ class Admin::DashboardController < Admin::AdminController
     else
       @requests = Request.where("approved = 't' AND money ='t' ")
     end
-    @bookings = Book.where("confirmed = 'f'")
+    @bookings = Booking.where("confirmed = 'f'")
     @reportings = Reporting.all
 
     @newprofs = Prof.where("authorized = 'f' AND confirmed_at IS NOT NULL").count

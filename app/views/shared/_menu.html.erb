@@ -38,7 +38,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownProfs">
               <%= link_to "Account", edit_prof_registration_path, class:"dropdown-item" %>
-              <%= link_to t('.bookings'), books_path, class:"dropdown-item" %>
+              <%= link_to t('.bookings'), bookings_path, class:"dropdown-item" %>
               <%= link_to t('technical.requests.index.requests'), requests_path, class:"dropdown-item" %>
               <div class="dropdown-divider"></div>
               <%= link_to fa_icon('sign-out') + "Log-out", destroy_prof_session_path, method: :delete, data: { confirm: t('.confirm') }, class: "dropdown-item" %>
@@ -160,7 +160,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownProf">
               <%= link_to "Account", edit_prof_registration_path, class:"dropdown-item" %>
-              <%= link_to t('.bookings'), books_path, class:"dropdown-item" %>
+              <%= link_to t('.bookings'), bookings_path, class:"dropdown-item" %>
               <%= link_to t('technical.requests.index.requests'), requests_path, class:"dropdown-item" %>
               <div class="dropdown-divider"></div>
               <%= link_to fa_icon('sign-out') + "Log-out", destroy_prof_session_path, method: :delete, data: { confirm: t('.confirm') }, class: "dropdown-item" %>

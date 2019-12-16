@@ -1,0 +1,2 @@
+module Technical::BookingsHelper
+end

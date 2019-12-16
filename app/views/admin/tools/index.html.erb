@@ -33,7 +33,7 @@
                 </p>
                 <%= t('.unconfirmedbookings') + " " %>
                 <span class="badge badge-pill badge-primary">
-                  <%= tool.books.where('end_date >= ? AND confirmed = ?', Time.now, false).count %>
+                  <%= tool.bookings.where('end_date >= ? AND confirmed = ?', Time.now, false).count %>
                 </span>
               </div>
               <ul class="list-group list-group-flush">

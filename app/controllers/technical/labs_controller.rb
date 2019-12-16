@@ -9,11 +9,11 @@ class Technical::LabsController < Technical::TechnicalController
     @lab = Lab.friendly.find(params[:id])
     if current_technical.labs.include?(@lab)
       if current_technical.lab_technicals.where("lab_id=?", @lab.id).first.end_date == nil
-        @bookings = @lab.books.where("end_date > ? AND confirmed = ?", Time.now, true)
+        @bookings = @lab.bookings.where("end_date > ? AND confirmed = ?", Time.now, true)
       elsif current_technical.lab_technicals.where("lab_id=?", @lab.id).first.end_date < Time.now
         redirect_back(fallback_location:  technical_dashboard_index_path)
       else
-        @bookings = @lab.books.where("end_date > ? AND confirmed = ?", Time.now, true)
+        @bookings = @lab.bookings.where("end_date > ? AND confirmed = ?", Time.now, true)
       end
     else
       redirect_back(fallback_location:  technical_dashboard_index_path)

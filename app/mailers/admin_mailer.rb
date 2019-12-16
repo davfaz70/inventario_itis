@@ -7,7 +7,7 @@ class AdminMailer < ApplicationMailer
 
   def new_booking
     @prof = params[:prof]
-    @booking = params[:book]
+    @booking = params[:booking]
     mail(to: Admin.where("role = 1").first.email, subject: "Nuova prenotazione")
   end
 

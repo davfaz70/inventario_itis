@@ -22,7 +22,7 @@
     <% end %>
     <br>
     <br>
-    <%= link_to t('.viewall'), admin_tool_books_path(@tool), class:"btn btn-block btn-info" %>
+    <%= link_to t('.viewall'), admin_tool_bookings_path(@tool), class:"btn btn-block btn-info" %>
     <br>
     <!-- start collapse -->
     <div id="prenota">
@@ -59,12 +59,12 @@
               <div class="row">
                 <div class="col-md-6">
                   <%= form_for ([:admin, booking]) do |t|  %>
-                    <%= hidden_field(:book, :confirmed, :value => true) %>
+                    <%= hidden_field(:booking, :confirmed, :value => true) %>
                     <%= t.submit "Conferma Prenotazione", class: "btn btn-success" %>
                   <% end %>
                 </div>
                 <div class="col-md-6">
-                  <%= link_to fa_icon('trash') + " Rifiuta", admin_book_path(booking), method: :delete, data: {confirm: t('.confirm')}, class:"btn btn-outline-danger"%>
+                  <%= link_to fa_icon('trash') + " Rifiuta", admin_booking_path(booking), method: :delete, data: {confirm: t('.confirm')}, class:"btn btn-outline-danger"%>
                 </div>
               </div>
               <hr>
@@ -106,8 +106,8 @@
       <div class="panel-body">
         <div class="tab-content">
           <div class="tab-pane fade in active scroll-box show" id="bookings">
-            <% if @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true).present? %>
-              <% @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true).each do |booking| %>
+            <% if @tool.bookings.where('end_date >= ? AND confirmed = ?', Time.now, true).present? %>
+              <% @tool.bookings.where('end_date >= ? AND confirmed = ?', Time.now, true).each do |booking| %>
                 <%= booking.prof.name + " " + booking.prof.surname %> <br>
                 <b>
                   <%= t('tools.show.from') + " " + booking.start_date.strftime("%d/%m/%y").to_s + " " + t('tools.show.to') + " " + booking.end_date.strftime("%d/%m/%y").to_s %>

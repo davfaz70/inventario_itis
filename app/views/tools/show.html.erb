@@ -60,7 +60,7 @@
     </div>
     <br>
     <br>
-    <%= link_to t('.verify'), new_tool_book_path(@tool), class: "btn btn-info btn-block" %>
+    <%= link_to t('.verify'), new_tool_booking_path(@tool), class: "btn btn-info btn-block" %>
     <br>
     <br>
     <% if prof_signed_in? && @tool.labs.size > 0%>
@@ -70,7 +70,7 @@
           <div class="card-header" id="headingTwo">
             <h5 class="mb-0">
               <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                <%=fa_icon('arrow-down') + " " + t('tools.index.book') + "!" %>
+                <%=fa_icon('arrow-down') + " " + t('tools.index.booking') + "!" %>
               </button>
             </h5>
           </div>
@@ -112,8 +112,8 @@ var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0,-1);
 var localISOTimeWithoutSeconds = localISOTime.slice(0,16);
 
 // select the "datetime-local" input to set the default value on
-var dtlInput = document.querySelector('input[name="book[start_date]"]');
-var dtlInputend = document.querySelector('input[name="book[end_date]"]');
+var dtlInput = document.querySelector('input[name="booking[start_date]"]');
+var dtlInputend = document.querySelector('input[name="booking[end_date]"]');
 
 // set it and forget it ;)
 dtlInput.value = localISOTime.slice(0,16);
@@ -137,7 +137,7 @@ dtlInputend.value = localISOTime.slice(0,16);
                         <div class="input-group">
                           <div class="input-group-prepend">
                             <div class="input-group-text">
-                              <%= radio_button_tag "book[lab_id]" , l.id, true%>
+                              <%= radio_button_tag "booking[lab_id]" , l.id, true%>
                             </div>
                           </div>
                           <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= l.name + "   Max " + t('.quantity') + ": " + lab.quantity.to_s %>" readonly>
@@ -146,7 +146,7 @@ dtlInputend.value = localISOTime.slice(0,16);
                         <div class="input-group">
                           <div class="input-group-prepend">
                             <div class="input-group-text">
-                              <%= radio_button_tag "book[lab_id]" , l.id%>
+                              <%= radio_button_tag "booking[lab_id]" , l.id%>
                             </div>
                           </div>
                           <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= l.name + "   Max " + t('.quantity') + ": " + lab.quantity.to_s %>" readonly>
@@ -163,7 +163,7 @@ dtlInputend.value = localISOTime.slice(0,16);
                   <%= t.text_area :goal, class:"form-control" %>
                 </div>
 
-                <%= hidden_field(:book, :prof_id, :value => current_prof.id) %>
+                <%= hidden_field(:booking, :prof_id, :value => current_prof.id) %>
                 <br>
                 <%= t.submit t('.booking'), class:"btn btn-success btn-block" %>
               <% end %>
@@ -190,8 +190,8 @@ dtlInputend.value = localISOTime.slice(0,16);
       <div class="col-md-8">
         <div class="tab-content" id="nav-tabContent">
           <div class="tab-pane fade active scroll-box show border" id="bookings">
-            <% if @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true).present? %>
-              <% @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true).each do |booking| %>
+            <% if @tool.bookings.where('end_date >= ? AND confirmed = ?', Time.now, true).present? %>
+              <% @tool.bookings.where('end_date >= ? AND confirmed = ?', Time.now, true).each do |booking| %>
                 <%= booking.prof.name + " " + booking.prof.surname %> <br>
                 <%= t('.from') + " " %> <b> <%= booking.start_date.strftime("%d/%m/%y %k:%M").to_s + " " %> </b> <br>
                 <%= t('.to') + " " %> <b> <%= booking.end_date.strftime("%d/%m/%y %k:%M").to_s %> </b>

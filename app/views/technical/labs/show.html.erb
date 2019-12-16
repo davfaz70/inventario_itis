@@ -25,7 +25,7 @@
           <p class="card-text"> <%= booking.goal %> </p>
         </div>
         <ul class="list-group list-group-flush">
-          <%= link_to fa_icon('trash') + " " + t('admin.tools.show.reject'), technical_book_path(booking), method: :delete, data: {confirm: t('.confirm')}, class:"list-group-item list-group-item-danger" %>
+          <%= link_to fa_icon('trash') + " " + t('admin.tools.show.reject'), technical_booking_path(booking), method: :delete, data: {confirm: t('.confirm')}, class:"list-group-item list-group-item-danger" %>
         </ul>
       </div>
     </div>

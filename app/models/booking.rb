@@ -17,7 +17,7 @@ class MyValidator < ActiveModel::Validator
     end
   end
 end
-class Book < ApplicationRecord
+class Booking < ApplicationRecord
   validates :start_date, presence: true
   validates :end_date, presence: true
   validates :goal, presence: true

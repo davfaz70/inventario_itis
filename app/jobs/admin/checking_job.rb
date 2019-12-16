@@ -3,10 +3,10 @@ class Admin::CheckingJob < ApplicationJob
 
   def perform(tool)
     @tool = tool
-    @book1 = @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true).order(created_at: :desc)
+    @book1 = @tool.bookings.where('end_date >= ? AND confirmed = ?', Time.now, true).order(created_at: :desc)
     @book1.each do |booking|
       cont = 0
-      @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true).order(created_at: :desc).each do |b|
+      @tool.bookings.where('end_date >= ? AND confirmed = ?', Time.now, true).order(created_at: :desc).each do |b|
           if booking.start_date >= b.start_date && booking.start_date <= b.end_date
             cont = cont + b.quantity
           elsif booking.end_date >= b.start_date && booking.end_date <= b.end_date

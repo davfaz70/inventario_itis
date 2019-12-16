@@ -1,7 +1,7 @@
-class Technical::BooksController < Technical::TechnicalController
+class Technical::BookingsController < Technical::TechnicalController
 
   def destroy
-    @booking = Book.find(params[:id])
+    @booking = Booking.find(params[:id])
     if @booking.destroy
       redirect_back(fallback_location:  technical_dashboard_index_path)
     else

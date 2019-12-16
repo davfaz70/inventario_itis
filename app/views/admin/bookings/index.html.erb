@@ -18,11 +18,11 @@
            <h4 class="card-title"> <%= booking.prof.name + " " + booking.prof.surname %>  </h4>
            <% if booking.confirmed == false %>
              <div class="text-danger" >
-               <h5> <%= t('books.index.notapproved') %> </h5>
+               <h5> <%= t('bookings.index.notapproved') %> </h5>
              </div>
            <% else %>
              <div class="text-success" >
-               <h5> <%= t('books.index.approved') %> </h5>
+               <h5> <%= t('bookings.index.approved') %> </h5>
              </div>
            <% end %>
         </div>

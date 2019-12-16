@@ -1,6 +1,5 @@
-class AddGoalToTempbooks < ActiveRecord::Migration[5.0]
+class AddGoalToBooks < ActiveRecord::Migration[5.0]
   def change
-    add_column :tempbooks, :goal, :string
-    add_column :books, :goal, :string
+    add_column :bookings, :goal, :string
   end
 end

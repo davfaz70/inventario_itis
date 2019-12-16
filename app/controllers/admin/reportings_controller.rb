@@ -18,8 +18,8 @@ class Admin::ReportingsController < Admin::AdminController
     end
     if @lab.save
       flash[:success] = "Success"
-    #  if @tool.books.where('end_date >= ?', Time.now).exists?
-    #    @job = Delayed::Job.enqueue Admin::Checking.new(@tool, @tool.books.where('end_date >= ?', Time.now).count) #for more info about this job see jobs/admin/checking.rb
+    #  if @tool.bookings.where('end_date >= ?', Time.now).exists?
+    #    @job = Delayed::Job.enqueue Admin::Checking.new(@tool, @tool.bookings.where('end_date >= ?', Time.now).count) #for more info about this job see jobs/admin/checking.rb
     #  end
       TechnicalMailer.reporting_dismissed(@reporting.technical, @reporting).deliver_now
       @reporting.destroy

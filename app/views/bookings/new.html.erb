@@ -1,7 +1,7 @@
 <h1> <%= t('.verify') %> <%= @tool.name %> </h1>
 <hr>
 
-<%= form_for ([@tool, @booking]), :url => {:controller => "books", :action => "avaiable"} do |t|  %>
+<%= form_for ([@tool, @booking]), :url => {:controller => "bookings", :action => "avaiable"} do |t|  %>
 
   <% if @booking.errors.any? %>
     <div id="error_explanation">
@@ -56,9 +56,9 @@ dtlInput.value = localISOTime.slice(0,16);
 dtlInputend.value = localISOTime.slice(0,16);
 </script>
 
-  <%= hidden_field(:book, :prof_id, :value => current_prof.id) %>
-  <%= hidden_field(:book, :goal, :value => "v") %>
-  <%= hidden_field(:book, :quantity, :value => 1) %>
+  <%= hidden_field(:booking, :prof_id, :value => current_prof.id) %>
+  <%= hidden_field(:booking, :goal, :value => "v") %>
+  <%= hidden_field(:booking, :quantity, :value => 1) %>
   <br>
   <%= t.submit t('.go'), class:"btn btn-info btn-block" %>
 <% end %>

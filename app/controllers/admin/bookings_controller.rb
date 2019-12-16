@@ -1,17 +1,17 @@
-class Admin::BooksController < Admin::AdminController
+class Admin::BookingsController < Admin::AdminController
   before_action :set_book, only: [:update, :destroy]
 
   def index
     @tool = Tool.friendly.find(params[:tool_id])
-    @bookings = @tool.books
+    @bookings = @tool.bookings
   end
 
   def update
     #at this method we pass a booking and we must know the tool of that booking for obtain all the reservations that belongs to the tool
-    @books = @booking.tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true)
+    @bookings = @booking.tool.bookings.where('end_date >= ? AND confirmed = ?', Time.now, true)
       cont = 0
     # the system must check if that booking are not in conflict with other confirmated reservations
-     @books.each do |b|
+     @bookings.each do |b|
        if (@booking.start_date..@booking.end_date).overlaps?(b.start_date..b.end_date)
          cont = cont + b.quantity
        end
@@ -23,7 +23,7 @@ class Admin::BooksController < Admin::AdminController
       @booking.destroy
       redirect_back(fallback_location:  admin_dashboard_index_path)
     else
-      if @booking.update(book_params)
+      if @booking.update(booking_params)
         flash[:success]="La prenotazione è stata confermata"
         LabMailer.new_booking(@booking).deliver_now #this email notify at the prof that his booking was confirmed
         ProfMailer.confirmed_booking(@booking.prof, @booking).deliver_later
@@ -57,10 +57,10 @@ class Admin::BooksController < Admin::AdminController
   private
 
   def set_book
-    @booking = Book.find(params[:id])
+    @booking = Booking.find(params[:id])
   end
 
-  def book_params
-    params.require(:book).permit(:prof_id, :tool_id, :start_date, :end_date, :quantity, :confirmed, :lab_id, :goal)
+  def booking_params
+    params.require(:booking).permit(:prof_id, :tool_id, :start_date, :end_date, :quantity, :confirmed, :lab_id, :goal)
   end
 end

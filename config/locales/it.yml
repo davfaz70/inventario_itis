@@ -188,7 +188,7 @@ it:
       search: "Cerca"
       place: "Cerca strumenti"
       show: "Visualizza"
-      book: "Prenota"
+      booking: "Prenota"
       sure: "Sei sicuro di voler prenotare questo strumento?"
       quantity: "Quantità disponibili in magazzino:"
       categories: "Categorie"
@@ -228,7 +228,7 @@ it:
     new:
       new: "Nuova richiesta d'acquisto"
       quantity: "Quanti ne vuoi?"
-  books:
+  bookings:
     index:
       bookings: "Prenotazioni fatte da te"
       notapproved: "Non approvata"

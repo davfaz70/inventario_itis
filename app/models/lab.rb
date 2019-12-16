@@ -7,8 +7,7 @@ class Lab < ApplicationRecord
   has_many :tools, through: :labs_tools
   has_many :lab_technicals
   has_many :technicals, through: :lab_technicals
-  has_many :tempbooks
-  has_many :books, dependent: :destroy
+  has_many :bookings, dependent: :destroy
   has_many :reportings, dependent: :destroy
   accepts_nested_attributes_for :labs_tools
 

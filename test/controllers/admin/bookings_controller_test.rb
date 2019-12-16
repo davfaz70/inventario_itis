@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Admin::BooksControllerTest < ActionDispatch::IntegrationTest
+class Admin::BookingsControllerTest < ActionDispatch::IntegrationTest
 
   setup do
     @tool = tools(:one)
@@ -8,12 +8,12 @@ class Admin::BooksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get admin_tool_books_path(@tool)
+    get admin_tool_bookings_path(@tool)
     assert true
   end
 
   test "should get index other tool" do
-    get admin_tool_books_path(@tool2)
+    get admin_tool_bookings_path(@tool2)
     assert true
   end
 

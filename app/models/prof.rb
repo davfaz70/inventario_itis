@@ -20,8 +20,7 @@ class Prof < ApplicationRecord
   validates :name, presence: true
   validates :surname, presence: true
 
-  has_many :tempbooks
-  has_many :books, dependent: :destroy
+  has_many :bookings, dependent: :destroy
   has_many :requests, dependent: :destroy
 
   before_save  :name

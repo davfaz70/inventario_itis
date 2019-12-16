@@ -103,7 +103,7 @@
               <div class="dropdown-message small"> <%= booking.prof.surname + " " + booking.prof.name %> </div>
               <div class="dropdown-message small"> <%= booking.goal %> </div>
               <%= form_for ([:admin, booking]) do |t|  %>
-                <%= hidden_field(:book, :confirmed, :value => true) %>
+                <%= hidden_field(:booking, :confirmed, :value => true) %>
                 <%= t.submit "Conferma Prenotazione", data: {confirm: t('admin.tools.index.confirm')}, class: "btn btn-info btn-sm" %>
               <% end %>
             </a>

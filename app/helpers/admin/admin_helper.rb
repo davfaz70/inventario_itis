@@ -2,10 +2,10 @@ module Admin::AdminHelper
 
   def menu
     @profcount = Prof.where("authorized = 'f' AND confirmed_at IS NOT NULL").count
-    @bookcount = Book.where("confirmed = ?", false).count
+    @bookcount = Booking.where("confirmed = ?", false).count
     @count = @profcount + @bookcount
     @profs = Prof.where("authorized = ? AND confirmed_at IS NOT NULL", false).limit(2)
-    @bookings = Book.where("confirmed = ?", false).limit(2)
+    @bookings = Booking.where("confirmed = ?", false).limit(2)
 
     @requestcountna = Request.where("approved = 'f'").count
     @requestsna = Request.where("approved = 'f'").limit(4)

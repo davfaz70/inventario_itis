@@ -119,7 +119,7 @@
           <div class="card-body">
             <%= mail_to prof.email %>
             <br>
-            <%= t('.bookings') + ": " + prof.books.count.to_s %>
+            <%= t('.bookings') + ": " + prof.bookings.count.to_s %>
             <br>
             <%= t('.requests') + ": " + prof.requests.count.to_s %>
           </div>
@@ -128,7 +128,7 @@
           <% if prof.authorized == false %>
             <ul class="list-group list-group-flush">
               <%= link_to t('.authorize'),  admin_authorize_route_path(prof.id), method: :post, class:"list-group-item list-group-item-success" %>
-              <% if prof.books.present? == false && prof.requests.present? == false %>
+              <% if prof.bookings.present? == false && prof.requests.present? == false %>
                 <%= link_to fa_icon('trash') + " " + t('.delete'), admin_deleteprof_route_path(prof.id), data: { confirm: t('admin.tools.index.confirm') }, method: :delete, class:"list-group-item list-group-item-danger" %>
               <% end %>
             </ul>
@@ -284,11 +284,11 @@
             <p class="card-text"> <%= simple_format(booking.goal) %> </p>
           </div>
           <%= form_for ([:admin, booking]) do |t|  %>
-            <%= hidden_field(:book, :confirmed, :value => true) %>
+            <%= hidden_field(:booking, :confirmed, :value => true) %>
             <%= t.submit t('admin.tools.show.confirmbooking'), data: {confirm: t('.confirm')}, class:"btn btn-success btn-block" %>
           <% end %>
           <ul class="list-group list-group-flush">
-            <%= link_to fa_icon('trash') + " " + t('admin.tools.show.reject'), admin_book_path(booking), method: :delete, data: {confirm: t('.confirm')}, class:"list-group-item list-group-item-danger"%>
+            <%= link_to fa_icon('trash') + " " + t('admin.tools.show.reject'), admin_booking_path(booking), method: :delete, data: {confirm: t('.confirm')}, class:"list-group-item list-group-item-danger"%>
           </ul>
         </div>
         <!-- end card -->

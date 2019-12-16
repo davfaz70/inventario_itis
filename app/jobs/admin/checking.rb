@@ -8,10 +8,10 @@ class Admin::Checking < ProgressJob::Base
   end
 
   def perform
-    @book1 = @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true).order(created_at: :desc)
+    @book1 = @tool.bookings.where('end_date >= ? AND confirmed = ?', Time.now, true).order(created_at: :desc)
     @book1.each do |booking|
       cont = 0
-      @tool.books.where('end_date >= ? AND confirmed = ?', Time.now, true).order(created_at: :desc).each do |b|
+      @tool.bookings.where('end_date >= ? AND confirmed = ?', Time.now, true).order(created_at: :desc).each do |b|
         #this query is refreshed at every loop for avoid frozen variable
           if (booking.start_date..booking.end_date).overlaps?(b.start_date..b.end_date)
             cont = cont + b.quantity

@@ -39,8 +39,7 @@ class Tool < ApplicationRecord
   has_many :labs, through: :labs_tools
   accepts_nested_attributes_for :labs_tools, allow_destroy: true
   has_and_belongs_to_many :categories
-  has_many :tempbooks
-  has_many :books, dependent: :destroy
+  has_many :bookings, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :reportings, dependent: :destroy
   has_many :documentations, dependent: :destroy

@@ -30,14 +30,14 @@ Rails.application.routes.draw do
         resources :labs, only: [:show]
         resources :reportings, only: [:index]
         resources :requests
-        resources :books, only: [:destroy]
+        resources :bookings, only: [:destroy]
       end
 
       namespace :admin do
         resources :tools do
           resources :documentations, only: [:destroy]
           resources :photos, only: [:destroy]
-          resources :books, only: [:index]
+          resources :bookings, only: [:index]
           resources :labs_tool, only: [:destroy]
         end
         resources :labs do
@@ -49,7 +49,7 @@ Rails.application.routes.draw do
         resources :requests, only: [:index, :show, :update, :destroy]
         resources :categories
         resources :lab_technicals, only: [:destroy]
-        resources :books, only: [:update, :destroy]
+        resources :bookings, only: [:update, :destroy]
         get 'dashboard/index'
         get 'tools/choose/:id(.:format)', :to => 'tools#choose', as: "choose_tool_route"
         get 'labs/assign/:id(.:format)', :to => 'labs#assign', as: "assign_lab_route"
@@ -63,14 +63,14 @@ Rails.application.routes.draw do
         post 'reportings/replace/:id(.:format)', :to => 'reportings#replace', as: "replace_route"
       end
 
-      post 'avaiable/:tool_id(.:format)', :to => 'books#avaiable', as: "avaiable_route"
+      post 'avaiable/:tool_id(.:format)', :to => 'bookings#avaiable', as: "avaiable_route"
       resources :tools, only: [:index, :show] do
-        resources :books, only: [:new, :create]
+        resources :bookings, only: [:new, :create]
         resources :posts, only: [:create, :edit, :update, :destroy]
       end
       resources :categories, only: [:create]
       resources :requests, only: [:new, :create, :index, :show]
-      resources :books, only: [:index]
+      resources :bookings, only: [:index]
 
       # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
       root to: "home#index"
