@@ -63,9 +63,9 @@ Rails.application.routes.draw do
         post 'reportings/replace/:id(.:format)', :to => 'reportings#replace', as: "replace_route"
       end
 
-      post 'avaiable/:tool_id(.:format)', :to => 'tempbooks#avaiable', as: "avaiable_route"
+      post 'avaiable/:tool_id(.:format)', :to => 'books#avaiable', as: "avaiable_route"
       resources :tools, only: [:index, :show] do
-        resources :tempbooks, only: [:new, :create]
+        resources :books, only: [:new, :create]
         resources :posts, only: [:create, :edit, :update, :destroy]
       end
       resources :categories, only: [:create]

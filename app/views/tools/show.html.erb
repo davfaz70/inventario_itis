@@ -60,7 +60,7 @@
     </div>
     <br>
     <br>
-    <%= link_to t('.verify'), new_tool_tempbook_path(@tool), class: "btn btn-info btn-block" %>
+    <%= link_to t('.verify'), new_tool_book_path(@tool), class: "btn btn-info btn-block" %>
     <br>
     <br>
     <% if prof_signed_in? && @tool.labs.size > 0%>
@@ -76,10 +76,10 @@
           </div>
           <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#prenota">
             <div class="card-body">
-              <%= form_for ([@tool, @tempbook]) do |t|  %>
-                <% if @tempbook.errors.any? %>
+              <%= form_for ([@tool, @booking]) do |t|  %>
+                <% if @booking.errors.any? %>
                   <div id="error_explanation">
-                    <% @tempbook.errors.full_messages.each do |message| %>
+                    <% @booking.errors.full_messages.each do |message| %>
                       <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <%= message %>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -112,8 +112,8 @@ var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0,-1);
 var localISOTimeWithoutSeconds = localISOTime.slice(0,16);
 
 // select the "datetime-local" input to set the default value on
-var dtlInput = document.querySelector('input[name="tempbook[start_date]"]');
-var dtlInputend = document.querySelector('input[name="tempbook[end_date]"]');
+var dtlInput = document.querySelector('input[name="book[start_date]"]');
+var dtlInputend = document.querySelector('input[name="book[end_date]"]');
 
 // set it and forget it ;)
 dtlInput.value = localISOTime.slice(0,16);
@@ -137,7 +137,7 @@ dtlInputend.value = localISOTime.slice(0,16);
                         <div class="input-group">
                           <div class="input-group-prepend">
                             <div class="input-group-text">
-                              <%= radio_button_tag "tempbook[lab_id]" , l.id, true%>
+                              <%= radio_button_tag "book[lab_id]" , l.id, true%>
                             </div>
                           </div>
                           <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= l.name + "   Max " + t('.quantity') + ": " + lab.quantity.to_s %>" readonly>
@@ -146,7 +146,7 @@ dtlInputend.value = localISOTime.slice(0,16);
                         <div class="input-group">
                           <div class="input-group-prepend">
                             <div class="input-group-text">
-                              <%= radio_button_tag "tempbook[lab_id]" , l.id%>
+                              <%= radio_button_tag "book[lab_id]" , l.id%>
                             </div>
                           </div>
                           <input type="text" class="form-control" aria-label="Text input with checkbox" value="<%= l.name + "   Max " + t('.quantity') + ": " + lab.quantity.to_s %>" readonly>
@@ -163,9 +163,9 @@ dtlInputend.value = localISOTime.slice(0,16);
                   <%= t.text_area :goal, class:"form-control" %>
                 </div>
 
-                <%= hidden_field(:tempbook, :prof_id, :value => current_prof.id) %>
+                <%= hidden_field(:book, :prof_id, :value => current_prof.id) %>
                 <br>
-                <%= t.submit class:"btn btn-success btn-block" %>
+                <%= t.submit t('.booking'), class:"btn btn-success btn-block" %>
               <% end %>
             </div>
           </div>

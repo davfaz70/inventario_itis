@@ -213,6 +213,7 @@ en:
       start: "Start date and time"
       end: "End date and time"
       chooselab: "Choose lab"
+      booking: "Reserve it!"
     index:
       newrequest: "New request"
       book: "Book this"
@@ -227,18 +228,6 @@ en:
     errorfd: "The start date must be before the end date, even the children know this"
     errorpast: "You can not reserve a tool in the past"
     plus: "You can not book more tools than there are actually"
-  tempbooks:
-    new:
-      verify: "Check availability of"
-      go: "Go"
-    avaiable:
-      periods: "In this period"
-      periodp: "In this period"
-      tool: "tool is available"
-      tools: "tools are available"
-    create:
-      looking: "See reservations better. During this time"
-      lookings: "See reservations better. During this time"
   posts:
     create:
       created: "Comment successfully created"
@@ -275,6 +264,17 @@ en:
       bookings: "Bookings made by you"
       notapproved: "Not approved"
       approved: "Approved"
+    new:
+      verify: "Check availability of"
+      go: "Go"
+    avaiable:
+      periods: "In this period"
+      periodp: "In this period"
+      tool: "tool is available"
+      tools: "tools are available"
+    create:
+      looking: "See reservations better. During this time"
+      lookings: "See reservations better. During this time"
 
 
 
