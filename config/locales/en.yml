@@ -99,6 +99,8 @@ en:
         docadd: "Add documentation file"
         photoremove: "Remove this picture"
         photoadd: "Add other photos"
+        fast_booking: "Fast booking"
+        fast_booking_desc: "If you select this checkbox, all the reservations for this tool will automatically approved"
     labs:
       index:
         labtools: "Amount of lab's tools"

@@ -4,10 +4,10 @@ class BookingControlJob < ApplicationJob
   def perform(booking)
     @booking = booking
     if @booking.present?
-    if @booking.confirmed == false
-      ProfMailer.no_time_booking(@booking.prof, @booking).deliver_now
-      @booking.destroy
+      if @booking.confirmed == false
+        ProfMailer.no_time_booking(@booking.prof, @booking).deliver_now
+        @booking.destroy
+      end
     end
-  end
   end
 end

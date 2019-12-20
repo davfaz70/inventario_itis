@@ -96,7 +96,15 @@
 
 
   <hr>
-
+  <div class="row">
+    <div class="col-md-6">
+      <%= t.check_box :fast_booking %>
+      <%= t('.fast_booking') %>
+    </div>
+    <div class="col-md-6">
+      <%= t('.fast_booking_desc') %>
+    </div>
+  </div>
   <br>
 
   <%= t.submit class:"btn btn-primary btn-block"%>

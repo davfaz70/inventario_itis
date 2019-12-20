@@ -67,6 +67,8 @@ it:
         docadd: "Aggiungi documentazione"
         photoremove: "Rimuovi questa foto"
         photoadd: "Aggiungi altre foto"
+        fast_booking: "Strumento a prenotazione veloce"
+        fast_booking_desc: "Se la casella viene selezionata, chi prenoterà questo strumento avrà la sua prenotazione immediatamente confermata dal sistema, non ci sarà quindi bisogno che un amministratore la autorizzi."
     labs:
       index:
         labtools: "Numero di strumenti presenti in laboratorio"
