@@ -185,6 +185,11 @@ it:
       end: "Data e ora fine"
       chooselab: "Scegli il laboratorio"
       booking: "Prenota!"
+      fast_booking_true: "Modalità prenotazione veloce attiva"
+      fast_booking_false: "Modalità prenotazione veloce disattivata"
+      all_bookings: "Vedi tutte le prenotazioni"
+      lab: "Aula o laboratorio: "
+
     index:
       newrequest: "Nuova richiesta"
       search: "Cerca"
@@ -246,6 +251,8 @@ it:
     create:
       looking: "Guarda meglio le prenotazioni. In questo periodo è disponibile"
       lookings: "Guarda meglio le prenotazioni. In questo periodo sono disponibili"
+      fast_booking_true: "Prenotato con successo, la prenotazione è già confermata"
+      fast_booking_false: "Prenotazione in attesa di conferma da parte di un amministratore"
 
   technical:
     shared:

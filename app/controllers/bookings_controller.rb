@@ -61,12 +61,16 @@ class BookingsController < ApplicationController
         @booking.destroy
         redirect_to tool_path(@tool)
       else #if the booking are not in conflict with other confirmated resarvations, the system create a new booking entity
-        flash[:success]="Prenotato con successo"
+
         BookingControlJob.set(wait_until: @booking.start_date.to_datetime).perform_later(@booking) #if the booking are not confirmed before the start date, is unuseful store it in the database
         if @tool.fast_booking == true
+          flash[:success]=t('.fast_booking_true')
           @booking.confirmed = true
           @booking.save
+          LabMailer.new_booking(@booking).deliver_now #this email notify at the prof that his booking was confirmed
+          ProfMailer.confirmed_booking(@booking.prof, @booking).deliver_later
         else
+          flash[:success]=t('.fast_booking_false')
           AdminMailer.with(booking: @booking, prof: @booking.prof).new_booking.deliver_later #this email notify at the admin that a new booking was created
         end
         redirect_to tool_path(@tool)

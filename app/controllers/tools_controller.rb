@@ -1,5 +1,5 @@
 class ToolsController < ApplicationController
-  before_action :set_tool, only: [:show]
+  before_action :set_tool_bookings, only: [:show, :all_bookings]
 
   def index
     q_param = params[:q]
@@ -23,10 +23,14 @@ class ToolsController < ApplicationController
     @booking = @tool.bookings.build
   end
 
+  def all_bookings
+  end
+
   private
 
-  def set_tool
+  def set_tool_bookings
     @tool = Tool.friendly.find(params[:id])
+    @bookings = @tool.bookings.where('end_date >= ? AND confirmed = ?', Time.now, true)
   end
 
 end

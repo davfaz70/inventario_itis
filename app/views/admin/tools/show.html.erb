@@ -92,8 +92,6 @@
   <!-- end col -->
   <!-- start col -->
   <div class="col-lg-4 col-md-5">
-    <h3 class="my-3"> <%= t('tools.show.description') %> </h3>
-    <p> <%= simple_format(@tool.description) %> </p>
     <!-- start panel -->
 
     <div class="panel panel-default">
@@ -155,6 +153,18 @@
     </div>
   <% end %>
 </div>
+
+<hr>
+<div class="row">
+  <div class="col-sm-8">
+    <h3 class="my-3"> <%= t('tools.show.description') %> </h3>
+    <p> <%= simple_format(@tool.description) %> </p>
+  </div>
+  <div class="col-sm-4">
+    <div class="LI-profile-badge" width="100%" data-version="v1" data-size="medium" data-locale="<%= I18n.locale %>" data-type="vertical" data-theme="light" data-vanity="davide-fazio"><a class="LI-simple-link" href='https://it.linkedin.com/in/davide-fazio?trk=profile-badge'>Davide Fazio</a></div>
+  </div>
+</div>
+
 
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">

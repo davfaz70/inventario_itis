@@ -64,6 +64,7 @@ Rails.application.routes.draw do
       end
 
       post 'avaiable/:tool_id(.:format)', :to => 'bookings#avaiable', as: "avaiable_route"
+      get 'all_bookings/:id(.:format)', :to => 'tools#all_bookings', as: "all_bookings_route"
       resources :tools, only: [:index, :show] do
         resources :bookings, only: [:new, :create]
         resources :posts, only: [:create, :edit, :update, :destroy]

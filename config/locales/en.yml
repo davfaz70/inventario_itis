@@ -216,6 +216,10 @@ en:
       end: "End date and time"
       chooselab: "Choose lab"
       booking: "Reserve it!"
+      fast_booking_true: "Fast booking enabled"
+      fast_booking_false: "Fast booking disabled"
+      all_bookings: "Show all bookings"
+      lab: "Room or lab: "
     index:
       newrequest: "New request"
       booking: "Book this"
@@ -277,6 +281,8 @@ en:
     create:
       looking: "See reservations better. During this time"
       lookings: "See reservations better. During this time"
+      fast_booking_true: "Successfully reserved! This booking is already confirmed"
+      fast_booking_false: "This booking is awaiting for the confirm"
 
 
 

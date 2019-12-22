@@ -5,9 +5,23 @@
             padding: 1rem
         }
 </style>
-
-<h1 class="my-4"> <%= @tool.name %> </h1>
-<h3> <%= t('.quantity') + ": " + @quantity.to_s %> </h3>
+<div class="row">
+  <div class="col-md-6">
+    <h1 class="my-4"> <%= @tool.name %> </h1>
+    <h3> <%= t('.quantity') + ": " + @quantity.to_s %> </h3>
+  </div>
+  <div class="col-md-6">
+    <% if @tool.fast_booking == true %>
+      <div class="alert alert-success">
+        <%= t('.fast_booking_true') %>
+      </div>
+    <% else %>
+      <div class="alert alert-secondary">
+        <%= t('.fast_booking_false') %>
+      </div>
+    <% end %>
+  </div>
+</div>
 <br>
 
 <% @tool.reportings.each do |repo| %>
@@ -177,24 +191,23 @@ dtlInputend.value = localISOTime.slice(0,16);
   <!-- end col -->
   <!-- start col -->
   <div class="col-lg-4 col-md-5">
-    <h3 class="my-3"> <%= t('.description') %> </h3>
-    <p> <%= simple_format(@tool.description) %></p>
     <!-- start panel -->
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-lg-12">
         <div class="list-group" id="list-tab" role="tablist">
           <a href="#bookings" data-toggle="tab" class="list-group-item text-center list-group-item-action active" id="bookings-list" aria-controls="bookings">  <%= t('.bookings') %> </a>
           <a href="#documentations" data-toggle="tab" class="list-group-item text-center list-group-item-action" id="docs-list" aria-controls="docs"> <%= t('.documentation') %> </a>
         </div>
-      </div>
-      <div class="col-md-8">
+
+
         <div class="tab-content" id="nav-tabContent">
           <div class="tab-pane fade active scroll-box show border" id="bookings">
-            <% if @tool.bookings.where('end_date >= ? AND confirmed = ?', Time.now, true).present? %>
-              <% @tool.bookings.where('end_date >= ? AND confirmed = ?', Time.now, true).each do |booking| %>
+            <% if @bookings.present? %>
+              <% @bookings.each do |booking| %>
                 <%= booking.prof.name + " " + booking.prof.surname %> <br>
                 <%= t('.from') + " " %> <b> <%= booking.start_date.strftime("%d/%m/%y %k:%M").to_s + " " %> </b> <br>
-                <%= t('.to') + " " %> <b> <%= booking.end_date.strftime("%d/%m/%y %k:%M").to_s %> </b>
+                <%= t('.to') + " " %> <b> <%= booking.end_date.strftime("%d/%m/%y %k:%M").to_s %> </b> <br>
+                <%= t('tools.show.lab') + booking.lab.name %>
                 <br>
                 <i> <%= t('.quantity') + ": " + booking.quantity.to_s %> </i>
                 <hr>
@@ -219,56 +232,22 @@ dtlInputend.value = localISOTime.slice(0,16);
         </div>
       </div>
     </div>
-
+    <br>
     <!-- end panel -->
+    <div class="text-center">
+      <%= link_to t('.all_bookings'), all_bookings_route_path(@tool), class: "btn btn-secondary btn-large" %>
+    </div>
+
   </div>
   <!-- end col -->
+
 </div>
 <!-- end row -->
 
-
-<% if @tool.photos.first.present? %>
-  <% if @tool.photos.first.picture.present? %>
-  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle"> <%= @tool.name %> </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <%= image_tag(@tool.photos.first.picture_url, :alt => "booh", class:"d-block w-100") %>
-              </div>
-              <% @tool.photos.each do |photo| %>
-                <div class="carousel-item">
-                  <%= image_tag(photo.picture_url, :alt => "booh", class:"d-block w-100") %>
-                </div>
-                <% end %>
-              </div>
-              <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  <% end %>
-<% end %>
-
-
-
-
+<hr>
+<h3 class="my-3"> <%= t('.description') %> </h3>
+<p> <%= simple_format(@tool.description) %></p>
+<hr>
 <div class="row">
   <div class="col-lg-9 col-md-7">
     <div class="card my-4">
@@ -315,3 +294,42 @@ dtlInputend.value = localISOTime.slice(0,16);
     <div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="<%= I18n.locale %>" data-type="vertical" data-theme="dark" data-vanity="davide-fazio"><a class="LI-simple-link" href='https://it.linkedin.com/in/davide-fazio?trk=profile-badge'>Davide F.</a></div>
   </div>
 </div>
+
+<% if @tool.photos.first.present? %>
+  <% if @tool.photos.first.picture.present? %>
+  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle"> <%= @tool.name %> </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <%= image_tag(@tool.photos.first.picture_url, :alt => "booh", class:"d-block w-100") %>
+              </div>
+              <% @tool.photos.each do |photo| %>
+                <div class="carousel-item">
+                  <%= image_tag(photo.picture_url, :alt => "booh", class:"d-block w-100") %>
+                </div>
+                <% end %>
+              </div>
+              <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
